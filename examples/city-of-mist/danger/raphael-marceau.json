@@ -1,6 +1,6 @@
 {
   "name": "Raphaël Marceau",
-  "description": "A compassionate literature teacher and Rift of the Fates who refuses to let his students be trapped by prophecy, class, or expectation. Raphael reads the threads of destiny like lines on a chalkboard: he can reveal likely futures, snip a doomed path before it manifests, or knot two lives together so that one student's courage changes another's fate. He rarely acts with cruelty, but when someone threatens his pupils' freedom, he becomes a relentless guardian who manipulates chance, timing, and consequence to steer the scene toward a different ending.",
+  "description": "A compassionate literature teacher and Rift of the Fates who refuses to let his students be trapped by prophecy, class, or expectation. Raphaël reads the threads of destiny like lines on a chalkboard: he can reveal likely futures, snip a doomed path before it manifests, or knot two lives together so that one student's courage changes another's fate. He rarely acts with cruelty, but when someone threatens his pupils' freedom, he becomes a relentless guardian who manipulates chance, timing, and consequence to steer the scene toward a different ending.",
   "rating": 4,
   "soft_moves": [
     "Read the threads of destiny in the scene and hint at someone's next move.",
@@ -37,11 +37,11 @@
     },
     {
       "name": "Cut the Inevitable",
-      "description": "When Raphael acts to prevent a foretold event before it fully occurs, he may reduce a developing status, interrupt a countdown, or burn a tag representing certainty, momentum, or preparation."
+      "description": "When Raphaël acts to prevent a foretold event before it fully occurs, he may reduce a developing status, interrupt a countdown, or burn a tag representing certainty, momentum, or preparation."
     },
     {
       "name": "Borrowed Tomorrow",
-      "description": "When Raphael wishes to protect someone from immediate danger by shifting fate, he may give this person a positive story tag such as {not today} or {meant for more}. The first time this person would be harmed, they can burn the tag to avoid the harm (as part of a **Face Danger** move for instance)."
+      "description": "When Raphaël wishes to protect someone from immediate danger by shifting fate, he may give this person a positive story tag such as {not today} or {meant for more}. The first time this person would be harmed, they can burn the tag to avoid the harm (as part of a **Face Danger** move for instance)."
     }
   ],
   "meta": {
