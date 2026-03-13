@@ -11,7 +11,6 @@ export const MightLevelEnum = z
       "Relative scale of a Challenge's Might or influence in the fiction.",
     examples: ["origin", "adventure", "greatness"],
   });
-export type MightLevel = z.infer<typeof MightLevelEnum>;
 
 export const PublicationTypeEnum = z
   .enum(["official", "third_party", "cauldron", "homebrew"])
@@ -20,7 +19,6 @@ export const PublicationTypeEnum = z
       "Where this content comes from. Use to help downstream tools filter sources.",
     examples: ["official", "cauldron"],
   });
-export type PublicationType = z.infer<typeof PublicationTypeEnum>;
 
 /** =========================
  *  Subschemas
@@ -153,7 +151,7 @@ export const ThreatSchema = z
               "Raise the alarm (**Exposure**).",
               "Time passes as the ferry creeps forward ({time-passes-1}).",
             ],
-          })
+          }),
       )
       .min(1, "At least one Consequence is required")
       .meta({
@@ -223,7 +221,7 @@ export const MetaSchema = z
           .meta({
             description: "One credited author name.",
             examples: ["Son of Oak", "4rtamis"],
-          })
+          }),
       )
       .optional()
       .meta({
@@ -293,7 +291,7 @@ export const LegendInTheMistChallengeSchema = z
             description:
               "Keyword that defines how this Challenge behaves in a scene.",
             examples: ["Watcher", "Aggressor", "Obstacle"],
-          })
+          }),
       )
       .optional()
       .meta({
@@ -313,7 +311,7 @@ export const LegendInTheMistChallengeSchema = z
               "Three tags the imitated person possesses",
               "{sword}, {dagger} or {bow}",
             ],
-          })
+          }),
       )
       .optional()
       .meta({
@@ -342,7 +340,7 @@ export const LegendInTheMistChallengeSchema = z
             "Figure out someone's place of hiding (**Exposure**).",
             "Sniff around (remove two tiers from a sneaking status).",
           ],
-        })
+        }),
       )
       .optional()
       .meta({
@@ -366,6 +364,8 @@ export const LegendInTheMistChallengeSchema = z
 /** =========================
  *  Exported TS types
  *  ========================= */
+export type MightLevel = z.infer<typeof MightLevelEnum>;
+export type PublicationType = z.infer<typeof PublicationTypeEnum>;
 export type Might = z.infer<typeof MightSchema>;
 export type Limit = z.infer<typeof LimitSchema>;
 export type Threat = z.infer<typeof ThreatSchema>;

@@ -1,5 +1,6 @@
 import { ZodObject } from "zod";
 import { LegendInTheMistChallengeSchema } from "./legend-in-the-mist/challenge";
+import { CityOfMistDangerSchema } from "./city-of-mist/danger";
 
 type Game = {
   name: string;
@@ -40,5 +41,10 @@ export const TARGETS: Array<SchemaTarget> = [
     zod: LegendInTheMistChallengeSchema,
     game: GAMES.litm,
     name: "challenge",
+  },
+  {
+    zod: CityOfMistDangerSchema,
+    game: GAMES.com,
+    name: "danger",
   },
 ];

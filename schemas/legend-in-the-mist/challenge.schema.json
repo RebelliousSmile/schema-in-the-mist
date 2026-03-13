@@ -1,16 +1,15 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "description": "Legend in the Mist - Challenge profile, used to represent NPCs and situations that pose a threat to the Heroes, their Quests, or their goals.",
   "type": "object",
   "properties": {
     "name": {
+      "default": "Untitled Challenge",
       "description": "The name/title of the Challenge.",
       "examples": [
         "Avoided Acquaintance",
         "Commoner",
         "Boggart"
       ],
-      "default": "Untitled Challenge",
       "type": "string",
       "minLength": 1
     },
@@ -24,13 +23,13 @@
       "type": "string"
     },
     "rating": {
+      "default": 1,
       "description": "General indication of the Challenge's difficulty level (1-5).",
       "examples": [
         1,
         3,
         5
       ],
-      "default": 1,
       "type": "integer",
       "minimum": 1,
       "maximum": 5
@@ -39,54 +38,53 @@
       "description": "Define the Challenge's possible behaviors in a scene (see Legend in the Mist - Core Book Volume II - The Narrator, page 110).",
       "type": "array",
       "items": {
+        "type": "string",
+        "minLength": 1,
         "description": "Keyword that defines how this Challenge behaves in a scene.",
         "examples": [
           "Watcher",
           "Aggressor",
           "Obstacle"
-        ],
-        "type": "string",
-        "minLength": 1
+        ]
       }
     },
     "tags_and_statuses": {
       "description": "Describe the Challenge's features and its condition upon entering the scene. Supports inline Markdown.",
       "type": "array",
       "items": {
+        "type": "string",
         "description": "Story tags and statuses belonging to the Challenge upon entering the scene. Supports inline Markdown.",
         "examples": [
           "{alert-1}",
           "Three tags the imitated person possesses",
           "{sword}, {dagger} or {bow}"
-        ],
-        "type": "string"
+        ]
       }
     },
     "mights": {
       "description": "Describe the aspects in which this Challenge is Mighty, the levels of those Might, and any vulnerabilities.",
       "type": "array",
       "items": {
-        "description": "Describes an aspect in which this Challenge is Mighty, the level of that Might, and any vulnerabilities.",
         "type": "object",
         "properties": {
           "name": {
+            "type": "string",
+            "minLength": 1,
             "description": "A short label for the aspect in which this Challenge Mighty.",
             "examples": [
               "Horse-sized",
               "Cunning spirit",
               "Organized crime"
-            ],
-            "type": "string",
-            "minLength": 1
+            ]
           },
           "level": {
+            "default": "adventure",
             "description": "Level of this Might. Use to decide when a Hero's action could be Favored of Imperiled.",
             "examples": [
               "origin",
               "adventure",
               "greatness"
             ],
-            "default": "adventure",
             "type": "string",
             "enum": [
               "origin",
@@ -114,51 +112,51 @@
           "name",
           "level"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Describes an aspect in which this Challenge is Mighty, the level of that Might, and any vulnerabilities."
       }
     },
     "limits": {
       "description": "Define when the Challenge is overcome by using Detailed outcomes.",
       "type": "array",
       "items": {
-        "description": "Describes a certain way to overcome (or not) a Challenge by giving it the right type and tier of status.",
         "type": "object",
         "properties": {
           "name": {
+            "type": "string",
+            "minLength": 1,
             "description": "Action to undertake in order to overcome the Challenge.",
             "examples": [
               "Avoid",
               "Harm",
               "Subdue"
-            ],
-            "type": "string",
-            "minLength": 1
+            ]
           },
           "level": {
+            "default": 1,
             "description": "Tier that relevant statuses need to reach in order to overcome the Challenge.",
             "examples": [
               3,
               4
             ],
-            "default": 1,
             "type": "integer",
             "minimum": 1,
             "maximum": 6
           },
           "is_immune": {
+            "default": false,
             "description": "If true, the Challenge ignores statuses targeting this Limit's vector.",
             "examples": [
               false
             ],
-            "default": false,
             "type": "boolean"
           },
           "is_progress": {
+            "default": false,
             "description": "If true, this Limit acts like a progress track that builds up towards a special outcome (see `on_max`).",
             "examples": [
               true
             ],
-            "default": false,
             "type": "boolean"
           },
           "on_max": {
@@ -183,51 +181,51 @@
           "is_immune",
           "is_progress"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Describes a certain way to overcome (or not) a Challenge by giving it the right type and tier of status."
       }
     },
     "threats": {
       "description": "Typical actions of the Challenge structured in Threats and their possible related Consequences.",
       "type": "array",
       "items": {
-        "description": "A reusable action the Challenge can take, with its possible outcomes.",
         "type": "object",
         "properties": {
           "name": {
+            "type": "string",
+            "minLength": 1,
             "description": "Action that the Challenge is begining to take, prompting the Hero to take action to avoid or prevent the Threat from materializing.",
             "examples": [
               "Assert authority",
               "Ambush",
               "Conjure"
-            ],
-            "type": "string",
-            "minLength": 1
+            ]
           },
           "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
             "description": "Concise text that elaborates how this Threat looks or escalates. Supports inline Markdown.",
             "examples": [
               "Appear at the most inopportune time, making things awkward",
               "Lift its arms as the ground begins to shake",
               "Show up, present a copy of the {signed infernal contract} and demand obedience"
-            ],
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 100
+            ]
           },
           "consequences": {
-            "description": "List of concrete, referenceable outcomes the Threat can deliver. Supports inline Markdown.",
             "minItems": 1,
             "type": "array",
             "items": {
+              "type": "string",
+              "minLength": 1,
               "description": "Outcome of the Challenge's action if the Hero's action generates Consequences or if the Threat is ignored. Supports inline Markdown.",
               "examples": [
                 "Give {nervous-2} to a bystander.",
                 "Raise the alarm (**Exposure**).",
                 "Time passes as the ferry creeps forward ({time-passes-1})."
-              ],
-              "type": "string",
-              "minLength": 1
-            }
+              ]
+            },
+            "description": "List of concrete, referenceable outcomes the Threat can deliver. Supports inline Markdown."
           }
         },
         "required": [
@@ -235,55 +233,56 @@
           "description",
           "consequences"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "A reusable action the Challenge can take, with its possible outcomes."
       }
     },
     "general_consequences": {
       "description": "Describe the actions the Challenge can generally take when a Hero's action generates Consequences. Supports inline Markdown.",
       "type": "array",
       "items": {
+        "type": "string",
         "description": "Action the Challenge might take when a Hero's action generates Consequences, regardless of Threat. Supports inline Markdown.",
         "examples": [
           "You get lost in the revelry ({time-passes-1}).",
           "Figure out someone's place of hiding (**Exposure**).",
           "Sniff around (remove two tiers from a sneaking status)."
-        ],
-        "type": "string"
+        ]
       }
     },
     "special_features": {
       "description": "Rules unique to the Challenge or abilities that cannot be expressed with Threats and Consequences, tags, statuses, Limits or Might.",
       "type": "array",
       "items": {
-        "description": "Rule unique to the Challenge or an ability that cannot be expressed with Threats and Consequences, tags, statuses, Limits or Might.",
         "type": "object",
         "properties": {
           "name": {
+            "type": "string",
+            "minLength": 1,
             "description": "Name of the Special Feature.",
             "examples": [
               "Petty grudge",
               "Dramatic feign",
               "Guarded"
-            ],
-            "type": "string",
-            "minLength": 1
+            ]
           },
           "description": {
+            "type": "string",
+            "minLength": 1,
             "description": "Text describing the Special Feature's trigger (\"When this happens...\") and effect (\"... do this.\"). Supports inline Markdown.",
             "examples": [
               "If offended, gains {spiteful-3} and cannot be obliged until {appeased-3}.",
               "The Narrator may choose to deliver the Challenge's COnsequence during Establish instead of in the Consequence phase.",
               "Whenever someone who could be linked to the Plotting Courtier leans of the Heroes' actions or whereabouts (**Exposure**), the Plotting Courtier gains a tag for it."
-            ],
-            "type": "string",
-            "minLength": 1
+            ]
           }
         },
         "required": [
           "name",
           "description"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Rule unique to the Challenge or an ability that cannot be expressed with Threats and Consequences, tags, statuses, Limits or Might."
       }
     },
     "meta": {
@@ -291,12 +290,12 @@
       "type": "object",
       "properties": {
         "publication_type": {
+          "default": "homebrew",
           "description": "Classifies the Challenge's source to aid cataloging and tooling.",
           "examples": [
             "official",
             "cauldron"
           ],
-          "default": "homebrew",
           "type": "string",
           "enum": [
             "official",
@@ -317,13 +316,13 @@
           "description": "List of credited authors or contributors.",
           "type": "array",
           "items": {
+            "type": "string",
+            "minLength": 1,
             "description": "One credited author name.",
             "examples": [
               "Son of Oak",
               "4rtamis"
-            ],
-            "type": "string",
-            "minLength": 1
+            ]
           }
         },
         "page": {
@@ -348,5 +347,6 @@
     "name",
     "rating"
   ],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "description": "Legend in the Mist - Challenge profile, used to represent NPCs and situations that pose a threat to the Heroes, their Quests, or their goals."
 }
