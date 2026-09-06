@@ -9,7 +9,7 @@ Thanks for helping make Mist Engine tools interoperate!
 3. **Submit a PR** that includes:
 
    - Zod v4 source updates in `src/zod/...`
-   - New target in `src/constants.ts` like:
+   - New target in `src/zod/constants.ts` like:
 
      ```ts
      {
