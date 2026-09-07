@@ -1,0 +1,32 @@
+name = "Neon Exorcist"
+category = "MYSTICS & MEDIUMS"
+description = "Something walked out of the Source and into the grid, and it has been wearing other people's hardware ever since. You were trained to put it back where it belongs.\n\nThe rites still work. They just cost more now that the altar is a server rack and the congregation is billing you by the hour."
+loadout = [ "salt-line projector (requires setup)", "second-hand censer with a cracked emitter", "prayer deck (all: incriminating)" ]
+
+[[theme_kits]]
+title_tag = "Rites Of The Cold Signal"
+category = "RITUAL"
+
+[[theme_kits]]
+title_tag = "Licensed Cleanser"
+category = "AFFILIATION"
+
+[[theme_kits]]
+title_tag = "Warded Handset"
+category = "ARTIFACT"
+
+[[choices]]
+title_tag = "Seminary Dropout"
+category = "PERSONALITY"
+
+[[choices]]
+title_tag = "Wired For The Whisper"
+category = "AUGMENTATION"
+
+[[choices]]
+title_tag = "Zeroed Identity"
+category = "CYBERSPACE"
+
+[meta]
+publication_type = "homebrew"
+authors = [ "schema-in-the-mist contributors" ]
