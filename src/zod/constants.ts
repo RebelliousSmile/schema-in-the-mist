@@ -7,6 +7,7 @@ import { CityOfMistDangerSchema } from "./city-of-mist/danger";
 import { OtherscapeChallengeSchema } from "./otherscape/challenge";
 import { OtherscapePowerSetSchema } from "./otherscape/power-set";
 import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit";
+import { OtherscapeThemeSchema } from "./otherscape/theme";
 
 type Game = {
   name: string;
@@ -82,5 +83,10 @@ export const TARGETS: Array<SchemaTarget> = [
     zod: OtherscapeThemeKitSchema,
     game: GAMES.otherscape,
     name: "theme-kit",
+  },
+  {
+    zod: OtherscapeThemeSchema,
+    game: GAMES.otherscape,
+    name: "theme",
   },
 ];
