@@ -1,6 +1,7 @@
 import { ZodObject } from "zod";
 import { LegendInTheMistChallengeSchema } from "./legend-in-the-mist/challenge";
 import { LegendInTheMistStoryThemeSchema } from "./legend-in-the-mist/story-theme";
+import { LegendInTheMistThemeKitSchema } from "./legend-in-the-mist/theme-kit";
 import { CityOfMistDangerSchema } from "./city-of-mist/danger";
 
 type Game = {
@@ -47,6 +48,11 @@ export const TARGETS: Array<SchemaTarget> = [
     zod: LegendInTheMistStoryThemeSchema,
     game: GAMES.litm,
     name: "story-theme",
+  },
+  {
+    zod: LegendInTheMistThemeKitSchema,
+    game: GAMES.litm,
+    name: "theme-kit",
   },
   {
     zod: CityOfMistDangerSchema,
