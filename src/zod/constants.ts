@@ -9,6 +9,7 @@ import { OtherscapePowerSetSchema } from "./otherscape/power-set";
 import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit";
 import { OtherscapeThemeSchema } from "./otherscape/theme";
 import { OtherscapeCharacterTropeSchema } from "./otherscape/character-trope";
+import { OtherscapeLoadoutItemSchema } from "./otherscape/loadout-item";
 
 type Game = {
   name: string;
@@ -94,5 +95,10 @@ export const TARGETS: Array<SchemaTarget> = [
     zod: OtherscapeCharacterTropeSchema,
     game: GAMES.otherscape,
     name: "character-trope",
+  },
+  {
+    zod: OtherscapeLoadoutItemSchema,
+    game: GAMES.otherscape,
+    name: "loadout-item",
   },
 ];
