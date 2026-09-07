@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "title_tag": {
+      "default": "Untitled Theme Kit",
+      "description": "The kit's title tag, which is also how the kit is named: the printed block is a `THEMEBOOK THEMETYPE` header followed by this tag alone on its line, and two kits sharing a header are told apart by it. There is therefore no separate `name` field — the two would always hold the same string with no rule saying which wins. Note the divergence from `litm/theme-kit`, which calls this slot `name` and maps it onto `story-theme.title_tag`; here both ends are spelled `title_tag`, so a kit and the theme built from it line up with no mapping. Written without the surrounding braces of the inline tag syntax, and not repeated inside `power_tags`.",
+      "examples": [
+        "Back-Alley Ripperdoc",
+        "Corporate Citizenship",
+        "Forbidden Cult"
+      ],
+      "type": "string",
+      "minLength": 1
+    },
+    "theme_type": {
+      "type": "string",
+      "enum": [
+        "self",
+        "mythos",
+        "noise",
+        "crew"
+      ],
+      "description": "Which kind of theme this kit builds. The three character theme types, plus `crew` for the Crew Theme Kits, which are printed with the identical anatomy — power tags, weakness tags, one Quest line — and so are filed here rather than in a target of their own. Required and deliberately left without a default: none of the four is a neutral starting value.",
+      "examples": [
+        "self",
+        "mythos",
+        "noise",
+        "crew"
+      ]
+    },
+    "category": {
+      "description": "Themebook this Theme Kit belongs to, held as the name printed in the block header. Kept a free string rather than a closed set, so that homebrew themebooks remain expressible and so that every setting book's additions stay writable on the day they ship. Same field, same spelling as on an :Otherscape Theme, so the value copies across unchanged.",
+      "examples": [
+        "EXPERTISE",
+        "AFFILIATION",
+        "AUGMENTATION",
+        "ARTIFACT",
+        "PERSONALITY"
+      ],
+      "type": "string"
+    },
+    "power_tags": {
+      "description": "The tags this Theme Kit suggests, in the order they are printed. The title tag is not repeated here, so a printed block of ten tags leaves nine in this list. A character picks from them rather than taking them all.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "description": "One tag this Theme Kit offers, which a character can write onto their Theme and then invoke to be Favored. Written without the surrounding braces of the inline tag syntax; a renderer adds them.",
+        "examples": [
+          "steady hands",
+          "knows what the chrome costs"
+        ]
+      }
+    },
+    "weakness_tags": {
+      "description": "The tags this Theme Kit suggests turning against the character, in the order they are printed.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "description": "One tag this Theme Kit offers that works against the character, which the MC can invoke to Imperil them. Written without the surrounding braces and without the leading marker of the inline weakness syntax; belonging to this field is what makes it a weakness.",
+        "examples": [
+          "owes the wrong people",
+          "cannot say no to a patient"
+        ]
+      }
+    },
+    "quest": {
+      "description": "The one Quest line this Theme Kit prints, whatever the sheet labels it: Identity on a Self theme, Ritual on a Mythos theme, Itch on a Noise theme. One field rather than three mutually exclusive ones, and deliberately not a union at the root: the README announces editor autocomplete for JSON and TOML, which a root-level `oneOf` is what editor schema support handles least evenly. The cost is that the field name does not say which of the three labels it holds — read `theme_type` for that. Spelled `quest` as on `litm/theme-kit`, so the value copies across. Supports inline Markdown.",
+      "examples": [
+        "Keep the clinic open, whatever the district asks in return.",
+        "Find out what the Source wanted with you."
+      ],
+      "type": "string"
+    },
+    "meta": {
+      "description": "Attribution and cataloging fields for the Theme Kit's origin.",
+      "type": "object",
+      "properties": {
+        "publication_type": {
+          "default": "homebrew",
+          "description": "Classifies the Theme Kit's source to aid cataloging and tooling.",
+          "examples": [
+            "official",
+            "homebrew"
+          ],
+          "type": "string",
+          "enum": [
+            "official",
+            "third_party",
+            "cauldron",
+            "homebrew"
+          ]
+        },
+        "source": {
+          "description": "Source title (book, supplement, PDF) where this Theme Kit appears.",
+          "examples": [
+            "Metro:Otherscape - Core Book",
+            "Tokyo:Otherscape - Setting Book"
+          ],
+          "type": "string"
+        },
+        "authors": {
+          "description": "List of credited authors or contributors.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One credited author name.",
+            "examples": [
+              "Son of Oak",
+              "4rtamis"
+            ]
+          }
+        },
+        "page": {
+          "description": "Page number (if relevant to the source).",
+          "examples": [
+            96,
+            118
+          ],
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "publication_type"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "title_tag",
+    "theme_type"
+  ],
+  "additionalProperties": false,
+  "description": ":Otherscape - Theme Kit, the blank a Theme is filled in from, holding a themebook's suggested title tag, power tags, weakness tags and Quest before a character makes any of it their own. It carries no `upgrade` and no `decay`: those hold the state of a played theme, which a blank kit does not have. It carries no `improvements` either, because Theme Specials are printed on the themebook rather than on the kit."
+}
