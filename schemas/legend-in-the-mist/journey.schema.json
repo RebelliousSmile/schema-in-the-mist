@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "default": "Untitled Journey",
+      "description": "The Journey's own name, as the table would refer to it.",
+      "examples": [
+        "The Long Road to Blackmere",
+        "The Harvest Fair",
+        "Raising the Sunken Bell"
+      ],
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "landscape",
+        "occasion",
+        "undertaking"
+      ],
+      "description": "What kind of Journey this is. A landscape is a place the Heroes cross, an occasion is an event they pass through, an undertaking is a task they see out. Required and deliberately left without a default: the three are not variations on one starting value the way a Story Theme starts at origin, so there is nothing to pick that would not be arbitrary.",
+      "examples": [
+        "landscape",
+        "occasion",
+        "undertaking"
+      ]
+    },
+    "description": {
+      "description": "Narrator-facing summary of what this Journey is and what crossing it feels like. One string rather than a list of lines: paragraph breaks are carried by newlines, as on a Challenge's description. Supports inline Markdown.",
+      "examples": [
+        "Four days of drowned road between the last inn and Blackmere, where the water is never quite where it was yesterday. Nothing here hunts the Heroes. The marsh simply does not care whether they arrive.",
+        "The fair comes once a year and everyone owes someone by the end of it."
+      ],
+      "type": "string"
+    },
+    "tags": {
+      "description": "The tags the Journey makes available while the Heroes are in it. Named plainly rather than split into power and weakness: a Journey offers its tags to whoever is there, so there is no second axis to oppose them to.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "description": "One tag this Journey offers to whoever travels it, which can be invoked while they are in it. Written without the surrounding braces of the inline tag syntax; a renderer adds them.",
+        "examples": [
+          "waist-deep in black water",
+          "no landmark in any direction",
+          "everyone is somebody's guest"
+        ]
+      }
+    },
+    "benefits": {
+      "description": "What the Heroes gain by seeing this Journey through, or what completing it opens up. Supports inline Markdown.",
+      "examples": [
+        "Anyone who reaches Blackmere on foot is owed a bed and a meal, and the marsh-folk will say so out loud.",
+        "The bell rings again, and the shipping lanes reopen."
+      ],
+      "type": "string"
+    },
+    "consequences": {
+      "description": "What the Journey can cost anywhere along it, as opposed to a vignette's own list, which belongs to that vignette alone. A Challenge draws the same distinction and names its wider list `general_consequences`; here the two lists share a name and are told apart by which level they sit at.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Outcome the Journey can deliver when a Hero's action generates Consequences, regardless of which vignette they are in. Supports inline Markdown.",
+        "examples": [
+          "The day is gone and the water is rising ({time-passes-1}).",
+          "Give {footsore-2} to whoever set the pace.",
+          "Something in the pack is ruined beyond drying out."
+        ]
+      }
+    },
+    "vignettes": {
+      "description": "The moments this Journey breaks down into, in the order they are meant to come up. A Journey with none is a short Journey, but a vignette that is present carries at least one Consequence.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Short label for this moment of the Journey, as it would be read out at the table.",
+            "examples": [
+              "The drowned mile",
+              "A toll at the crossing",
+              "Something keeping pace"
+            ]
+          },
+          "trigger": {
+            "description": "What brings this vignette into play: the condition, moment or choice that makes it happen rather than the next one. Left out when the vignette simply comes up in order. Supports inline Markdown.",
+            "examples": [
+              "When the Heroes try to cross after dark.",
+              "The first time someone spends a night without shelter.",
+              "When a Hero refuses to pay the ferryman."
+            ],
+            "type": "string"
+          },
+          "consequences": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Outcome this vignette can deliver when a Hero's action generates Consequences. Supports inline Markdown.",
+              "examples": [
+                "Give {soaked-1} to whoever went in first.",
+                "The path behind is gone ({lost-2}).",
+                "Something takes a share of the supplies (remove a tier from {well-provisioned})."
+              ]
+            },
+            "description": "What this vignette can cost, as opposed to the Journey's own list, which applies anywhere along it. A vignette that exists carries at least one. Supports inline Markdown."
+          }
+        },
+        "required": [
+          "name",
+          "consequences"
+        ],
+        "additionalProperties": false,
+        "description": "One moment the Journey breaks down into, with what brings it into play and what it can cost."
+      }
+    },
+    "meta": {
+      "description": "Attribution and cataloging fields for the Journey's origin.",
+      "type": "object",
+      "properties": {
+        "publication_type": {
+          "default": "homebrew",
+          "description": "Classifies the Journey's source to aid cataloging and tooling.",
+          "examples": [
+            "official",
+            "cauldron"
+          ],
+          "type": "string",
+          "enum": [
+            "official",
+            "third_party",
+            "cauldron",
+            "homebrew"
+          ]
+        },
+        "source": {
+          "description": "Source title (book, supplement, PDF) where this Journey appears.",
+          "examples": [
+            "Legend in the Mist - Core Book Volume II - The Narrator",
+            "Lantern in the Mist - Sample Journeys"
+          ],
+          "type": "string"
+        },
+        "authors": {
+          "description": "List of credited authors or contributors.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One credited author name.",
+            "examples": [
+              "Son of Oak",
+              "4rtamis"
+            ]
+          }
+        },
+        "page": {
+          "description": "Page number (if relevant to the source).",
+          "examples": [
+            64,
+            88,
+            231
+          ],
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "publication_type"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "name",
+    "type"
+  ],
+  "additionalProperties": false,
+  "description": "Legend in the Mist - Journey, what the table plays through between the places a story stops: a landscape, an occasion or an undertaking, with the tags it offers, what it can cost, and the vignettes it breaks down into."
+}
