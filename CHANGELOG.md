@@ -5,6 +5,14 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.3.0] - 2026-09-07
+
+### Added
+
+- Legend in the Mist **Journey** schema: Zod source, generated JSON Schema, and a JSON + TOML example (`the-long-road-to-blackmere`). It is the first target with a nested list of objects — `vignettes`, each `{ name, trigger?, consequences[] }` — where a vignette that exists carries at least one consequence.
+- `type` on Journey (`landscape` / `occasion` / `undertaking`) is **required without a default**. Consumers should note the consequence: `journey` is the first target whose schema rejects an empty object, where the other four parse `{}` and return their defaults. A default would have invented a Journey type nobody wrote.
+- Journey carries two `consequences` lists: one at the root, applying anywhere along the Journey, and one per vignette. Challenge draws the same distinction under the name `general_consequences`; Journey keeps a single name at both levels and disambiguates through the field descriptions.
+
 ## [v0.2.0] - 2026-09-07
 
 ### Added
