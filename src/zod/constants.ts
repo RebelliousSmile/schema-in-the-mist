@@ -5,6 +5,7 @@ import { LegendInTheMistThemeKitSchema } from "./legend-in-the-mist/theme-kit";
 import { LegendInTheMistJourneySchema } from "./legend-in-the-mist/journey";
 import { CityOfMistDangerSchema } from "./city-of-mist/danger";
 import { OtherscapeChallengeSchema } from "./otherscape/challenge";
+import { OtherscapePowerSetSchema } from "./otherscape/power-set";
 
 type Game = {
   name: string;
@@ -70,5 +71,10 @@ export const TARGETS: Array<SchemaTarget> = [
     zod: OtherscapeChallengeSchema,
     game: GAMES.otherscape,
     name: "challenge",
+  },
+  {
+    zod: OtherscapePowerSetSchema,
+    game: GAMES.otherscape,
+    name: "power-set",
   },
 ];
