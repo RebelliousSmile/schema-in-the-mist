@@ -4,6 +4,12 @@ import { LegendInTheMistStoryThemeSchema } from "./legend-in-the-mist/story-them
 import { LegendInTheMistThemeKitSchema } from "./legend-in-the-mist/theme-kit";
 import { LegendInTheMistJourneySchema } from "./legend-in-the-mist/journey";
 import { CityOfMistDangerSchema } from "./city-of-mist/danger";
+import { OtherscapeChallengeSchema } from "./otherscape/challenge";
+import { OtherscapePowerSetSchema } from "./otherscape/power-set";
+import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit";
+import { OtherscapeThemeSchema } from "./otherscape/theme";
+import { OtherscapeCharacterTropeSchema } from "./otherscape/character-trope";
+import { OtherscapeLoadoutItemSchema } from "./otherscape/loadout-item";
 
 type Game = {
   name: string;
@@ -64,5 +70,35 @@ export const TARGETS: Array<SchemaTarget> = [
     zod: CityOfMistDangerSchema,
     game: GAMES.com,
     name: "danger",
+  },
+  {
+    zod: OtherscapeChallengeSchema,
+    game: GAMES.otherscape,
+    name: "challenge",
+  },
+  {
+    zod: OtherscapePowerSetSchema,
+    game: GAMES.otherscape,
+    name: "power-set",
+  },
+  {
+    zod: OtherscapeThemeKitSchema,
+    game: GAMES.otherscape,
+    name: "theme-kit",
+  },
+  {
+    zod: OtherscapeThemeSchema,
+    game: GAMES.otherscape,
+    name: "theme",
+  },
+  {
+    zod: OtherscapeCharacterTropeSchema,
+    game: GAMES.otherscape,
+    name: "character-trope",
+  },
+  {
+    zod: OtherscapeLoadoutItemSchema,
+    game: GAMES.otherscape,
+    name: "loadout-item",
   },
 ];
