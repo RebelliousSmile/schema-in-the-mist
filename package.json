@@ -5,7 +5,8 @@
   "scripts": {
     "gen": "tsx tools/gen-schemas.ts",
     "validate": "tsx tools/validate-examples.ts",
-    "check": "npm run gen && npm run validate",
+    "validate:refs": "tsx tools/validate-references.ts",
+    "check": "npm run gen && npm run validate && npm run validate:refs",
     "toml:one": "tsx tools/toml2json.ts"
   },
   "repository": {

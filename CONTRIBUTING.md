@@ -41,5 +41,6 @@ Thanks for helping make Mist Engine tools interoperate!
 npm ci
 npm run gen            # generate JSON Schemas
 npm run validate       # validate example files
-npm run check          # generate + validate
+npm run validate:refs  # cross-file checks (identity uniqueness, references)
+npm run check          # generate + validate + validate:refs
 ```
