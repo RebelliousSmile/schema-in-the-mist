@@ -1,0 +1,355 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Also the CSS class suffix (`brumes--<id>`) and a key of the user's own settings file. Restricted to what is safe in both.",
+      "examples": [
+        "city-of-mist",
+        "legend-in-the-mist",
+        "otherscape"
+      ]
+    },
+    "label": {
+      "description": "Shown in the interface. Falls back to `id` when left out, rather than to an invented literal.",
+      "examples": [
+        "City of Mist",
+        "Legend in the Mist"
+      ],
+      "type": "string",
+      "minLength": 1
+    },
+    "style": {
+      "default": {
+        "base": {
+          "note": {},
+          "workspace": {}
+        },
+        "light": {
+          "note": {},
+          "workspace": {}
+        },
+        "dark": {
+          "note": {},
+          "workspace": {}
+        }
+      },
+      "description": "The custom properties this pack writes, in up to three layers. Never CSS: the plugin turns these tokens into one style block it owns, and the stylesheet keeps only what a custom property cannot express.",
+      "type": "object",
+      "properties": {
+        "base": {
+          "default": {
+            "note": {},
+            "workspace": {}
+          },
+          "description": "Applies whichever theme is active.",
+          "type": "object",
+          "properties": {
+            "note": {
+              "default": {},
+              "description": "What dresses a note: fonts, colours, heading metrics.",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^--"
+              },
+              "additionalProperties": {
+                "type": "string"
+              },
+              "examples": [
+                {
+                  "--brumes-color-accent": "#7a5c3e"
+                }
+              ]
+            },
+            "workspace": {
+              "default": {},
+              "description": "What repaints the interface around it, behind the workspace toggle.",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^--"
+              },
+              "additionalProperties": {
+                "type": "string"
+              },
+              "examples": [
+                {
+                  "--brumes-color-accent": "#7a5c3e"
+                }
+              ]
+            }
+          },
+          "required": [
+            "note",
+            "workspace"
+          ],
+          "additionalProperties": false
+        },
+        "light": {
+          "default": {
+            "note": {},
+            "workspace": {}
+          },
+          "description": "Applies on top of `base` when the vault's theme is light, and only for a game that sources a light polarity.",
+          "type": "object",
+          "properties": {
+            "note": {
+              "default": {},
+              "description": "What dresses a note: fonts, colours, heading metrics.",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^--"
+              },
+              "additionalProperties": {
+                "type": "string"
+              },
+              "examples": [
+                {
+                  "--brumes-color-accent": "#7a5c3e"
+                }
+              ]
+            },
+            "workspace": {
+              "default": {},
+              "description": "What repaints the interface around it, behind the workspace toggle.",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^--"
+              },
+              "additionalProperties": {
+                "type": "string"
+              },
+              "examples": [
+                {
+                  "--brumes-color-accent": "#7a5c3e"
+                }
+              ]
+            }
+          },
+          "required": [
+            "note",
+            "workspace"
+          ],
+          "additionalProperties": false
+        },
+        "dark": {
+          "default": {
+            "note": {},
+            "workspace": {}
+          },
+          "description": "Applies on top of `base` when the vault's theme is dark, and only for a game that sources a dark polarity.",
+          "type": "object",
+          "properties": {
+            "note": {
+              "default": {},
+              "description": "What dresses a note: fonts, colours, heading metrics.",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^--"
+              },
+              "additionalProperties": {
+                "type": "string"
+              },
+              "examples": [
+                {
+                  "--brumes-color-accent": "#7a5c3e"
+                }
+              ]
+            },
+            "workspace": {
+              "default": {},
+              "description": "What repaints the interface around it, behind the workspace toggle.",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^--"
+              },
+              "additionalProperties": {
+                "type": "string"
+              },
+              "examples": [
+                {
+                  "--brumes-color-accent": "#7a5c3e"
+                }
+              ]
+            }
+          },
+          "required": [
+            "note",
+            "workspace"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "base",
+        "light",
+        "dark"
+      ],
+      "additionalProperties": false
+    },
+    "polarities": {
+      "uniqueItems": true,
+      "description": "The polarities the game's own material sources, in the order they are read. None, and only `base` is written. One, and it holds regardless of the vault's active theme. Two, and the vault's theme decides between `light` and `dark` on a compound selector. Left out on purpose rather than defaulted: a default here would invent a polarity indistinguishable from a sourced one.",
+      "examples": [
+        [
+          "light"
+        ],
+        [
+          "light",
+          "dark"
+        ]
+      ],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "light",
+          "dark"
+        ],
+        "description": "A polarity a game's own printed material sources. A pack names the ones it has — never derived, never invented to fill a hole — so a layer the pack does not source is simply not written rather than copied from `base`.",
+        "examples": [
+          "light",
+          "dark"
+        ]
+      }
+    },
+    "assets": {
+      "description": "Where this game's illustrations and fonts live in the vault.",
+      "type": "object",
+      "properties": {
+        "root": {
+          "description": "Vault-relative path illustrations resolve from, in place of the pack's own asset folder.",
+          "examples": [
+            "assets/my-game"
+          ],
+          "type": "string"
+        },
+        "images": {
+          "description": "Illustration role to file name, resolved under the pack's asset root. A role a pack leaves out is not an error: the block that asks for it degrades rather than reserving a box for an image that never comes.",
+          "examples": [
+            {
+              "theme-card-frame": "theme-card-frame.svg"
+            }
+          ],
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "fonts": {
+          "description": "Family name, as a style token spells it, to the file that carries the face. A bare string is the file for a family with a single, regular face; the long form exists for a family that needs a weight or a style.",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Relative to the pack's asset folder, like an image.",
+                    "examples": [
+                      "caveat-bold.woff2"
+                    ]
+                  },
+                  "weight": {
+                    "description": "CSS `font-weight` for this face. Left out, the face is matched as regular.",
+                    "examples": [
+                      "700",
+                      "bold"
+                    ],
+                    "type": "string"
+                  },
+                  "style": {
+                    "description": "CSS `font-style` for this face.",
+                    "examples": [
+                      "italic"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "file"
+                ],
+                "additionalProperties": false,
+                "description": "The long form of a font face, for a family that needs a weight or a style beyond the plain regular face a bare filename gives it."
+              }
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "shapes": {
+      "description": "What this game changes about the blocks' own shapes, block by block and zone by zone. Reaches names, illustrations and whether a zone is drawn — never geometry, which stays in the renderer's own styling, and never the order of the zones, which belongs to the block.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "holds": {
+              "description": "Replacement wording for what the zone holds, in words a reader can check against the screen.",
+              "type": "string"
+            },
+            "heading": {
+              "description": "Replacement printed heading for the zone, when it opens with one.",
+              "examples": [
+                "Menaces et conséquences"
+              ],
+              "type": "string"
+            },
+            "family": {
+              "description": "Replacement class the zone shares with its siblings, beside its own.",
+              "type": "string"
+            },
+            "image": {
+              "description": "Replacement illustration role the zone carries, when it carries one.",
+              "type": "string"
+            },
+            "optional": {
+              "description": "True when the renderer should leave the zone out rather than drawing it empty.",
+              "type": "boolean"
+            },
+            "hidden": {
+              "description": "True to leave the zone out of the block entirely.",
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false,
+          "description": "What a game pack may change about one zone a block already declares. Partial by construction: a field left out stays the block's own. A pack cannot add a zone the block does not have, and cannot reorder the zones — both are the block's alone."
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "style"
+  ],
+  "additionalProperties": false,
+  "description": "A game pack: how a Mist Engine game presents itself, as data rather than as CSS. Who it is, which custom properties it writes, which polarities it sources, where its illustrations live, and what it changes about the blocks' own shapes. Never a fetch or a network dependency for anyone reading it: the contract is honoured by the shape of the document alone."
+}

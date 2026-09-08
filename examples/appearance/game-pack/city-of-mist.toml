@@ -1,0 +1,37 @@
+id = "city-of-mist"
+label = "City of Mist"
+polarities = [ "light", "dark" ]
+
+[style.base.note]
+"--brumes-font-heading" = "\"Oswald\", sans-serif"
+"--brumes-color-accent" = "#c0392b"
+
+[style.base.workspace]
+"--brumes-color-workspace-accent" = "#c0392b"
+
+[style.light.note]
+"--brumes-color-background" = "#f4f1ea"
+
+[style.light.workspace]
+
+[style.dark.note]
+"--brumes-color-background" = "#1b1b1b"
+
+[style.dark.workspace]
+
+[assets]
+root = "assets/city-of-mist"
+
+[assets.images]
+theme-card-frame = "theme-card-frame.svg"
+danger-frame = "danger-frame.svg"
+
+[assets.fonts]
+Oswald = "oswald-regular.woff2"
+
+[assets.fonts."Oswald Bold"]
+file = "oswald-bold.woff2"
+weight = "700"
+
+[shapes.com-danger.secrets]
+hidden = true

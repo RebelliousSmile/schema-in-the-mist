@@ -8,8 +8,16 @@ The aim is an ecosystem of interoperable digital tools where they can exchange s
 
 - `src/zod/` contains the source Zod v4 definitions
 - `schemas/` contains the generated JSON Schemas
+- `appearance/game-pack.schema.json` describes a game pack, the cross-game
+  presentation vocabulary a Mist Engine game is styled with — no shared field
+  with the content schemas above, so it publishes at the repository root
+  rather than under `schemas/`
 - `examples/` contains JSON/TOML examples per schema
-- `tools/` provides generation and validation scripts
+- `tools/` provides generation and validation scripts: `gen-schemas.ts` and
+  `validate-examples.ts` check each document against its schema;
+  `validate-references.ts` (`npm run validate:refs`) checks what a schema
+  cannot — identity uniqueness and cross-file references, such as a
+  Character Trope's Theme Kit picks
 
 ## Using the schemas in your tool
 

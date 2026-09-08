@@ -10,6 +10,7 @@ import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit";
 import { OtherscapeThemeSchema } from "./otherscape/theme";
 import { OtherscapeCharacterTropeSchema } from "./otherscape/character-trope";
 import { OtherscapeLoadoutItemSchema } from "./otherscape/loadout-item";
+import { GamePackSchema } from "./appearance/game-pack";
 
 type Game = {
   name: string;
@@ -42,6 +43,19 @@ export const GAMES: GameDictionary = {
     name: ":Otherscape",
     folder: "otherscape",
     abbr: "otherscape",
+  },
+  /**
+   * Not a played game: the cross-game presentation vocabulary a game pack is
+   * written in. Kept in TARGETS so `gen-schemas.ts` and `validate-examples.ts`
+   * cover it the same way as everything else, but its generated schema is
+   * special-cased to land at the repository root (`appearance/game-pack.schema.json`),
+   * not under `schemas/`, matching the path a game pack document already
+   * points at.
+   */
+  appearance: {
+    name: "Appearance",
+    folder: "appearance",
+    abbr: "appearance",
   },
 };
 
@@ -100,5 +114,10 @@ export const TARGETS: Array<SchemaTarget> = [
     zod: OtherscapeLoadoutItemSchema,
     game: GAMES.otherscape,
     name: "loadout-item",
+  },
+  {
+    zod: GamePackSchema,
+    game: GAMES.appearance,
+    name: "game-pack",
   },
 ];
