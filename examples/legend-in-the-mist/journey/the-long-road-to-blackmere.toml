@@ -3,7 +3,7 @@ type = "landscape"
 description = "Four days of drowned road between the last inn and Blackmere, where the water is never quite where it was yesterday. Nothing here hunts the Heroes.\n\nThe marsh simply does not care whether they arrive, and that is the whole of it."
 tags = [ "waist-deep in black water", "no landmark in any direction", "the reeds carry sound a long way" ]
 benefits = "Anyone who reaches Blackmere on foot is owed a bed and a meal, and the marsh-folk will say so out loud."
-consequences = [ "The day is gone and the water is rising ({time-passes-1}).", "Give {footsore-2} to whoever set the pace.", "Something in the pack is ruined beyond drying out." ]
+general_consequences = [ "The day is gone and the water is rising ({time-passes-1}).", "Give {footsore-2} to whoever set the pace.", "Something in the pack is ruined beyond drying out." ]
 
 [[vignettes]]
 name = "The drowned mile"

@@ -57,8 +57,8 @@
       ],
       "type": "string"
     },
-    "consequences": {
-      "description": "What the Journey can cost anywhere along it, as opposed to a vignette's own list, which belongs to that vignette alone. A Challenge draws the same distinction and names its wider list `general_consequences`; here the two lists share a name and are told apart by which level they sit at.",
+    "general_consequences": {
+      "description": "What the Journey can cost anywhere along it, as opposed to a vignette's own list, which belongs to that vignette alone. Named `general_consequences`, matching the same distinction `challenge.general_consequences` draws against `threats[].consequences`, rather than reusing `consequences` at two levels of this same schema.",
       "type": "array",
       "items": {
         "type": "string",

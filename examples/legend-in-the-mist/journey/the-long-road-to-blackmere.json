@@ -8,7 +8,7 @@
     "the reeds carry sound a long way"
   ],
   "benefits": "Anyone who reaches Blackmere on foot is owed a bed and a meal, and the marsh-folk will say so out loud.",
-  "consequences": [
+  "general_consequences": [
     "The day is gone and the water is rising ({time-passes-1}).",
     "Give {footsore-2} to whoever set the pace.",
     "Something in the pack is ruined beyond drying out."

@@ -192,7 +192,7 @@ export const LegendInTheMistJourneySchema = z
           "The bell rings again, and the shipping lanes reopen.",
         ],
       }),
-    consequences: z
+    general_consequences: z
       .array(
         z
           .string()
@@ -211,7 +211,7 @@ export const LegendInTheMistJourneySchema = z
       .optional()
       .meta({
         description:
-          "What the Journey can cost anywhere along it, as opposed to a vignette's own list, which belongs to that vignette alone. A Challenge draws the same distinction and names its wider list `general_consequences`; here the two lists share a name and are told apart by which level they sit at.",
+          "What the Journey can cost anywhere along it, as opposed to a vignette's own list, which belongs to that vignette alone. Named `general_consequences`, matching the same distinction `challenge.general_consequences` draws against `threats[].consequences`, rather than reusing `consequences` at two levels of this same schema.",
       }),
     vignettes: z
       .array(VignetteSchema)
