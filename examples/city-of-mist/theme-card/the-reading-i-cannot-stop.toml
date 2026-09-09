@@ -1,0 +1,41 @@
+themebook = "Divination"
+theme_type = "mythos"
+title = "The Reading I Cannot Stop"
+
+[motivation]
+kind = "mystery"
+text = "Who keeps answering when I ask?"
+
+[attention]
+filled = 2
+maximum = 3
+
+[erosion]
+kind = "fade"
+filled = 1
+maximum = 3
+
+[[power_tags]]
+text = "cards that deal themselves"
+letter = "A"
+is_burnt = false
+
+[[power_tags]]
+text = "a voice under the static"
+letter = "H"
+is_burnt = true
+
+[[weakness_tags]]
+text = "it answers, then it asks"
+letter = "D"
+is_invoked = false
+
+[[improvements]]
+name = "Second Sight"
+effect = "Take an additional power tag for this theme."
+is_taken = true
+
+[meta]
+publication_type = "homebrew"
+source = "Lantern in the Mist - Sample Theme Cards"
+authors = [ "RebelliousSmile" ]

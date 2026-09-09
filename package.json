@@ -6,7 +6,8 @@
     "gen": "tsx tools/gen-schemas.ts",
     "validate": "tsx tools/validate-examples.ts",
     "check": "npm run gen && npm run validate",
-    "toml:one": "tsx tools/toml2json.ts"
+    "toml:one": "tsx tools/toml2json.ts",
+    "validate:files": "tsx tools/validate-files.ts"
   },
   "repository": {
     "type": "git",

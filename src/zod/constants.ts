@@ -4,6 +4,7 @@ import { LegendInTheMistStoryThemeSchema } from "./legend-in-the-mist/story-them
 import { LegendInTheMistThemeKitSchema } from "./legend-in-the-mist/theme-kit";
 import { LegendInTheMistJourneySchema } from "./legend-in-the-mist/journey";
 import { CityOfMistDangerSchema } from "./city-of-mist/danger";
+import { CityOfMistThemeCardSchema } from "./city-of-mist/theme-card";
 import { OtherscapeChallengeSchema } from "./otherscape/challenge";
 import { OtherscapePowerSetSchema } from "./otherscape/power-set";
 import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit";
@@ -70,6 +71,11 @@ export const TARGETS: Array<SchemaTarget> = [
     zod: CityOfMistDangerSchema,
     game: GAMES.com,
     name: "danger",
+  },
+  {
+    zod: CityOfMistThemeCardSchema,
+    game: GAMES.com,
+    name: "theme-card",
   },
   {
     zod: OtherscapeChallengeSchema,
