@@ -13,9 +13,8 @@ import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit";
 import { OtherscapeThemeSchema } from "./otherscape/theme";
 import { OtherscapeCharacterTropeSchema } from "./otherscape/character-trope";
 import { OtherscapeLoadoutItemSchema } from "./otherscape/loadout-item";
-import { GamePackSchema } from "./appearance/game-pack";
 
-export type Game = {
+type Game = {
   name: string;
   folder: string;
   abbr: string;
@@ -49,22 +48,7 @@ export const GAMES: GameDictionary = {
   },
 };
 
-/**
- * Not a game, a space beside them: the appearance schema describes how any of
- * the three dresses a reader, so it belongs to none of their folders.
- */
-export const APPEARANCE: Game = {
-  name: "Appearance",
-  folder: "appearance",
-  abbr: "appearance",
-};
-
 export const TARGETS: Array<SchemaTarget> = [
-  {
-    zod: GamePackSchema,
-    game: APPEARANCE,
-    name: "game-pack",
-  },
   {
     zod: LegendInTheMistChallengeSchema,
     game: GAMES.litm,

@@ -11,19 +11,22 @@ The aim is an ecosystem of interoperable digital tools where they can exchange s
 - `examples/` contains JSON/TOML examples per schema
 - `tools/` provides generation and validation scripts
 
-### Content and appearance
+### Content schemas and appearance packs
 
 The game folders — `city-of-mist/`, `legend-in-the-mist/`, `otherscape/` —
 describe **what is played**: Dangers, Challenges, Journeys, Theme Kits. They are
 written by a Narrator and read by any tool that shows them.
 
-`appearance/` is a sibling space describing **how a game dresses a reader**: its
-identifier, the CSS custom properties it writes by theme variant, and the paths
-of the illustrations and typefaces it draws with. It is transverse to the three
-games, which is why it is not filed under any of them, and it shares no field
-with the content schemas — not even the `meta` attribution block they all carry.
-A tool that renders no pages has no use for it, and a tool that renders pages
-needs nothing from the content schemas to do so.
+The cross-game `game-pack` appearance contract now lives in
+[`RebelliousSmile/schema-appearance`](https://github.com/RebelliousSmile/schema-appearance).
+New consumers should read its [canonical Draft 7 schema](https://raw.githubusercontent.com/RebelliousSmile/schema-appearance/main/schemas/appearance/game-pack.schema.json).
+
+For compatibility, this repository retains frozen, self-contained copies at
+[`appearance/game-pack.schema.json`](./appearance/game-pack.schema.json) and
+[`schemas/appearance/game-pack.schema.json`](./schemas/appearance/game-pack.schema.json).
+They require no network-aware `$ref` resolver, but they are deprecated and will
+not receive future contract changes. Their removal requires a separately
+approved breaking release.
 
 ## Using the schemas in your tool
 

@@ -19,6 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Both card tracks refine `filled <= maximum` and report the issue on `filled` rather than on the track, so a consumer can name the field that is out of range. Note that the constraint is a Zod refinement and does not survive into the generated JSON Schema: an Ajv-only consumer will accept `{ filled: 4, maximum: 3 }`.
 - There is no Mist theme type in City of Mist. The root descriptions of both new targets say so, because the notion belongs to Legend in the Mist and the two vocabularies are otherwise close enough to be confused.
 
+### Changed
+
+- Move canonical ownership of the cross-game `appearance/game-pack` contract to `RebelliousSmile/schema-appearance`, reconciling the `9535e94` contract with the `polarities` and `shapes` work from `00669b8`.
+
+### Deprecated
+
+- Keep complete, frozen compatibility schemas at both `appearance/game-pack.schema.json` and `schemas/appearance/game-pack.schema.json`. New consumers should use the canonical schema-appearance URL; removing either legacy path requires a separately approved breaking release.
+
 ## [v0.4.0] - 2026-09-07
 
 ### Added
