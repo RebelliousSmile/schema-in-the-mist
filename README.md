@@ -78,6 +78,8 @@ Depending on your code editor, you can configure custom JSON Schemas for both JS
 
 - **Docs:** CC BY 4.0 (see [here](./LICENSES/DOCS-LICENSE.md))
 
+- **Third-party game-pack assets:** the MIT and CC BY 4.0 licenses above do not cover the images or fonts published under [`handbook/`](./handbook/README.md). See the per-pack inventory and upstream notices there, including the documented unresolved redistribution status.
+
 - This product was created under license. City of Mist, :Otherscape, Legend in the Mist and their logos are trademarks of Son of Oak Game Studio LLC. All City of Mist, :Otherscape and Legend in the Mist setting material, art, and trade dress are the property of Son of Oak Game Studio LLC.
 
   This work contains material that is copyright of Son of Oak Game Studio LLC and/or other authors. Such material is used with permission under the Community Content Agreement for The Cauldron of Mist.

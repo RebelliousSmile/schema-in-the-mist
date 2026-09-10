@@ -6,7 +6,8 @@
     "gen": "tsx tools/gen-schemas.ts",
     "validate": "tsx tools/validate-examples.ts",
     "validate:appearance-compat": "tsx tools/validate-appearance-compat.ts",
-    "check": "npm run gen && npm run validate && npm run validate:appearance-compat",
+    "validate:handbook-packs": "tsx tools/validate-handbook-packs.ts",
+    "check": "npm run gen && npm run validate && npm run validate:appearance-compat && npm run validate:handbook-packs",
     "toml:one": "tsx tools/toml2json.ts"
   },
   "repository": {
