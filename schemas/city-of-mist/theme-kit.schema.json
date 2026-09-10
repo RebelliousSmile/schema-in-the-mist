@@ -1,0 +1,427 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "default": "Untitled Themebook",
+      "description": "The themebook's name.",
+      "examples": [
+        "Personality",
+        "Divination",
+        "Adaptation"
+      ],
+      "type": "string",
+      "minLength": 1
+    },
+    "theme_type": {
+      "type": "string",
+      "enum": [
+        "mythos",
+        "logos",
+        "extra",
+        "crew"
+      ],
+      "description": "Which family this themebook belongs to. Required and without a default: a themebook with no type prints the wrong banner and the wrong erosion track.",
+      "examples": [
+        "mythos",
+        "logos"
+      ]
+    },
+    "keywords": {
+      "description": "The handful of words the themebook prints to say at a glance what it is about.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "description": "One keyword printed on the themebook's header."
+      }
+    },
+    "introduction": {
+      "description": "The opening paragraph of the themebook, which pitches the theme to the player. Supports Markdown.",
+      "type": "string"
+    },
+    "concept": {
+      "description": "The one-line concept, which says what a character built on this themebook is.",
+      "examples": [
+        "You are who you are, and that is enough."
+      ],
+      "type": "string"
+    },
+    "power_tag_questions": {
+      "description": "The lettered questions whose answers become power tags, in printed order.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "letter": {
+            "type": "string",
+            "pattern": "^[A-Z]$",
+            "description": "The letter the books print beside the question. It travels onto the played card, where it identifies which question a tag answers.",
+            "examples": [
+              "A",
+              "B",
+              "J"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The question itself, written as the themebook prints it. Supports inline Markdown.",
+            "examples": [
+              "What is the one thing you are best at?",
+              "What do you carry that no one else would recognise?"
+            ]
+          },
+          "examples": {
+            "description": "The suggested answers the books print under the question, as a prompt rather than a constraint.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "One suggested answer, printed in the margin."
+            }
+          }
+        },
+        "required": [
+          "letter",
+          "text"
+        ],
+        "additionalProperties": false,
+        "description": "One lettered question of the themebook, which a player answers with a tag."
+      }
+    },
+    "power_tag_rule": {
+      "description": "How many power questions are answered, and how they are chosen.",
+      "type": "object",
+      "properties": {
+        "required_count": {
+          "default": 0,
+          "description": "How many questions must be answered, whichever the player would rather pick. The first power question is usually required.",
+          "examples": [
+            0,
+            1
+          ],
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "chosen_count": {
+          "default": 0,
+          "description": "How many further questions the player picks freely from the list.",
+          "examples": [
+            1,
+            2
+          ],
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "note": {
+          "description": "Anything the counts cannot say, written as the themebook says it.",
+          "examples": [
+            "Answer the first question, then two more of your choice.",
+            "One extra power tag costs one extra weakness tag."
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "required_count",
+        "chosen_count"
+      ],
+      "additionalProperties": false
+    },
+    "weakness_tag_questions": {
+      "description": "The lettered questions whose answers become weakness tags, in printed order.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "letter": {
+            "type": "string",
+            "pattern": "^[A-Z]$",
+            "description": "The letter the books print beside the question. It travels onto the played card, where it identifies which question a tag answers.",
+            "examples": [
+              "A",
+              "B",
+              "J"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The question itself, written as the themebook prints it. Supports inline Markdown.",
+            "examples": [
+              "What is the one thing you are best at?",
+              "What do you carry that no one else would recognise?"
+            ]
+          },
+          "examples": {
+            "description": "The suggested answers the books print under the question, as a prompt rather than a constraint.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "One suggested answer, printed in the margin."
+            }
+          }
+        },
+        "required": [
+          "letter",
+          "text"
+        ],
+        "additionalProperties": false,
+        "description": "One lettered question of the themebook, which a player answers with a tag."
+      }
+    },
+    "weakness_tag_rule": {
+      "description": "How many weakness questions are answered, and how they are chosen.",
+      "type": "object",
+      "properties": {
+        "required_count": {
+          "default": 0,
+          "description": "How many questions must be answered, whichever the player would rather pick. The first power question is usually required.",
+          "examples": [
+            0,
+            1
+          ],
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "chosen_count": {
+          "default": 0,
+          "description": "How many further questions the player picks freely from the list.",
+          "examples": [
+            1,
+            2
+          ],
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "note": {
+          "description": "Anything the counts cannot say, written as the themebook says it.",
+          "examples": [
+            "Answer the first question, then two more of your choice.",
+            "One extra power tag costs one extra weakness tag."
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "required_count",
+        "chosen_count"
+      ],
+      "additionalProperties": false
+    },
+    "extra_tags": {
+      "description": "Tags the themebook hands out directly, without a question to answer.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "description": "One tag the themebook grants outside its questions."
+      }
+    },
+    "motivation": {
+      "description": "The motivation zone. A Crew themebook leaves it out and prints its crew relationships instead.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "mystery",
+            "identity",
+            "either"
+          ],
+          "description": "Whether this zone is written as a Mystery, as an Identity, or left to the player.",
+          "examples": [
+            "mystery",
+            "identity"
+          ]
+        },
+        "intro": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The line the themebook prints above the zone, which tells the player what to write. Supports inline Markdown.",
+          "examples": [
+            "What is the question you cannot stop asking?",
+            "Write the statement you keep proving to yourself."
+          ]
+        },
+        "examples": {
+          "description": "The suggested motivations printed with the zone.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One suggested motivation."
+          }
+        },
+        "options": {
+          "description": "A closed list to pick from, for the themebooks that offer one instead of a blank line.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One motivation the player picks from a closed list."
+          }
+        },
+        "rule": {
+          "description": "What answering or abandoning the motivation does, when the themebook spells it out.",
+          "examples": [
+            "When you answer this Mystery, the theme fades and you lose it."
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "intro"
+      ],
+      "additionalProperties": false
+    },
+    "title_guidance": {
+      "description": "What the themebook tells the player to write on the card's title line.",
+      "examples": [
+        "Name the part of yourself this theme is about."
+      ],
+      "type": "string"
+    },
+    "crew_relationships": {
+      "description": "The situations a Crew themebook asks the table to answer for. Empty on every other theme type.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "scenario": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The situation the crew themebook asks the players to answer for.",
+            "examples": [
+              "When one of us is arrested,",
+              "When we disagree on where the money goes,"
+            ]
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "help",
+              "hurt",
+              "either"
+            ],
+            "description": "What that situation does to the crew.",
+            "examples": [
+              "help",
+              "hurt"
+            ]
+          }
+        },
+        "required": [
+          "scenario",
+          "outcome"
+        ],
+        "additionalProperties": false,
+        "description": "One crew relationship, which a Crew themebook prints in place of a motivation."
+      }
+    },
+    "improvements": {
+      "description": "The five improvements a theme built here can buy. Every themebook the books print carries five, no more and no fewer.",
+      "minItems": 5,
+      "maxItems": 5,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The improvement's title, as the themebook prints it.",
+            "examples": [
+              "Second Sight",
+              "Expert"
+            ]
+          },
+          "effect": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What buying the improvement does. Supports inline Markdown.",
+            "examples": [
+              "Take an additional power tag for this theme.",
+              "Unlock a custom move for this theme."
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "effect"
+        ],
+        "additionalProperties": false,
+        "description": "One improvement a player can buy for a theme built here."
+      }
+    },
+    "meta": {
+      "description": "Attribution and cataloging fields for the themebook's origin.",
+      "type": "object",
+      "properties": {
+        "publication_type": {
+          "default": "homebrew",
+          "description": "Classifies the themebook's source to aid cataloging and tooling.",
+          "examples": [
+            "official",
+            "cauldron"
+          ],
+          "type": "string",
+          "enum": [
+            "official",
+            "third_party",
+            "cauldron",
+            "homebrew"
+          ]
+        },
+        "source": {
+          "description": "Source title (book, supplement, PDF) where this themebook appears.",
+          "examples": [
+            "City of Mist: Player's Guide",
+            "City of Mist: Starter Set"
+          ],
+          "type": "string"
+        },
+        "authors": {
+          "description": "List of credited authors or contributors.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One credited author name.",
+            "examples": [
+              "Son of Oak",
+              "4rtamis"
+            ]
+          }
+        },
+        "page": {
+          "description": "Page number (if relevant to the source).",
+          "examples": [
+            78,
+            112
+          ],
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "publication_type"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "name",
+    "theme_type"
+  ],
+  "additionalProperties": false,
+  "description": "City of Mist - a themebook: the blank questionnaire a player fills in to build a theme, not the answers they write. The filled card is the separate `theme-card` target. Note that there is no Mist theme type in City of Mist; that notion belongs to Legend in the Mist."
+}

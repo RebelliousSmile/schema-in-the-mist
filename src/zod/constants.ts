@@ -4,14 +4,18 @@ import { LegendInTheMistStoryThemeSchema } from "./legend-in-the-mist/story-them
 import { LegendInTheMistThemeKitSchema } from "./legend-in-the-mist/theme-kit";
 import { LegendInTheMistJourneySchema } from "./legend-in-the-mist/journey";
 import { CityOfMistDangerSchema } from "./city-of-mist/danger";
+import { CityOfMistCustomMoveSchema } from "./city-of-mist/custom-move";
+import { CityOfMistThemeKitSchema } from "./city-of-mist/theme-kit";
+import { CityOfMistThemeCardSchema } from "./city-of-mist/theme-card";
 import { OtherscapeChallengeSchema } from "./otherscape/challenge";
 import { OtherscapePowerSetSchema } from "./otherscape/power-set";
 import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit";
 import { OtherscapeThemeSchema } from "./otherscape/theme";
 import { OtherscapeCharacterTropeSchema } from "./otherscape/character-trope";
 import { OtherscapeLoadoutItemSchema } from "./otherscape/loadout-item";
+import { GamePackSchema } from "./appearance/game-pack";
 
-type Game = {
+export type Game = {
   name: string;
   folder: string;
   abbr: string;
@@ -45,7 +49,22 @@ export const GAMES: GameDictionary = {
   },
 };
 
+/**
+ * Not a game, a space beside them: the appearance schema describes how any of
+ * the three dresses a reader, so it belongs to none of their folders.
+ */
+export const APPEARANCE: Game = {
+  name: "Appearance",
+  folder: "appearance",
+  abbr: "appearance",
+};
+
 export const TARGETS: Array<SchemaTarget> = [
+  {
+    zod: GamePackSchema,
+    game: APPEARANCE,
+    name: "game-pack",
+  },
   {
     zod: LegendInTheMistChallengeSchema,
     game: GAMES.litm,
@@ -70,6 +89,21 @@ export const TARGETS: Array<SchemaTarget> = [
     zod: CityOfMistDangerSchema,
     game: GAMES.com,
     name: "danger",
+  },
+  {
+    zod: CityOfMistCustomMoveSchema,
+    game: GAMES.com,
+    name: "custom-move",
+  },
+  {
+    zod: CityOfMistThemeKitSchema,
+    game: GAMES.com,
+    name: "theme-kit",
+  },
+  {
+    zod: CityOfMistThemeCardSchema,
+    game: GAMES.com,
+    name: "theme-card",
   },
   {
     zod: OtherscapeChallengeSchema,

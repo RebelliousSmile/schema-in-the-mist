@@ -5,6 +5,20 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.0] - 2026-09-09
+
+### Added
+
+- **City of Mist** gains three targets beside `danger`: `custom-move`, `theme-kit` and `theme-card`. Each carries its Zod source, its generated JSON Schema, and a JSON + TOML example pair.
+- City of Mist **Custom Move** — a standalone move: `trigger` plus `outcomes[]`, where the Danger's nested `custom_moves` squash both into one description string. Keeping them apart is what lets a move be rolled: `roll` is optional because most custom moves are diceless, and each outcome names the `tier` that produces it (`miss` / `hit` / `7-9` / `10+` / `12+`). `options` and `pick_count` sit on the tier, not on the list, because the same list serves several tiers with a different count each.
+- `template` on Custom Move records which of the MC Toolkit's five templates the move was written from (`active_shield`, `countdown_outcome`, `starting_status`, `status_filter`, `status_payload`, or `freeform`). It is a record, not a storage format: the prose the template produced lives in `trigger` and `outcomes`, and editing it afterwards does not invalidate the value.
+- City of Mist **Theme Kit** — the blank themebook, and **Theme Card** — the same questionnaire answered. They are two targets rather than one because a card can be read without the book that produced it, and a book ships with no card at all. `theme_type` (`mythos` / `logos` / `extra` / `crew`) is required without a default on both, on the same reasoning as Journey's `type` and :Otherscape's: it decides the banner, the motivation's grammar and the erosion track.
+- The question `letter` travels from kit to card. On Theme Kit it is required and matched by `/^[A-Z]$/`; on Theme Card it is optional, because a homebrew tag answers no question.
+- Theme Kit constrains `improvements` to **exactly five**: every themebook the books print carries five, no more and no fewer. Theme Card leaves the array free, since a card lists only the improvements it needs to.
+- Theme Card's erosion track is `fade` on a Mythos theme and `crack` on a Logos one, the books' own names; a corpus elsewhere calls the same track `deterioration`. Extra and Crew cards carry no erosion track at all.
+- Both card tracks refine `filled <= maximum` and report the issue on `filled` rather than on the track, so a consumer can name the field that is out of range. Note that the constraint is a Zod refinement and does not survive into the generated JSON Schema: an Ajv-only consumer will accept `{ filled: 4, maximum: 3 }`.
+- There is no Mist theme type in City of Mist. The root descriptions of both new targets say so, because the notion belongs to Legend in the Mist and the two vocabularies are otherwise close enough to be confused.
+
 ## [v0.4.0] - 2026-09-07
 
 ### Added

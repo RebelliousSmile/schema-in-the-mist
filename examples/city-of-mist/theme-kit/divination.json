@@ -1,0 +1,172 @@
+{
+  "name": "Divination",
+  "theme_type": "mythos",
+  "keywords": [
+    "omens",
+    "cards",
+    "the answer that answers back"
+  ],
+  "introduction": "You did not learn to read the signs. The signs learned to reach you. Cards fall your way, static resolves into words, the pattern of a crowd spells something out for a second before it scatters. Somewhere on the other side of the reading, something is answering, and it has never once introduced itself.",
+  "concept": "You can ask the world a question, and the world will answer. That has always been the problem.",
+  "power_tag_questions": [
+    {
+      "letter": "A",
+      "text": "How do you read? What does the answer arrive through?",
+      "examples": [
+        "cards that deal themselves",
+        "a voice under the static",
+        "the way the pigeons turn"
+      ]
+    },
+    {
+      "letter": "B",
+      "text": "What can you see that has not happened yet?",
+      "examples": [
+        "the shape of tomorrow's argument",
+        "who in this room will run"
+      ]
+    },
+    {
+      "letter": "C",
+      "text": "What does a reading tell you about a person you have never met?",
+      "examples": [
+        "the debt they carry",
+        "the name they answer to when scared"
+      ]
+    },
+    {
+      "letter": "D",
+      "text": "What warns you before the danger arrives?",
+      "examples": [
+        "a cold draft with no window",
+        "my own handwriting appearing"
+      ]
+    },
+    {
+      "letter": "E",
+      "text": "What can you find that is hidden, and how far can you reach?",
+      "examples": [
+        "anything lost within the district"
+      ]
+    },
+    {
+      "letter": "F",
+      "text": "What does the reading let you change, however slightly?",
+      "examples": [
+        "which door is unlocked",
+        "who calls first"
+      ]
+    },
+    {
+      "letter": "G",
+      "text": "What did the other side give you that you still carry?",
+      "examples": [
+        "a deck that is never complete",
+        "a second shadow"
+      ]
+    },
+    {
+      "letter": "H",
+      "text": "Who or what answers your questions, and what do they let slip?",
+      "examples": [
+        "it always knows my mother's name"
+      ]
+    },
+    {
+      "letter": "I",
+      "text": "What does an onlooker feel when you read in front of them?",
+      "examples": [
+        "the room goes quiet and honest"
+      ]
+    },
+    {
+      "letter": "J",
+      "text": "What have you already been shown that you have not used yet?",
+      "examples": [
+        "the date of a death I have not named"
+      ]
+    }
+  ],
+  "power_tag_rule": {
+    "required_count": 1,
+    "chosen_count": 2,
+    "note": "Answer question A, then two more of your choice."
+  },
+  "weakness_tag_questions": [
+    {
+      "letter": "A",
+      "text": "What does the reading take out of you?",
+      "examples": [
+        "I lose the hour after",
+        "my hands shake for a day"
+      ]
+    },
+    {
+      "letter": "B",
+      "text": "What answer will it never give you, however you ask?",
+      "examples": [
+        "anything about myself"
+      ]
+    },
+    {
+      "letter": "C",
+      "text": "Who wants your readings badly enough to take them?",
+      "examples": [
+        "a man who has already bought my landlord"
+      ]
+    },
+    {
+      "letter": "D",
+      "text": "What does the other side ask for in return?",
+      "examples": [
+        "it answers, then it asks",
+        "it keeps a piece of every question"
+      ]
+    }
+  ],
+  "weakness_tag_rule": {
+    "required_count": 1,
+    "chosen_count": 0,
+    "note": "Answer one of the four."
+  },
+  "motivation": {
+    "kind": "mystery",
+    "intro": "Write the question you cannot stop asking, the one every reading is really about.",
+    "examples": [
+      "Who keeps answering when I ask?",
+      "What did I see the first time, that I have never seen since?",
+      "Whose future am I reading, and why does it look like mine?"
+    ],
+    "rule": "When you answer this Mystery for good, the theme fades and you lose it. Ask a bigger question or let the legend go."
+  },
+  "title_guidance": "Name the reading, not the gift: what you do when you sit down and ask.",
+  "improvements": [
+    {
+      "name": "Second Sight",
+      "effect": "Take an additional power tag for this theme."
+    },
+    {
+      "name": "Ask Again",
+      "effect": "Once per session, reroll a Look Beyond the Mist and take the better result."
+    },
+    {
+      "name": "Read the Room",
+      "effect": "When you read a person in front of you, ask one question of the MC beyond the move's list."
+    },
+    {
+      "name": "Open Channel",
+      "effect": "You can read at a distance, through an object the subject has touched."
+    },
+    {
+      "name": "It Answers",
+      "effect": "Unlock a custom move for this theme, written with the MC."
+    }
+  ],
+  "meta": {
+    "publication_type": "homebrew",
+    "source": "Lantern in the Mist - Sample Themebooks",
+    "authors": [
+      "4rtamis"
+    ]
+  }
+}

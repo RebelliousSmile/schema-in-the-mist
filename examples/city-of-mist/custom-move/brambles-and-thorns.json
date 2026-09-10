@@ -1,0 +1,23 @@
+{
+  "name": "Brambles and Thorns",
+  "kind": "danger",
+  "template": "active_shield",
+  "trigger": "When you try to get into the castle grounds of the Sleeping Beauty,",
+  "impact": 2,
+  "outcomes": [
+    {
+      "tier": "hit",
+      "text": "you get through, but the brambles first take their due: you take {entangled-3} and the thorns leave you {bleeding-2}."
+    }
+  ],
+  "frequency": "Once per approach to the castle.",
+  "mc_note": "An Active Shield is a toll, not a wall. Let the players through, then make them pay for it.",
+  "meta": {
+    "publication_type": "official",
+    "source": "City of Mist: MC Toolkit",
+    "authors": [
+      "Son of Oak"
+    ],
+    "page": 137
+  }
+}

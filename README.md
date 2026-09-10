@@ -11,6 +11,20 @@ The aim is an ecosystem of interoperable digital tools where they can exchange s
 - `examples/` contains JSON/TOML examples per schema
 - `tools/` provides generation and validation scripts
 
+### Content and appearance
+
+The game folders — `city-of-mist/`, `legend-in-the-mist/`, `otherscape/` —
+describe **what is played**: Dangers, Challenges, Journeys, Theme Kits. They are
+written by a Narrator and read by any tool that shows them.
+
+`appearance/` is a sibling space describing **how a game dresses a reader**: its
+identifier, the CSS custom properties it writes by theme variant, and the paths
+of the illustrations and typefaces it draws with. It is transverse to the three
+games, which is why it is not filed under any of them, and it shares no field
+with the content schemas — not even the `meta` attribution block they all carry.
+A tool that renders no pages has no use for it, and a tool that renders pages
+needs nothing from the content schemas to do so.
+
 ## Using the schemas in your tool
 
 ### Use Zod directly (TS apps)

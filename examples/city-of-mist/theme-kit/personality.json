@@ -1,0 +1,175 @@
+{
+  "name": "Personality",
+  "theme_type": "logos",
+  "keywords": [
+    "self",
+    "temperament",
+    "reputation"
+  ],
+  "introduction": "Some people are defined by what they own, what they know, or who they answer to. You are defined by who you are. Your temperament precedes you into a room and stays there after you have left, and the city has learned to expect it.",
+  "concept": "You are who you are, and everyone around you has had to make room for it.",
+  "power_tag_questions": [
+    {
+      "letter": "A",
+      "text": "What is the trait everyone who knows you would name first?",
+      "examples": [
+        "stubborn as a locked door",
+        "unbearably patient",
+        "warm to strangers"
+      ]
+    },
+    {
+      "letter": "B",
+      "text": "What do you do better than anyone in the room, simply by being yourself?",
+      "examples": [
+        "read a room in a second",
+        "never look away first"
+      ]
+    },
+    {
+      "letter": "C",
+      "text": "What does your temperament let you get away with?",
+      "examples": [
+        "asking the rude question",
+        "walking in like I belong"
+      ]
+    },
+    {
+      "letter": "D",
+      "text": "Who trusts you because of who you are, and what will they do for you?",
+      "examples": [
+        "the night nurse owes me nothing and helps anyway"
+      ]
+    },
+    {
+      "letter": "E",
+      "text": "What reputation walks into the room before you do?",
+      "examples": [
+        "the one who does not bluff",
+        "she always pays"
+      ]
+    },
+    {
+      "letter": "F",
+      "text": "What do you never lose your nerve about?",
+      "examples": [
+        "blood",
+        "heights",
+        "being outnumbered"
+      ]
+    },
+    {
+      "letter": "G",
+      "text": "What habit of yours turns out to be useful more often than it should?",
+      "examples": [
+        "I write everything down",
+        "I arrive an hour early"
+      ]
+    },
+    {
+      "letter": "H",
+      "text": "What do you carry that says who you are without a word?",
+      "examples": [
+        "my father's coat",
+        "a laugh you can hear two streets away"
+      ]
+    },
+    {
+      "letter": "I",
+      "text": "What do people ask you to do because no one else will?",
+      "examples": [
+        "deliver bad news",
+        "stay with the body"
+      ]
+    },
+    {
+      "letter": "J",
+      "text": "What is the line you are known for holding?",
+      "examples": [
+        "I do not lie to children"
+      ]
+    }
+  ],
+  "power_tag_rule": {
+    "required_count": 1,
+    "chosen_count": 2,
+    "note": "Answer question A, then two more of your choice."
+  },
+  "weakness_tag_questions": [
+    {
+      "letter": "A",
+      "text": "What does your temperament cost you when it matters most?",
+      "examples": [
+        "too proud to ask",
+        "cannot let it go"
+      ]
+    },
+    {
+      "letter": "B",
+      "text": "Who has learned exactly how to use who you are against you?",
+      "examples": [
+        "my sister knows which word does it"
+      ]
+    },
+    {
+      "letter": "C",
+      "text": "What do people assume about you that is wrong and useful to them?",
+      "examples": [
+        "everyone thinks I am harmless"
+      ]
+    },
+    {
+      "letter": "D",
+      "text": "What can you not make yourself do, even when you should?",
+      "examples": [
+        "I cannot walk away",
+        "I cannot keep a secret from her"
+      ]
+    }
+  ],
+  "weakness_tag_rule": {
+    "required_count": 1,
+    "chosen_count": 0,
+    "note": "Answer one of the four."
+  },
+  "motivation": {
+    "kind": "identity",
+    "intro": "Write the statement about yourself that you keep proving, to the city and to yourself.",
+    "examples": [
+      "I am the one who stays.",
+      "I do not owe anyone an explanation.",
+      "I can be trusted with the worst of it."
+    ],
+    "rule": "When you act against this Identity, mark a crack. When the track fills, the theme breaks and you replace it."
+  },
+  "title_guidance": "Name the part of yourself this theme is about, in the words someone else would use for you.",
+  "improvements": [
+    {
+      "name": "Force of Character",
+      "effect": "Take an additional power tag for this theme."
+    },
+    {
+      "name": "Unshakable",
+      "effect": "Once per session, ignore a status of tier 2 or less that targets your composure."
+    },
+    {
+      "name": "Known Quantity",
+      "effect": "When you invoke your reputation to open a door, take a +1 ongoing for the scene."
+    },
+    {
+      "name": "Second Wind",
+      "effect": "Once per session, erase one crack from this theme by living up to your Identity in public."
+    },
+    {
+      "name": "That Is Who I Am",
+      "effect": "Unlock a custom move for this theme, written with the MC."
+    }
+  ],
+  "meta": {
+    "publication_type": "homebrew",
+    "source": "Lantern in the Mist - Sample Themebooks",
+    "authors": [
+      "4rtamis"
+    ]
+  }
+}

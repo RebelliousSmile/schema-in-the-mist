@@ -1,0 +1,333 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "themebook": {
+      "description": "The themebook the card was built from, by name. Optional, because a card can outlive the book it came from and still be played.",
+      "examples": [
+        "Divination",
+        "Personality"
+      ],
+      "type": "string"
+    },
+    "theme_type": {
+      "type": "string",
+      "enum": [
+        "mythos",
+        "logos",
+        "extra",
+        "crew"
+      ],
+      "description": "Which family the card belongs to. Required and without a default: it decides the banner, the motivation's grammar and the erosion track.",
+      "examples": [
+        "mythos",
+        "logos"
+      ]
+    },
+    "title": {
+      "default": "Untitled Theme",
+      "description": "The title the player wrote at the top of the card.",
+      "examples": [
+        "The Reading I Cannot Stop",
+        "The Oath I Swore"
+      ],
+      "type": "string",
+      "minLength": 1
+    },
+    "motivation": {
+      "description": "The card's motivation, filled in. Absent on an Extra or a Crew card.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "mystery",
+            "identity",
+            "neutral"
+          ],
+          "description": "Whether the card's motivation reads as a Mystery, an Identity, or neither.",
+          "examples": [
+            "mystery",
+            "identity"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The motivation the player wrote, the answer rather than the themebook's prompt. Supports inline Markdown.",
+          "examples": [
+            "Who keeps answering when I ask?",
+            "I am the one who stays."
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "attention": {
+      "description": "The attention track, which fills as the theme is played and buys improvements.",
+      "type": "object",
+      "properties": {
+        "filled": {
+          "default": 0,
+          "description": "How many boxes are ticked right now.",
+          "examples": [
+            0,
+            2
+          ],
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "maximum": {
+          "default": 3,
+          "description": "How many boxes the track prints. Three on every card the books show, but an improvement can widen it.",
+          "examples": [
+            3,
+            4
+          ],
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "filled",
+        "maximum"
+      ],
+      "additionalProperties": false
+    },
+    "erosion": {
+      "description": "The erosion track, Fade or Crack. Absent on an Extra or a Crew card, which do not erode.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "fade",
+            "crack"
+          ],
+          "description": "Fade on a Mythos card, Crack on a Logos one.",
+          "examples": [
+            "fade",
+            "crack"
+          ]
+        },
+        "filled": {
+          "default": 0,
+          "description": "How much the theme has eroded so far.",
+          "examples": [
+            0,
+            1
+          ],
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "maximum": {
+          "default": 3,
+          "description": "How much erosion the theme survives before it breaks.",
+          "examples": [
+            3
+          ],
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "kind",
+        "filled",
+        "maximum"
+      ],
+      "additionalProperties": false
+    },
+    "power_tags": {
+      "description": "The power tags written on the card, in printed order.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The tag as the player wrote it on the card.",
+            "examples": [
+              "cards that deal themselves",
+              "a voice under the static"
+            ]
+          },
+          "letter": {
+            "description": "Which themebook question this tag answers. Optional, because a homebrew tag has no question behind it.",
+            "examples": [
+              "A",
+              "C"
+            ],
+            "type": "string",
+            "pattern": "^[A-Z]$"
+          },
+          "is_burnt": {
+            "default": false,
+            "description": "Whether the tag has been burnt and is spent until it is recovered.",
+            "examples": [
+              false,
+              true
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "text",
+          "is_burnt"
+        ],
+        "additionalProperties": false,
+        "description": "One power tag on the card. The books' rule that an extra power tag costs an extra weakness tag is a play rule, not a constraint enforced here: a card mid-play can sit between the two."
+      }
+    },
+    "weakness_tags": {
+      "description": "The weakness tags written on the card, in printed order.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The weakness as the player wrote it on the card.",
+            "examples": [
+              "it answers, then it asks",
+              "too proud to ask"
+            ]
+          },
+          "letter": {
+            "description": "Which themebook question this weakness answers. Optional, for the same reason as a power tag's.",
+            "examples": [
+              "B",
+              "D"
+            ],
+            "type": "string",
+            "pattern": "^[A-Z]$"
+          },
+          "is_invoked": {
+            "default": false,
+            "description": "Whether the weakness has been invoked this session for its build-up.",
+            "examples": [
+              false,
+              true
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "text",
+          "is_invoked"
+        ],
+        "additionalProperties": false,
+        "description": "One weakness tag on the card. Counted against the power tags by the books' rule, which the schema records rather than enforces."
+      }
+    },
+    "improvements": {
+      "description": "The improvements available to this theme, ticked as they are bought. Unlike the themebook, a card lists only what it needs to: a partial list is normal.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The improvement's title, as the themebook names it.",
+            "examples": [
+              "Second Sight",
+              "Force of Character"
+            ]
+          },
+          "effect": {
+            "description": "What the improvement does, copied onto the card so it can be read without the themebook. Supports inline Markdown.",
+            "examples": [
+              "Take an additional power tag for this theme."
+            ],
+            "type": "string"
+          },
+          "is_taken": {
+            "default": false,
+            "description": "Whether the player has bought it.",
+            "examples": [
+              false,
+              true
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "is_taken"
+        ],
+        "additionalProperties": false,
+        "description": "One improvement listed on the card, ticked once bought."
+      }
+    },
+    "meta": {
+      "description": "Attribution and cataloging fields for the card's origin.",
+      "type": "object",
+      "properties": {
+        "publication_type": {
+          "default": "homebrew",
+          "description": "Classifies the card's source to aid cataloging and tooling.",
+          "examples": [
+            "official",
+            "cauldron"
+          ],
+          "type": "string",
+          "enum": [
+            "official",
+            "third_party",
+            "cauldron",
+            "homebrew"
+          ]
+        },
+        "source": {
+          "description": "Source title where this card appears, if any.",
+          "examples": [
+            "City of Mist: Player's Guide"
+          ],
+          "type": "string"
+        },
+        "authors": {
+          "description": "List of credited authors or contributors.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One credited author name.",
+            "examples": [
+              "Son of Oak",
+              "4rtamis"
+            ]
+          }
+        },
+        "page": {
+          "description": "Page number (if relevant to the source).",
+          "examples": [
+            42
+          ],
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "publication_type"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "theme_type",
+    "title"
+  ],
+  "additionalProperties": false,
+  "description": "City of Mist - a played theme card: a themebook's questions answered, with the tracks and the tags as they stand at the table. The blank questionnaire is the separate `theme-kit` target; this one exists on its own, because a card can be read without the themebook that produced it."
+}

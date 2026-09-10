@@ -1,0 +1,50 @@
+{
+  "themebook": "Personality",
+  "theme_type": "logos",
+  "title": "The Oath I Swore",
+  "motivation": {
+    "kind": "identity",
+    "text": "I am the one who stays."
+  },
+  "attention": {
+    "filled": 1,
+    "maximum": 3
+  },
+  "erosion": {
+    "kind": "crack",
+    "filled": 2,
+    "maximum": 3
+  },
+  "power_tags": [
+    {
+      "text": "never look away first",
+      "letter": "B",
+      "is_burnt": false
+    },
+    {
+      "text": "my father's coat",
+      "is_burnt": false
+    }
+  ],
+  "weakness_tags": [
+    {
+      "text": "I cannot walk away",
+      "letter": "D",
+      "is_invoked": true
+    }
+  ],
+  "improvements": [
+    {
+      "name": "Unshakable",
+      "effect": "Once per session, ignore a status of tier 2 or less that targets your composure.",
+      "is_taken": false
+    }
+  ],
+  "meta": {
+    "publication_type": "homebrew",
+    "source": "Lantern in the Mist - Sample Theme Cards",
+    "authors": [
+      "4rtamis"
+    ]
+  }
+}

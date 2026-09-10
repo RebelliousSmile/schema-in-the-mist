@@ -1,0 +1,251 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "default": "Untitled Custom Move",
+      "description": "The name/title of the custom move.",
+      "examples": [
+        "Brambles and Thorns",
+        "War-Torn City",
+        "Ultimate Predator"
+      ],
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "default": "danger",
+      "description": "Which of the three kinds of custom move this is (MC Toolkit p. 134).",
+      "examples": [
+        "danger",
+        "situational"
+      ],
+      "type": "string",
+      "enum": [
+        "danger",
+        "situational",
+        "improvement"
+      ]
+    },
+    "template": {
+      "default": "freeform",
+      "description": "The MC Toolkit template this move was written from, kept for the record.",
+      "examples": [
+        "active_shield",
+        "freeform"
+      ],
+      "type": "string",
+      "enum": [
+        "active_shield",
+        "countdown_outcome",
+        "starting_status",
+        "status_filter",
+        "status_payload",
+        "freeform"
+      ]
+    },
+    "trigger": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The condition that fires the move, written in the books' 'when you...' form. This is the one field no custom move can do without: a move with no trigger never fires. Supports inline Markdown.",
+      "examples": [
+        "When you try to get into the castle grounds of the Sleeping Beauty,",
+        "When you spend a day in the war-torn city,"
+      ]
+    },
+    "impact": {
+      "description": "How hard the move hits, on the one-to-three star scale the MC Toolkit prints beside each template.",
+      "examples": [
+        1,
+        2,
+        3
+      ],
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "roll": {
+      "description": "The roll the move calls for. Most custom moves are diceless and leave this out.",
+      "type": "object",
+      "properties": {
+        "stat": {
+          "type": "string",
+          "enum": [
+            "power",
+            "mythos",
+            "logos",
+            "custom"
+          ],
+          "description": "What the roll adds to 2d6.",
+          "examples": [
+            "power",
+            "mythos"
+          ]
+        },
+        "label": {
+          "description": "What a `custom` stat rolls against, written as the move names it. Ignored for the three named stats.",
+          "examples": [
+            "the tier of the city's {war-torn} status",
+            "the number of clues the crew has gathered"
+          ],
+          "type": "string"
+        },
+        "modifier": {
+          "description": "A flat bonus or penalty the move applies on top of the stat.",
+          "examples": [
+            -1,
+            1,
+            2
+          ],
+          "type": "integer",
+          "minimum": -4,
+          "maximum": 4
+        }
+      },
+      "required": [
+        "stat"
+      ],
+      "additionalProperties": false
+    },
+    "outcomes": {
+      "description": "What the move produces, from zero to four tiers. A diceless move carries a single untiered outcome; a rolled move carries one per tier it distinguishes.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tier": {
+            "type": "string",
+            "enum": [
+              "miss",
+              "hit",
+              "7-9",
+              "10+",
+              "12+"
+            ],
+            "description": "Which result this outcome answers.",
+            "examples": [
+              "10+",
+              "miss"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What happens at this tier, written as the books write it. Supports inline Markdown.",
+            "examples": [
+              "you get through, but you first take {entangled-3}.",
+              "the MC chooses two from the list below."
+            ]
+          },
+          "options": {
+            "description": "The list a tier chooses from, when its text says 'choose two from the list below'. Leave it out for an outcome that resolves in one line.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": "One option the tier's text points at."
+            }
+          },
+          "pick_count": {
+            "description": "How many entries of `options` this tier takes. The same list often serves several tiers with a different count each, which is why the count sits on the tier and not on the list.",
+            "examples": [
+              1,
+              2,
+              3
+            ],
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "tier",
+          "text"
+        ],
+        "additionalProperties": false,
+        "description": "One result of the move, tied to the tier of the roll that produces it."
+      }
+    },
+    "frequency": {
+      "description": "How often the move can fire, when the move limits itself. Prose rather than a count, because the books phrase it as fiction.",
+      "examples": [
+        "Once per scene.",
+        "Once per session, per character."
+      ],
+      "type": "string"
+    },
+    "mc_note": {
+      "description": "An MC-facing aside: how to pitch the move at the table, what it is for, what it should not become. Supports inline Markdown.",
+      "examples": [
+        "Use this to make the castle feel alive rather than to punish the players."
+      ],
+      "type": "string"
+    },
+    "meta": {
+      "description": "Attribution and cataloging fields for the custom move's origin.",
+      "type": "object",
+      "properties": {
+        "publication_type": {
+          "default": "homebrew",
+          "description": "Classifies the move's source to aid cataloging and tooling.",
+          "examples": [
+            "official",
+            "cauldron"
+          ],
+          "type": "string",
+          "enum": [
+            "official",
+            "third_party",
+            "cauldron",
+            "homebrew"
+          ]
+        },
+        "source": {
+          "description": "Source title (book, supplement, PDF) where this move appears.",
+          "examples": [
+            "City of Mist: MC Toolkit",
+            "City of Mist: Player's Guide",
+            "Danger Workbook"
+          ],
+          "type": "string"
+        },
+        "authors": {
+          "description": "List of credited authors or contributors.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One credited author name.",
+            "examples": [
+              "Son of Oak",
+              "4rtamis"
+            ]
+          }
+        },
+        "page": {
+          "description": "Page number (if relevant to the source).",
+          "examples": [
+            134,
+            137,
+            191
+          ],
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "publication_type"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "name",
+    "kind",
+    "template",
+    "trigger"
+  ],
+  "additionalProperties": false,
+  "description": "City of Mist - a standalone custom move: a condition plus its outcomes, written for a Danger, a situation or a theme improvement. Distinct from the `custom_moves` nested in a Danger profile, which squash trigger and outcome into one description string; this target keeps them apart so a move can be printed, rolled and improved on its own."
+}
