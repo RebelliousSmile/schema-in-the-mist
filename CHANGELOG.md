@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.1] - 2026-09-10
+
+### Added
+
+- Document the provenance and upstream notices for the third-party assets shipped by the Handbook packs, including their unresolved redistribution status.
+- Validate the Handbook repository catalogue, manifests, appearance payloads and complete declared asset set as part of `npm run check`.
+
 ## [v0.5.0] - 2026-09-10
 
 ### Added
