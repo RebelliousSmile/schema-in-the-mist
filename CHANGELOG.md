@@ -5,10 +5,11 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v0.5.0] - 2026-09-09
+## [v0.5.0] - 2026-09-10
 
 ### Added
 
+- Publish installable Handbook packs for City of Mist, Legend in the Mist, and :Otherscape, including their manifests, fonts, illustrations, and repository catalog.
 - **City of Mist** gains three targets beside `danger`: `custom-move`, `theme-kit` and `theme-card`. Each carries its Zod source, its generated JSON Schema, and a JSON + TOML example pair.
 - City of Mist **Custom Move** — a standalone move: `trigger` plus `outcomes[]`, where the Danger's nested `custom_moves` squash both into one description string. Keeping them apart is what lets a move be rolled: `roll` is optional because most custom moves are diceless, and each outcome names the `tier` that produces it (`miss` / `hit` / `7-9` / `10+` / `12+`). `options` and `pick_count` sit on the tier, not on the list, because the same list serves several tiers with a different count each.
 - `template` on Custom Move records which of the MC Toolkit's five templates the move was written from (`active_shield`, `countdown_outcome`, `starting_status`, `status_filter`, `status_payload`, or `freeform`). It is a record, not a storage format: the prose the template produced lives in `trigger` and `outcomes`, and editing it afterwards does not invalidate the value.
