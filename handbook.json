@@ -1,0 +1,27 @@
+{
+  "manifestVersion": 1,
+  "repository": "RebelliousSmile/schema-in-the-mist",
+  "name": "Schema in the Mist",
+  "description": "Handbook game packs for the Mist Engine family.",
+  "author": "RebelliousSmile",
+  "packs": [
+    {
+      "id": "city-of-mist",
+      "version": "1.0.0",
+      "path": "handbook/city-of-mist/pack.json",
+      "label": "City of Mist"
+    },
+    {
+      "id": "legend-in-the-mist",
+      "version": "1.0.0",
+      "path": "handbook/legend-in-the-mist/pack.json",
+      "label": "Legend in the Mist"
+    },
+    {
+      "id": "otherscape",
+      "version": "1.0.0",
+      "path": "handbook/otherscape/pack.json",
+      "label": ":Otherscape"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "manifestVersion": 1,
+  "version": "1.0.0",
+  "minimumHandbookVersion": "2.7.0",
+  "requires": [
+    "block:theme-card",
+    "block:litm-challenge",
+    "block:litm-journey",
+    "block:litm-theme-kit",
+    "style:legend-in-the-mist"
+  ],
+  "pack": {
+    "id": "legend-in-the-mist",
+    "label": "Legend in the Mist",
+    "style": {
+      "base": {
+        "note": {
+          "--font-text-theme": "\"Labrada\", sans-serif",
+          "--font-header-theme": "\"PragRoman\", sans-serif",
+          "--inline-title-font": "\"PragRoman\", sans-serif",
+          "--inline-title-text-transform": "uppercase",
+          "--inline-title-weight": "700",
+          "--h1-font": "\"PragRoman\", sans-serif",
+          "--h1-text-transform": "uppercase",
+          "--h2-font": "\"PragRoman\", sans-serif",
+          "--h2-text-transform": "none",
+          "--h3-font": "\"PragRoman\", sans-serif",
+          "--h3-text-transform": "uppercase",
+          "--h3-weight": "400",
+          "--h3-size": "1em",
+          "--list-indent": "0em",
+          "--list-spacing": "0.2em",
+          "--list-bullet-size": "0.25em"
+        }
+      },
+      "light": {
+        "note": {
+          "--color-accent": "#752B2B",
+          "--interactive-accent": "#752B2B",
+          "--accent-h": "0",
+          "--accent-s": "46.25%",
+          "--accent-l": "31.37%",
+          "--background-primary": "#EFEAE6",
+          "--background-primary-alt": "#C1353500",
+          "--text-normal": "#000000",
+          "--h1-color": "#752B2B",
+          "--h2-color": "#752B2B",
+          "--h3-color": "#915656",
+          "--color-red": "#762B2C",
+          "--color-red-rgb": "118, 43, 44",
+          "--color-orange": "#7D3C3D",
+          "--color-orange-rgb": "125, 60, 61",
+          "--color-yellow": "#EFD693",
+          "--color-yellow-rgb": "239, 214, 147",
+          "--color-green": "#4D8061",
+          "--color-green-rgb": "77, 128, 97",
+          "--color-blue": "#5C5C92",
+          "--color-blue-rgb": "92, 92, 146",
+          "--color-cyan": "#69ACC6",
+          "--color-cyan-rgb": "105, 172, 198",
+          "--color-purple": "#3A3159",
+          "--color-purple-rgb": "58, 49, 89",
+          "--color-pink": "#A27FA0",
+          "--color-pink-rgb": "162, 127, 160",
+          "--bold-color": "#000000",
+          "--link-color": "#752B2B",
+          "--link-unresolved-color": "#915656",
+          "--link-external-color": "#5C5C91",
+          "--link-external-color-hover": "#5E5EB0",
+          "--list-marker-color": "#000000",
+          "--table-header-color": "#422513",
+          "--brumes-table-ink": "#000000",
+          "--brumes-table-header-paper": "#DAC5B2",
+          "--brumes-table-row-paper": "#E5DCCB",
+          "--brumes-might-origin-color": "#4D8061",
+          "--brumes-might-adventure-color": "#7D3C3D",
+          "--brumes-might-greatness-color": "#5C5C92",
+          "--checkbox-color": "#AA9B82",
+          "--checkbox-marker-color": "#EFEAE6",
+          "--brumes-power-color": "#EFD693",
+          "--brumes-status-color": "#BCCDB0",
+          "--brumes-limit-color": "#D9B2AA",
+          "--brumes-weakness-color": "#EDBB89"
+        },
+        "workspace": {
+          "--background-secondary": "#DFD7CA",
+          "--background-secondary-alt": "#DACDBC",
+          "--brumes-root-split-background": "#EEEAE1"
+        }
+      }
+    },
+    "polarities": [
+      "light"
+    ],
+    "assets": {
+      "images": {
+        "inline-title-rule": "inline-title-rule.svg",
+        "heading-2-rule": "heading-2-rule.svg",
+        "separator": "separator.svg",
+        "checkbox-minus": "checkbox-minus.svg",
+        "checkbox-plus": "checkbox-plus.svg",
+        "checkbox-tilde": "checkbox-tilde.svg",
+        "weakness-mark": "weakness-mark.svg",
+        "limit-mark": "limit-mark.svg",
+        "limit-mark-empty": "limit-mark-empty.svg",
+        "mountain-might-origin": "mountain-might-origin.svg",
+        "mountain-might-adventure": "mountain-might-adventure.svg",
+        "mountain-might-greatness": "mountain-might-greatness.svg",
+        "card-might-origin": "card-might-origin.svg",
+        "card-might-adventure": "card-might-adventure.svg",
+        "card-might-greatness": "card-might-greatness.svg",
+        "theme-card": "theme-card.png",
+        "theme-card-origin": "theme-card-origin.png",
+        "theme-card-adventure": "theme-card-adventure.png",
+        "theme-card-greatness": "theme-card-greatness.png"
+      },
+      "fonts": {
+        "PragRoman": {
+          "file": "fonts/pragroman.ttf",
+          "weight": "500"
+        }
+      }
+    }
+  }
+}
