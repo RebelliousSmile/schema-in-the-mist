@@ -1,5 +1,5 @@
 ---
-status: pending
+status: done
 ---
 
 # Instruction: Épingler et éprouver le contrat dans les consommateurs

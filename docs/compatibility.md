@@ -27,3 +27,10 @@
 - `0`, `false`, empty lists, and absent optionals remain distinct values. Serializers must test presence rather than truthiness.
 - `publication_type = "corpus"` is a fixture marker and is not a domain enum value. Form state, warnings, export preferences, visual zones, pack capabilities, styles, and assets remain consumer-owned.
 - Correct canonical metadata, constraints, examples, descriptions, and exports missing from Lantern are retained. [Lantern #3](https://github.com/RebelliousSmile/lantern/issues/3) tracks their preservation during removal of local copies.
+
+## Consumer verification
+
+- Lantern commit `b55b8e2` replaces local business-rule copies with thin form adapters, executes all 31 shared corpus decisions, and proves that editing one owned field preserves unowned canonical values including `0` and `false`.
+- Handbook commit `a871b72` validates the 12 rendered TOML exports with the installed codecs, executes all 14 canonical targets, and retains its tolerant legacy corpus. The dedicated follow-up is [Handbook #29](https://github.com/RebelliousSmile/obsidian-handbook/issues/29).
+- Both lockfiles resolve `https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.0.0/schema-in-the-mist-1.0.0.tgz` with SRI `sha512-6wgDSCKL9I2W/c00IRdIxOdXzrj4O6LE1catb5fztjaF0+QhFbro8Wn2mrvtr3S9koMSvuDRwWiAj+zgWhasiQ==`.
+- Producer checks, Lantern's contract assertion/build/scoped lint, and Handbook's complete core check pass against the immutable v1.0.0 release.
