@@ -23,5 +23,8 @@ jobs:
       - name: Check schemas and compatibility paths
         run: npm run check
 
+      - name: Test the packed public API as a consumer
+        run: npm run validate:package
+
       - name: Verify generated schemas are committed
         run: git diff --exit-code

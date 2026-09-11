@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: npm
+
+      - run: npm ci
+      - name: Require immutable releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api "repos/${GITHUB_REPOSITORY}/immutable-releases"
+
+      - name: Build reproducible release assets
+        run: npm run release:prepare -- "${GITHUB_REF_NAME}"
+
+      - name: Validate the final tarball
+        run: npm run validate:package -- "schema-in-the-mist-${GITHUB_REF_NAME#v}.tgz"
+
+      - name: Create draft, attach every asset, then publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          archive="schema-in-the-mist-${version}.tgz"
+          gh release create "${GITHUB_REF_NAME}" --verify-tag --draft --generate-notes --title "schema-in-the-mist ${version}"
+          gh release upload "${GITHUB_REF_NAME}" "${archive}" "${archive}.sha256"
+          gh release edit "${GITHUB_REF_NAME}" --draft=false --latest
+          gh release view "${GITHUB_REF_NAME}" --json tagName,isDraft,url,assets
