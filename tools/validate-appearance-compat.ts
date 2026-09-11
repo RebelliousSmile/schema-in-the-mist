@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import Ajv from "ajv";
+import { Ajv } from "ajv";
 
 const paths = [
   "appearance/game-pack.schema.json",

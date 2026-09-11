@@ -1,90 +1,53 @@
+import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
-import TOML from "@iarna/toml";
-import { TARGETS } from "../src/zod/constants";
+import {
+  MIST_ENGINE_CODECS,
+  TARGETS,
+  type MistDocumentCodec,
+  type MistEngineDocumentTarget,
+} from "../src/index.js";
+import type { z } from "zod";
 
-type Result = { file: string; ok: boolean; errors?: unknown };
+let checkedFiles = 0;
 
-function isJson(p: string) {
-  return p.toLowerCase().endsWith(".json");
-}
-function isToml(p: string) {
-  return p.toLowerCase().endsWith(".toml");
-}
-function isDataFile(p: string) {
-  return isJson(p) || isToml(p);
-}
+for (const target of TARGETS) {
+  const codec = MIST_ENGINE_CODECS[
+    target.key as MistEngineDocumentTarget
+  ] as MistDocumentCodec<z.ZodType>;
+  const directory = path.join("examples", target.game.folder, target.name);
+  const files = fs
+    .readdirSync(directory)
+    .filter((file) => file.endsWith(".json") || file.endsWith(".toml"));
+  const normalizedByStem = new Map<string, Map<string, unknown>>();
 
-function loadData(filePath: string): unknown {
-  const raw = fs.readFileSync(filePath, "utf8");
-  if (isJson(filePath)) return JSON.parse(raw);
-  if (isToml(filePath)) return TOML.parse(raw);
-  throw new Error(`Unsupported file type: ${filePath}`);
-}
+  for (const file of files) {
+    const text = fs.readFileSync(path.join(directory, file), "utf8");
+    const extension = path.extname(file);
+    const stem = path.basename(file, extension);
+    const parsed = extension === ".toml" ? codec.parseToml(text) : codec.parseJson(text);
+    const reparsed =
+      extension === ".toml"
+        ? codec.parseToml(codec.stringifyToml(parsed))
+        : codec.parseJson(codec.stringifyJson(parsed));
 
-function listExampleFiles(baseDir: string): string[] {
-  if (!fs.existsSync(baseDir)) return [];
-  return fs
-    .readdirSync(baseDir)
-    .map((name) => path.join(baseDir, name))
-    .filter((p) => fs.statSync(p).isFile())
-    .filter(isDataFile);
-}
-
-async function run() {
-  let failures = 0;
-  const allResults: Result[] = [];
-
-  for (const t of TARGETS) {
-    const schemaPath = path.join(
-      "schemas",
-      t.game.folder,
-      `${t.name}.schema.json`
-    );
-    const examplesDir = path.join("examples", t.game.folder, t.name);
-
-    if (!fs.existsSync(schemaPath)) {
-      console.warn(`⚠️  Missing schema for target: ${schemaPath} (skipping)`);
-      continue;
-    }
-
-    const schema = JSON.parse(fs.readFileSync(schemaPath, "utf-8"));
-    const ajv = new Ajv({ allErrors: true, strict: false });
-    addFormats(ajv);
-    const validate = ajv.compile(schema);
-
-    const files = listExampleFiles(examplesDir);
-    if (files.length === 0) {
-      console.warn(`⚠️  No example files found in: ${examplesDir}`);
-      continue;
-    }
-
-    for (const file of files) {
-      const data = loadData(file);
-      const ok = validate(data);
-      if (ok) {
-        console.log(`✓ ${file}`);
-        allResults.push({ file, ok: true });
-      } else {
-        failures++;
-        console.error(`✗ ${file}`);
-        console.error(validate.errors);
-        allResults.push({ file, ok: false, errors: validate.errors });
-      }
-    }
+    assert.deepStrictEqual(reparsed, parsed, `${target.key}/${file} did not round-trip`);
+    const pair = normalizedByStem.get(stem) ?? new Map<string, unknown>();
+    pair.set(extension, parsed);
+    normalizedByStem.set(stem, pair);
+    checkedFiles += 1;
   }
 
-  if (failures > 0) {
-    console.error(`\n❌ Validation failed for ${failures} file(s).`);
-    process.exit(1);
-  } else {
-    console.log(`\n✅ All example files passed validation.`);
+  for (const [stem, pair] of normalizedByStem) {
+    if (pair.has(".json") && pair.has(".toml")) {
+      assert.deepStrictEqual(
+        pair.get(".json"),
+        pair.get(".toml"),
+        `${target.key}/${stem} differs between JSON and TOML`,
+      );
+    }
   }
 }
 
-run().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+assert.equal(Object.keys(MIST_ENGINE_CODECS).length, 14);
+console.log(`Validated ${checkedFiles} example files through 14 public codecs.`);

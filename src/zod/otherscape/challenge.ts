@@ -17,18 +17,18 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const LimitSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Limit name is required")
       .meta({
         description:
           "What has to be done to overcome the Challenge along this vector. A polar Limit is printed as a single label with both poles joined by a slash, and is stored here exactly as printed (see `is_polar`).",
         examples: ["Convince", "Disable", "catch/outrun"],
       }),
-    level: z.coerce
-      .number()
+    level: z.number()
       .int()
       .min(1)
       .max(6)
@@ -73,10 +73,11 @@ export const LimitSchema = z
   });
 
 export const SpecialSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Special name is required")
       .meta({
         description: "Name of the Special.",
@@ -85,6 +86,7 @@ export const SpecialSchema = z
     description: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Special description is required")
       .meta({
         description:
@@ -101,10 +103,11 @@ export const SpecialSchema = z
   });
 
 export const ThreatSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Threat name is required")
       .meta({
         description:
@@ -114,6 +117,7 @@ export const ThreatSchema = z
     description: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Threat description is required")
       .meta({
         description:
@@ -128,6 +132,7 @@ export const ThreatSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Consequence cannot be empty")
           .meta({
             description:
@@ -150,7 +155,7 @@ export const ThreatSchema = z
   });
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Challenge's source to aid cataloging and tooling.",
@@ -173,6 +178,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -183,8 +189,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -202,10 +207,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const OtherscapeChallengeSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Challenge name is required")
       .default("Untitled Challenge")
       .meta({
@@ -227,8 +233,7 @@ export const OtherscapeChallengeSchema = z
           "A courier who runs the arcology's outer skin on borrowed legs, carrying whatever the middle floors would rather not put on the network.",
         ],
       }),
-    scale: z.coerce
-      .number()
+    scale: z.number()
       .int()
       .optional()
       .meta({
@@ -241,6 +246,7 @@ export const OtherscapeChallengeSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A tag or status cannot be empty")
           .meta({
             description:
@@ -270,6 +276,7 @@ export const OtherscapeChallengeSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Consequence cannot be empty")
           .meta({
             description:

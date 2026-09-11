@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "cases": [
+    { "id": "city-custom-move-valid", "target": "city-of-mist/custom-move", "file": "valid/city-of-mist--custom-move.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "null" },
+    { "id": "city-danger-valid", "target": "city-of-mist/danger", "file": "valid/city-of-mist--danger.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "city-danger-extensions", "target": "city-of-mist/danger", "file": "valid/city-of-mist--danger-extensions.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "city-theme-card-valid", "target": "city-of-mist/theme-card", "file": "valid/city-of-mist--theme-card.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "city-theme-card-handbook-fields", "target": "city-of-mist/theme-card", "file": "valid/city-of-mist--theme-card-handbook-fields.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "city-theme-kit-valid", "target": "city-of-mist/theme-kit", "file": "valid/city-of-mist--theme-kit.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "null" },
+    { "id": "litm-challenge-valid", "target": "legend-in-the-mist/challenge", "file": "valid/legend-in-the-mist--challenge.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "litm-challenge-secrets", "target": "legend-in-the-mist/challenge", "file": "valid/legend-in-the-mist--challenge-secrets.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "litm-journey-valid", "target": "legend-in-the-mist/journey", "file": "valid/legend-in-the-mist--journey.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "litm-story-theme-valid", "target": "legend-in-the-mist/story-theme", "file": "valid/legend-in-the-mist--story-theme.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "litm-theme-kit-valid", "target": "legend-in-the-mist/theme-kit", "file": "valid/legend-in-the-mist--theme-kit.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "otherscape-challenge-valid", "target": "otherscape/challenge", "file": "valid/otherscape--challenge.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "otherscape-character-trope-valid", "target": "otherscape/character-trope", "file": "valid/otherscape--character-trope.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "otherscape-loadout-item-valid", "target": "otherscape/loadout-item", "file": "valid/otherscape--loadout-item.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "otherscape-power-set-valid", "target": "otherscape/power-set", "file": "valid/otherscape--power-set.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "otherscape-theme-valid", "target": "otherscape/theme", "file": "valid/otherscape--theme.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+    { "id": "otherscape-theme-kit-valid", "target": "otherscape/theme-kit", "file": "valid/otherscape--theme-kit.toml", "canonical": "accept", "lantern": "round-trip", "handbook": "render" },
+
+    { "id": "city-custom-move-unknown", "target": "city-of-mist/custom-move", "file": "invalid/city-of-mist--custom-move.toml", "canonical": "reject", "lantern": "reject", "handbook": "null" },
+    { "id": "city-danger-wrong-number", "target": "city-of-mist/danger", "file": "invalid/city-of-mist--danger.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "city-theme-card-blank", "target": "city-of-mist/theme-card", "file": "invalid/city-of-mist--theme-card.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "city-theme-kit-unknown", "target": "city-of-mist/theme-kit", "file": "invalid/city-of-mist--theme-kit.toml", "canonical": "reject", "lantern": "reject", "handbook": "null" },
+    { "id": "litm-challenge-unknown", "target": "legend-in-the-mist/challenge", "file": "invalid/legend-in-the-mist--challenge.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "litm-journey-unknown", "target": "legend-in-the-mist/journey", "file": "invalid/legend-in-the-mist--journey.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "litm-story-theme-unknown", "target": "legend-in-the-mist/story-theme", "file": "invalid/legend-in-the-mist--story-theme.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "litm-theme-kit-unknown", "target": "legend-in-the-mist/theme-kit", "file": "invalid/legend-in-the-mist--theme-kit.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "otherscape-challenge-unknown", "target": "otherscape/challenge", "file": "invalid/otherscape--challenge.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "otherscape-character-trope-unknown", "target": "otherscape/character-trope", "file": "invalid/otherscape--character-trope.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "otherscape-loadout-item-unknown", "target": "otherscape/loadout-item", "file": "invalid/otherscape--loadout-item.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "otherscape-power-set-unknown", "target": "otherscape/power-set", "file": "invalid/otherscape--power-set.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "otherscape-theme-unknown", "target": "otherscape/theme", "file": "invalid/otherscape--theme.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" },
+    { "id": "otherscape-theme-kit-unknown", "target": "otherscape/theme-kit", "file": "invalid/otherscape--theme-kit.toml", "canonical": "reject", "lantern": "reject", "handbook": "degraded" }
+  ]
+}

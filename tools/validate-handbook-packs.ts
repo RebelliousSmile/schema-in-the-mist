@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import Ajv from "ajv";
+import { Ajv, type AnySchema } from "ajv";
 
 const EXPECTED_REPOSITORY = "RebelliousSmile/schema-in-the-mist";
 const SEMVER = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
@@ -75,7 +75,9 @@ function listFiles(root: string, base = root): string[] {
 }
 
 const schemaFile = "schemas/appearance/game-pack.schema.json";
-const validatePack = new Ajv({ allErrors: true, strict: false }).compile(json(schemaFile));
+const validatePack = new Ajv({ allErrors: true, strict: false }).compile(
+  json(schemaFile) as AnySchema,
+);
 const catalogueFile = "handbook.json";
 const catalogue = record(json(catalogueFile), catalogueFile, "root");
 fields(catalogue, ROOT_FIELDS, catalogueFile, "root");

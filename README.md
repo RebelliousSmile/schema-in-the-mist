@@ -2,14 +2,36 @@
 
 Open, versioned data schemas for **Mist Engine** games (**City of Mist**, **:Otherscape**, and **Legend in the Mist**) so VTTs, builders, and other digital tools can **share the same data**.
 
-The aim is an ecosystem of interoperable digital tools where they can exchange structured JSON/TOML, validate it via schemas (e.g., using Zod), and leverage it for their specific needs.
+The aim is an ecosystem of interoperable digital tools where they can exchange structured JSON/TOML, validate it with one canonical contract, and leverage it for their specific needs.
+
+## Install and use
+
+Stable builds are distributed as immutable GitHub Release assets rather than through the npm registry. Pin `https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.0.0/schema-in-the-mist-1.0.0.tgz` in the consumer's `package.json`, commit the lockfile integrity, and verify the archive with the adjacent `.sha256` asset. Then import only the public package entry point:
+
+```ts
+import {
+  MIST_ENGINE_CODECS,
+  type CityOfMistDanger,
+} from "schema-in-the-mist";
+
+const codec = MIST_ENGINE_CODECS["city-of-mist/danger"];
+const danger: CityOfMistDanger = codec.parseToml(source);
+const normalizedToml = codec.stringifyToml(danger);
+```
+
+The package exposes the 14 qualified codecs, their Zod schemas and inferred document types, the contract version constants, versioned JSON Schema files, and the shared conformance corpus. UI form coercion, rendering, styles, and warnings remain consumer concerns.
 
 ## What’s in here
 
 - `src/zod/` contains the source Zod v4 definitions
+- `dist/` contains the generated ESM library and declarations
 - `schemas/` contains the generated JSON Schemas
 - `examples/` contains JSON/TOML examples per schema
 - `tools/` provides generation and validation scripts
+
+## Versioning
+
+Package version `1.x` implements contract major `1`. Backwards-compatible fields and new document targets require a minor release; corrections that do not change accepted data require a patch. Removing, renaming, or tightening an accepted business value requires a new contract and package major. JSON Schema `$id` values are tied to their immutable release tag.
 
 ### Content schemas and appearance packs
 

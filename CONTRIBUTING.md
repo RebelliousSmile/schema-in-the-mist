@@ -13,6 +13,7 @@ Thanks for helping make Mist Engine tools interoperate!
 
      ```ts
      {
+        key: "legend-in-the-mist/challenge",
         zod: LegendInTheMistChallengeSchema,
         game: GAMES.litm,
         name: "challenge",
@@ -32,7 +33,8 @@ Thanks for helping make Mist Engine tools interoperate!
 ## Ground rules
 
 - **Canonical source is Zod** (we generate JSON Schema from it).
-- **Backward compatibility:** try as much as possible to avoid breaking changes.
+- **Backward compatibility:** accepted business values cannot be removed or tightened within contract major 1.
+- **Corpus:** every target needs an accepted and rejected case in `corpus/contract/cases.json`; consumers execute these same files.
 - **Metadata:** add concise descriptions and examples to your fields. With Zod, make use of `.meta({ description, examples })`
 
 ## Dev commands
@@ -41,5 +43,7 @@ Thanks for helping make Mist Engine tools interoperate!
 npm ci
 npm run gen            # generate JSON Schemas
 npm run validate       # validate example files
+npm run validate:contract # validate the shared cross-consumer corpus
+npm run validate:package  # install and import the packed public API
 npm run check          # generate + validate
 ```

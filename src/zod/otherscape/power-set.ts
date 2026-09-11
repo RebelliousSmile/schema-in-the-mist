@@ -25,10 +25,11 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const SpecialSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Special name is required")
       .meta({
         description: "Name of the Special.",
@@ -37,6 +38,7 @@ export const SpecialSchema = z
     description: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Special description is required")
       .meta({
         description:
@@ -53,10 +55,11 @@ export const SpecialSchema = z
   });
 
 export const ThreatSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Threat name is required")
       .meta({
         description:
@@ -66,6 +69,7 @@ export const ThreatSchema = z
     description: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Threat description is required")
       .meta({
         description:
@@ -80,6 +84,7 @@ export const ThreatSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Consequence cannot be empty")
           .meta({
             description:
@@ -102,7 +107,7 @@ export const ThreatSchema = z
   });
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Power Set's source to aid cataloging and tooling.",
@@ -125,6 +130,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -135,8 +141,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -154,10 +159,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const OtherscapePowerSetSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Power Set name is required")
       .default("Untitled Power Set")
       .meta({
@@ -189,6 +195,7 @@ export const OtherscapePowerSetSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Consequence cannot be empty")
           .meta({
             description:

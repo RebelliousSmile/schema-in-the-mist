@@ -1,18 +1,23 @@
 {
   "name": "schema-in-the-mist",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Open, versioned data schemas for Mist Engine games (City of Mist, :Otherscape, Legend in the Mist) to make digital tools interoperable.",
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
     "gen": "tsx tools/gen-schemas.ts",
     "validate": "tsx tools/validate-examples.ts",
+    "validate:contract": "tsx tools/validate-contract.ts",
+    "validate:version": "tsx tools/validate-version-compat.ts",
+    "validate:package": "tsx tools/validate-package.ts",
+    "release:prepare": "tsx tools/prepare-release.ts",
     "validate:appearance-compat": "tsx tools/validate-appearance-compat.ts",
     "validate:handbook-packs": "tsx tools/validate-handbook-packs.ts",
-    "check": "npm run gen && npm run validate && npm run validate:appearance-compat && npm run validate:handbook-packs",
+    "check": "npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:version && npm run validate:appearance-compat && npm run validate:handbook-packs",
     "toml:one": "tsx tools/toml2json.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/4rtamis/schema-in-the-mist.git"
+    "url": "git+https://github.com/RebelliousSmile/schema-in-the-mist.git"
   },
   "keywords": [
     "City of Mist",
@@ -24,17 +29,38 @@
   "author": "4rtamis",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/4rtamis/schema-in-the-mist/issues"
+    "url": "https://github.com/RebelliousSmile/schema-in-the-mist/issues"
   },
-  "homepage": "https://github.com/4rtamis/schema-in-the-mist#readme",
+  "homepage": "https://github.com/RebelliousSmile/schema-in-the-mist#readme",
   "type": "module",
+  "files": [
+    "dist",
+    "schemas/v1",
+    "corpus/contract",
+    "README.md",
+    "LICENSES/CODE-LICENSE.md"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schemas/v1/*": "./schemas/v1/*",
+    "./corpus/contract/*": "./corpus/contract/*",
+    "./package.json": "./package.json"
+  },
   "devDependencies": {
     "@iarna/toml": "^2.2.5",
     "@types/node": "^24.5.2",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2",
-    "zod": "^4.1.11"
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "smol-toml": "^1.8.0",
+    "zod": "^4.6.2"
   }
 }
