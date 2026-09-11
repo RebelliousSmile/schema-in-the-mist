@@ -1,6 +1,6 @@
 ---
 objective: "Un même contrat Mist Engine v1, réconcilié sans perte avec les éléments valides du dépôt, de Lantern et de Handbook, est distribué par une release immuable et valide les mêmes TOML dans les trois projets."
-status: in-progress
+status: implemented
 ---
 
 # Plan: Contrat Mist Engine canonique pour Lantern et Handbook
