@@ -25,7 +25,7 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Theme's source to aid cataloging and tooling.",
@@ -48,6 +48,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -58,8 +59,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -77,10 +77,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const OtherscapeThemeSchema = z
-  .object({
+  .strictObject({
     title_tag: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Title tag is required")
       .default("Untitled Theme")
       .meta({
@@ -113,6 +114,7 @@ export const OtherscapeThemeSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A power tag cannot be empty")
           .meta({
             description:
@@ -130,6 +132,7 @@ export const OtherscapeThemeSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A weakness tag cannot be empty")
           .meta({
             description:
@@ -154,8 +157,7 @@ export const OtherscapeThemeSchema = z
           "Find out what the Source wanted with you.",
         ],
       }),
-    upgrade: z.coerce
-      .number()
+    upgrade: z.number()
       .int()
       .min(0)
       .max(3)
@@ -165,8 +167,7 @@ export const OtherscapeThemeSchema = z
           "Number of Upgrade marks currently on this Theme's track. The sheet prints three boxes: the third one is spent to improve the Theme and the track goes back to empty, so the value never stands above 3. Counts what a Legend in the Mist Story Theme calls `improve`, renamed because Upgrade is the word the :Otherscape sheet prints.",
         examples: [0, 1, 3],
       }),
-    decay: z.coerce
-      .number()
+    decay: z.number()
       .int()
       .min(0)
       .max(3)

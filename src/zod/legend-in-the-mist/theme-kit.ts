@@ -17,10 +17,11 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const ImprovementSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Improvement name is required")
       .meta({
         description:
@@ -46,7 +47,7 @@ export const ImprovementSchema = z
   });
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Theme Kit's source to aid cataloging and tooling.",
@@ -69,6 +70,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -79,8 +81,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -98,10 +99,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const LegendInTheMistThemeKitSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Theme Kit name is required")
       .default("Untitled Theme Kit")
       .meta({
@@ -123,6 +125,7 @@ export const LegendInTheMistThemeKitSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A power tag cannot be empty")
           .meta({
             description:
@@ -140,6 +143,7 @@ export const LegendInTheMistThemeKitSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A weakness tag cannot be empty")
           .meta({
             description:

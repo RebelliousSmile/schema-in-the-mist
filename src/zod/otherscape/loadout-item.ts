@@ -17,7 +17,7 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Loadout Item's source to aid cataloging and tooling.",
@@ -40,6 +40,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -50,8 +51,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -70,10 +70,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const OtherscapeLoadoutItemSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Name is required")
       .default("Untitled Loadout Item")
       .meta({
@@ -113,6 +114,7 @@ export const OtherscapeLoadoutItemSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A feature tag cannot be empty")
           .meta({
             description:

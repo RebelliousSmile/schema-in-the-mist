@@ -37,7 +37,7 @@ export const CrewOutcomeEnum = z.enum(["help", "hurt", "either"]).meta({
  *  ========================= */
 
 export const QuestionSchema = z
-  .object({
+  .strictObject({
     letter: z
       .string()
       .trim()
@@ -50,6 +50,7 @@ export const QuestionSchema = z
     text: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Question text is required")
       .meta({
         description:
@@ -61,7 +62,7 @@ export const QuestionSchema = z
       }),
     examples: z
       .array(
-        z.string().trim().min(1, "Example cannot be empty").meta({
+        z.string().trim().regex(/\S/, "Must contain a non-whitespace character").min(1, "Example cannot be empty").meta({
           description: "One suggested answer, printed in the margin.",
         }),
       )
@@ -77,9 +78,8 @@ export const QuestionSchema = z
   });
 
 export const SelectionRuleSchema = z
-  .object({
-    required_count: z.coerce
-      .number()
+  .strictObject({
+    required_count: z.number()
       .int()
       .min(0)
       .default(0)
@@ -88,8 +88,7 @@ export const SelectionRuleSchema = z
           "How many questions must be answered, whichever the player would rather pick. The first power question is usually required.",
         examples: [0, 1],
       }),
-    chosen_count: z.coerce
-      .number()
+    chosen_count: z.number()
       .int()
       .min(0)
       .default(0)
@@ -117,7 +116,7 @@ export const SelectionRuleSchema = z
   });
 
 export const MotivationSchema = z
-  .object({
+  .strictObject({
     kind: MotivationKindEnum.meta({
       description:
         "Whether this zone is written as a Mystery, as an Identity, or left to the player.",
@@ -126,6 +125,7 @@ export const MotivationSchema = z
     intro: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Motivation intro is required")
       .meta({
         description:
@@ -137,7 +137,7 @@ export const MotivationSchema = z
       }),
     examples: z
       .array(
-        z.string().trim().min(1, "Example cannot be empty").meta({
+        z.string().trim().regex(/\S/, "Must contain a non-whitespace character").min(1, "Example cannot be empty").meta({
           description: "One suggested motivation.",
         }),
       )
@@ -147,7 +147,7 @@ export const MotivationSchema = z
       }),
     options: z
       .array(
-        z.string().trim().min(1, "Option cannot be empty").meta({
+        z.string().trim().regex(/\S/, "Must contain a non-whitespace character").min(1, "Option cannot be empty").meta({
           description: "One motivation the player picks from a closed list.",
         }),
       )
@@ -174,10 +174,11 @@ export const MotivationSchema = z
   });
 
 export const CrewRelationshipSchema = z
-  .object({
+  .strictObject({
     scenario: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Crew relationship scenario is required")
       .meta({
         description:
@@ -198,10 +199,11 @@ export const CrewRelationshipSchema = z
   });
 
 export const ImprovementSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Improvement name is required")
       .meta({
         description: "The improvement's title, as the themebook prints it.",
@@ -210,6 +212,7 @@ export const ImprovementSchema = z
     effect: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Improvement effect is required")
       .meta({
         description:
@@ -225,7 +228,7 @@ export const ImprovementSchema = z
   });
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the themebook's source to aid cataloging and tooling.",
@@ -245,6 +248,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -255,8 +259,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -275,10 +278,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const CityOfMistThemeKitSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Themebook name is required")
       .default("Untitled Themebook")
       .meta({
@@ -294,7 +298,7 @@ export const CityOfMistThemeKitSchema = z
 
     keywords: z
       .array(
-        z.string().trim().min(1, "Keyword cannot be empty").meta({
+        z.string().trim().regex(/\S/, "Must contain a non-whitespace character").min(1, "Keyword cannot be empty").meta({
           description: "One keyword printed on the themebook's header.",
         }),
       )
@@ -350,7 +354,7 @@ export const CityOfMistThemeKitSchema = z
 
     extra_tags: z
       .array(
-        z.string().trim().min(1, "Extra tag cannot be empty").meta({
+        z.string().trim().regex(/\S/, "Must contain a non-whitespace character").min(1, "Extra tag cannot be empty").meta({
           description: "One tag the themebook grants outside its questions.",
         }),
       )

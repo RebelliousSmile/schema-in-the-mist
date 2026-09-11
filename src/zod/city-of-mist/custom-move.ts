@@ -54,7 +54,7 @@ export const OutcomeTierEnum = z
  *  ========================= */
 
 export const RollSchema = z
-  .object({
+  .strictObject({
     stat: RollStatEnum.meta({
       description: "What the roll adds to 2d6.",
       examples: ["power", "mythos"],
@@ -71,8 +71,7 @@ export const RollSchema = z
           "the number of clues the crew has gathered",
         ],
       }),
-    modifier: z.coerce
-      .number()
+    modifier: z.number()
       .int()
       .min(-4)
       .max(4)
@@ -89,7 +88,7 @@ export const RollSchema = z
   });
 
 export const OutcomeSchema = z
-  .object({
+  .strictObject({
     tier: OutcomeTierEnum.meta({
       description: "Which result this outcome answers.",
       examples: ["10+", "miss"],
@@ -97,6 +96,7 @@ export const OutcomeSchema = z
     text: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Outcome text is required")
       .meta({
         description:
@@ -108,7 +108,7 @@ export const OutcomeSchema = z
       }),
     options: z
       .array(
-        z.string().trim().min(1, "Option text cannot be empty").meta({
+        z.string().trim().regex(/\S/, "Must contain a non-whitespace character").min(1, "Option text cannot be empty").meta({
           description: "One option the tier's text points at.",
         }),
       )
@@ -117,8 +117,7 @@ export const OutcomeSchema = z
         description:
           "The list a tier chooses from, when its text says 'choose two from the list below'. Leave it out for an outcome that resolves in one line.",
       }),
-    pick_count: z.coerce
-      .number()
+    pick_count: z.number()
       .int()
       .min(1)
       .optional()
@@ -134,7 +133,7 @@ export const OutcomeSchema = z
   });
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the move's source to aid cataloging and tooling.",
@@ -158,6 +157,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -168,8 +168,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -188,10 +187,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const CityOfMistCustomMoveSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Custom move name is required")
       .default("Untitled Custom Move")
       .meta({
@@ -214,6 +214,7 @@ export const CityOfMistCustomMoveSchema = z
     trigger: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Custom move trigger is required")
       .meta({
         description:
@@ -224,8 +225,7 @@ export const CityOfMistCustomMoveSchema = z
         ],
       }),
 
-    impact: z.coerce
-      .number()
+    impact: z.number()
       .int()
       .min(1)
       .max(3)

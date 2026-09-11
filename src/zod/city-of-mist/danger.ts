@@ -17,18 +17,18 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const SpectrumSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Spectrum name is required")
       .meta({
         description:
           "Action to undertake in order to overcome the Danger or to transform it meaningfully.",
         examples: ["hurt", "outsmart", "ticking", "burn"],
       }),
-    maximum: z.coerce
-      .number()
+    maximum: z.number()
       .int()
       .min(1)
       .max(6)
@@ -47,6 +47,24 @@ export const SpectrumSchema = z
           "If true, the Danger ignores statuses targeting this Spectrum's vector.",
         examples: [false],
       }),
+    is_countdown: z
+      .boolean()
+      .optional()
+      .default(false)
+      .meta({
+        description:
+          "If true, this Spectrum advances toward an outcome rather than representing a way to defeat the Danger.",
+        examples: [false, true],
+      }),
+    on_max: z
+      .string()
+      .trim()
+      .optional()
+      .meta({
+        description:
+          "Outcome triggered when a countdown Spectrum reaches its maximum. Supports inline Markdown.",
+        examples: ["The last verse is sung and the chorus becomes real."],
+      }),
   })
   .meta({
     description:
@@ -54,18 +72,22 @@ export const SpectrumSchema = z
   });
 
 export const CustomMoveSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Custom move name is required")
+      .optional()
       .meta({
-        description: "Short title for the custom move.",
+        description:
+          "Short title for the custom move. Optional when the move is written as a single untitled rule.",
         examples: ["Ultimate Predator", "Bodyguard", "Made of Clay"],
       }),
     description: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Custom move description is required")
       .meta({
         description:
@@ -82,7 +104,7 @@ export const CustomMoveSchema = z
   });
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Danger's source to aid cataloging and tooling.",
@@ -106,6 +128,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -116,8 +139,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -136,10 +158,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const CityOfMistDangerSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Danger name is required")
       .default("Untitled Danger")
       .meta({
@@ -164,8 +187,7 @@ export const CityOfMistDangerSchema = z
         ],
       }),
 
-    rating: z.coerce
-      .number()
+    rating: z.number()
       .int()
       .min(0)
       .max(5)

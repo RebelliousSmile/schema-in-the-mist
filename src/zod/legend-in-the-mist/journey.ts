@@ -25,10 +25,11 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const VignetteSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Vignette name is required")
       .meta({
         description:
@@ -57,6 +58,7 @@ export const VignetteSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Consequence cannot be empty")
           .meta({
             description:
@@ -80,7 +82,7 @@ export const VignetteSchema = z
   });
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Journey's source to aid cataloging and tooling.",
@@ -103,6 +105,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -113,8 +116,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -132,10 +134,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const LegendInTheMistJourneySchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Journey name is required")
       .default("Untitled Journey")
       .meta({
@@ -164,6 +167,7 @@ export const LegendInTheMistJourneySchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A tag cannot be empty")
           .meta({
             description:
@@ -197,6 +201,7 @@ export const LegendInTheMistJourneySchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Consequence cannot be empty")
           .meta({
             description:

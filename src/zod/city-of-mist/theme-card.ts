@@ -37,9 +37,8 @@ export const MotivationKindEnum = z
  *  ========================= */
 
 export const TrackSchema = z
-  .object({
-    filled: z.coerce
-      .number()
+  .strictObject({
+    filled: z.number()
       .int()
       .min(0)
       .default(0)
@@ -47,8 +46,7 @@ export const TrackSchema = z
         description: "How many boxes are ticked right now.",
         examples: [0, 2],
       }),
-    maximum: z.coerce
-      .number()
+    maximum: z.number()
       .int()
       .min(1)
       .default(3)
@@ -68,13 +66,12 @@ export const TrackSchema = z
   });
 
 export const ErosionSchema = z
-  .object({
+  .strictObject({
     kind: ErosionKindEnum.meta({
       description: "Fade on a Mythos card, Crack on a Logos one.",
       examples: ["fade", "crack"],
     }),
-    filled: z.coerce
-      .number()
+    filled: z.number()
       .int()
       .min(0)
       .default(0)
@@ -82,8 +79,7 @@ export const ErosionSchema = z
         description: "How much the theme has eroded so far.",
         examples: [0, 1],
       }),
-    maximum: z.coerce
-      .number()
+    maximum: z.number()
       .int()
       .min(1)
       .default(3)
@@ -102,10 +98,11 @@ export const ErosionSchema = z
   });
 
 export const PowerTagSchema = z
-  .object({
+  .strictObject({
     text: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Power tag text is required")
       .meta({
         description: "The tag as the player wrote it on the card.",
@@ -121,12 +118,30 @@ export const PowerTagSchema = z
           "Which themebook question this tag answers. Optional, because a homebrew tag has no question behind it.",
         examples: ["A", "C"],
       }),
+    question: z
+      .string()
+      .trim()
+      .regex(/^[A-Z]$/, "A question letter is a single capital letter, A to J")
+      .optional()
+      .meta({
+        description:
+          "Compatibility spelling used by Handbook for the same themebook question reference as `letter`.",
+        examples: ["A", "C"],
+      }),
     is_burnt: z
       .boolean()
       .default(false)
       .meta({
         description:
           "Whether the tag has been burnt and is spent until it is recovered.",
+        examples: [false, true],
+      }),
+    burnt: z
+      .boolean()
+      .optional()
+      .meta({
+        description:
+          "Compatibility spelling used by Handbook for the same burn mark as `is_burnt`.",
         examples: [false, true],
       }),
   })
@@ -136,10 +151,11 @@ export const PowerTagSchema = z
   });
 
 export const WeaknessTagSchema = z
-  .object({
+  .strictObject({
     text: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Weakness tag text is required")
       .meta({
         description: "The weakness as the player wrote it on the card.",
@@ -153,6 +169,16 @@ export const WeaknessTagSchema = z
       .meta({
         description:
           "Which themebook question this weakness answers. Optional, for the same reason as a power tag's.",
+        examples: ["B", "D"],
+      }),
+    question: z
+      .string()
+      .trim()
+      .regex(/^[A-Z]$/, "A question letter is a single capital letter, A to J")
+      .optional()
+      .meta({
+        description:
+          "Compatibility spelling used by Handbook for the same themebook question reference as `letter`.",
         examples: ["B", "D"],
       }),
     is_invoked: z
@@ -170,7 +196,7 @@ export const WeaknessTagSchema = z
   });
 
 export const MotivationSchema = z
-  .object({
+  .strictObject({
     kind: MotivationKindEnum.meta({
       description:
         "Whether the card's motivation reads as a Mystery, an Identity, or neither.",
@@ -179,6 +205,7 @@ export const MotivationSchema = z
     text: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Motivation text is required")
       .meta({
         description:
@@ -195,10 +222,11 @@ export const MotivationSchema = z
   });
 
 export const ImprovementSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Improvement name is required")
       .meta({
         description: "The improvement's title, as the themebook names it.",
@@ -226,7 +254,7 @@ export const ImprovementSchema = z
   });
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the card's source to aid cataloging and tooling.",
@@ -245,6 +273,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -255,8 +284,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -274,7 +302,7 @@ export const MetaSchema = z
  *  ========================= */
 
 export const CityOfMistThemeCardSchema = z
-  .object({
+  .strictObject({
     themebook: z
       .string()
       .trim()
@@ -294,6 +322,7 @@ export const CityOfMistThemeCardSchema = z
     title: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Card title is required")
       .default("Untitled Theme")
       .meta({

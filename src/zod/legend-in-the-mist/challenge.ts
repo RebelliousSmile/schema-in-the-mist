@@ -25,10 +25,11 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const MightSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Might name is required")
       .meta({
         description:
@@ -56,17 +57,17 @@ export const MightSchema = z
   });
 
 export const LimitSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Limit name is required")
       .meta({
         description: "Action to undertake in order to overcome the Challenge.",
         examples: ["Avoid", "Harm", "Subdue"],
       }),
-    level: z.coerce
-      .number()
+    level: z.number()
       .int()
       .min(1)
       .max(6)
@@ -113,10 +114,11 @@ export const LimitSchema = z
   });
 
 export const ThreatSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Threat name is required")
       .meta({
         description:
@@ -126,6 +128,7 @@ export const ThreatSchema = z
     description: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Threat description is required")
       .max(100, "Threat description must be 100 characters or fewer")
       .meta({
@@ -142,6 +145,7 @@ export const ThreatSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Consequence cannot be empty")
           .meta({
             description:
@@ -165,10 +169,11 @@ export const ThreatSchema = z
   });
 
 export const SpecialFeatureSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Special Feature name is required")
       .meta({
         description: "Name of the Special Feature.",
@@ -177,6 +182,7 @@ export const SpecialFeatureSchema = z
     description: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Special Feature description is required")
       .meta({
         description:
@@ -193,8 +199,33 @@ export const SpecialFeatureSchema = z
       "Rule unique to the Challenge or an ability that cannot be expressed with Threats and Consequences, tags, statuses, Limits or Might.",
   });
 
+export const SecretSchema = z
+  .strictObject({
+    label: z
+      .string()
+      .trim()
+      .optional()
+      .meta({
+        description: "Optional short label shown before the secret.",
+        examples: ["What the bell remembers"],
+      }),
+    text: z
+      .string()
+      .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
+      .min(1, "Secret text is required")
+      .meta({
+        description:
+          "Narrator-facing information that the Heroes may uncover. Supports inline Markdown.",
+        examples: ["The drowned bell is still calling its former keeper."],
+      }),
+  })
+  .meta({
+    description: "A concealed fact attached to a Challenge.",
+  });
+
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Challenge's source to aid cataloging and tooling.",
@@ -217,6 +248,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -227,8 +259,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -247,10 +278,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const LegendInTheMistChallengeSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Challenge name is required")
       .default("Untitled Challenge")
       .meta({
@@ -270,8 +302,7 @@ export const LegendInTheMistChallengeSchema = z
           "",
         ],
       }),
-    rating: z.coerce
-      .number()
+    rating: z.number()
       .int()
       .min(1)
       .max(5)
@@ -286,6 +317,7 @@ export const LegendInTheMistChallengeSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A role cannot be empty")
           .meta({
             description:
@@ -351,6 +383,10 @@ export const LegendInTheMistChallengeSchema = z
       description:
         "Rules unique to the Challenge or abilities that cannot be expressed with Threats and Consequences, tags, statuses, Limits or Might.",
     }),
+    secrets: z.array(SecretSchema).optional().meta({
+      description:
+        "Concealed facts the Narrator can reveal as the Heroes investigate the Challenge.",
+    }),
     meta: MetaSchema.optional().meta({
       description:
         "Attribution and cataloging fields for the Challenge's origin.",
@@ -370,6 +406,7 @@ export type Might = z.infer<typeof MightSchema>;
 export type Limit = z.infer<typeof LimitSchema>;
 export type Threat = z.infer<typeof ThreatSchema>;
 export type SpecialFeature = z.infer<typeof SpecialFeatureSchema>;
+export type Secret = z.infer<typeof SecretSchema>;
 export type ChallengeMeta = z.infer<typeof MetaSchema>;
 export type LegendInTheMistChallenge = z.infer<
   typeof LegendInTheMistChallengeSchema

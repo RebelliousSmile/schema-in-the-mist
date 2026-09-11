@@ -17,10 +17,11 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const ThemeKitReferenceSchema = z
-  .object({
+  .strictObject({
     title_tag: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Title tag is required")
       .meta({
         description:
@@ -30,6 +31,7 @@ export const ThemeKitReferenceSchema = z
     category: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Category is required")
       .meta({
         description:
@@ -43,7 +45,7 @@ export const ThemeKitReferenceSchema = z
   });
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Character Trope's source to aid cataloging and tooling.",
@@ -66,6 +68,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -76,8 +79,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -96,10 +98,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const OtherscapeCharacterTropeSchema = z
-  .object({
+  .strictObject({
     name: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Name is required")
       .default("Untitled Character Trope")
       .meta({
@@ -146,6 +149,7 @@ export const OtherscapeCharacterTropeSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A loadout entry cannot be empty")
           .meta({
             description:

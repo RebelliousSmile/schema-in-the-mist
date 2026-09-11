@@ -23,7 +23,7 @@ export const PublicationTypeEnum = z
  *  ========================= */
 
 export const MetaSchema = z
-  .object({
+  .strictObject({
     publication_type: PublicationTypeEnum.default("homebrew").meta({
       description:
         "Classifies the Story Theme's source to aid cataloging and tooling.",
@@ -46,6 +46,7 @@ export const MetaSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "Author name cannot be empty")
           .meta({
             description: "One credited author name.",
@@ -56,8 +57,7 @@ export const MetaSchema = z
       .meta({
         description: "List of credited authors or contributors.",
       }),
-    page: z.coerce
-      .number()
+    page: z.number()
       .int()
       .min(1)
       .optional()
@@ -76,10 +76,11 @@ export const MetaSchema = z
  *  ========================= */
 
 export const LegendInTheMistStoryThemeSchema = z
-  .object({
+  .strictObject({
     title_tag: z
       .string()
       .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
       .min(1, "Story Theme title tag is required")
       .default("Untitled Story Theme")
       .meta({
@@ -110,6 +111,7 @@ export const LegendInTheMistStoryThemeSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A power tag cannot be empty")
           .meta({
             description:
@@ -127,6 +129,7 @@ export const LegendInTheMistStoryThemeSchema = z
         z
           .string()
           .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
           .min(1, "A weakness tag cannot be empty")
           .meta({
             description:
@@ -151,8 +154,7 @@ export const LegendInTheMistStoryThemeSchema = z
           "Find out who ordered the burning.",
         ],
       }),
-    improve: z.coerce
-      .number()
+    improve: z.number()
       .int()
       .min(0)
       .optional()
@@ -161,8 +163,7 @@ export const LegendInTheMistStoryThemeSchema = z
           "Number of Improve marks currently on this Story Theme's track.",
         examples: [0, 1, 3],
       }),
-    abandon: z.coerce
-      .number()
+    abandon: z.number()
       .int()
       .min(0)
       .optional()
