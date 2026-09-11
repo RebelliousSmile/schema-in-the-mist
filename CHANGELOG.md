@@ -5,6 +5,19 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.0.0] - 2026-09-11
+
+### Added
+
+- Publish one ESM package containing the 14 qualified Mist Engine codecs, Zod schemas, inferred types, version constants, JSON Schemas, and shared conformance corpus.
+- Add portable City of Mist countdown outcomes, untitled Danger moves, Handbook tag annotations, and Legend in the Mist Challenge secrets.
+- Add reproducible tarball preparation, isolated consumer installation tests, SHA-256 output, and a draft-first immutable GitHub Release workflow.
+
+### Changed
+
+- Validate raw TOML and JSON strictly without form coercion, reject unknown keys, and align whitespace decisions between Zod and JSON Schema.
+- Anchor all versioned JSON Schema identifiers to the immutable `v1.0.0` tag.
+
 ## [v0.5.1] - 2026-09-10
 
 ### Added
