@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { z } from "zod";
-import { TARGETS } from "../src/zod/constants";
+import { TARGETS } from "../src/zod/constants.js";
 
 for (const t of TARGETS) {
   const json = z.toJSONSchema(t.zod, { target: "draft-7" });

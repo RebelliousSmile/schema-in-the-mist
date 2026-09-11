@@ -1,18 +1,18 @@
 import type { ZodType } from "zod";
-import { LegendInTheMistChallengeSchema } from "./legend-in-the-mist/challenge";
-import { LegendInTheMistStoryThemeSchema } from "./legend-in-the-mist/story-theme";
-import { LegendInTheMistThemeKitSchema } from "./legend-in-the-mist/theme-kit";
-import { LegendInTheMistJourneySchema } from "./legend-in-the-mist/journey";
-import { CityOfMistDangerSchema } from "./city-of-mist/danger";
-import { CityOfMistCustomMoveSchema } from "./city-of-mist/custom-move";
-import { CityOfMistThemeKitSchema } from "./city-of-mist/theme-kit";
-import { CityOfMistThemeCardSchema } from "./city-of-mist/theme-card";
-import { OtherscapeChallengeSchema } from "./otherscape/challenge";
-import { OtherscapePowerSetSchema } from "./otherscape/power-set";
-import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit";
-import { OtherscapeThemeSchema } from "./otherscape/theme";
-import { OtherscapeCharacterTropeSchema } from "./otherscape/character-trope";
-import { OtherscapeLoadoutItemSchema } from "./otherscape/loadout-item";
+import { LegendInTheMistChallengeSchema } from "./legend-in-the-mist/challenge.js";
+import { LegendInTheMistStoryThemeSchema } from "./legend-in-the-mist/story-theme.js";
+import { LegendInTheMistThemeKitSchema } from "./legend-in-the-mist/theme-kit.js";
+import { LegendInTheMistJourneySchema } from "./legend-in-the-mist/journey.js";
+import { CityOfMistDangerSchema } from "./city-of-mist/danger.js";
+import { CityOfMistCustomMoveSchema } from "./city-of-mist/custom-move.js";
+import { CityOfMistThemeKitSchema } from "./city-of-mist/theme-kit.js";
+import { CityOfMistThemeCardSchema } from "./city-of-mist/theme-card.js";
+import { OtherscapeChallengeSchema } from "./otherscape/challenge.js";
+import { OtherscapePowerSetSchema } from "./otherscape/power-set.js";
+import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit.js";
+import { OtherscapeThemeSchema } from "./otherscape/theme.js";
+import { OtherscapeCharacterTropeSchema } from "./otherscape/character-trope.js";
+import { OtherscapeLoadoutItemSchema } from "./otherscape/loadout-item.js";
 
 export const GAMES = {
   litm: {
