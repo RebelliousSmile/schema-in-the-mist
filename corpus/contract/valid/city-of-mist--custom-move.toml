@@ -1,0 +1,44 @@
+name = "War-Torn City"
+kind = "situational"
+template = "countdown_outcome"
+trigger = "When you spend a day in the war-torn city,"
+impact = 3
+frequency = "Once per day spent in the city."
+mc_note = "The list is the city, not a punishment table. Pick what the fiction has already been pointing at."
+
+[roll]
+stat = "custom"
+label = "the tier of the city's {war-torn} status"
+modifier = -1
+
+[[outcomes]]
+tier = "10+"
+text = "the day passes and the MC chooses one from the list below."
+pick_count = 1
+options = [
+  "A checkpoint turns you back and you lose the rest of the day.",
+  "Someone you were counting on has fled the district.",
+  "A shell falls close enough to leave you {rattled-2}.",
+  "The rubble gives up something useful, but it belongs to someone still alive.",
+]
+
+[[outcomes]]
+tier = "7-9"
+text = "the day passes and the MC chooses two from the list above."
+pick_count = 2
+options = [
+  "A checkpoint turns you back and you lose the rest of the day.",
+  "Someone you were counting on has fled the district.",
+  "A shell falls close enough to leave you {rattled-2}.",
+  "The rubble gives up something useful, but it belongs to someone still alive.",
+]
+
+[[outcomes]]
+tier = "miss"
+text = "the MC chooses three from the list above, and the city takes an interest in you."
+
+[meta]
+publication_type = "official"
+source = "City of Mist: MC Toolkit"
+authors = [ "Son of Oak" ]
+page = 191

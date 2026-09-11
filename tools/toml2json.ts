@@ -1,8 +1,21 @@
 import fs from "node:fs";
-import TOML from "@iarna/toml";
+import {
+  MIST_ENGINE_CODECS,
+  type MistDocumentCodec,
+  type MistEngineDocumentTarget,
+} from "../src/index.js";
+import type { z } from "zod";
 
-const inPath = process.argv[2];
-const outPath = process.argv[3];
-const data = TOML.parse(fs.readFileSync(inPath, "utf8"));
-fs.writeFileSync(outPath, JSON.stringify(data, null, 2));
-console.log(`Converted ${inPath} -> ${outPath}`);
+const [target, input, output] = process.argv.slice(2);
+if (!target || !input || !output || !(target in MIST_ENGINE_CODECS)) {
+  throw new Error(
+    "Usage: npm run toml:one -- <game/document-type> <input.toml> <output.json>",
+  );
+}
+
+const codec = MIST_ENGINE_CODECS[
+  target as MistEngineDocumentTarget
+] as MistDocumentCodec<z.ZodType>;
+const value = codec.parseToml(fs.readFileSync(input, "utf8"));
+fs.writeFileSync(output, codec.stringifyJson(value));
+console.log(`Converted ${input} -> ${output} as ${target}`);

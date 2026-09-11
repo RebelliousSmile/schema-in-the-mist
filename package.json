@@ -6,9 +6,10 @@
     "build": "tsc -p tsconfig.build.json",
     "gen": "tsx tools/gen-schemas.ts",
     "validate": "tsx tools/validate-examples.ts",
+    "validate:contract": "tsx tools/validate-contract.ts",
     "validate:appearance-compat": "tsx tools/validate-appearance-compat.ts",
     "validate:handbook-packs": "tsx tools/validate-handbook-packs.ts",
-    "check": "npm run build && npm run gen && npm run validate && npm run validate:appearance-compat && npm run validate:handbook-packs",
+    "check": "npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:appearance-compat && npm run validate:handbook-packs",
     "toml:one": "tsx tools/toml2json.ts"
   },
   "repository": {

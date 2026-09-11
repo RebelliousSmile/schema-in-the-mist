@@ -1,0 +1,16 @@
+title = "The Reading I Cannot Stop"
+theme_type = "mythos"
+
+[[power_tags]]
+text = "Cards that deal themselves"
+question = "A"
+burnt = false
+
+[[power_tags]]
+text = "A voice under the static"
+question = "B"
+burnt = true
+
+[[weakness_tags]]
+text = "It answers questions I did not ask"
+question = "C"
