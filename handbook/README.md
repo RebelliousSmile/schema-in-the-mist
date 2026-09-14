@@ -2,6 +2,8 @@
 
 This directory publishes the game packs installed by Handbook's Mist Engine starter kit.
 
+Pack assets can also declare ordered stylesheet resources. Handbook installs only declared files; the consumer validates and activates a pack stylesheet only for its owning game.
+
 | Pack | Manifest | Third-party assets |
 | --- | --- | --- |
 | City of Mist | [`city-of-mist/pack.json`](./city-of-mist/pack.json) | Images listed in [`SonOfOak.LICENSE.txt`](./LICENSES/SonOfOak.LICENSE.txt) |

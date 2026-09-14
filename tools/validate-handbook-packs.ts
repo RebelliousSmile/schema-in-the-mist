@@ -147,6 +147,12 @@ for (let index = 0; index < catalogue.packs.length; index++) {
     const file = typeof value === "string" ? value : record(value, manifestFile, `pack.assets.fonts.${family}`).file;
     declared.add(safeRelative(file, manifestFile, `pack.assets.fonts.${family}.file`));
   }
+  if (assets.stylesheets !== undefined) {
+    const stylesheets = uniqueStrings(assets.stylesheets, manifestFile, "pack.assets.stylesheets");
+    for (let index = 0; index < stylesheets.length; index++) {
+      declared.add(safeRelative(stylesheets[index], manifestFile, `pack.assets.stylesheets[${index}]`));
+    }
+  }
   for (const asset of declared) {
     const resolved = path.resolve(root, asset);
     if (resolved !== root && !resolved.startsWith(`${root}${path.sep}`)) fail(manifestFile, `asset escapes its root: ${asset}`);

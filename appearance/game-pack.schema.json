@@ -252,6 +252,29 @@
               }
             ]
           }
+        },
+        "stylesheets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?!\\/)(?![A-Za-z]:)(?!.*(?:^|\\/)\\.{1,2}(?:\\/|$))[A-Za-z0-9][A-Za-z0-9._/-]*$",
+            "description": "A safe relative CSS file path under the pack asset root, loaded in declaration order after reader-generic CSS.",
+            "examples": [
+              "styles/city-of-mist.css",
+              "styles/components.css"
+            ]
+          },
+          "uniqueItems": true,
+          "description": "Optional game-owned stylesheet resources, layered in declaration order after the reader's generic stylesheet.",
+          "examples": [
+            [
+              "styles/city-of-mist.css"
+            ],
+            [
+              "styles/base.css",
+              "styles/components.css"
+            ]
+          ]
         }
       },
       "additionalProperties": false

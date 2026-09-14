@@ -49,8 +49,15 @@ const validProbe = {
       summary: { heading: "Summary", optional: true },
     },
   },
+  assets: {
+    stylesheets: ["styles/base.css", "styles/components.css"],
+  },
 };
 const invalidProbe = { ...validProbe, unknown: true };
+const invalidStylesheetProbe = {
+  ...validProbe,
+  assets: { stylesheets: ["../escape.css"] },
+};
 const validate = new Ajv({ allErrors: true, strict: false }).compile(schema);
 
 if (!validate(validProbe)) {
@@ -58,6 +65,9 @@ if (!validate(validProbe)) {
 }
 if (validate(invalidProbe)) {
   throw new Error("Legacy appearance schema accepted an unknown root property");
+}
+if (validate(invalidStylesheetProbe)) {
+  throw new Error("Legacy appearance schema accepted an unsafe stylesheet path");
 }
 
 console.log("✓ Legacy appearance schemas are identical, self-contained, and usable offline.");
