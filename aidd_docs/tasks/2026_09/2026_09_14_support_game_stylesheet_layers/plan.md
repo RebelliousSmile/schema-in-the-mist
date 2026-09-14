@@ -25,7 +25,7 @@ status: in-progress
 | Source | Verified |
 | --- | --- |
 | [Issue #11](https://github.com/RebelliousSmile/schema-in-the-mist/issues/11) | Requires declared game stylesheet resources, safe installed-source loading, active-pack lifecycle cleanup, game scope, token compatibility, and compatibility with token-only packs. |
-| [Canonical `game-pack` schema](https://github.com/RebelliousSmile/schema-appearance/blob/main/schemas/appearance/game-pack.schema.json) | `assets` currently accepts only images and fonts, so the canonical contract must change before a pack can declare CSS. |
+| [Canonical `game-pack` schema](https://github.com/RebelliousSmile/schema-appearance/blob/main/schemas/appearance/game-pack.schema.json) | Canonical commit `22367691ef8fb5890bf08cc8fcdc0f422eee66d3` defines `assets.stylesheets` with normalized forward-slash paths; the frozen local copies must be synchronized byte-for-byte to it. |
 | [Handbook source installer](https://github.com/RebelliousSmile/obsidian-handbook/blob/main/src/games/sourceInstaller.ts) | Installation downloads only declared images and fonts after safe-relative-path checks; stylesheet resources need the same staging and byte-limit protections. |
 | [Handbook pack types](https://github.com/RebelliousSmile/obsidian-handbook/blob/main/src/games/types.ts) | The consumer currently documents that packs never contain CSS and must gain an explicit stylesheet representation and lifecycle. |
 | [Handbook styles](https://github.com/RebelliousSmile/obsidian-handbook/tree/main/src/styles/city-of-mist) | City of Mist structural selectors and typography remain in consumer SCSS, providing the concrete migration target requested by the ticket. |

@@ -1,5 +1,5 @@
 ---
-status: done
+status: pending
 ---
 
 # Instruction: Declare and publish stylesheet resources
@@ -55,7 +55,7 @@ journey
 
 > Make a stylesheet an explicit optional pack resource, rather than an untyped manifest extension.
 
-1. In `RebelliousSmile/schema-appearance`, add `assets.stylesheets` as an ordered array of non-empty relative file paths, with descriptions and examples explaining that they are layered in declaration order after consumer-generic CSS.
+1. Use canonical commit `22367691ef8fb5890bf08cc8fcdc0f422eee66d3` in `RebelliousSmile/schema-appearance` as the source of truth for `assets.stylesheets`: an ordered array of normalized forward-slash, non-empty relative paths. Do not maintain a competing local pattern.
 2. Preserve the existing optional `assets` shape and all accepted image/font forms, so a manifest without stylesheets remains valid.
 3. Add canonical valid and invalid probes for absent, multiple, empty, malformed, and duplicate resource declarations according to that repository's test conventions.
 4. Publish or otherwise pin the canonical revision before consuming it downstream.
@@ -64,7 +64,7 @@ journey
 
 > Keep the two explicitly frozen compatibility paths usable offline while making published resources closed and safe.
 
-1. Copy the approved canonical schema byte-for-byte to both compatibility locations in this repository.
+1. Copy the canonical schema at commit `22367691ef8fb5890bf08cc8fcdc0f422eee66d3` byte-for-byte to both compatibility locations in this repository, including its descriptions and path pattern.
 2. Extend `tools/validate-appearance-compat.ts` with a valid stylesheet probe and an invalid unknown-field/path probe while retaining its self-contained and equality checks.
 3. Extend `tools/validate-handbook-packs.ts` so stylesheets use the existing normalized safe-relative-path rules, must exist below `pack.assets.root`, count as declared assets, and participate in the no-orphan inventory.
 4. Keep all published packs token-only in this phase; phase 3 introduces City of Mist's first non-empty declared resource after the consumer can load it.
@@ -76,6 +76,6 @@ journey
 | --- | --- |
 | 1 | The canonical schema accepts a pack with one or more ordered stylesheet paths and still accepts every existing token-only pack. |
 | 1 | Empty, duplicate, malformed, or unsafe stylesheet declarations are rejected by the canonical contract or producer validation with a precise cause. |
-| 2 | Both legacy schema copies are byte-identical, self-contained, and accept the new declaration without external resolution. |
+| 2 | Both legacy schema copies are byte-identical to canonical commit `22367691ef8fb5890bf08cc8fcdc0f422eee66d3`, self-contained, and accept the new declaration without external resolution. |
 | 2 | `npm run check` accepts every published pack and fails if a declared stylesheet is missing, escapes the asset root, or is an undeclared delivered file. |
 | 2 | All currently published packs remain valid without a `stylesheets` field; the validator is ready to reject missing, escaping, or orphan stylesheet resources when a pack begins declaring them. |

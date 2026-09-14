@@ -178,7 +178,7 @@
       }
     },
     "assets": {
-      "description": "The illustrations and typefaces supplied by the pack.",
+      "description": "The illustrations, typefaces, and stylesheet resources supplied by the pack.",
       "type": "object",
       "properties": {
         "root": {
@@ -257,24 +257,15 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^(?!\\/)(?![A-Za-z]:)(?!.*(?:^|\\/)\\.{1,2}(?:\\/|$))[A-Za-z0-9][A-Za-z0-9._/-]*$",
-            "description": "A safe relative CSS file path under the pack asset root, loaded in declaration order after reader-generic CSS.",
+            "pattern": "^(?!\\/)(?!.*\\/{2})(?!.*\\\\)(?!.*:)[A-Za-z0-9][A-Za-z0-9._-]*(?:\\/[A-Za-z0-9][A-Za-z0-9._-]*)*$",
+            "description": "A normalized forward-slash stylesheet path relative to the pack's asset root.",
             "examples": [
-              "styles/city-of-mist.css",
-              "styles/components.css"
+              "styles/game.css",
+              "themes/dark.css"
             ]
           },
           "uniqueItems": true,
-          "description": "Optional game-owned stylesheet resources, layered in declaration order after the reader's generic stylesheet.",
-          "examples": [
-            [
-              "styles/city-of-mist.css"
-            ],
-            [
-              "styles/base.css",
-              "styles/components.css"
-            ]
-          ]
+          "description": "Ordered stylesheet resources relative to the pack's asset root."
         }
       },
       "additionalProperties": false
