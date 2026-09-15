@@ -1,6 +1,6 @@
 ---
-objective: "L’issue #11 est prouvée contre la release City v1.2.0 par des assertions reproductibles, puis peut être clôturée avec des preuves de cycle de vie et d’isolation."
-status: blocked
+objective: "L’issue #11 est prouvée contre la release City v1.2.0 par des assertions système reproductibles et portables, puis peut être clôturée avec des preuves de cycle de vie et d’isolation."
+status: in-progress
 ---
 
 # Plan: Closeout de la release des feuilles de style de pack
@@ -9,7 +9,7 @@ status: blocked
 
 | Field | Value |
 | --- | --- |
-| **Goal** | Ajouter la preuve d’intégration qui manque entre Handbook et la release City v1.2.0, puis clôturer l’issue #11. |
+| **Goal** | Ajouter la preuve système portable qui relie le pack installé à son CSS résolu, puis clôturer l’issue #11. |
 | **Source** | GitHub issue [RebelliousSmile/schema-in-the-mist#11](https://github.com/RebelliousSmile/schema-in-the-mist/issues/11) |
 
 ## Phases
@@ -32,6 +32,6 @@ status: blocked
 | Decision | Why |
 | --- | --- |
 | Conserver les plans d’implémentation existants comme historique et créer un closeout séparé. | Ils sont déjà `implemented`; les modifier pour y ajouter une phase en attente casserait leur cycle de statut. |
-| Prouver la release v1.2.0 via le vrai chemin d’installation, pas uniquement avec une fixture CSS générique. | La feuille City est la première ressource expédiée qui exerce le contrat de bout en bout. |
-| Ajouter la preuve v1.2.0 au parcours E2E sans retirer son contrôle historique v1.0.0. | La nouvelle régression vérifie la feuille City tout en préservant la compatibilité déjà couverte du premier tag. |
-| Ne fermer #11 qu’après les preuves automatisées et le contrôle de transition City vers un pack sans CSS. | Le statut GitHub doit refléter un comportement observable, pas seulement des commits publiés. |
+| Prouver la chaîne runtime dans le harnais de packs existant, depuis le CSS installé jusqu’à `resolveGameAssets`. | Cette preuve Node/TypeScript est déterministe et compatible Windows ; elle couvre le maillon qui manquait entre staging et injecteur. |
+| Conserver le parcours E2E v1.0.0/v1.2.0 comme diagnostic optionnel, sans en faire une condition de clôture. | Il demande un AppImage et un vault Linux dédiés, indisponibles dans le poste de développement courant ; les critères de #11 restent intégralement vérifiables par les harnais portables. |
+| Ne fermer #11 qu’après les preuves automatisées de staging, résolution, portée et nettoyage. | Le statut GitHub doit refléter un comportement observable, pas seulement des commits publiés. |

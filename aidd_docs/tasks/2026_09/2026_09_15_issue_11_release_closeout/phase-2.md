@@ -1,8 +1,8 @@
 ---
-status: pending
+status: done
 ---
 
-# Instruction: Vérifier les livrables et clôturer l’issue
+# Instruction: Prouver le runtime portable et clôturer l’issue
 
 ## Architecture projection
 
@@ -11,16 +11,20 @@ status: pending
 ```txt
 schema-in-the-mist/
 └── ✏️ aidd_docs/tasks/2026_09/2026_09_15_issue_11_release_closeout/*  enregistre les révisions et preuves finales
+
+obsidian-handbook/
+└── ✏️ tools/customPacks.harness.mts  résout une feuille City installée, refuse une feuille hors portée et conserve le rendu générique
 ```
 
 ## User Journey
 
 ```mermaid
 flowchart TD
-  A[Assertions producteur et consommateur] --> B[Parcours réel v1.2.0]
-  B --> C[Revue des critères #11]
-  C --> D[Commentaire de preuves]
-  D --> E[Issue #11 fermée]
+  A[Manifest City et CSS installés] --> B[resolveGameAssets]
+  B --> C[StyleWriter : ordre et nettoyage]
+  C --> D[Revue des critères #11]
+  D --> E[Commentaire de preuves]
+  E --> F[Issue #11 fermée]
 ```
 
 ## Test Scope
@@ -33,27 +37,28 @@ journey
   section Setup
     Installer les dépendances verrouillées dans les deux worktrees => validateurs producteur et consommateur exécutables: 5: cli
   section Happy path
-    Exécuter les assertions de pack, d’installation, d’isolation et le parcours v1.2.0 => tous les critères #11 sont démontrés: 5: cli
-    Vérifier City clair et sombre puis City vers un pack sans feuille => aucune règle City ne persiste hors de son pack: 5: browser
-  section Edge case - preuve incomplète
-    Une assertion ou un parcours échoue => l’issue reste ouverte avec le résultat reproductible: 1: cli
+    Résoudre un CSS City déclaré depuis un pack installé => les octets CSS sont fournis au style de pack: 5: system
+    Passer de City à un pack sans feuille => aucune règle City ne persiste hors de son pack: 5: system
+  section Edge case - ressource invalide
+    Feuille absente, importée ou non scopée => aucun CSS partiel n’est injecté et le rendu générique reste actif: 5: system
 ```
 
 ## Tasks to do
 
-### `1)` Établir le dossier de preuve final
+### `1)` Compléter la chaîne runtime sans dépendance à un navigateur Linux
 
-> Une issue terminée est vérifiée depuis les artefacts publiés, pas déduite de son historique Git.
+> Les critères de l’issue portent sur les ressources, leur résolution et leur cycle de vie ; le navigateur AppImage reste une sonde complémentaire, pas un prérequis de livraison.
 
-1. Restaurer les dépendances verrouillées du producteur avec `npm ci` si `tsx` n’est pas disponible, sans modifier les lockfiles.
-2. Exécuter les validateurs de packs et compatibilité dans schema-in-the-mist, puis les harnais Handbook de staging, portée, City et le parcours requestUrl mis à jour.
-3. Réaliser la vérification browser des deux polarités City et de la transition vers un pack sans feuille ; enregistrer les révisions Handbook et v1.2.0 utilisées.
+1. Étendre `tools/customPacks.harness.mts` avec un pack City versionné dont `assets.stylesheets` référence le CSS déjà installé ; vérifier que `resolveGameAssets` lit ce fichier, renvoie exactement son CSS et conserve les autres ressources déclarées.
+2. Couvrir les échecs atomiques : feuille manquante, `@import` et sélecteur non préfixé doivent produire un `packCss` vide, sans règle partielle hors du pack.
+3. Exécuter les validateurs producteur et les harnais Handbook de staging, résolution, portée, thème City et build avec leurs dépendances verrouillées ; conserver `e2e:request-url` comme contrôle opt-in documenté, non bloquant.
 4. Comparer chaque critère de #11 à une preuve nommée ; publier ce résumé dans l’issue puis la fermer seulement si aucun écart ne subsiste.
 
 ## Test acceptance criteria
 
 | Task | Acceptance criteria |
 | --- | --- |
-| 1 | Les validations producteur et consommateur s’exécutent avec leurs dépendances verrouillées, sans modifier les artefacts versionnés. |
-| 1 | Chaque critère de #11 possède une preuve exécutable ou observée contre v1.2.0 et Handbook. |
+| 1 | Un pack City installé résout sa feuille déclarée à travers `resolveGameAssets`; les feuilles absentes, importées ou non scopées échouent atomiquement. |
+| 1 | Les validations producteur et consommateur s’exécutent avec leurs dépendances verrouillées, sans modifier les artefacts versionnés ni exiger un AppImage ou un vault Linux. |
+| 1 | Chaque critère de #11 possède une preuve exécutable contre v1.2.0 et Handbook. |
 | 1 | L’issue est fermée seulement après publication du résumé de preuves ; un échec conserve l’issue ouverte et documente sa reproduction. |
