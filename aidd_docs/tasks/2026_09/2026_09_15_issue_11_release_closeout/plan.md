@@ -1,6 +1,6 @@
 ---
 objective: "L’issue #11 est prouvée contre la release City v1.2.0 par des assertions reproductibles, puis peut être clôturée avec des preuves de cycle de vie et d’isolation."
-status: in-progress
+status: blocked
 ---
 
 # Plan: Closeout de la release des feuilles de style de pack
