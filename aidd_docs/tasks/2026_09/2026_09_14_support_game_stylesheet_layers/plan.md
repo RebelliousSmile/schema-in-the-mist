@@ -1,6 +1,6 @@
 ---
 objective: "A Handbook game pack may declare safely installed stylesheet resources that Handbook applies only for its active game, after its shared stylesheet, without affecting existing token-only packs."
-status: in-progress
+status: blocked
 ---
 
 # Plan: Support game stylesheet layers in schema packs
