@@ -1,6 +1,6 @@
 {
   "manifestVersion": 1,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "minimumHandbookVersion": "2.7.0",
   "requires": [
     "block:os-theme",
@@ -15,7 +15,32 @@
     {
       "id": "metro",
       "label": "Metro",
-      "style": {},
+      "style": {
+        "light": {
+          "note": {
+            "--background-primary": "#F6F7F4",
+            "--background-primary-alt": "#E4E8E8",
+            "--text-normal": "#05071D",
+            "--text-muted": "#242A46",
+            "--h1-color": "#05071D",
+            "--h2-color": "#05071D",
+            "--h3-color": "#C8FF2E",
+            "--text-highlight-bg": "#C8FF2E"
+          }
+        },
+        "dark": {
+          "note": {
+            "--background-primary": "#05071D",
+            "--background-primary-alt": "#0B0F2F",
+            "--text-normal": "#F6F7F4",
+            "--text-muted": "#CBD3D5",
+            "--h1-color": "#F6F7F4",
+            "--h2-color": "#F6F7F4",
+            "--h3-color": "#C8FF2E",
+            "--text-highlight-bg": "#C8FF2E"
+          }
+        }
+      },
       "polarities": [
         "light",
         "dark"
@@ -309,7 +334,10 @@
       "dark"
     ],
     "assets": {
-      "images": {}
+      "images": {},
+      "stylesheets": [
+        "styles/otherscape.css"
+      ]
     }
   }
 }

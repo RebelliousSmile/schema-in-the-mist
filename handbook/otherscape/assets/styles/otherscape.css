@@ -1,0 +1,6 @@
+/* GENERATED from schemas/otherscape/design — do not edit by hand. */
+.os-handbook--metro { font-family: "Barlow", "Arial Narrow", Arial, sans-serif; }
+.os-handbook--metro .os-section-label { background: var(--text-highlight-bg); color: var(--h1-color); }
+.os-handbook--metro .os-editorial-section { max-width: 42rem; line-height: 1.5; }
+.os-handbook--metro.is-dark .os-editorial-section { outline: 1px solid var(--text-muted); }
+@media (prefers-reduced-motion: reduce) { .os-handbook--metro * { animation: none !important; transition: none !important; } }
