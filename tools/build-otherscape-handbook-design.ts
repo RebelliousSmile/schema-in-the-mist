@@ -35,8 +35,8 @@ body.brumes--otherscape.brumes--variant-metro.brumes--colour-dark {
 }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
   font-family: ${light("font.family.sans")};
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: ${light("space.3")} ${light("space.4")};
+  grid-template-columns: minmax(0, 1fr);
+  gap: ${light("space.2")};
   padding: ${light("space.4")};
   border: ${light("border.width.default")} solid var(--os-card-accent);
   border-radius: ${light("radius.none")};
@@ -44,6 +44,12 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
   color: var(--os-metro-card-text);
   box-shadow: none;
 }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme > * { grid-column: 1; min-width: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--header { order: 1; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--power-tags { order: 2; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags { order: 3; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest { order: 4; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { order: 5; }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--self { --os-card-accent: var(--brumes-theme-self); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--mythos { --os-card-accent: var(--brumes-theme-mythos); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--noise { --os-card-accent: var(--brumes-theme-noise); }
@@ -61,14 +67,35 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme h3 {
   font-weight: ${light("font.weight.black")};
   line-height: ${light("font.lineHeight.title")};
 }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest { color: var(--os-metro-card-text); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags { border-inline-start-color: var(--os-card-accent); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme ul { display: grid; gap: ${light("space.1")}; margin: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme li { margin: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme .brumes-tag {
+  display: block;
+  padding: ${light("space.1")} ${light("space.2")};
+  border: ${light("border.width.hairline")} solid color-mix(in srgb, var(--os-card-accent) 68%, transparent);
+  background: color-mix(in srgb, var(--os-card-accent) 14%, var(--os-metro-card-surface));
+  color: var(--os-metro-card-text);
+  font-size: ${light("font.size.caption")};
+  font-weight: ${light("font.weight.bold")};
+  line-height: ${light("font.lineHeight.body")};
+  text-transform: uppercase;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags {
+  border-inline-start: 0;
+  padding-inline-start: 0;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags .brumes-tag {
+  border-inline-start: ${light("border.width.thick")} solid var(--os-card-accent);
+  background: color-mix(in srgb, var(--os-card-accent) 24%, var(--os-metro-card-surface));
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest {
+  margin: ${light("space.2")} 0 0;
+  padding-top: ${light("space.2")};
+  border-top: ${light("border.width.hairline")} solid var(--os-card-accent);
+  color: var(--os-metro-card-text);
+}
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-top-color: var(--os-card-accent); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
-@media (max-width: ${light("breakpoint.sm")}) {
-  body.brumes--otherscape.brumes--variant-metro .brumes-os-theme { grid-template-columns: minmax(0, 1fr); }
-  body.brumes--otherscape.brumes--variant-metro .brumes-os-theme > * { grid-column: 1; min-width: 0; }
-}
 @media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
 `;
 }

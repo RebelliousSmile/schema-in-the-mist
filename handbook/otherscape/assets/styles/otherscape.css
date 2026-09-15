@@ -10,8 +10,8 @@ body.brumes--otherscape.brumes--variant-metro.brumes--colour-dark {
 }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
   font-family: "Barlow", "Arial Narrow", Arial, sans-serif;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0.75rem 1rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.5rem;
   padding: 1rem;
   border: 2px solid var(--os-card-accent);
   border-radius: 0;
@@ -19,6 +19,12 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
   color: var(--os-metro-card-text);
   box-shadow: none;
 }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme > * { grid-column: 1; min-width: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--header { order: 1; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--power-tags { order: 2; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags { order: 3; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest { order: 4; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { order: 5; }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--self { --os-card-accent: var(--brumes-theme-self); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--mythos { --os-card-accent: var(--brumes-theme-mythos); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--noise { --os-card-accent: var(--brumes-theme-noise); }
@@ -36,12 +42,33 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme h3 {
   font-weight: 900;
   line-height: 1;
 }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest { color: var(--os-metro-card-text); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags { border-inline-start-color: var(--os-card-accent); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme ul { display: grid; gap: 0.25rem; margin: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme li { margin: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme .brumes-tag {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--os-card-accent) 68%, transparent);
+  background: color-mix(in srgb, var(--os-card-accent) 14%, var(--os-metro-card-surface));
+  color: var(--os-metro-card-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags {
+  border-inline-start: 0;
+  padding-inline-start: 0;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags .brumes-tag {
+  border-inline-start: 4px solid var(--os-card-accent);
+  background: color-mix(in srgb, var(--os-card-accent) 24%, var(--os-metro-card-surface));
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest {
+  margin: 0.5rem 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--os-card-accent);
+  color: var(--os-metro-card-text);
+}
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-top-color: var(--os-card-accent); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
-@media (max-width: 640px) {
-  body.brumes--otherscape.brumes--variant-metro .brumes-os-theme { grid-template-columns: minmax(0, 1fr); }
-  body.brumes--otherscape.brumes--variant-metro .brumes-os-theme > * { grid-column: 1; min-width: 0; }
-}
 @media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
