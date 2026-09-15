@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "target": "handbook/otherscape/pack.json",
+  "variant": "metro",
+  "modes": {
+    "light": { "evidence": ["page.jpg", "chapter-title.jpg", "light-chapo.jpg", "description.jpg"] },
+    "dark": { "evidence": ["dark.jpg", "dark-chapo.jpg"] }
+  },
+  "note": {
+    "--background-primary": "color.semantic.background",
+    "--background-primary-alt": "color.semantic.surface",
+    "--text-normal": "color.semantic.text",
+    "--text-muted": "color.semantic.text-muted",
+    "--h1-color": "color.semantic.text",
+    "--h2-color": "color.semantic.text",
+    "--h3-color": "color.brand.primary",
+    "--text-highlight-bg": "color.brand.primary"
+  }
+}
