@@ -4,6 +4,8 @@ status: pending
 
 # Instruction: Move City of Mist structural typography into its pack
 
+> Prerequisite: execute this phase only after phase 2 passes in a writable `obsidian-handbook` worktree; use the same recorded consumer revision and integration fixtures for extraction and visual comparison. Do not wait for the schema-in-the-mist release that phase 1 will produce.
+
 ## Architecture projection
 
 > Tree of the final files. ✅ create · ✏️ modify · ❌ delete

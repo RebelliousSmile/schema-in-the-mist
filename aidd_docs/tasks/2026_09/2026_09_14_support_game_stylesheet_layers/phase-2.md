@@ -4,6 +4,8 @@ status: pending
 
 # Instruction: Install and activate the active pack stylesheet
 
+> Prerequisite: execute this phase in a writable `obsidian-handbook` worktree. Use fixtures conforming to canonical commit `22367691ef8fb5890bf08cc8fcdc0f422eee66d3` and the `schema-in-the-mist` integration branch; a new schema-in-the-mist release is an output of this issue, never a prerequisite for this phase.
+
 ## Architecture projection
 
 > Tree of the final files. ✅ create · ✏️ modify · ❌ delete
@@ -62,7 +64,7 @@ journey
 
 > A manifest declaration must become a locally staged, bounded resource before any CSS is interpreted.
 
-1. Add `stylesheets` to Handbook's pack asset type and `fromSchema` projection, preserving empty defaults for absent fields.
+1. Record the Handbook revision and the canonical schema commit used for integration, then add `stylesheets` to its pack asset type and `fromSchema` projection, preserving empty defaults for absent fields.
 2. Extend `sourceInstaller.ts` to resolve each stylesheet from the manifest directory plus asset root, apply existing safe-relative-path checks, resource-count constraints, and cumulative byte limits, then write it only beneath the installed pack root.
 3. Validate MIME-independent text decoding, reject unreadable or oversized CSS, and make installation fail before promotion rather than leave a partly replaced source.
 4. Add installer assertions covering ordered multiple resources, missing files, traversal attempts, and legacy manifests with only images/fonts.

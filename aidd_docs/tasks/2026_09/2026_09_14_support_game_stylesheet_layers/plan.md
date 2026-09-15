@@ -1,6 +1,6 @@
 ---
 objective: "A Handbook game pack may declare safely installed stylesheet resources that Handbook applies only for its active game, after its shared stylesheet, without affecting existing token-only packs."
-status: in-progress
+status: blocked
 ---
 
 # Plan: Support game stylesheet layers in schema packs
@@ -16,8 +16,8 @@ status: in-progress
 
 | # | Phase | File |
 | --- | --- | --- |
-| 1 | Declare and publish stylesheet resources | [phase-1.md](./phase-1.md) |
-| 2 | Install and activate the active pack stylesheet | [phase-2.md](./phase-2.md) |
+| 1 | Publish the pack stylesheet contract | [phase-1.md](./phase-1.md) |
+| 2 | Activate an installed pack stylesheet in Handbook | [phase-2.md](./phase-2.md) |
 | 3 | Move City of Mist structural typography into its pack | [phase-3.md](./phase-3.md) |
 
 ## Resources
@@ -25,10 +25,11 @@ status: in-progress
 | Source | Verified |
 | --- | --- |
 | [Issue #11](https://github.com/RebelliousSmile/schema-in-the-mist/issues/11) | Requires declared game stylesheet resources, safe installed-source loading, active-pack lifecycle cleanup, game scope, token compatibility, and compatibility with token-only packs. |
-| [Canonical `game-pack` schema](https://github.com/RebelliousSmile/schema-appearance/blob/main/schemas/appearance/game-pack.schema.json) | Canonical commit `22367691ef8fb5890bf08cc8fcdc0f422eee66d3` defines `assets.stylesheets` with normalized forward-slash paths; the frozen local copies must be synchronized byte-for-byte to it. |
+| [Canonical `game-pack` schema](https://github.com/RebelliousSmile/schema-appearance/blob/main/schemas/appearance/game-pack.schema.json) | Canonical commit `22367691ef8fb5890bf08cc8fcdc0f422eee66d3` defines `assets.stylesheets` with normalized forward-slash paths; the frozen local copies must match its content after newline normalization. |
 | [Handbook source installer](https://github.com/RebelliousSmile/obsidian-handbook/blob/main/src/games/sourceInstaller.ts) | Installation downloads only declared images and fonts after safe-relative-path checks; stylesheet resources need the same staging and byte-limit protections. |
 | [Handbook pack types](https://github.com/RebelliousSmile/obsidian-handbook/blob/main/src/games/types.ts) | The consumer currently documents that packs never contain CSS and must gain an explicit stylesheet representation and lifecycle. |
 | [Handbook styles](https://github.com/RebelliousSmile/obsidian-handbook/tree/main/src/styles/city-of-mist) | City of Mist structural selectors and typography remain in consumer SCSS, providing the concrete migration target requested by the ticket. |
+| Local repository state | `main` at `fdcdc4c` synchronizes the two frozen schemas with canonical content; the only platform difference is the working-tree line ending managed by Git. |
 
 ## Decisions
 
@@ -39,3 +40,4 @@ status: in-progress
 | Extend the existing per-document `GameStyleWriter` with a distinct pack-CSS element, placed after both the compiled generic stylesheet and the generated token element. | It preserves its proven detached-window tracking and cleanup while keeping pack CSS later than generic and token declarations; replacing the complete text makes game changes atomic. |
 | Resolve stylesheet `url(...)` references only to already declared local pack assets and rewrite them to vault resource URLs before injection. | An inline style element has no stylesheet-file base URL; this preserves valid asset rendering while forbidding network, data, absolute, escaping, and undeclared resource loads. |
 | Deliver the contract change first in `schema-appearance`, then synchronize this repository's frozen compatibility copies. | The README establishes `schema-appearance` as canonical; changing only deprecated copies would create a divergent contract. |
+| Implement consumer behavior only from a writable `obsidian-handbook` worktree. | This repository publishes the pack contract and assets; it cannot safely contain a duplicate consumer implementation. |
