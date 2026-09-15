@@ -1,15 +1,15 @@
 {
   "$schema": "design/references/contract-schema#release",
   "$format": "2.0",
-  "designSystem": { "version": "1.0.0" },
+  "designSystem": { "version": "1.1.0" },
   "artifacts": {
-    "tokens.json": { "version": "1.0.0", "sourceHash": "sha256:0340a7a0aff4b16e35ae51d8177464f9f9970cf55698f5619859da394d58692f" },
-    "components.json": { "version": "1.0.0", "sourceHash": "sha256:e99be74feeb7c305d57486138f0974f3873bcc4d322eae829f42af5b41653dae" },
+    "tokens.json": { "version": "1.1.0", "sourceHash": "sha256:e66b152f53fad1f808d933cd1b6cb41cb7566cb51d848984c7474e7a5acf5673" },
+    "components.json": { "version": "1.1.0", "sourceHash": "sha256:d328610a1e0989e7976eea981b25691da5ed923cd8bb5f4786a3d9caec0ea9c1" },
     "policies.json": { "version": "1.0.0", "sourceHash": "sha256:9f7fd66a3bcbef315dcf18313d0b8e8c902bdc4bb6b71b5c35af56ecab0f4a5e" }
   },
-  "charter": { "present": true, "path": "design-system.md", "version": "1.0.0" },
-  "provenance": { "producedBy": "design:adjust", "producedAt": "2026-09-15T20:00:00Z", "from": "direct freeze of the Otherscape draft" },
-  "checks": { "contrast": { "ran": true, "allPass": true, "pairs": 22, "declared": 11 }, "states": { "ran": true, "allPass": true } },
+  "charter": { "present": true, "path": "design-system.md", "version": "1.1.0" },
+  "provenance": { "producedBy": "design:adjust", "producedAt": "2026-09-15T20:00:00Z", "from": "direct delta: Metro os-theme accents and actual Handbook selectors" },
+  "checks": { "contrast": { "ran": true, "allPass": true, "pairs": 28, "declared": 24 }, "states": { "ran": true, "allPass": true } },
   "gaps": [],
   "status": "production-ready"
 }

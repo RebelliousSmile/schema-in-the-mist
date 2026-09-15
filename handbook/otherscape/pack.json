@@ -25,7 +25,10 @@
             "--h1-color": "#05071D",
             "--h2-color": "#05071D",
             "--h3-color": "#C8FF2E",
-            "--text-highlight-bg": "#C8FF2E"
+            "--text-highlight-bg": "#C8FF2E",
+            "--brumes-theme-self": "#B4233E",
+            "--brumes-theme-mythos": "#7B4FB0",
+            "--brumes-theme-noise": "#075F8B"
           }
         },
         "dark": {
@@ -37,7 +40,10 @@
             "--h1-color": "#F6F7F4",
             "--h2-color": "#F6F7F4",
             "--h3-color": "#C8FF2E",
-            "--text-highlight-bg": "#C8FF2E"
+            "--text-highlight-bg": "#C8FF2E",
+            "--brumes-theme-self": "#E05A6E",
+            "--brumes-theme-mythos": "#A98BD0",
+            "--brumes-theme-noise": "#5D9BD4"
           }
         }
       },

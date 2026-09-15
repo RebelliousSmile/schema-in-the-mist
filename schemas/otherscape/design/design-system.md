@@ -1,13 +1,13 @@
 ---
 status: figé
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Otherscape — direction de layout
 
 ## Provenance
 
-Extrait le 15 septembre 2026 des six captures fournies dans `C:\Users\fxgui\Documents\Perso\RPG\otherscape\_sources\Design` : `page.jpg`, `dark.jpg`, `chapter-title.jpg`, `dark-chapo.jpg`, `light-chapo.jpg` et `description.jpg`. Figé en v1.0.0 : les maquettes claires alimentent `metro/light`, les maquettes sombres `metro/dark` ; les pistes de refonte du rapport de critique restent différées.
+Extrait le 15 septembre 2026 des six captures fournies dans `C:\Users\fxgui\Documents\Perso\RPG\otherscape\_sources\Design` : `page.jpg`, `dark.jpg`, `chapter-title.jpg`, `dark-chapo.jpg`, `light-chapo.jpg` et `description.jpg`. Figé en v1.1.0 : les maquettes claires alimentent `metro/light`, les maquettes sombres `metro/dark` ; les pistes de refonte du rapport de critique restent différées. Le delta v1.1.0 ajoute les accents de cartes `self`, `mythos` et `noise`, en clair et en sombre, sur les classes réellement émises par le bloc Handbook `os-theme`.
 
 Le dépôt est une bibliothèque de schémas TypeScript (`package.json` : `typescript`, `tsx`) sans interface web, runtime visuel ni préprocesseur de styles déclaré. Aucun consommateur d’adaptateur n’est donc détecté à ce stade ; aucun fichier sous `design/adapters/` n’est produit.
 
@@ -45,6 +45,7 @@ Cet inventaire est une **prose candidate et malléable**, non un manifeste. `des
 | Chapo éditorial | paragraphe d’ouverture fortement agrandi | `color.semantic.background`, `color.neutral.900` | `color.neutral.900`, `color.neutral.50` | une colonne mobile, une demi-colonne large | `design/components/lead.md` |
 | Section de lecture | titre, corps, séparateur ; `paper` / `night` | `color.semantic.background`, `color.neutral.900` | `color.neutral.900`, `color.neutral.50` | passe dans la grille deux colonnes à `lg` | `design/components/editorial-section.md` |
 | Encadré thématique | callout avec contour technique et bande glitch facultative | `color.semantic.surface`, `color.neutral.900` | `color.neutral.900`, `color.neutral.50` | pleine largeur mobile ; peut occuper une seule colonne large | `design/components/thematic-callout.md` |
+| Carte de thème | fiche PJ à type explicite : `self`, `mythos`, `noise` ou `crew` ; titre, tags, quête et pistes | `color.semantic.surface` | `color.semantic.text`, `color.theme.self`, `color.theme.mythos`, `color.theme.noise` | deux colonnes de tags sur large, une seule colonne étroite | `design/components/theme-card.md` |
 | Rail de folio | titre d’ouvrage, chapitre, numéro de page, orientation verticale | `color.semantic.background`, `color.neutral.900` | `color.neutral.700`, `color.neutral.200` | intégré horizontalement au flux mobile ; rail vertical à `md` | `design/components/folio-rail.md` |
 | Média illustré | illustration/personnage, cadre doux, légende facultative | `color.semantic.surface` | `color.neutral.900` | plein conteneur mobile ; grille de deux médias à `lg` | `design/components/illustration-panel.md` |
 | Séparateur glitch | rupture de chapitre ; `quiet` / `signal` | `color.semantic.background`, `color.neutral.900` | `color.brand.signal`, `color.brand.cyan` | décoratif : peut être simplifié au mobile | `design/components/glitch-divider.md` |

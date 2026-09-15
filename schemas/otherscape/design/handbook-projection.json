@@ -14,6 +14,9 @@
     "--h1-color": "color.semantic.text",
     "--h2-color": "color.semantic.text",
     "--h3-color": "color.brand.primary",
-    "--text-highlight-bg": "color.brand.primary"
+    "--text-highlight-bg": "color.brand.primary",
+    "--brumes-theme-self": "color.theme.self",
+    "--brumes-theme-mythos": "color.theme.mythos",
+    "--brumes-theme-noise": "color.theme.noise"
   }
 }

@@ -1,6 +1,47 @@
 /* GENERATED from schemas/otherscape/design — do not edit by hand. */
-.os-handbook--metro { font-family: "Barlow", "Arial Narrow", Arial, sans-serif; }
-.os-handbook--metro .os-section-label { background: var(--text-highlight-bg); color: var(--h1-color); }
-.os-handbook--metro .os-editorial-section { max-width: 42rem; line-height: 1.5; }
-.os-handbook--metro.is-dark .os-editorial-section { outline: 1px solid var(--text-muted); }
-@media (prefers-reduced-motion: reduce) { .os-handbook--metro * { animation: none !important; transition: none !important; } }
+/* Handbook renders os-theme as .brumes-os-theme; scope this pack sheet to Metro only. */
+body.brumes--otherscape.brumes--variant-metro {
+  --os-metro-card-surface: #E4E8E8;
+  --os-metro-card-text: #05071D;
+}
+body.brumes--otherscape.brumes--variant-metro.brumes--colour-dark {
+  --os-metro-card-surface: #0B0F2F;
+  --os-metro-card-text: #F6F7F4;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
+  font-family: "Barlow", "Arial Narrow", Arial, sans-serif;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.75rem 1rem;
+  padding: 1rem;
+  border: 2px solid var(--os-card-accent);
+  border-radius: 0;
+  background: var(--os-metro-card-surface);
+  color: var(--os-metro-card-text);
+  box-shadow: none;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--self { --os-card-accent: var(--brumes-theme-self); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--mythos { --os-card-accent: var(--brumes-theme-mythos); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--noise { --os-card-accent: var(--brumes-theme-noise); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--type {
+  color: var(--os-card-accent);
+  font-family: "Barlow Condensed", "Roboto Condensed", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme h3 {
+  color: var(--os-card-accent);
+  font-family: "Barlow Condensed", "Roboto Condensed", sans-serif;
+  font-size: clamp(1.5rem, 1.18rem + 1.4vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest { color: var(--os-metro-card-text); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags { border-inline-start-color: var(--os-card-accent); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-top-color: var(--os-card-accent); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
+@media (max-width: 640px) {
+  body.brumes--otherscape.brumes--variant-metro .brumes-os-theme { grid-template-columns: minmax(0, 1fr); }
+  body.brumes--otherscape.brumes--variant-metro .brumes-os-theme > * { grid-column: 1; min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
