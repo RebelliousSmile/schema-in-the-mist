@@ -1,6 +1,6 @@
 ---
 objective: "A Handbook game pack may declare safely installed stylesheet resources that Handbook applies only for its active game, after its shared stylesheet, without affecting existing token-only packs."
-status: blocked
+status: in-progress
 ---
 
 # Plan: Support game stylesheet layers in schema packs
@@ -16,8 +16,8 @@ status: blocked
 
 | # | Phase | File |
 | --- | --- | --- |
-| 1 | Publish the pack stylesheet contract | [phase-1.md](./phase-1.md) |
-| 2 | Activate an installed pack stylesheet in Handbook | [phase-2.md](./phase-2.md) |
+| 1 | Release the pack stylesheet contract | [phase-1.md](./phase-1.md) |
+| 2 | Consume and activate the released contract in Handbook | [phase-2.md](./phase-2.md) |
 | 3 | Move City of Mist structural typography into its pack | [phase-3.md](./phase-3.md) |
 
 ## Resources
@@ -41,3 +41,4 @@ status: blocked
 | Resolve stylesheet `url(...)` references only to already declared local pack assets and rewrite them to vault resource URLs before injection. | An inline style element has no stylesheet-file base URL; this preserves valid asset rendering while forbidding network, data, absolute, escaping, and undeclared resource loads. |
 | Deliver the contract change first in `schema-appearance`, then synchronize this repository's frozen compatibility copies. | The README establishes `schema-appearance` as canonical; changing only deprecated copies would create a divergent contract. |
 | Implement consumer behavior only from a writable `obsidian-handbook` worktree. | This repository publishes the pack contract and assets; it cannot safely contain a duplicate consumer implementation. |
+| Publish the additive contract as the immutable repository tag and release `v1.1.0` before Handbook consumes it. | The tag freezes the GitHub source tree that contains `handbook/`; the npm tarball remains the codecs-only distribution and is not the pack installer’s input. |

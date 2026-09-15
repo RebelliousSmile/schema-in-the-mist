@@ -1,5 +1,5 @@
 export const CONTRACT_VERSION = 1 as const;
-export const SCHEMA_RELEASE_TAG = "v1.0.0" as const;
+export const SCHEMA_RELEASE_TAG = "v1.1.0" as const;
 export const TOML_VERSION = "1.0.0" as const;
 
 export function assertCompatiblePackageVersion(packageVersion: string): void {

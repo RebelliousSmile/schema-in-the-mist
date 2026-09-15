@@ -2,9 +2,9 @@
 status: pending
 ---
 
-# Instruction: Install and activate the active pack stylesheet
+# Instruction: Consume and activate the released pack stylesheet contract
 
-> Prerequisite: execute this phase in a writable `obsidian-handbook` worktree. Use fixtures conforming to canonical commit `22367691ef8fb5890bf08cc8fcdc0f422eee66d3` and the `schema-in-the-mist` integration branch; a new schema-in-the-mist release is an output of this issue, never a prerequisite for this phase.
+> Prerequisite: execute this phase in a writable `obsidian-handbook` worktree after phase 1 publishes immutable `schema-in-the-mist` tag `v1.1.0`. Register that GitHub repository ref as the pack source and use its tagged manifest and assets in the integration fixtures; do not use the codecs-only npm tarball as a pack source.
 
 ## Architecture projection
 
@@ -64,7 +64,7 @@ journey
 
 > A manifest declaration must become a locally staged, bounded resource before any CSS is interpreted.
 
-1. Record the Handbook revision and the canonical schema commit used for integration, then add `stylesheets` to its pack asset type and `fromSchema` projection, preserving empty defaults for absent fields.
+1. Record the Handbook revision and `schema-in-the-mist@v1.1.0` source ref used for integration, register it as the pack source, then add `stylesheets` to its pack asset type and `fromSchema` projection, preserving empty defaults for absent fields.
 2. Extend `sourceInstaller.ts` to resolve each stylesheet from the manifest directory plus asset root, apply existing safe-relative-path checks, resource-count constraints, and cumulative byte limits, then write it only beneath the installed pack root.
 3. Validate MIME-independent text decoding, reject unreadable or oversized CSS, and make installation fail before promotion rather than leave a partly replaced source.
 4. Add installer assertions covering ordered multiple resources, missing files, traversal attempts, and legacy manifests with only images/fonts.

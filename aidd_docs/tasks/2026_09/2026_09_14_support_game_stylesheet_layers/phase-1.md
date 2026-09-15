@@ -2,7 +2,7 @@
 status: done
 ---
 
-# Instruction: Declare and publish stylesheet resources
+# Instruction: Release the pack stylesheet contract
 
 ## Architecture projection
 
@@ -13,7 +13,13 @@ schema-in-the-mist/
 ├── ✏️ appearance/game-pack.schema.json            synchronized frozen compatibility copy
 ├── ✏️ schemas/appearance/game-pack.schema.json    synchronized frozen compatibility copy
 ├── ✏️ tools/validate-handbook-packs.ts             validates declared CSS paths and closure
-└── ✏️ tools/validate-appearance-compat.ts          proves the copies accept a stylesheet declaration
+├── ✏️ tools/validate-appearance-compat.ts          proves the copies accept a stylesheet declaration
+├── ✏️ src/contract-version.ts                       anchors generated schema IDs to v1.1.0
+├── ✏️ schemas/v1/**                                 regenerated immutable schema IDs for v1.1.0
+├── ✏️ package.json / package-lock.json              creates the v1.1.0 library release
+├── ✏️ CHANGELOG.md                                  records the public contract addition
+├── ✏️ README.md                                     updates the documented codecs tarball pin
+└── ✅ schema-in-the-mist-1.1.0.tgz + .sha256       reproducible immutable release assets
 
 Aucun fichier supprimé.
 ```
@@ -48,12 +54,14 @@ journey
 
 ## Tasks to do
 
-### `1)` Verify the published canonical pack contract
+### `1)` Verify and package the released contract
 
 > Make a stylesheet an explicit optional pack resource, rather than an untyped manifest extension.
 
 1. Verify canonical commit `22367691ef8fb5890bf08cc8fcdc0f422eee66d3` remains the source of truth for `assets.stylesheets`: an ordered array of normalized forward-slash, non-empty relative paths.
 2. Verify its contract preserves existing optional images and font forms, and accepts a manifest without stylesheets.
+3. Bump the package and lockfile to `1.1.0`; set `SCHEMA_RELEASE_TAG` to `v1.1.0`; regenerate every `schemas/v1/**` `$id`; add a Changelog entry; and update the README’s codecs-only tarball pin. Keep pack installation on the tagged GitHub source tree.
+4. Run the complete check and `validate:version -- v1.1.0`, then run reproducible release preparation and isolated tarball validation. Commit the generated archive and checksum according to the established release workflow, then tag and publish the immutable GitHub release. Verify the tagged source tree retains `handbook/` and its pack manifests; those files are not expected in the npm tarball.
 
 ### `2)` Synchronize and validate the distributed Mist packs
 
@@ -69,8 +77,10 @@ journey
 
 | Task | Acceptance criteria |
 | --- | --- |
-| 1 | The published canonical schema accepts ordered normalized stylesheet paths and still accepts every existing token-only pack. |
+| 1 | The canonical schema accepts ordered normalized stylesheet paths and still accepts every existing token-only pack. |
+| 1 | The `v1.1.0` immutable release contains the reproducible archive and checksum, its tarball passes the isolated package validation, and its Git tag exposes the published Handbook manifests and assets. |
+| 1 | Every versioned content schema has a `$id` anchored to `v1.1.0`, and `validate:version -- v1.1.0` passes before the tag is created. |
 | 1 | Empty, duplicate, malformed, or unsafe stylesheet declarations are rejected by the canonical contract or producer validation with a precise cause. |
 | 2 | Both legacy schema copies have canonical-equivalent content after newline normalization, are self-contained, and accept the new declaration without external resolution. |
-| 2 | `npm run check` accepts every published pack and fails if a declared stylesheet is missing, escapes the asset root, or is an undeclared delivered file. |
+| 2 | `npm run check` accepts every published pack and fails if a declared stylesheet is missing, escapes the asset root, or is an undeclared delivered file before the release is tagged. |
 | 2 | All currently published packs remain valid without a `stylesheets` field; the validator is ready to reject missing, escaping, or orphan stylesheet resources when a pack begins declaring them. |
