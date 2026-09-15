@@ -8,7 +8,7 @@ Pack assets can also declare ordered stylesheet resources. Handbook installs onl
 | --- | --- | --- |
 | City of Mist | [`city-of-mist/pack.json`](./city-of-mist/pack.json) | Images listed in [`SonOfOak.LICENSE.txt`](./LICENSES/SonOfOak.LICENSE.txt) |
 | Legend in the Mist | [`legend-in-the-mist/pack.json`](./legend-in-the-mist/pack.json) | Images listed in [`SonOfOak.LICENSE.txt`](./LICENSES/SonOfOak.LICENSE.txt) and [`assets/fonts/pragroman.ttf`](./legend-in-the-mist/assets/fonts/pragroman.ttf), covered by [`PragRoman.LICENSE.txt`](./LICENSES/PragRoman.LICENSE.txt) |
-| :Otherscape | [`otherscape/pack.json`](./otherscape/pack.json) | None; this pack currently distributes no binary asset |
+| :Otherscape | [`otherscape/pack.json`](./otherscape/pack.json) | Generated Metro stylesheet only; no binary asset or reference artwork is distributed |
 
 ## Provenance and redistribution status
 
