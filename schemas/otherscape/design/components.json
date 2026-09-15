@@ -1,0 +1,13 @@
+{
+  "$schema": "design/references/contract-schema#components",
+  "components": {
+    "section-label": { "base": "os-section-label", "modifiers": { "light": "os-section-label--light", "dark": "os-section-label--dark" }, "backgrounds": ["color.brand.primary"], "foregrounds": ["color.neutral.900"] },
+    "chapter-header": { "base": "os-chapter-header", "elements": { "emblem": "os-chapter-header__emblem", "title": "os-chapter-header__title" }, "modifiers": { "paper": "os-chapter-header--paper", "night": "os-chapter-header--night" }, "backgrounds": ["color.semantic.background"], "foregrounds": ["color.semantic.text"] },
+    "lead": { "base": "os-lead", "backgrounds": ["color.semantic.background"], "foregrounds": ["color.semantic.text"] },
+    "editorial-section": { "base": "os-editorial-section", "elements": { "title": "os-editorial-section__title", "body": "os-editorial-section__body" }, "modifiers": { "paper": "os-editorial-section--paper", "night": "os-editorial-section--night" }, "backgrounds": ["color.semantic.background"], "foregrounds": ["color.semantic.text"] },
+    "thematic-callout": { "base": "os-thematic-callout", "modifiers": { "night": "os-thematic-callout--night" }, "backgrounds": ["color.semantic.surface"], "foregrounds": ["color.semantic.text"] },
+    "folio-rail": { "base": "os-folio-rail", "backgrounds": ["color.semantic.background"], "foregrounds": ["color.semantic.text-muted"] },
+    "illustration-panel": { "base": "os-illustration-panel", "backgrounds": ["color.semantic.surface"], "foregrounds": ["color.semantic.text"] },
+    "glitch-divider": { "base": "os-glitch-divider", "modifiers": { "quiet": "os-glitch-divider--quiet", "signal": "os-glitch-divider--signal" }, "backgrounds": ["color.neutral.900"], "foregrounds": ["color.brand.signal", "color.brand.cyan"] }
+  }
+}
