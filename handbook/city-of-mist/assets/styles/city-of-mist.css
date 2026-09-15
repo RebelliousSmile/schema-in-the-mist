@@ -1,0 +1,73 @@
+/*
+ * City of Mist's portable presentation layer.
+ *
+ * The consumer injects this sheet only while City of Mist is active.  Every
+ * selector is rooted on that body class so it cannot affect another pack.
+ * Fonts are deliberately not declared here: Handbook owns their local
+ * @font-face registration and provides the fallback stacks used below.
+ */
+
+body.brumes--city-of-mist .inline-title {
+	text-decoration: underline;
+	text-decoration-thickness: 5px;
+	text-underline-offset: 0.1em;
+}
+
+body.brumes--city-of-mist .cm-hmd-internal-link,
+body.brumes--city-of-mist .cm-hmd-internal-link .cm-underline,
+body.brumes--city-of-mist a.internal-link {
+	text-decoration: underline;
+	text-decoration-color: var(--color-blue);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.3em;
+}
+
+body.brumes--city-of-mist .cm-hmd-internal-link:hover {
+	border-radius: var(--radius-s);
+	background-color: var(--background-modifier-hover);
+	transition: background-color var(--anim-duration-fast) var(--anim-motion-smooth);
+}
+
+body.brumes--city-of-mist .cm-link,
+body.brumes--city-of-mist .cm-link .cm-underline,
+body.brumes--city-of-mist a.external-link {
+	text-decoration: underline;
+	text-decoration-color: var(--color-accent-1);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.3em;
+}
+
+body.brumes--city-of-mist .cm-link:hover {
+	border-radius: var(--radius-s);
+	background-color: var(--background-modifier-hover);
+	transition: background-color var(--anim-duration-fast) var(--anim-motion-smooth);
+}
+
+body.brumes--city-of-mist .brumes-com-theme-card--themebook,
+body.brumes--city-of-mist .brumes-com-theme-card--drive-label,
+body.brumes--city-of-mist .brumes-com-theme-card--question,
+body.brumes--city-of-mist .brumes-com-theme-card--improvement-name,
+body.brumes--city-of-mist .brumes-com-theme-card--track-label,
+body.brumes--city-of-mist .brumes-com-danger--name,
+body.brumes--city-of-mist .brumes-com-danger--move-label {
+	font-family: "Fira Sans Extra Condensed", sans-serif;
+}
+
+body.brumes--city-of-mist .brumes-com-theme-card--title,
+body.brumes--city-of-mist .brumes-com-theme-card--drive {
+	font-family: "Averia Serif Libre", serif;
+}
+
+body.brumes--city-of-mist .brumes-com-theme-card--improvement {
+	font-family: "Roboto", sans-serif;
+}
+
+body.brumes--city-of-mist .brumes-com-danger--rating,
+body.brumes--city-of-mist .brumes-com-danger--section-title {
+	font-family: "Bebas Neue", sans-serif;
+}
+
+body.brumes--city-of-mist .brumes-com-danger--description p,
+body.brumes--city-of-mist .brumes-com-danger--source {
+	font-family: "Courier Prime", monospace;
+}

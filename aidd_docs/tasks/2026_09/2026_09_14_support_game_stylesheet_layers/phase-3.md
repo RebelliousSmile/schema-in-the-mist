@@ -1,10 +1,10 @@
 ---
-status: pending
+status: done
 ---
 
 # Instruction: Move City of Mist structural typography into its pack
 
-> Prerequisite: execute this phase only after phase 2 passes in a writable `obsidian-handbook` worktree; use the same recorded consumer revision, the `schema-in-the-mist@v1.1.0` source ref, and integration fixtures for extraction and visual comparison.
+> Completed against the phase-2 Handbook implementation. This phase publishes the City resource as `schema-in-the-mist@v1.2.0`; it did not wait for a City release to exist.
 
 ## Architecture projection
 
@@ -55,7 +55,7 @@ journey
 > Move only authored game presentation; preserve host-wide layout, accessibility, and failure-safe rules in Handbook.
 
 1. Inventory `src/styles/city-of-mist/` by selector and classify each rule as City-specific typography/structure, generic layout, accessibility/safety, or shared component geometry.
-2. Create and declare `handbook/city-of-mist/assets/styles/city-of-mist.css` after the consumer contract is available, then move City-specific component typography and structural choices into it, scoped to `.brumes--city-of-mist` and using pack tokens where values already exist.
+2. Create and declare `handbook/city-of-mist/assets/styles/city-of-mist.css` after the consumer contract is available, then move City-specific component typography and structural choices into it, scoped to `body.brumes--city-of-mist` and using pack tokens where values already exist.
 3. Keep generic selectors, resets, fallback rendering, editor compatibility, and reusable geometry in Handbook; do not make the CSS resource a second block-layout engine.
 4. Remove only the migrated duplicate rules from consumer SCSS and retain an explicit comment or test boundary for rules intentionally owned by the consumer.
 

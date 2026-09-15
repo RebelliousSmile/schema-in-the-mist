@@ -157,7 +157,10 @@
         "iceberg-location": "iceberg-location.svg",
         "iceberg-character": "iceberg-character.svg",
         "iceberg-group": "iceberg-group.svg"
-      }
+      },
+      "stylesheets": [
+        "styles/city-of-mist.css"
+      ]
     }
   }
 }

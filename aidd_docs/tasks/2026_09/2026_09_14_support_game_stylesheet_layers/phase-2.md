@@ -1,10 +1,10 @@
 ---
-status: pending
+status: done
 ---
 
 # Instruction: Consume and activate the released pack stylesheet contract
 
-> Prerequisite: execute this phase in a writable `obsidian-handbook` worktree after phase 1 publishes immutable `schema-in-the-mist` tag `v1.1.0`. Register that GitHub repository ref as the pack source and use its tagged manifest and assets in the integration fixtures; do not use the codecs-only npm tarball as a pack source.
+> Completed in `obsidian-handbook` commit `7869ddc` after phase 1 published immutable `schema-in-the-mist` tag `v1.1.0`. The installer uses the tagged GitHub repository as its pack source, never the codecs-only npm tarball.
 
 ## Architecture projection
 
