@@ -1,6 +1,6 @@
 ---
 objective: "Une release v1.3.0 publiée laisse tout consommateur convertir les six cibles Lantern/Handbook depuis un TOML canonique validé vers une source déclarée concise quand c'est prouvé sans perte, sinon le TOML brut verbatim, prouvé par un corpus dédié."
-status: in-progress
+status: implemented
 ---
 
 <!-- Fill or omit these sections; never add, rename, or reorder one. -->
