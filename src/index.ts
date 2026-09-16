@@ -32,12 +32,14 @@ export {
 export { createTomlCodec, type TomlCodec } from "./codecs/toml.js";
 export {
   GAMES,
+  MIST_SOURCE_CONVERSION_TARGETS,
   TARGETS,
   TARGET_BY_KEY,
   type Game,
   type GameAbbreviation,
   type GameFolder,
   type MistEngineDocumentTarget,
+  type MistSourceConversionTarget,
   type SchemaTarget,
 } from "./zod/constants.js";
 

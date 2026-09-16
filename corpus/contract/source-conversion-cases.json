@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "cases": [
+    { "id": "story-theme-concise", "target": "legend-in-the-mist/story-theme", "file": "concise/legend-in-the-mist--story-theme.toml", "expectedKind": "concise" },
+    { "id": "challenge-concise", "target": "legend-in-the-mist/challenge", "file": "concise/legend-in-the-mist--challenge.toml", "expectedKind": "concise" },
+    { "id": "journey-concise", "target": "legend-in-the-mist/journey", "file": "concise/legend-in-the-mist--journey.toml", "expectedKind": "concise" },
+    { "id": "theme-kit-concise", "target": "legend-in-the-mist/theme-kit", "file": "concise/legend-in-the-mist--theme-kit.toml", "expectedKind": "concise" },
+    { "id": "theme-card-concise", "target": "city-of-mist/theme-card", "file": "concise/city-of-mist--theme-card.toml", "expectedKind": "concise" },
+    { "id": "danger-concise", "target": "city-of-mist/danger", "file": "concise/city-of-mist--danger.toml", "expectedKind": "concise" },
+
+    { "id": "story-theme-unknown-root", "target": "legend-in-the-mist/story-theme", "file": "raw-fallback/legend-in-the-mist--story-theme--unknown-field.toml", "expectedKind": "raw" },
+    { "id": "journey-unknown-meta", "target": "legend-in-the-mist/journey", "file": "raw-fallback/legend-in-the-mist--journey--meta-unknown.toml", "expectedKind": "raw" },
+    { "id": "theme-kit-comment", "target": "legend-in-the-mist/theme-kit", "file": "raw-fallback/legend-in-the-mist--theme-kit--comment.toml", "expectedKind": "raw" },
+    { "id": "challenge-unknown-nested", "target": "legend-in-the-mist/challenge", "file": "raw-fallback/legend-in-the-mist--challenge--nested-unknown.toml", "expectedKind": "raw" },
+    { "id": "theme-card-unknown-root", "target": "city-of-mist/theme-card", "file": "raw-fallback/city-of-mist--theme-card--unknown-field.toml", "expectedKind": "raw" },
+    { "id": "danger-comment", "target": "city-of-mist/danger", "file": "raw-fallback/city-of-mist--danger--comment.toml", "expectedKind": "raw" }
+  ]
+}
