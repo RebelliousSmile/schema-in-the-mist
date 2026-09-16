@@ -52,8 +52,9 @@ try {
   const assertion = `
     import fs from "node:fs";
     import { createRequire } from "node:module";
-    import { CONTRACT_VERSION, MIST_ENGINE_CODECS } from "schema-in-the-mist";
+    import { CONTRACT_VERSION, MIST_ENGINE_CODECS, MIST_SOURCE_CONVERSION_CODECS } from "schema-in-the-mist";
     if (CONTRACT_VERSION !== 1 || Object.keys(MIST_ENGINE_CODECS).length !== 14) throw new Error("public API");
+    if (Object.keys(MIST_SOURCE_CONVERSION_CODECS).length !== 6) throw new Error("source conversion public API");
     const require = createRequire(import.meta.url);
     JSON.parse(fs.readFileSync(require.resolve("schema-in-the-mist/schemas/v1/city-of-mist/danger.schema.json"), "utf8"));
     JSON.parse(fs.readFileSync(require.resolve("schema-in-the-mist/corpus/contract/cases.json"), "utf8"));

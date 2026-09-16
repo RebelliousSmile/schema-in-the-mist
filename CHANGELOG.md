@@ -5,11 +5,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v1.3.0] - 2026-09-15
+## [v1.3.0] - 2026-09-16
 
 ### Added
 
 - Freeze an :Otherscape-scoped design contract and project separate Metro light and dark outputs to the Handbook pack.
+- Publish `MIST_SOURCE_CONVERSION_CODECS` and `convertToSource`, converting a validated TOML document into a concise canonical source when proven lossless, or the raw input verbatim otherwise, for the six `legend-in-the-mist/{story-theme,challenge,journey,theme-kit}` and `city-of-mist/{theme-card,danger}` targets.
 
 ## [v1.2.0] - 2026-09-15
 

@@ -1,5 +1,6 @@
 import type { z } from "zod";
 import { createJsonCodec } from "./codecs/json.js";
+import { createSourceConversionCodec } from "./codecs/source.js";
 import { createTomlCodec } from "./codecs/toml.js";
 import { CityOfMistCustomMoveSchema } from "./zod/city-of-mist/custom-move.js";
 import { CityOfMistDangerSchema } from "./zod/city-of-mist/danger.js";
@@ -23,15 +24,22 @@ export {
   assertCompatiblePackageVersion,
 } from "./contract-version.js";
 export { createJsonCodec, type JsonCodec } from "./codecs/json.js";
+export {
+  createSourceConversionCodec,
+  type MistSourceConversion,
+  type SourceConversionCodec,
+} from "./codecs/source.js";
 export { createTomlCodec, type TomlCodec } from "./codecs/toml.js";
 export {
   GAMES,
+  MIST_SOURCE_CONVERSION_TARGETS,
   TARGETS,
   TARGET_BY_KEY,
   type Game,
   type GameAbbreviation,
   type GameFolder,
   type MistEngineDocumentTarget,
+  type MistSourceConversionTarget,
   type SchemaTarget,
 } from "./zod/constants.js";
 
@@ -111,4 +119,30 @@ export const MIST_ENGINE_CODECS = {
   "otherscape/power-set": otherscapePowerSetCodec,
   "otherscape/theme": otherscapeThemeCodec,
   "otherscape/theme-kit": otherscapeThemeKitCodec,
+} as const;
+
+export const legendInTheMistStoryThemeSourceCodec = createSourceConversionCodec(
+  LegendInTheMistStoryThemeSchema,
+);
+export const legendInTheMistChallengeSourceCodec = createSourceConversionCodec(
+  LegendInTheMistChallengeSchema,
+);
+export const legendInTheMistJourneySourceCodec = createSourceConversionCodec(
+  LegendInTheMistJourneySchema,
+);
+export const legendInTheMistThemeKitSourceCodec = createSourceConversionCodec(
+  LegendInTheMistThemeKitSchema,
+);
+export const cityOfMistThemeCardSourceCodec = createSourceConversionCodec(
+  CityOfMistThemeCardSchema,
+);
+export const cityOfMistDangerSourceCodec = createSourceConversionCodec(CityOfMistDangerSchema);
+
+export const MIST_SOURCE_CONVERSION_CODECS = {
+  "legend-in-the-mist/story-theme": legendInTheMistStoryThemeSourceCodec,
+  "legend-in-the-mist/challenge": legendInTheMistChallengeSourceCodec,
+  "legend-in-the-mist/journey": legendInTheMistJourneySourceCodec,
+  "legend-in-the-mist/theme-kit": legendInTheMistThemeKitSourceCodec,
+  "city-of-mist/theme-card": cityOfMistThemeCardSourceCodec,
+  "city-of-mist/danger": cityOfMistDangerSourceCodec,
 } as const;

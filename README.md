@@ -6,7 +6,7 @@ The aim is an ecosystem of interoperable digital tools where they can exchange s
 
 ## Install and use
 
-Stable builds are distributed as immutable GitHub Release assets rather than through the npm registry. Pin `https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.2.0/schema-in-the-mist-1.2.0.tgz` in the consumer's `package.json`, commit the lockfile integrity, and verify the archive with the adjacent `.sha256` asset. Then import only the public package entry point:
+Stable builds are distributed as immutable GitHub Release assets rather than through the npm registry. Pin `https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.0/schema-in-the-mist-1.3.0.tgz` in the consumer's `package.json`, commit the lockfile integrity, and verify the archive with the adjacent `.sha256` asset. Then import only the public package entry point:
 
 ```ts
 import {
@@ -20,6 +20,24 @@ const normalizedToml = codec.stringifyToml(danger);
 ```
 
 The package exposes the 14 qualified codecs, their Zod schemas and inferred document types, the contract version constants, versioned JSON Schema files, and the shared conformance corpus. UI form coercion, rendering, styles, and warnings remain consumer concerns.
+
+### Concise or raw source conversion
+
+For six of the fourteen targets — `legend-in-the-mist/{story-theme,challenge,journey,theme-kit}` and `city-of-mist/{theme-card,danger}` — `MIST_SOURCE_CONVERSION_CODECS` converts a validated TOML document into the source it should be declared with: a concise canonical form when the conversion is proven lossless, or the raw input verbatim when it is not (an unrecognized key at any depth, a value a schema transform would change, or a `#` comment).
+
+```ts
+import { MIST_SOURCE_CONVERSION_CODECS } from "schema-in-the-mist";
+
+const rawToml = `
+name = "Boggart"
+rating = 2
+`;
+
+const codec = MIST_SOURCE_CONVERSION_CODECS["city-of-mist/danger"];
+const result = codec.convertToSource(rawToml);
+// result.kind === "concise" | "raw", result.source is the text to declare
+console.log(result.kind, result.source);
+```
 
 ## What’s in here
 
