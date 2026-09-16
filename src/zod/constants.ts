@@ -149,3 +149,14 @@ export const TARGETS = [
 export const TARGET_BY_KEY = Object.fromEntries(
   TARGETS.map((target) => [target.key, target]),
 ) as Record<MistEngineDocumentTarget, (typeof TARGETS)[number]>;
+
+export const MIST_SOURCE_CONVERSION_TARGETS = [
+  "legend-in-the-mist/story-theme",
+  "legend-in-the-mist/challenge",
+  "legend-in-the-mist/journey",
+  "legend-in-the-mist/theme-kit",
+  "city-of-mist/theme-card",
+  "city-of-mist/danger",
+] as const satisfies readonly MistEngineDocumentTarget[];
+
+export type MistSourceConversionTarget = (typeof MIST_SOURCE_CONVERSION_TARGETS)[number];
