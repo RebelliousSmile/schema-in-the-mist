@@ -21,6 +21,21 @@ const normalizedToml = codec.stringifyToml(danger);
 
 The package exposes the 14 qualified codecs, their Zod schemas and inferred document types, the contract version constants, versioned JSON Schema files, and the shared conformance corpus. UI form coercion, rendering, styles, and warnings remain consumer concerns.
 
+### Editor-adapter boundary
+
+`schema-in-the-mist` currently publishes no presentation metadata or
+editor-adapter key. Its TOML documents, Zod schemas, JSON Schemas, and shared
+corpus describe exchangeable game data only. In particular, they do not name
+React components, import paths, CSS classes, editor descriptors, or executable
+consumer configuration.
+
+A consumer such as Lantern owns its editor registry, adapters, form state, and
+the explicit error it reports for an unsupported editor key. If a producer later
+publishes editor descriptors, that producer must first publish a finite,
+versioned vocabulary of declarative keys; Lantern can then require its closed
+registry to match that vocabulary in both directions. Do not add those keys to
+document data or `meta` in this package merely to configure one consumer.
+
 ### Concise or raw source conversion
 
 For six of the fourteen targets — `legend-in-the-mist/{story-theme,challenge,journey,theme-kit}` and `city-of-mist/{theme-card,danger}` — `MIST_SOURCE_CONVERSION_CODECS` converts a validated TOML document into the source it should be declared with: a concise canonical form when the conversion is proven lossless, or the raw input verbatim when it is not (an unrecognized key at any depth, a value a schema transform would change, or a `#` comment).

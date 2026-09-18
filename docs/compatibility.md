@@ -26,6 +26,8 @@
 - Required trimmed strings also carry a non-whitespace JSON Schema constraint. Trimming is normalization performed by the TypeScript codec after the raw value has passed the same acceptance rule.
 - `0`, `false`, empty lists, and absent optionals remain distinct values. Serializers must test presence rather than truthiness.
 - `publication_type = "corpus"` is a fixture marker and is not a domain enum value. Form state, warnings, export preferences, visual zones, pack capabilities, styles, and assets remain consumer-owned.
+- `schema-in-the-mist` currently publishes no presentation metadata intended for an editor and no adapter-key vocabulary. This applies to the 14 document contracts, their JSON Schema exports, and the shared corpus. The local Otherscape `components.json` is a ten-entry visual-style artifact outside the npm package, not an editor-descriptor registry.
+- A producer that later publishes editor descriptors must own a finite, versioned vocabulary of declarative keys. Lantern must keep the closed key-to-React-adapter mapping and reject missing or orphaned entries through a bidirectional contract assertion; neither component imports nor inferred fallbacks belong in a schema package.
 - Correct canonical metadata, constraints, examples, descriptions, and exports missing from Lantern are retained. [Lantern #3](https://github.com/RebelliousSmile/lantern/issues/3) tracks their preservation during removal of local copies.
 
 ## Consumer verification
