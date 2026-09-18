@@ -1,0 +1,8 @@
+{
+  "providerVersion": 1,
+  "provider": "schema-in-the-mist",
+  "corpus": "corpus/contract/cases.json",
+  "packManifest": "handbook/*/pack.json",
+  "capabilities": { "lantern": ["edit:mist"], "handbook": ["render:mist"] },
+  "commands": { "validatePack": ["npm", "run", "validate:contract", "--"] }
+}
