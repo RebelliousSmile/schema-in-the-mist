@@ -1,6 +1,6 @@
 ---
 objective: "L'issue #13 établit explicitement que schema-in-the-mist ne publie pas encore de métadonnée d'adaptateur, et sépare ce constat du raccordement des 80 descripteurs par leur producteur et Lantern."
-status: in-progress
+status: implemented
 ---
 
 # Plan: Établir la frontière des clés d'adaptateur consommateur
