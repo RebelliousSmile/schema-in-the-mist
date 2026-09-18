@@ -5,6 +5,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.3.1] - 2026-09-18
+
+### Changed
+
+- Clarify that Mist document contracts publish no editor-adapter keys; editor registries and React adapters remain consumer-owned until their actual producer publishes a finite vocabulary.
+
 ## [v1.3.0] - 2026-09-16
 
 ### Added

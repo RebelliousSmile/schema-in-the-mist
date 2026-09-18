@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/RebelliousSmile/schema-in-the-mist/v1.3.0/schemas/v1/otherscape/theme-kit.schema.json",
+  "$id": "https://raw.githubusercontent.com/RebelliousSmile/schema-in-the-mist/v1.3.1/schemas/v1/otherscape/theme-kit.schema.json",
   "type": "object",
   "properties": {
     "title_tag": {
