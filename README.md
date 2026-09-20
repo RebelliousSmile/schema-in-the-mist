@@ -6,7 +6,7 @@ The aim is an ecosystem of interoperable digital tools where they can exchange s
 
 ## Install and use
 
-Stable builds are distributed as immutable GitHub Release assets rather than through the npm registry. Pin `https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.2/schema-in-the-mist-1.3.2.tgz` in the consumer's `package.json`, commit the lockfile integrity, and verify the archive with the adjacent `.sha256` asset. Then import only the public package entry point:
+Stable builds are distributed as immutable GitHub Release assets rather than through the npm registry. Pin `https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.3/schema-in-the-mist-1.3.3.tgz` in the consumer's `package.json`, commit the lockfile integrity, and verify the archive with the adjacent `.sha256` asset. Then import only the public package entry point:
 
 ```ts
 import {

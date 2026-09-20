@@ -1,5 +1,5 @@
 ---
-status: pending
+status: done
 ---
 
 # Instruction: Livrer le correctif et nettoyer les artefacts Git
@@ -14,6 +14,9 @@ schema-in-the-mist/
 ├── ✏️ package-lock.json                         version racine synchronisée
 ├── ✏️ src/contract-version.ts                   tag de release aligné sur v1.3.3, contrat conservé à 1
 ├── ✏️ CHANGELOG.md                              note de correction de surface distribuée
+├── ✏️ README.md                                 URL d’installation épinglée vers l’asset v1.3.3
+├── ✏️ schemas/v1/{game}/*.schema.json            14 identifiants canoniques ancrés au tag v1.3.3
+├── ✏️ schemas/{game}/*.schema.json               14 miroirs de commodité régénérés depuis la même source
 ├── ❌ schema-in-the-mist-1.1.0.tgz              ancien artefact suivi
 ├── ❌ schema-in-the-mist-1.1.0.tgz.sha256       checksum de l’ancien artefact suivi
 ├── ❌ schema-in-the-mist-1.2.0.tgz              ancien artefact suivi
@@ -39,10 +42,11 @@ title: Test scope
 ---
 journey
   section Setup
-    Mettre à jour toutes les occurrences de version à 1.3.3 et retirer les artefacts suivis => arbre versionné cohérent sans archive Git: 5: cli
+    Mettre à jour toutes les occurrences de version à 1.3.3, régénérer les 28 schémas et retirer les artefacts suivis => arbre versionné cohérent sans archive Git: 5: cli
   section Happy path
     Exécuter release:prepare deux fois sur le même commit => mêmes listes de fichiers et même checksum: 5: system
     Installer et valider le tarball produit => le descripteur et les packs sont accessibles dans un consommateur isolé: 5: system
+    Lire l’instruction d’installation => elle épingle l’URL exacte de l’asset v1.3.3 et de son checksum: 5: system
     Publier la release GitHub v1.3.3 avec le tarball et son checksum => actifs téléchargeables et tag immuable: 5: api
   section Edge case - archive historique
     Vérifier les fichiers suivis après le nettoyage => aucun fichier *.tgz ou *.tgz.sha256 n’est encore versionné: 5: cli
@@ -54,8 +58,8 @@ journey
 
 > La release doit identifier exactement les octets qui portent les nouveaux chemins publics.
 
-1. Bumper `package.json`, `package-lock.json` et `SCHEMA_RELEASE_TAG` à `1.3.3` / `v1.3.3`, sans changer `CONTRACT_VERSION`.
-2. Ajouter l’entrée `v1.3.3` au changelog : le descripteur expose sa version de contrat et le paquet publie/résout le descripteur et les packs Handbook.
+1. Bumper `package.json`, `package-lock.json` et `SCHEMA_RELEASE_TAG` à `1.3.3` / `v1.3.3`, sans changer `CONTRACT_VERSION`, puis lancer `npm run gen` pour régénérer les 14 schémas sous `schemas/v1/` et leurs 14 miroirs sous `schemas/` avec leurs `$id` ancrés au nouveau tag.
+2. Mettre à jour le README pour épingler l’URL de téléchargement et le checksum de l’asset `v1.3.3`, puis ajouter l’entrée `v1.3.3` au changelog : le descripteur expose sa version de contrat et le paquet publie/résout le descripteur et les packs Handbook.
 3. Exécuter la validation complète, la validation de compatibilité de version et la préparation reproductible; conserver les archives générées comme fichiers ignorés destinés aux assets de release.
 
 ### `2)` Retirer les archives suivies et publier la release complète
@@ -71,7 +75,7 @@ journey
 
 | Task | Acceptance criteria |
 | --- | --- |
-| 1 | Tous les artefacts porteurs de version désignent `v1.3.3`, tandis que le descripteur et la constante publique conservent le contrat majeur 1. |
+| 1 | Tous les artefacts porteurs de version, y compris l’URL et le checksum de téléchargement du README, désignent `v1.3.3`; les 14 `$id` canoniques et leurs 14 miroirs sont régénérés depuis ce tag, tandis que le descripteur et la constante publique conservent le contrat majeur 1. |
 | 1 | Deux préparations depuis le même commit produisent le même tarball et le même checksum, et l’installation isolée valide les nouvelles surfaces publiques. |
 | 2 | Aucun `.tgz` ni `.tgz.sha256` n’est suivi par Git; la release GitHub v1.3.3 attache à la place exactement une archive et son checksum vérifié. |
 | 2 | Les consommateurs ne sont mis à jour qu’après la publication de la release du package de schémas. |
