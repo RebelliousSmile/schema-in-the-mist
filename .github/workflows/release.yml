@@ -32,8 +32,27 @@ jobs:
         run: |
           version="${GITHUB_REF_NAME#v}"
           archive="schema-in-the-mist-${version}.tgz"
-          gh release create "${GITHUB_REF_NAME}" --verify-tag --draft --generate-notes --title "schema-in-the-mist ${version}"
-          gh release upload "${GITHUB_REF_NAME}" "${archive}" "${archive}.sha256"
-          gh release edit "${GITHUB_REF_NAME}" --draft=false --latest
+
+          # A release may already exist for this tag: a manual `gh release create` racing this
+          # workflow (CLAUDE.md records it on v1.3.0, and it happened again on v1.3.3), or a re-run
+          # of this job. Creating one unconditionally makes GitHub mint an `untagged-<hash>` draft
+          # instead of binding the tag, and the upload then collides with the assets already there.
+          # Adopt whatever exists rather than fork a second release next to it.
+          if ! gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            gh release create "${GITHUB_REF_NAME}" --verify-tag --draft --generate-notes --title "schema-in-the-mist ${version}"
+          fi
+
+          if [ "$(gh release view "${GITHUB_REF_NAME}" --json isDraft --jq .isDraft)" = "true" ]; then
+            gh release upload "${GITHUB_REF_NAME}" --clobber "${archive}" "${archive}.sha256"
+            gh release edit "${GITHUB_REF_NAME}" --draft=false --latest
+          else
+            # Already published, therefore immutable: its assets can no longer be replaced. Prove it
+            # carries what this build produced instead of failing the job over work already done.
+            for asset in "${archive}" "${archive}.sha256"; do
+              gh release view "${GITHUB_REF_NAME}" --json assets --jq '.assets[].name' | grep -qxF "${asset}" \
+                || { echo "::error::${GITHUB_REF_NAME} is already published without ${asset}"; exit 1; }
+            done
+          fi
+
           gh release view "${GITHUB_REF_NAME}" --json tagName,isDraft,isImmutable,url,assets
           test "$(gh release view "${GITHUB_REF_NAME}" --json isImmutable --jq .isImmutable)" = "true"
