@@ -1,6 +1,6 @@
 ---
 objective: "Le paquet v1.3.3 publie un descripteur versionné et les packs Handbook qu’il annonce, vérifiés depuis un consommateur isolé, sans conserver d’archives de release dans Git."
-status: in-progress
+status: implemented
 ---
 
 # Plan: Publier la surface du provider et des packs
