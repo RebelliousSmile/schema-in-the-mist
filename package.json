@@ -7,6 +7,7 @@
     "gen": "tsx tools/gen-schemas.ts",
     "validate": "tsx tools/validate-examples.ts",
     "validate:contract": "tsx tools/validate-contract.ts",
+    "validate:packs": "tsx tools/validate-packs.ts",
     "validate:source-conversion": "tsx tools/validate-source-conversion.ts",
     "validate:version": "tsx tools/validate-version-compat.ts",
     "validate:package": "tsx tools/validate-package.ts",

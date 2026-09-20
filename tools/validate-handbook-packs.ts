@@ -78,6 +78,9 @@ const schemaFile = "schemas/appearance/game-pack.schema.json";
 const validatePack = new Ajv({ allErrors: true, strict: false }).compile(
   json(schemaFile) as AnySchema,
 );
+/* Cross-tool callers append the manifest after npm’s own "--" separator; pnpm forwards that separator too. */
+const argument = process.argv.slice(2).find((value) => value !== "--");
+const requested = argument === undefined ? undefined : argument.split("\\").join("/");
 const catalogueFile = "handbook.json";
 const catalogue = record(json(catalogueFile), catalogueFile, "root");
 fields(catalogue, ROOT_FIELDS, catalogueFile, "root");
@@ -87,6 +90,7 @@ if (!Array.isArray(catalogue.packs) || catalogue.packs.length === 0) fail(catalo
 
 const ids = new Set<string>();
 const manifestPaths = new Set<string>();
+let validated = 0;
 for (let index = 0; index < catalogue.packs.length; index++) {
   const entryField = `packs[${index}]`;
   const entry = record(catalogue.packs[index], catalogueFile, entryField);
@@ -100,6 +104,9 @@ for (let index = 0; index < catalogue.packs.length; index++) {
   ids.add(id);
   manifestPaths.add(manifestFile);
   if (!fs.existsSync(manifestFile)) fail(catalogueFile, `${entryField}.path does not exist: ${manifestFile}`);
+  /* Cross-tool callers hand one manifest at a time; the catalogue-wide checks above still run for every entry. */
+  if (requested !== undefined && manifestFile !== requested) continue;
+  validated += 1;
 
   const manifest = record(json(manifestFile), manifestFile, "root");
   fields(manifest, MANIFEST_FIELDS, manifestFile, "root");
@@ -165,4 +172,6 @@ for (const required of ["handbook/README.md", "handbook/LICENSES/SonOfOak.LICENS
   if (!fs.existsSync(required)) fail(required, "required Handbook documentation is missing");
 }
 
-console.log(`✓ ${catalogue.packs.length} Handbook packs and their declared assets are valid.`);
+/* A manifest nobody in the catalogue declares must not pass as a green run. */
+if (requested !== undefined && validated === 0) fail(catalogueFile, `no catalogue entry declares ${requested}`);
+console.log(validated === 1 ? `✓ 1 Handbook pack and its declared assets are valid.` : `✓ ${validated} Handbook packs and their declared assets are valid.`);
