@@ -33,6 +33,18 @@ try {
     const paths = files.map(({ path: file }) => file);
     assert.ok(paths.some((file) => file === "dist/index.js"));
     assert.ok(paths.some((file) => file === "corpus/contract/cases.json"));
+    assert.ok(paths.some((file) => file === "cross-tool-provider.json"));
+    for (const file of [
+      "handbook/README.md",
+      "handbook/city-of-mist/pack.json",
+      "handbook/city-of-mist/assets/styles/city-of-mist.css",
+      "handbook/legend-in-the-mist/pack.json",
+      "handbook/legend-in-the-mist/assets/fonts/pragroman.ttf",
+      "handbook/otherscape/pack.json",
+      "handbook/otherscape/assets/styles/otherscape.css",
+    ]) {
+      assert.ok(paths.some((path) => path === file), `missing packaged ${file}`);
+    }
     assert.equal(paths.filter((file) => file.endsWith(".schema.json") && file.startsWith("schemas/v1/")).length, 14);
     assert.ok(paths.every((file) => !file.startsWith("tools/") && !file.startsWith("handbook-packs/")));
   }
@@ -51,13 +63,24 @@ try {
 
   const assertion = `
     import fs from "node:fs";
-    import { createRequire } from "node:module";
     import { CONTRACT_VERSION, MIST_ENGINE_CODECS, MIST_SOURCE_CONVERSION_CODECS } from "schema-in-the-mist";
     if (CONTRACT_VERSION !== 1 || Object.keys(MIST_ENGINE_CODECS).length !== 14) throw new Error("public API");
     if (Object.keys(MIST_SOURCE_CONVERSION_CODECS).length !== 6) throw new Error("source conversion public API");
-    const require = createRequire(import.meta.url);
-    JSON.parse(fs.readFileSync(require.resolve("schema-in-the-mist/schemas/v1/city-of-mist/danger.schema.json"), "utf8"));
-    JSON.parse(fs.readFileSync(require.resolve("schema-in-the-mist/corpus/contract/cases.json"), "utf8"));
+    const readJson = (subpath) => JSON.parse(fs.readFileSync(new URL(import.meta.resolve("schema-in-the-mist/" + subpath)), "utf8"));
+    readJson("schemas/v1/city-of-mist/danger.schema.json");
+    readJson("corpus/contract/cases.json");
+    const provider = readJson("cross-tool-provider.json");
+    if (provider.contractVersion !== CONTRACT_VERSION) throw new Error("provider contract version");
+    for (const manifest of [
+      "handbook/city-of-mist/pack.json",
+      "handbook/legend-in-the-mist/pack.json",
+      "handbook/otherscape/pack.json",
+    ]) readJson(manifest);
+    for (const asset of [
+      "handbook/city-of-mist/assets/styles/city-of-mist.css",
+      "handbook/legend-in-the-mist/assets/fonts/pragroman.ttf",
+      "handbook/otherscape/assets/styles/otherscape.css",
+    ]) fs.statSync(new URL(import.meta.resolve("schema-in-the-mist/" + asset)));
     try {
       await import("schema-in-the-mist/dist/zod/constants.js");
       throw new Error("internal path was exported");

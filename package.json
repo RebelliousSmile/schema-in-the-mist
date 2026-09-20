@@ -16,7 +16,7 @@
     "validate:handbook-packs": "tsx tools/validate-handbook-packs.ts",
     "generate:otherscape-design": "tsx tools/build-otherscape-handbook-design.ts --write",
     "validate:otherscape-design": "tsx tools/validate-otherscape-design.ts && tsx tools/build-otherscape-handbook-design.ts --check",
-    "check": "npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run validate:handbook-packs",
+    "check": "npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run validate:handbook-packs && npm run validate:packs",
     "toml:one": "tsx tools/toml2json.ts"
   },
   "repository": {
@@ -41,6 +41,8 @@
     "dist",
     "schemas/v1",
     "corpus/contract",
+    "cross-tool-provider.json",
+    "handbook",
     "README.md",
     "LICENSES/CODE-LICENSE.md"
   ],
@@ -53,6 +55,8 @@
     },
     "./schemas/v1/*": "./schemas/v1/*",
     "./corpus/contract/*": "./corpus/contract/*",
+    "./cross-tool-provider.json": "./cross-tool-provider.json",
+    "./handbook/*": "./handbook/*",
     "./package.json": "./package.json"
   },
   "devDependencies": {

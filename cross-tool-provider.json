@@ -1,5 +1,6 @@
 {
   "providerVersion": 1,
+  "contractVersion": 1,
   "provider": "schema-in-the-mist",
   "corpus": "corpus/contract/cases.json",
   "packManifest": "handbook/*/pack.json",

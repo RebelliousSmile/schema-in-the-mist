@@ -2,9 +2,11 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { CONTRACT_VERSION } from "../src/contract-version.js";
 
 type Provider = {
   providerVersion?: unknown;
+  contractVersion?: unknown;
   packManifest?: unknown;
   commands?: { validatePack?: unknown };
 };
@@ -12,6 +14,7 @@ type Provider = {
 const root = process.cwd();
 const provider = JSON.parse(fs.readFileSync(path.join(root, "cross-tool-provider.json"), "utf8")) as Provider;
 assert.equal(provider.providerVersion, 1, "unsupported cross-tool provider");
+assert.equal(provider.contractVersion, CONTRACT_VERSION, "provider contractVersion must match CONTRACT_VERSION");
 const command = provider.commands?.validatePack;
 assert.ok(Array.isArray(command) && command.every((part) => typeof part === "string"), "missing validatePack command");
 
