@@ -51,12 +51,17 @@ const validProbe = {
   },
   assets: {
     stylesheets: ["styles/base.css", "styles/components.css"],
+    resources: ["styles/fonts/body.woff2"],
   },
 };
 const invalidProbe = { ...validProbe, unknown: true };
 const invalidStylesheetProbe = {
   ...validProbe,
   assets: { stylesheets: ["../escape.css"] },
+};
+const invalidResourceProbe = {
+  ...validProbe,
+  assets: { resources: ["styles/fonts/script.js"] },
 };
 const validate = new Ajv({ allErrors: true, strict: false }).compile(schema);
 
@@ -68,6 +73,9 @@ if (validate(invalidProbe)) {
 }
 if (validate(invalidStylesheetProbe)) {
   throw new Error("Legacy appearance schema accepted an unsafe stylesheet path");
+}
+if (validate(invalidResourceProbe)) {
+  throw new Error("Legacy appearance schema accepted an executable font resource");
 }
 
 console.log("✓ Legacy appearance schemas are identical, self-contained, and usable offline.");
