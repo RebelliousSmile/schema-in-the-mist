@@ -1,0 +1,45 @@
+---
+name: audit
+description: Codebase audit report - performance pillar, schema-in-the-mist
+argument-hint: N/A
+---
+
+# Codebase Audit: schema-in-the-mist / performance
+
+Il n'y a ici ni requête, ni chemin chaud, ni boucle de rendu : le coût de ce dépôt est un coût de poids, et il est payé à chaque installation. Le paquet publié fait **2 692 910 octets non compressés**, dont **1 943 892 pour quatre PNG** — 72 % du total pour quatre images, dans un format que les deux dépôts frères ont déjà abandonné au profit de WebP.
+
+- **Date**: 2026-09-20
+- **Scope**: schema-in-the-mist / performance
+- **Health**: fair
+- **Findings**: 1 critical, 3 warning, 1 minor
+
+_no profiler, static heuristics only_ — les mesures ci-dessous sont des tailles réelles sur disque et dans le tarball (`npm pack --dry-run --json`), pas des mesures d'exécution.
+
+## Findings
+
+| Sev | Category    | Location                                                | Issue                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Suggested fix                                                                                                                                                                                                                                                                | Effort |
+| --- | ----------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| 🔴  | performance | `handbook/legend-in-the-mist/pack.json:112`              | **Quatre PNG pèsent 91 % du dossier publié `handbook/`.** Mesuré : `handbook/` fait 2 137 861 o, dont `theme-card-origin.png` 573 399, `theme-card-greatness.png` 565 305, `theme-card-adventure.png` 530 372 et `theme-card.png` 274 816 — **1 943 892 o à eux quatre**. `handbook` est dans `files`, donc ces images sont dans le tarball et chaque `npm install` les télécharge. Les deux dépôts frères ne livrent que du **WebP**, à taille d'affichage comparable : le format ici n'est pas un choix documenté, c'est un reste | Convertir les quatre cartes en WebP et mettre à jour les chemins de `pack.json:112-115`. Une carte de thème en WebP de qualité 82 tombe typiquement sous 120 ko : l'ordre de grandeur attendu est **un tarball divisé par cinq**. À enchaîner avec la décision de licence de `dependencies.md`, qui porte sur les mêmes fichiers | M      |
+| 🟡  | performance | `handbook/legend-in-the-mist/pack.json:117`              | **La police est livrée en TTF, pas en WOFF2** : `fonts/pragroman.ttf`, 85 484 o, déclarée avec `weight: "500"`. WOFF2 est le seul format nécessaire pour une cible Electron / Chromium comme l'hôte visé, et sa compression Brotli sur contours divise typiquement par 2 à 3. Là encore, les dépôts frères ne livrent que du WOFF2                                                                                                                                                       | Convertir en WOFF2 et ne livrer que ce format. Aucun repli TTF n'est utile pour l'hôte ciblé                                                                                                                                                                                    | S      |
+| 🟡  | performance | `schemas/v1/city-of-mist/danger.schema.json:1`           | **Les 14 schémas publiés n'utilisent ni `$defs` ni `$ref` : compté, 0 fichier sur 14 en contient un.** Tout est intégralement recopié en ligne, ce qui signifie que le `MetaSchema` dupliqué 14 fois côté sources (voir `code-quality.md`) est aussi dupliqué 14 fois côté publié. Résultat : **120 186 o pour 14 fichiers**, alors qu'un bloc commun sorti en `$defs` réduirait mécaniquement l'ensemble. C'est aussi un coût à l'exécution pour le consommateur : Ajv compile 14 copies du même sous-schéma | Une fois `src/zod/common/` extrait, faire produire à `gen-schemas.ts` un `$defs` par primitive partagée et des `$ref` vers elle. À arbitrer en connaissance de cause : le `$ref` complique la lecture humaine du schéma, l'inlining la simplifie — mais 120 ko pour 14 cibles est le prix de ce confort | M      |
+| 🟡  | performance | `handbook/legend-in-the-mist/assets/separator.svg:1`     | **Un SVG de 44 061 octets**, soit dix fois `callout-edge.svg` (4 472) et douze fois `weakness-mark.svg` (3 572). Une taille de cet ordre pour un séparateur signale des chemins non simplifiés ou des métadonnées d'éditeur conservées. Il est publié comme le reste de `handbook/`                                                                                                                                                                                                       | Passer les 19 SVG à un optimiseur (`svgo`) et l'ajouter comme étape du script de préparation des ressources, pour que la régression ne revienne pas au prochain export                                                                                                             | S      |
+| 🟢  | performance | `package.json:12`                                       | La chaîne `check` enchaîne **10 étapes séquentielles** reliées par `&&`, dont un `tsc` sans compilation incrémentale et sept validations qui relisent chacune le corpus depuis le disque. À l'échelle actuelle le coût reste négligeable — les trois dernières exécutions d'intégration sur `main` tiennent en 25 s, 28 s et 1 min 1 s                                                                                                                                                       | Rien à faire aujourd'hui. Si `check` dépasse la minute en local, activer `incremental` sur le `tsc` et regrouper les validations qui parcourent le même corpus                                                                                                                     | S      |
+
+Vérifié sain :
+
+- **La bibliothèque publiée est petite et sans travail à l'import** : `dist` ne contient que des définitions de types et des schémas Zod déclaratifs. Aucun chemin chaud, aucune boucle, aucune entrée-sortie au chargement — `src` ne lit pas le disque. Importer ce paquet ne coûte que le temps d'analyse du module.
+- **Les paquets de thème restent légers** : 11 978 o pour :Otherscape (166 valeurs hexadécimales), 6 215 pour City of Mist (71), 4 585 pour Legend in the Mist (38). Le poids du dépôt vient des ressources binaires, jamais des données de configuration.
+- **La génération est déterministe et rejouable** : `gen-schemas.ts` réécrit les 14 fichiers à chaque appel sans état intermédiaire, ce qui rend le coût de régénération constant et prévisible.
+- **La taille de `src` est cohérente avec son contenu** : 153 638 o pour 4 210 lignes de schémas richement documentés, et 39 208 o pour l'outillage. Aucun fichier généré n'a été commité par erreur dans `src`.
+- **Les schémas eux-mêmes sont bornés** : le plus gros fichier publié tient dans l'ordre de grandeur des autres, sans structure récursive non bornée qui exploserait à la validation.
+
+## Top actions
+
+1. **Convertir les quatre cartes de thème en WebP** (`handbook/legend-in-the-mist/pack.json:112`) : effort `M`, et c'est le seul changement du dépôt qui divise le paquet publié par cinq. À traiter avec la question de licence qui porte sur les mêmes fichiers.
+2. **Passer la police en WOFF2** (`handbook/legend-in-the-mist/pack.json:117`) : effort `S`.
+3. **Optimiser les SVG et brancher `svgo` dans la préparation des ressources** (`handbook/legend-in-the-mist/assets/separator.svg:1`) : effort `S`.
+
+## Coverage
+
+- **Scanned**: performance (poids réel du paquet publié via `npm pack`, entrée par entrée ; formats de ressources binaires face aux dépôts frères ; taille et structure des schémas générés, présence de `$defs` / `$ref` et coût de compilation pour le consommateur ; travail effectué à l'import de la bibliothèque ; coût et durée de la chaîne de vérification, mesurée sur les exécutions d'intégration réelles ; taille des données de configuration)
+- **Skipped**: none
