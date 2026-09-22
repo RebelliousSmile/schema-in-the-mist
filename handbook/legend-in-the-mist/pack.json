@@ -1,6 +1,6 @@
 {
   "manifestVersion": 1,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "minimumHandbookVersion": "2.7.0",
   "requires": [
     "block:theme-card",
@@ -119,7 +119,23 @@
           "file": "fonts/pragroman.ttf",
           "weight": "500"
         }
-      }
+      },
+      "stylesheets": [
+        "styles/fonts.css"
+      ],
+      "resources": [
+        "styles/fonts/caveat-1.woff2",
+        "styles/fonts/caveat-2.woff2",
+        "styles/fonts/caveat-brush-1.woff2",
+        "styles/fonts/im-fell-english-1.woff2",
+        "styles/fonts/im-fell-english-2.woff2",
+        "styles/fonts/im-fell-great-primer-1.woff2",
+        "styles/fonts/im-fell-great-primer-2.woff2",
+        "styles/fonts/labrada-1.woff2",
+        "styles/fonts/labrada-2.woff2",
+        "styles/fonts/labrada-3.woff2",
+        "styles/fonts/labrada-4.woff2"
+      ]
     }
   }
 }

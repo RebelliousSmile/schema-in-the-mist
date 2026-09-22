@@ -266,6 +266,16 @@
           },
           "uniqueItems": true,
           "description": "Ordered stylesheet resources relative to the pack's asset root."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?=.*\\.(?:woff2?|ttf|otf)$)(?!\\/)(?!.*\\/{2})(?!.*\\\\)(?!.*:)[A-Za-z0-9][A-Za-z0-9._-]*(?:\\/[A-Za-z0-9][A-Za-z0-9._-]*)*$",
+            "description": "A font file referenced by a pack stylesheet, relative to the asset root."
+          },
+          "uniqueItems": true,
+          "description": "Additional font files installed with the pack for stylesheet URLs. These files do not create user-facing font family entries."
         }
       },
       "additionalProperties": false

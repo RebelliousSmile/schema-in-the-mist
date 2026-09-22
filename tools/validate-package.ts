@@ -36,6 +36,7 @@ try {
     assert.ok(paths.some((file) => file === "cross-tool-provider.json"));
     for (const file of [
       "handbook/README.md",
+      "schemas/appearance/game-pack.schema.json",
       "handbook/city-of-mist/pack.json",
       "handbook/city-of-mist/assets/styles/city-of-mist.css",
       "handbook/legend-in-the-mist/pack.json",
@@ -68,6 +69,8 @@ try {
     if (Object.keys(MIST_SOURCE_CONVERSION_CODECS).length !== 6) throw new Error("source conversion public API");
     const readJson = (subpath) => JSON.parse(fs.readFileSync(new URL(import.meta.resolve("schema-in-the-mist/" + subpath)), "utf8"));
     readJson("schemas/v1/city-of-mist/danger.schema.json");
+    const appearance = readJson("schemas/appearance/game-pack.schema.json");
+    if (!appearance.properties.assets.properties.resources) throw new Error("published font resource contract");
     readJson("corpus/contract/cases.json");
     const provider = readJson("cross-tool-provider.json");
     if (provider.contractVersion !== CONTRACT_VERSION) throw new Error("provider contract version");
