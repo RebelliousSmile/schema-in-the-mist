@@ -44,7 +44,7 @@ journey
   section Happy path
     Run npm run release-train:assert -- manifest => SHA-verified candidate and both fixed consumer proofs produce matching machine-readable provenance: 5: cli
   section Edge case - altered candidate or consumer evidence
-    Change the downloaded bytes, resolved archive, lockfile integrity, consumer commit, or result schema => assertion fails and emits no promotable provenance: 5: cli
+    Change the downloaded bytes, SHA-512 SRI, resolved archive, lockfile integrity, consumer commit, or result schema => assertion fails and emits no promotable provenance: 5: cli
   section Teardown
     Remove temporary archives and detached consumer checkouts => workspace returns to baseline: 5: system
 ```
@@ -63,7 +63,7 @@ journey
 
 > The provider coordinates evidence but does not duplicate Lantern’s build or Handbook’s renderer.
 
-1. Require each consumer’s machine-readable result to echo its repository, resolved commit, candidate URL, SHA-256, resolved package version, and lockfile integrity, and reject extra/mismatched identities.
+1. Require each consumer’s machine-readable result to echo its repository, resolved commit, candidate URL, SHA-256, SHA-512 SRI, resolved package version, and lockfile integrity, and reject extra/mismatched identities.
 2. Require the Lantern result to attest its production build/install path and the Handbook result to attest its package-pin/source-install and install/render path; retain their detailed assertions in their repositories.
 3. Emit one normalized local assertion record that binds the verified archive, manifest digest, provider commit/tag, consumer commits, and validated result digests for the promotion workflow.
 4. Document the command, expected ownership boundaries, and release sequence without moving consumer adapters, renderer semantics, or user data into this package.
