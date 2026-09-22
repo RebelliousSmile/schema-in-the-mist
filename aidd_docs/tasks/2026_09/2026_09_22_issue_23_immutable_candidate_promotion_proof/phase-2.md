@@ -55,9 +55,9 @@ journey
 
 > Both consumers must prove the exact archive declared by the manifest, not a similarly named package.
 
-1. Download the manifest archive into an isolated temporary directory, calculate SHA-256 locally, and validate the package with the existing packed-public-API validator before any consumer proof.
+1. Download the manifest archive into an isolated temporary directory, calculate SHA-256 and SHA-512 SRI locally, and validate the package with the existing packed-public-API validator before any consumer proof.
 2. Materialize each external repository as a detached checkout at its manifest’s full commit, confirm `HEAD` equals that commit, and prohibit fallback to the daily cross-tool configuration or an existing workspace checkout.
-3. Copy the already validated manifest into each detached checkout and invoke consumers solely through the fixed `npm run release-train:assert -- <manifest>` protocol, forwarding the verified candidate identity through the protocol's controlled manifest file, never a manifest command.
+3. Copy the already validated manifest into each detached checkout and invoke consumers solely through the fixed `npm run release-train:assert -- <manifest>` protocol. Never rewrite package manifests or lockfiles: their adoption branch commits already pin the candidate URL and SRI.
 
 ### `2)` Verify consumer-owned results and preserve provenance
 

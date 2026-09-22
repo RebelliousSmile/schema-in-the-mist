@@ -9,6 +9,7 @@ for (const mutate of [
   (value: any) => { value.provider.archiveUrl = "file:///tmp/candidate.tgz"; },
   (value: any) => { value.command = ["powershell"]; },
   (value: any) => { value.provider.sha256 = "ABC"; },
+  (value: any) => { value.provider.integrity = "sha512-not-sri"; },
 ]) {
   const copy = structuredClone(valid);
   mutate(copy);

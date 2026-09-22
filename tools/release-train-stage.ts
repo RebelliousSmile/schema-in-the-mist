@@ -14,5 +14,7 @@ assert.equal(result.stdout.trim(), providerCommit, "stage from a checkout at the
 const prepared = spawnSync("npm", ["run", "release:prepare", "--", finalTag], { encoding: "utf8", stdio: "inherit", shell: process.platform === "win32" });
 assert.equal(prepared.status, 0, "candidate preparation failed");
 const archive = `schema-in-the-mist-${packageJson.version}.tgz`;
-const sha256 = createHash("sha256").update(fs.readFileSync(archive)).digest("hex");
-console.log(JSON.stringify({ archive, sha256, providerCommit, finalTag }));
+const bytes = fs.readFileSync(archive);
+const sha256 = createHash("sha256").update(bytes).digest("hex");
+const integrity = `sha512-${createHash("sha512").update(bytes).digest("base64")}`;
+console.log(JSON.stringify({ archive, sha256, integrity, providerCommit, finalTag }));

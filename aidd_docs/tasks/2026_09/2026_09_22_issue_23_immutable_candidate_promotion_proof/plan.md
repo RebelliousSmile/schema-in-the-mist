@@ -9,7 +9,7 @@ status: blocked
 
 | Field | Value |
 | --- | --- |
-| **Goal** | Add a manifest-led release train beside the daily provider-contract gate, requiring consumer-owned proof before final promotion. |
+| **Goal** | Add a manifest-led release train beside the daily provider-contract gate, requiring precommitted consumer adoption and proof before final promotion. |
 | **Source** | GitHub issue [RebelliousSmile/schema-in-the-mist#23](https://github.com/RebelliousSmile/schema-in-the-mist/issues/23) |
 
 ## Phases
@@ -34,7 +34,7 @@ status: blocked
 
 | Decision | Why |
 | --- | --- |
-| Keep candidate manifests as committed, declarative repository files; never accept shell fragments or consumer commands from them. | The manifest is provenance, not executable configuration; this prevents an arbitrary-command release path. |
+| Keep candidate manifests as committed, declarative repository files; never accept shell fragments or consumer commands from them. | The manifest pins URL, SHA-256 and SHA-512 SRI while consumer-owned commits pin their own frozen dependency graphs; neither surface is executable configuration. |
 | Retain the existing daily provider-contract gate unchanged. | Its fixed shared matrix detects baseline drift, while the train proves one release candidate adopted by the selected immutable consumer commits. |
 | Promote the already SHA-verified candidate download rather than running `release:prepare` again. | A second build could produce different bytes and would not prove what the consumers installed. |
 | Keep Lantern and Handbook runtime adapters and proof internals consumer-owned. | This package owns its schema, provider descriptor, packs, and provenance only, as required by the cross-repository contract rule. |

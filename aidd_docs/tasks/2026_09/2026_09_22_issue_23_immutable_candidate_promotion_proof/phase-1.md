@@ -50,7 +50,7 @@ journey
 
 > One committed file must name the exact bytes and identities involved in a promotion.
 
-1. Document a versioned JSON shape under `release-trains/` containing the schema-in-the-mist candidate archive URL, SHA-256, provider commit, final tag/version, and immutable Lantern and Handbook repository commits.
+1. Document a versioned JSON shape under `release-trains/` containing the schema-in-the-mist candidate archive URL, SHA-256, SHA-512 SRI, provider commit, final tag/version, and immutable Lantern and Handbook repository commits.
 2. Define only fixed consumer proof identifiers in code; do not allow a manifest to name a binary, script, working directory, environment expression, or arbitrary command.
 3. Require HTTPS GitHub Release asset URLs for this repository, a lowercase 64-hex digest, full 40-hex commits, a canonical final `vX.Y.Z` tag, and consistency between the tag, archive filename, and package version expected by the train.
 
@@ -58,7 +58,7 @@ journey
 
 > The bytes referenced by the manifest must exist before consumers can adopt them.
 
-1. Add a controlled staging command that checks out the declared provider commit, verifies its package version and generated schema IDs against the intended final tag, runs the existing reproducible `release:prepare` once, and records the resulting SHA-256.
+1. Add a controlled staging command that checks out the declared provider commit, verifies its package version and generated schema IDs against the intended final tag, runs the existing reproducible `release:prepare` once, and records the resulting SHA-256 and SHA-512 SRI.
 2. Upload that archive and its checksum to a dedicated candidate GitHub Release whose tag is derived from the final version and full provider commit; record its GitHub Release asset URL for the subsequent committed manifest.
 3. On a rerun, adopt the candidate release only when its tag points to the same provider commit and its archive/checksum hashes match; otherwise fail rather than replace candidate bytes.
 
