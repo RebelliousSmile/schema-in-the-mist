@@ -1,0 +1,18 @@
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import fs from "node:fs";
+import { spawnSync } from "node:child_process";
+
+const [providerCommit, finalTag] = process.argv.slice(2);
+assert.ok(providerCommit && /^[0-9a-f]{40}$/.test(providerCommit), "first argument must be a lowercase full provider commit");
+assert.ok(finalTag && /^v\d+\.\d+\.\d+$/.test(finalTag), "second argument must be a final vX.Y.Z tag");
+const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8")) as { version: string };
+assert.equal(finalTag, `v${packageJson.version}`, "final tag must match package.json version");
+const result = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" });
+assert.equal(result.status, 0, "unable to read provider HEAD");
+assert.equal(result.stdout.trim(), providerCommit, "stage from a checkout at the declared provider commit");
+const prepared = spawnSync("npm", ["run", "release:prepare", "--", finalTag], { encoding: "utf8", stdio: "inherit", shell: process.platform === "win32" });
+assert.equal(prepared.status, 0, "candidate preparation failed");
+const archive = `schema-in-the-mist-${packageJson.version}.tgz`;
+const sha256 = createHash("sha256").update(fs.readFileSync(archive)).digest("hex");
+console.log(JSON.stringify({ archive, sha256, providerCommit, finalTag }));
