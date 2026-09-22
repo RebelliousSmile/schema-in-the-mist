@@ -345,20 +345,13 @@
         "styles/otherscape.css",
         "styles/fonts.css"
       ],
-      "fonts": {
-        "Handbook fira-sans-extra-condensed face 1": {
-          "file": "styles/fonts/fira-sans-extra-condensed-1.woff2"
-        },
-        "Handbook fira-sans-extra-condensed face 2": {
-          "file": "styles/fonts/fira-sans-extra-condensed-2.woff2"
-        },
-        "Handbook fira-sans-extra-condensed face 3": {
-          "file": "styles/fonts/fira-sans-extra-condensed-3.woff2"
-        },
-        "Handbook fira-sans-extra-condensed face 4": {
-          "file": "styles/fonts/fira-sans-extra-condensed-4.woff2"
-        }
-      }
+      "fonts": {},
+      "resources": [
+        "styles/fonts/fira-sans-extra-condensed-1.woff2",
+        "styles/fonts/fira-sans-extra-condensed-2.woff2",
+        "styles/fonts/fira-sans-extra-condensed-3.woff2",
+        "styles/fonts/fira-sans-extra-condensed-4.woff2"
+      ]
     }
   }
 }

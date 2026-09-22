@@ -2,7 +2,7 @@
 
 This directory publishes the game packs installed by Handbook's Mist Engine starter kit.
 
-Pack assets can also declare ordered stylesheet resources. Handbook installs only declared files; the consumer validates and activates a pack stylesheet only for its owning game.
+Pack assets can also declare ordered stylesheet resources. Handbook installs only declared files; the consumer validates and activates a pack stylesheet only for its owning game. Font files referenced by a stylesheet are listed in `assets.resources`, which installs the files without adding one font-family entry per face.
 
 | Pack | Manifest | Third-party assets |
 | --- | --- | --- |

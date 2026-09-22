@@ -154,6 +154,12 @@ for (let index = 0; index < catalogue.packs.length; index++) {
     const file = typeof value === "string" ? value : record(value, manifestFile, `pack.assets.fonts.${family}`).file;
     declared.add(safeRelative(file, manifestFile, `pack.assets.fonts.${family}.file`));
   }
+  const resources = assets.resources === undefined ? [] : uniqueStrings(assets.resources, manifestFile, "pack.assets.resources");
+  for (let index = 0; index < resources.length; index++) {
+    const resource = safeRelative(resources[index], manifestFile, `pack.assets.resources[${index}]`);
+    if (!/\.(?:woff2?|ttf|otf)$/i.test(resource)) fail(manifestFile, `stylesheet resource is not a supported font file: ${resource}`);
+    declared.add(resource);
+  }
   if (assets.stylesheets !== undefined) {
     const stylesheets = uniqueStrings(assets.stylesheets, manifestFile, "pack.assets.stylesheets");
     for (let index = 0; index < stylesheets.length; index++) {
@@ -166,7 +172,7 @@ for (let index = 0; index < catalogue.packs.length; index++) {
         const url = match[2];
         if (/^(?:[a-z][a-z0-9+.-]*:|\/|\\|\/\/)/i.test(url)) fail(manifestFile, `stylesheet has unsafe URL: ${url}`);
         const relative = path.posix.join(path.posix.dirname(stylesheet), url);
-        if (!Object.values(fonts).some((value) => (typeof value === "string" ? value : (value as RecordValue).file) === relative) && !Object.values(images).includes(relative)) {
+        if (!declared.has(relative)) {
           fail(manifestFile, `stylesheet URL is not a declared asset: ${relative}`);
         }
       }
