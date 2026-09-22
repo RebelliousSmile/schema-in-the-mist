@@ -1,6 +1,6 @@
 {
   "manifestVersion": 1,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "minimumHandbookVersion": "2.7.0",
   "requires": [
     "block:theme-card",
@@ -118,8 +118,44 @@
         "PragRoman": {
           "file": "fonts/pragroman.ttf",
           "weight": "500"
+        },
+        "Handbook caveat-brush face 1": {
+          "file": "styles/fonts/caveat-brush-1.woff2"
+        },
+        "Handbook caveat face 1": {
+          "file": "styles/fonts/caveat-1.woff2"
+        },
+        "Handbook caveat face 2": {
+          "file": "styles/fonts/caveat-2.woff2"
+        },
+        "Handbook im-fell-english face 1": {
+          "file": "styles/fonts/im-fell-english-1.woff2"
+        },
+        "Handbook im-fell-english face 2": {
+          "file": "styles/fonts/im-fell-english-2.woff2"
+        },
+        "Handbook im-fell-great-primer face 1": {
+          "file": "styles/fonts/im-fell-great-primer-1.woff2"
+        },
+        "Handbook im-fell-great-primer face 2": {
+          "file": "styles/fonts/im-fell-great-primer-2.woff2"
+        },
+        "Handbook labrada face 1": {
+          "file": "styles/fonts/labrada-1.woff2"
+        },
+        "Handbook labrada face 2": {
+          "file": "styles/fonts/labrada-2.woff2"
+        },
+        "Handbook labrada face 3": {
+          "file": "styles/fonts/labrada-3.woff2"
+        },
+        "Handbook labrada face 4": {
+          "file": "styles/fonts/labrada-4.woff2"
         }
-      }
+      },
+      "stylesheets": [
+        "styles/fonts.css"
+      ]
     }
   }
 }

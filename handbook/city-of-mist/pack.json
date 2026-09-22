@@ -1,6 +1,6 @@
 {
   "manifestVersion": 1,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "minimumHandbookVersion": "2.7.0",
   "requires": [
     "block:com-theme-card",
@@ -159,8 +159,74 @@
         "iceberg-group": "iceberg-group.svg"
       },
       "stylesheets": [
-        "styles/city-of-mist.css"
-      ]
+        "styles/city-of-mist.css",
+        "styles/fonts.css"
+      ],
+      "fonts": {
+        "Handbook averia-serif-libre face 1": {
+          "file": "styles/fonts/averia-serif-libre-1.woff2"
+        },
+        "Handbook averia-serif-libre face 2": {
+          "file": "styles/fonts/averia-serif-libre-2.woff2"
+        },
+        "Handbook averia-serif-libre face 3": {
+          "file": "styles/fonts/averia-serif-libre-3.woff2"
+        },
+        "Handbook averia-serif-libre face 4": {
+          "file": "styles/fonts/averia-serif-libre-4.woff2"
+        },
+        "Handbook averia-serif-libre face 5": {
+          "file": "styles/fonts/averia-serif-libre-5.woff2"
+        },
+        "Handbook averia-serif-libre face 6": {
+          "file": "styles/fonts/averia-serif-libre-6.woff2"
+        },
+        "Handbook bebas-neue face 1": {
+          "file": "styles/fonts/bebas-neue-1.woff2"
+        },
+        "Handbook courier-prime face 1": {
+          "file": "styles/fonts/courier-prime-1.woff2"
+        },
+        "Handbook courier-prime face 2": {
+          "file": "styles/fonts/courier-prime-2.woff2"
+        },
+        "Handbook courier-prime face 3": {
+          "file": "styles/fonts/courier-prime-3.woff2"
+        },
+        "Handbook courier-prime face 4": {
+          "file": "styles/fonts/courier-prime-4.woff2"
+        },
+        "Handbook fira-sans-extra-condensed face 1": {
+          "file": "styles/fonts/fira-sans-extra-condensed-1.woff2"
+        },
+        "Handbook fira-sans-extra-condensed face 2": {
+          "file": "styles/fonts/fira-sans-extra-condensed-2.woff2"
+        },
+        "Handbook fira-sans-extra-condensed face 3": {
+          "file": "styles/fonts/fira-sans-extra-condensed-3.woff2"
+        },
+        "Handbook fira-sans-extra-condensed face 4": {
+          "file": "styles/fonts/fira-sans-extra-condensed-4.woff2"
+        },
+        "Handbook pt-serif face 1": {
+          "file": "styles/fonts/pt-serif-1.woff2"
+        },
+        "Handbook pt-serif face 2": {
+          "file": "styles/fonts/pt-serif-2.woff2"
+        },
+        "Handbook pt-serif face 3": {
+          "file": "styles/fonts/pt-serif-3.woff2"
+        },
+        "Handbook pt-serif face 4": {
+          "file": "styles/fonts/pt-serif-4.woff2"
+        },
+        "Handbook roboto face 1": {
+          "file": "styles/fonts/roboto-1.woff2"
+        },
+        "Handbook roboto face 2": {
+          "file": "styles/fonts/roboto-2.woff2"
+        }
+      }
     }
   }
 }

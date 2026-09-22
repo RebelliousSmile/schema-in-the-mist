@@ -1,0 +1,79 @@
+/* Typeface faces extracted from Handbook theme sources. */
+@font-face {
+	font-family: "Caveat Brush";
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+	src: url("fonts/caveat-brush-1.woff2")
+		format("woff2");
+}
+
+@font-face {
+	font-family: "Caveat";
+	font-weight: normal;
+	font-style: normal;
+	src: url("fonts/caveat-1.woff2");
+}
+
+@font-face {
+	font-family: "Caveat";
+	font-weight: bold;
+	font-style: normal;
+	src: url("fonts/caveat-2.woff2");
+}
+
+@font-face {
+	font-family: "IM Fell English";
+	font-weight: 300;
+	font-style: normal;
+	src: url("fonts/im-fell-english-1.woff2");
+}
+
+@font-face {
+	font-family: "IM Fell English";
+	font-weight: 300;
+	font-style: italic;
+	src: url("fonts/im-fell-english-2.woff2");
+}
+
+@font-face {
+	font-family: "IM Fell Great Primer";
+	font-weight: 300;
+	font-style: normal;
+	src: url("fonts/im-fell-great-primer-1.woff2");
+}
+
+@font-face {
+	font-family: "IM Fell Great Primer";
+	font-weight: 300;
+	font-style: italic;
+	src: url("fonts/im-fell-great-primer-2.woff2");
+}
+
+@font-face {
+	font-family: "Labrada";
+	font-weight: normal;
+	font-style: normal;
+	src: url("fonts/labrada-1.woff2");
+}
+
+@font-face {
+	font-family: "Labrada";
+	font-weight: normal;
+	font-style: italic;
+	src: url("fonts/labrada-2.woff2");
+}
+
+@font-face {
+	font-family: "Labrada";
+	font-weight: bold;
+	font-style: normal;
+	src: url("fonts/labrada-3.woff2");
+}
+
+@font-face {
+	font-family: "Labrada";
+	font-weight: bold;
+	font-style: italic;
+	src: url("fonts/labrada-4.woff2");
+}

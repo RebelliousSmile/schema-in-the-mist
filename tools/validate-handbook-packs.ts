@@ -157,7 +157,19 @@ for (let index = 0; index < catalogue.packs.length; index++) {
   if (assets.stylesheets !== undefined) {
     const stylesheets = uniqueStrings(assets.stylesheets, manifestFile, "pack.assets.stylesheets");
     for (let index = 0; index < stylesheets.length; index++) {
-      declared.add(safeRelative(stylesheets[index], manifestFile, `pack.assets.stylesheets[${index}]`));
+      const stylesheet = safeRelative(stylesheets[index], manifestFile, `pack.assets.stylesheets[${index}]`);
+      declared.add(stylesheet);
+      const stylesheetPath = path.resolve(root, stylesheet);
+      if (!fs.existsSync(stylesheetPath)) fail(manifestFile, `declared stylesheet does not exist: ${stylesheet}`);
+      const css = fs.readFileSync(stylesheetPath, "utf8");
+      for (const match of css.matchAll(/url\(\s*(['"]?)([^'"\s)]+)\1\s*\)/gi)) {
+        const url = match[2];
+        if (/^(?:[a-z][a-z0-9+.-]*:|\/|\\|\/\/)/i.test(url)) fail(manifestFile, `stylesheet has unsafe URL: ${url}`);
+        const relative = path.posix.join(path.posix.dirname(stylesheet), url);
+        if (!Object.values(fonts).some((value) => (typeof value === "string" ? value : (value as RecordValue).file) === relative) && !Object.values(images).includes(relative)) {
+          fail(manifestFile, `stylesheet URL is not a declared asset: ${relative}`);
+        }
+      }
     }
   }
   for (const asset of declared) {
