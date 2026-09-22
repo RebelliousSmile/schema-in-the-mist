@@ -72,9 +72,11 @@ The game folders — `city-of-mist/`, `legend-in-the-mist/`, `otherscape/` —
 describe **what is played**: Dangers, Challenges, Journeys, Theme Kits. They are
 written by a Narrator and read by any tool that shows them.
 
-The cross-game `game-pack` appearance contract now lives in
-[`RebelliousSmile/schema-appearance`](https://github.com/RebelliousSmile/schema-appearance).
-New consumers should read its [canonical Draft 7 schema](https://raw.githubusercontent.com/RebelliousSmile/schema-appearance/main/schemas/appearance/game-pack.schema.json).
+The cross-game `game-pack` appearance contract belongs to
+[`RebelliousSmile/obsidian-handbook`](https://github.com/RebelliousSmile/obsidian-handbook)
+since 2026-09-15. New consumers must read its [canonical Draft 7 schema](https://github.com/RebelliousSmile/obsidian-handbook/blob/main/schemas/appearance/game-pack.schema.json),
+which Handbook validates on every build. The intermediate `schema-appearance`
+repository held it between 2026-09-10 and 2026-09-15 and no longer exists.
 
 For compatibility, this repository retains frozen, self-contained copies at
 [`appearance/game-pack.schema.json`](./appearance/game-pack.schema.json) and
