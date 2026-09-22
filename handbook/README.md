@@ -4,6 +4,8 @@ This directory publishes the game packs installed by Handbook's Mist Engine star
 
 Pack assets can also declare ordered stylesheet resources. Handbook installs only declared files; the consumer validates and activates a pack stylesheet only for its owning game. Font files referenced by a stylesheet are listed in `assets.resources`, which installs the files without adding one font-family entry per face.
 
+The public pack contract is shipped at `schema-in-the-mist/schemas/appearance/game-pack.schema.json` so consumers can validate the same resource declarations as this repository.
+
 | Pack | Manifest | Third-party assets |
 | --- | --- | --- |
 | City of Mist | [`city-of-mist/pack.json`](./city-of-mist/pack.json) | Images listed in [`SonOfOak.LICENSE.txt`](./LICENSES/SonOfOak.LICENSE.txt); font faces under `assets/styles/fonts/` with licenses below |

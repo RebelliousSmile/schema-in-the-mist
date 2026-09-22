@@ -40,6 +40,7 @@
   "files": [
     "dist",
     "schemas/v1",
+    "schemas/appearance",
     "corpus/contract",
     "cross-tool-provider.json",
     "handbook",
@@ -54,6 +55,7 @@
       "import": "./dist/index.js"
     },
     "./schemas/v1/*": "./schemas/v1/*",
+    "./schemas/appearance/*": "./schemas/appearance/*",
     "./corpus/contract/*": "./corpus/contract/*",
     "./cross-tool-provider.json": "./cross-tool-provider.json",
     "./handbook/*": "./handbook/*",
