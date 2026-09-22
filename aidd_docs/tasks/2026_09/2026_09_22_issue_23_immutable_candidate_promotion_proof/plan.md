@@ -1,6 +1,6 @@
 ---
 objective: "A staged schema-in-the-mist archive can be proven by pinned Lantern and Handbook consumers, then attached byte-for-byte to the immutable final tag without rebuilding."
-status: in-progress
+status: blocked
 ---
 
 # Plan: Adopt immutable candidate promotion proof
