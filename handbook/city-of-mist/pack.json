@@ -1,6 +1,6 @@
 {
   "manifestVersion": 1,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "minimumHandbookVersion": "2.7.0",
   "requires": [
     "block:com-theme-card",
@@ -159,7 +159,32 @@
         "iceberg-group": "iceberg-group.svg"
       },
       "stylesheets": [
-        "styles/city-of-mist.css"
+        "styles/city-of-mist.css",
+        "styles/fonts.css"
+      ],
+      "fonts": {},
+      "resources": [
+        "styles/fonts/averia-serif-libre-1.woff2",
+        "styles/fonts/averia-serif-libre-2.woff2",
+        "styles/fonts/averia-serif-libre-3.woff2",
+        "styles/fonts/averia-serif-libre-4.woff2",
+        "styles/fonts/averia-serif-libre-5.woff2",
+        "styles/fonts/averia-serif-libre-6.woff2",
+        "styles/fonts/bebas-neue-1.woff2",
+        "styles/fonts/courier-prime-1.woff2",
+        "styles/fonts/courier-prime-2.woff2",
+        "styles/fonts/courier-prime-3.woff2",
+        "styles/fonts/courier-prime-4.woff2",
+        "styles/fonts/fira-sans-extra-condensed-1.woff2",
+        "styles/fonts/fira-sans-extra-condensed-2.woff2",
+        "styles/fonts/fira-sans-extra-condensed-3.woff2",
+        "styles/fonts/fira-sans-extra-condensed-4.woff2",
+        "styles/fonts/pt-serif-1.woff2",
+        "styles/fonts/pt-serif-2.woff2",
+        "styles/fonts/pt-serif-3.woff2",
+        "styles/fonts/pt-serif-4.woff2",
+        "styles/fonts/roboto-1.woff2",
+        "styles/fonts/roboto-2.woff2"
       ]
     }
   }
