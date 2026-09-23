@@ -1,6 +1,13 @@
-# Release trains
+# Manual immutable release trains
 
-Each final release is promoted from a committed JSON manifest in this directory.
-Create the candidate first with `npm run release-train:stage -- <provider-commit> <final-tag>`; commit a manifest only after its URL, SHA-256, SHA-512 SRI, and both consumer adoption commits are known. Consumers commit their own package manifest and frozen lockfile before the train runs; the runner only checks out those commits detached and disposable. The manifest is declarative: it never contains commands, paths, or environment values.
+This directory contains only committed, declarative release manifests. A train has one final package version and two pinned consumer proofs: Lantern and Handbook. It cannot contain commands, local paths, branch names, or mutable download URLs.
 
-`npm run release-train:validate` checks every committed manifest. `npm run release-train:assert -- <manifest>` is the only provider entry point permitted to invoke consumer proof commands.
+## Operator flow
+
+1. At the provider commit, run `npm run release-train:stage -- <full-commit> <final-tag>`.
+2. Upload the resulting final-version archive once to a published prerelease tag of the form `<final-tag>-rc.N`. Record its URL, SHA-256, SHA-512 SRI, staging tag, final tag, provider commit, and full consumer adoption commits in `release-trains/<final-tag>.json`.
+3. Validate the committed shape with `npm run release-train:validate`.
+4. Run `npm run release-train:assert -- release-trains/<final-tag>.json`. It verifies candidate bytes first, makes disposable detached consumer checkouts, and invokes only each consumer's fixed `npm run release-train:assert -- <manifest>` command.
+5. Promote only its emitted provenance using `npm run release-train:promote -- release-trains/<final-tag>.json --evidence <provenance.json>`. The promoter downloads or receives the candidate archive, hashes it again, and attaches those exact bytes to the final tag. It has no build command.
+
+`--dry-run` on promotion checks a complete evidence/archive pair without creating a GitHub release. There is intentionally no tag-triggered GitHub Actions release workflow: publication remains an explicit maintainer action.

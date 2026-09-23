@@ -66,6 +66,17 @@ console.log(result.kind, result.source);
 
 Package version `1.x` implements contract major `1`. Backwards-compatible fields and new document targets require a minor release; corrections that do not change accepted data require a patch. Removing, renaming, or tightening an accepted business value requires a new contract and package major. JSON Schema `$id` values are tied to their immutable release tag.
 
+### Manual release train
+
+Releases are not triggered by pushing a tag. A maintainer stages one final-version archive under a prerelease tag, records its immutable URL, digests, provider commit, and the two consumer adoption commits in `release-trains/<final-tag>.json`, then runs:
+
+```sh
+npm run release-train:assert -- release-trains/<final-tag>.json
+npm run release-train:promote -- release-trains/<final-tag>.json --evidence <provenance.json>
+```
+
+The assertion hashes the candidate before checking out pinned Lantern and Handbook commits in a disposable workspace. It invokes only their fixed `npm run release-train:assert -- <manifest>` interface. Promotion rechecks that evidence and transports the already-proven bytes to the final immutable release; it never rebuilds the package. Use `--dry-run` to validate promotion inputs without changing GitHub.
+
 ### Content schemas and appearance packs
 
 The game folders — `city-of-mist/`, `legend-in-the-mist/`, `otherscape/` —
@@ -135,7 +146,7 @@ Depending on your code editor, you can configure custom JSON Schemas for both JS
 
 - **Docs:** CC BY 4.0 (see [here](./LICENSES/DOCS-LICENSE.md))
 
-- **Third-party game-pack assets:** the MIT and CC BY 4.0 licenses above do not cover the images or fonts published under [`handbook/`](./handbook/README.md). See the per-pack inventory and upstream notices there, including the documented unresolved redistribution status.
+- **Handbook assets:** [`handbook/`](./handbook/README.md) records the local font notices and original artwork provenance shipped in each pack.
 
 - This product was created under license. City of Mist, :Otherscape, Legend in the Mist and their logos are trademarks of Son of Oak Game Studio LLC. All City of Mist, :Otherscape and Legend in the Mist setting material, art, and trade dress are the property of Son of Oak Game Studio LLC.
 

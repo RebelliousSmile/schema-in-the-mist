@@ -48,3 +48,7 @@ npm run validate:contract # validate the shared cross-consumer corpus
 npm run validate:package  # install and import the packed public API
 npm run check          # generate + validate
 ```
+
+## Releasing
+
+Do not create a release by pushing a tag. Use the manual immutable-candidate train documented in [`release-trains/README.md`](./release-trains/README.md). It requires pinned consumer adoption commits and their own proof interfaces before byte-identical final promotion.
