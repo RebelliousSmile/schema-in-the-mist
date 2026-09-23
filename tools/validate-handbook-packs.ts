@@ -195,6 +195,9 @@ for (let index = 0; index < catalogue.packs.length; index++) {
       const stylesheetPath = path.resolve(root, stylesheet);
       if (!fs.existsSync(stylesheetPath)) fail(manifestFile, `declared stylesheet does not exist: ${stylesheet}`);
       const css = fs.readFileSync(stylesheetPath, "utf8");
+      if (/\b(?:labrada|fira\s+sans(?:\s+extra\s+condensed)?|courier\s+prime|pt\s+serif|roboto(?:\s+condensed)?|bebas\s+neue|caveat|barlow(?:\s+condensed)?|ibm\s+plex\s+mono)\b/i.test(css)) {
+        fail(manifestFile, `stylesheet refers to a font family that is not published by the two-face OFL contract: ${stylesheet}`);
+      }
       for (const match of css.matchAll(/url\(\s*(['"]?)([^'"\s)]+)\1\s*\)/gi)) {
         const url = match[2];
         if (/^(?:[a-z][a-z0-9+.-]*:|\/|\\|\/\/)/i.test(url)) fail(manifestFile, `stylesheet has unsafe URL: ${url}`);
