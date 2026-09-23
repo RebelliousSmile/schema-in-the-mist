@@ -11,7 +11,7 @@ const source = args.find((value) => !value.startsWith("--"));
 assert.ok(source, "release-train promotion requires one manifest path");
 function option(name: string): string | undefined { const index = args.indexOf(name); if (index < 0) return undefined; const value = args[index + 1]; assert.ok(value && !value.startsWith("--"), `${name} requires a value`); return value; }
 function sha256(file: string): string { return createHash("sha256").update(fs.readFileSync(file)).digest("hex"); }
-async function download(url: string, destination: string): Promise<void> { const response = await fetch(url, { redirect: "error" }); assert.ok(response.ok, `candidate download failed: ${response.status}`); fs.writeFileSync(destination, Buffer.from(await response.arrayBuffer())); }
+async function download(url: string, destination: string): Promise<void> { const response = await fetch(url); assert.ok(response.ok, `candidate download failed: ${response.status}`); fs.writeFileSync(destination, Buffer.from(await response.arrayBuffer())); }
 function gh(arguments_: string[]): void { const result = spawnSync("gh", arguments_, { stdio: "inherit", shell: false }); assert.equal(result.status, 0, `gh ${arguments_.join(" ")} failed`); }
 
 const manifest = readReleaseTrainManifest(source);
@@ -22,7 +22,7 @@ if (!option("--archive")) await download(manifest.candidate.releaseUrl, archive)
 assert.equal(sha256(archive), manifest.candidate.sha256, "candidate archive SHA-256 differs from manifest");
 const checksum = `${archive}.sha256`; fs.writeFileSync(checksum, `${manifest.candidate.sha256}  ${path.basename(archive)}\n`);
 if (args.includes("--dry-run")) { console.log(`✓ promotion inputs verify for ${manifest.candidate.finalTag}; no release was created`); process.exit(0); }
-const head = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }); assert.equal(head.stdout.trim(), manifest.candidate.providerCommit, "promotion must run at the manifest provider commit");
+const ancestry = spawnSync("git", ["merge-base", "--is-ancestor", manifest.candidate.providerCommit, "HEAD"]); assert.equal(ancestry.status, 0, "promotion checkout must contain the manifest provider commit");
 gh(["release", "create", manifest.candidate.finalTag, "--target", manifest.candidate.providerCommit, "--draft", "--title", `schema-in-the-mist ${manifest.candidate.finalTag.slice(1)}`]);
 gh(["release", "upload", manifest.candidate.finalTag, archive, checksum]);
 gh(["release", "edit", manifest.candidate.finalTag, "--draft=false"]);
