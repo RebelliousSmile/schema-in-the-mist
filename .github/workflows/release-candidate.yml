@@ -1,0 +1,122 @@
+name: Publish candidate archive
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Candidate tag in vX.Y.Z-rc.N form
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-candidate-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      CANDIDATE_TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: npm
+
+      - name: Validate candidate request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor "$GITHUB_SHA" "origin/main"
+          [[ "$CANDIDATE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-rc\.[0-9]+$ ]]
+          base_tag="${CANDIDATE_TAG%-rc.*}"
+          package_version="$(node -p 'require("./package.json").version')"
+          test "$base_tag" = "v$package_version"
+
+          if git ls-remote --exit-code --refs origin "refs/tags/$CANDIDATE_TAG" >/dev/null; then
+            git fetch --no-tags origin "refs/tags/$CANDIDATE_TAG:refs/tags/$CANDIDATE_TAG"
+            test "$(git rev-parse "$CANDIDATE_TAG^{}")" = "$GITHUB_SHA"
+          fi
+
+      - name: Install and prepare reproducible archive
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run release:prepare -- "${CANDIDATE_TAG%-rc.*}"
+          package_version="$(node -p 'require("./package.json").version')"
+          archive="schema-in-the-mist-$package_version.tgz"
+          checksum="$archive.sha256"
+          test -f "$archive"
+          test -f "$checksum"
+          sha256sum --check --strict "$checksum"
+          printf 'archive=%s\nchecksum=%s\nsha256=%s\n' "$archive" "$checksum" "$(sha256sum "$archive" | cut -d ' ' -f 1)" >> "$GITHUB_ENV"
+
+      - name: Create draft candidate or require complete immutable candidate
+        id: candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view "$CANDIDATE_TAG" --json databaseId >/dev/null 2>&1; then
+            echo 'mode=reuse' >> "$GITHUB_OUTPUT"
+          else
+            gh release create "$CANDIDATE_TAG" --target "$GITHUB_SHA" --draft --prerelease --title "$CANDIDATE_TAG" --notes "Immutable release candidate for $GITHUB_SHA"
+            echo 'mode=create' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload the two candidate assets
+        if: steps.candidate.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release upload "$CANDIDATE_TAG" "$archive" "$checksum"
+          gh release edit "$CANDIDATE_TAG" --draft=false --prerelease
+
+      - name: Verify immutable candidate through GitHub API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          release_json=release.json
+          for attempt in {1..12}; do
+            gh api -H 'X-GitHub-Api-Version: 2026-03-10' "repos/$GITHUB_REPOSITORY/releases/tags/$CANDIDATE_TAG" > "$release_json"
+            immutable="$(node -e 'const release=require("./release.json"); process.stdout.write(String(release.immutable))')"
+            if test "$immutable" = true; then break; fi
+            sleep 5
+          done
+
+          node - "$CANDIDATE_TAG" "$GITHUB_SHA" "$archive" "$checksum" "$sha256" <<'NODE'
+          const fs = require("fs");
+          const [tag, sha, archive, checksum, digest] = process.argv.slice(2);
+          const release = JSON.parse(fs.readFileSync("release.json", "utf8"));
+          if (release.tag_name !== tag || release.target_commitish !== sha || release.prerelease !== true || release.draft !== false || release.immutable !== true) process.exit(1);
+          if (!Array.isArray(release.assets) || release.assets.length !== 2) process.exit(1);
+          const byName = new Map(release.assets.map((asset) => [asset.name, asset]));
+          if (byName.size !== 2 || !byName.has(archive) || !byName.has(checksum)) process.exit(1);
+          if (byName.get(archive).digest !== `sha256:${digest}`) process.exit(1);
+          fs.writeFileSync("checksum-url.txt", byName.get(checksum).browser_download_url);
+          NODE
+
+          git_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$CANDIDATE_TAG")"
+          object_type="$(node -e 'const ref=JSON.parse(process.argv[1]); process.stdout.write(ref.object.type)' "$git_ref")"
+          object_sha="$(node -e 'const ref=JSON.parse(process.argv[1]); process.stdout.write(ref.object.sha)' "$git_ref")"
+          if test "$object_type" = tag; then
+            tag_json="$(gh api "repos/$GITHUB_REPOSITORY/git/tags/$object_sha")"
+            object_type="$(node -e 'const tag=JSON.parse(process.argv[1]); process.stdout.write(tag.object.type)' "$tag_json")"
+            object_sha="$(node -e 'const tag=JSON.parse(process.argv[1]); process.stdout.write(tag.object.sha)' "$tag_json")"
+          fi
+          test "$object_type" = commit
+          test "$object_sha" = "$GITHUB_SHA"
+
+          curl --fail --location --proto '=https' --output uploaded.sha256 "$(cat checksum-url.txt)"
+          cmp --silent "$checksum" uploaded.sha256
