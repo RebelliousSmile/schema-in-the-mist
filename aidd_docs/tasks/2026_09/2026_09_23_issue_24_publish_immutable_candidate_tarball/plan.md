@@ -1,6 +1,6 @@
 ---
 objective: "A maintainer can manually publish a reproducible, immutable prerelease tarball for the current schema-in-the-mist release train without any route to stable publication."
-status: in-progress
+status: implemented
 ---
 
 # Plan: Publish an immutable candidate tarball
