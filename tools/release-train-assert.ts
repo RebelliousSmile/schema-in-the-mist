@@ -15,7 +15,7 @@ function run(command: string, commandArgs: string[], cwd: string): void { const 
 function hash(file: string, algorithm: "sha256" | "sha512"): string { return createHash(algorithm).update(fs.readFileSync(file)).digest(algorithm === "sha256" ? "hex" : "base64"); }
 async function download(url: string, destination: string): Promise<void> { const response = await fetch(url); assert.ok(response.ok, `candidate download failed: ${response.status}`); fs.writeFileSync(destination, Buffer.from(await response.arrayBuffer())); }
 function checkout(repository: string, ref: string, target: string): void { run("git", ["init", "--quiet"], target); run("git", ["remote", "add", "origin", `https://github.com/${repository}.git`], target); run("git", ["fetch", "--depth", "1", "origin", ref], target); run("git", ["checkout", "--force", "--detach", ref], target); const result = spawnSync("git", ["rev-parse", "HEAD"], { cwd: target, encoding: "utf8" }); assert.equal(result.stdout.trim(), ref, `${repository} checkout differs from declared commit`); }
-function installFrozen(consumerRoot: string): void { assert.ok(fs.existsSync(path.join(consumerRoot, "pnpm-lock.yaml")), `consumer at ${consumerRoot} has no pnpm lockfile`); run("pnpm", ["install", "--frozen-lockfile"], consumerRoot); }
+function installFrozen(consumerRoot: string): void { assert.ok(fs.existsSync(path.join(consumerRoot, "pnpm-lock.yaml")), `consumer at ${consumerRoot} has no pnpm lockfile`); run("pnpm", ["install", "--frozen-lockfile", "--ignore-scripts"], consumerRoot); }
 
 const manifest = readReleaseTrainManifest(source);
 const workspace = path.resolve(option("--workspace") ?? fs.mkdtempSync(path.join(os.tmpdir(), "mist-release-train-")));
