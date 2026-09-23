@@ -18,9 +18,10 @@
     "test:release-train-manifest": "tsx tools/test-release-train-manifest.ts",
     "validate:appearance-compat": "tsx tools/validate-appearance-compat.ts",
     "validate:handbook-packs": "tsx tools/validate-handbook-packs.ts",
+    "test:handbook-contrast": "tsx tools/test-handbook-contrast.ts",
     "generate:otherscape-design": "tsx tools/build-otherscape-handbook-design.ts --write",
     "validate:otherscape-design": "tsx tools/validate-otherscape-design.ts && tsx tools/build-otherscape-handbook-design.ts --check",
-    "check": "npm run typecheck && npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run validate:handbook-packs && npm run validate:packs",
+    "check": "npm run typecheck && npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run test:handbook-contrast && npm run validate:handbook-packs && npm run validate:packs",
     "toml:one": "tsx tools/toml2json.ts"
   },
   "repository": {

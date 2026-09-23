@@ -1,0 +1,11 @@
+{
+  "base": {
+    "--background-primary": "#F2F5F7",
+    "--text-normal": "#12161B",
+    "--link-color": "#0087B0",
+    "--link-color-hover": "#00758F"
+  },
+  "variant": {
+    "--background-primary": "#F2F5F7"
+  }
+}

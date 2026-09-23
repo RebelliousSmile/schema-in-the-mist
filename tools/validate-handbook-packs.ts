@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { Ajv, type AnySchema } from "ajv";
+import { requireAccessibleNoteTokens, requireCompleteLinkStateFamilies, resolveNoteTokens } from "./require-contrast.js";
 
 const EXPECTED_REPOSITORY = "RebelliousSmile/schema-in-the-mist";
 const SEMVER = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
@@ -74,6 +75,30 @@ function listFiles(root: string, base = root): string[] {
   });
 }
 
+function optionalRecord(value: unknown): RecordValue | undefined {
+  return value && typeof value === "object" && !Array.isArray(value) ? value as RecordValue : undefined;
+}
+
+function noteTokens(style: unknown, polarity?: string): RecordValue | undefined {
+  const styleRecord = optionalRecord(style);
+  const layer = polarity === undefined ? styleRecord?.base : styleRecord?.[polarity];
+  return optionalRecord(optionalRecord(layer)?.note);
+}
+
+function validateResolvedContrast(pack: RecordValue, manifestFile: string, variant?: RecordValue): void {
+  const polarities = variant === undefined
+    ? uniqueStrings(pack.polarities ?? [], manifestFile, "pack.polarities")
+    : uniqueStrings(variant.polarities, manifestFile, `variant ${String(variant.id)}.polarities`);
+  const base = noteTokens(pack.style);
+  const variantId = variant === undefined ? undefined : String(variant.id);
+  for (const polarity of polarities) {
+    const variantLayer = variant === undefined ? undefined : noteTokens(variant.style, polarity);
+    if (variantLayer) requireCompleteLinkStateFamilies(resolveNoteTokens(variantLayer), `${manifestFile} variant ${variantId} ${polarity}`);
+    const resolved = resolveNoteTokens(base, noteTokens(pack.style, polarity), variantLayer);
+    requireAccessibleNoteTokens(resolved, `${manifestFile}${variantId === undefined ? "" : ` variant ${variantId}`} ${polarity}`);
+  }
+}
+
 const schemaFile = "schemas/appearance/game-pack.schema.json";
 const validatePack = new Ajv({ allErrors: true, strict: false }).compile(
   json(schemaFile) as AnySchema,
@@ -141,6 +166,8 @@ for (let index = 0; index < catalogue.packs.length; index++) {
   if (manifest.defaultVariantId !== undefined && (typeof manifest.defaultVariantId !== "string" || !variants.some((variant) => variant.id === manifest.defaultVariantId))) {
     fail(manifestFile, "defaultVariantId does not name a declared variant");
   }
+  validateResolvedContrast(pack, manifestFile);
+  for (const variant of variants) validateResolvedContrast(pack, manifestFile, variant);
 
   const assets = pack.assets === undefined ? {} : record(pack.assets, manifestFile, "pack.assets");
   const assetRoot = safeRelative(assets.root ?? "assets", manifestFile, "pack.assets.root");
