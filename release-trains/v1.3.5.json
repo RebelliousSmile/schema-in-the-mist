@@ -19,7 +19,7 @@
     {
       "role": "handbook",
       "repository": "RebelliousSmile/obsidian-handbook",
-      "ref": "b0b285a3a66eaf5f235b7264c7bc18f588ff4db5",
+      "ref": "35f00dacbe62690e396d49be5e9c4404692636e1",
       "path": "handbook",
       "proof": { "interface": "npm-run-release-train-assert", "manifest": "release-train/schema-in-the-mist.json" }
     }
