@@ -4,8 +4,9 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 
-const npmCli = process.env.npm_execpath;
-if (!npmCli) throw new Error("Run release preparation through npm so npm_execpath is available");
+const npmCli: string = process.env.npm_execpath ?? (() => {
+  throw new Error("Run release preparation through npm so npm_execpath is available");
+})();
 const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8")) as {
   version: string;
 };

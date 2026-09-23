@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { Ajv, type AnySchema } from "ajv";
-import addFormats from "ajv-formats";
+import addFormatsModule from "ajv-formats/dist/index.js";
 import IarnaToml from "@iarna/toml";
 import { parse as parseToml } from "smol-toml";
 import {
@@ -34,6 +34,8 @@ const ids = new Set<string>();
 const coverage = new Map<string, Set<string>>();
 const targetKeys = new Set(TARGETS.map(({ key }) => key));
 const ajv = new Ajv({ allErrors: true, strict: false });
+/* ajv-formats publishes CommonJS runtime with a default-plugin declaration. */
+const addFormats = addFormatsModule as unknown as (instance: Ajv) => void;
 addFormats(ajv);
 const validators = new Map<string, ReturnType<typeof ajv.compile>>();
 

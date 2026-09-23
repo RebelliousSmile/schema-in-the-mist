@@ -4,6 +4,7 @@
   "description": "Open, versioned data schemas for Mist Engine games (City of Mist, :Otherscape, Legend in the Mist) to make digital tools interoperable.",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
     "gen": "tsx tools/gen-schemas.ts",
     "validate": "tsx tools/validate-examples.ts",
     "validate:contract": "tsx tools/validate-contract.ts",
@@ -19,7 +20,7 @@
     "validate:handbook-packs": "tsx tools/validate-handbook-packs.ts",
     "generate:otherscape-design": "tsx tools/build-otherscape-handbook-design.ts --write",
     "validate:otherscape-design": "tsx tools/validate-otherscape-design.ts && tsx tools/build-otherscape-handbook-design.ts --check",
-    "check": "npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run validate:handbook-packs && npm run validate:packs",
+    "check": "npm run typecheck && npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run validate:handbook-packs && npm run validate:packs",
     "toml:one": "tsx tools/toml2json.ts"
   },
   "repository": {
@@ -69,7 +70,7 @@
     "@types/node": "^24.5.2",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
-    "tsx": "^4.20.5",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.2"
   },
   "dependencies": {
