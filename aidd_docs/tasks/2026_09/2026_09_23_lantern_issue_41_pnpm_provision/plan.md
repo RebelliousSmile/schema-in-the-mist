@@ -1,6 +1,6 @@
 ---
 objective: "Lantern release-train assertions perform their isolated frozen install with a provisioned pnpm version and prove that no global pnpm binary is required."
-status: pending
+status: implemented
 ---
 
 # Plan: Provision pnpm for Lantern release-train assertions
