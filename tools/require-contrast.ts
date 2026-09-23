@@ -1,12 +1,12 @@
 export type NoteTokens = Record<string, string>;
 
 const TEXT_TOKENS = [
-  "--text-normal", "--text-muted", "--h1-color", "--h2-color", "--h3-color", "--h4-color", "--h5-color", "--h6-color",
-  "--bold-color", "--italic-color", "--link-color", "--link-external-color", "--link-unresolved-color", "--table-header-color", "--list-marker-color",
+  "--text-normal", "--text-muted", "--text-faint", "--h1-color", "--h2-color", "--h3-color", "--h4-color", "--h5-color", "--h6-color",
+  "--bold-color", "--italic-color", "--link-color", "--link-external-color", "--link-unresolved-color", "--table-header-color", "--list-marker-color", "--checkbox-color",
 ] as const;
 const LINK_FAMILIES = [
-  ["--link-color", "--link-color-hover"],
-  ["--link-external-color", "--link-external-color-hover"],
+  ["--link-color", "--link-color-hover", "--link-color-active"],
+  ["--link-external-color", "--link-external-color-hover", "--link-external-color-active"],
 ] as const;
 
 function luminance(hex: string): number {
@@ -47,7 +47,7 @@ export function requireAccessibleNoteTokens(tokens: NoteTokens, label: string): 
       throw new Error(`${label} ${token} on --background-primary: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
-  for (const [restToken, hoverToken] of LINK_FAMILIES) {
+  for (const [restToken, hoverToken, activeToken] of LINK_FAMILIES) {
     const rest = tokens[restToken];
     const hover = tokens[hoverToken];
     if (rest === undefined && hover === undefined) continue;
@@ -60,14 +60,28 @@ export function requireAccessibleNoteTokens(tokens: NoteTokens, label: string): 
     if (contrastRatio(hover, background) < contrastRatio(rest, background)) {
       throw new Error(`${label} ${hoverToken} must not be weaker than ${restToken}`);
     }
+    const active = tokens[activeToken];
+    if (active !== undefined) {
+      try {
+        requireContrast(active, background);
+      } catch (error) {
+        throw new Error(`${label} ${activeToken} on --background-primary: ${error instanceof Error ? error.message : String(error)}`);
+      }
+      if (contrastRatio(active, background) < contrastRatio(rest, background)) {
+        throw new Error(`${label} ${activeToken} must not be weaker than ${restToken}`);
+      }
+    }
   }
 }
 
 export function requireCompleteLinkStateFamilies(tokens: NoteTokens, label: string): void {
-  for (const [restToken, hoverToken] of LINK_FAMILIES) {
+  for (const [restToken, hoverToken, activeToken] of LINK_FAMILIES) {
     const rest = tokens[restToken];
     const hover = tokens[hoverToken];
-    if (rest === undefined && hover === undefined) continue;
-    if (rest === undefined || hover === undefined) throw new Error(`${label} must override both ${restToken} and ${hoverToken}`);
+    const active = tokens[activeToken];
+    if (rest === undefined && hover === undefined && active === undefined) continue;
+    if (rest === undefined || hover === undefined || active === undefined) {
+      throw new Error(`${label} must override ${restToken}, ${hoverToken}, and ${activeToken}`);
+    }
   }
 }

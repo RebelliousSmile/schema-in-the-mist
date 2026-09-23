@@ -36,6 +36,7 @@ Thanks for helping make Mist Engine tools interoperate!
 - **Backward compatibility:** accepted business values cannot be removed or tightened within contract major 1.
 - **Corpus:** every target needs an accepted and rejected case in `corpus/contract/cases.json`; consumers execute these same files.
 - **Metadata:** add concise descriptions and examples to your fields. With Zod, make use of `.meta({ description, examples })`
+- **Publication metadata:** use `PublicationTypeEnum` and `createPublicationMetaSchema` from `src/zod/common/publication.ts`; a target supplies its own copy and examples but must not duplicate the primitive validation shape.
 
 ## Dev commands
 

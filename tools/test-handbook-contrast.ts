@@ -13,7 +13,7 @@ assert.throws(
 );
 assert.throws(
   () => requireCompleteLinkStateFamilies(fixture("incomplete-link-state") as Record<string, string>, "incomplete-link-state"),
-  /must override both --link-color and --link-color-hover/,
+  /must override --link-color, --link-color-hover, and --link-color-active/,
 );
 
 console.log("✓ Handbook contrast regression fixtures reject inherited low contrast and incomplete link states.");

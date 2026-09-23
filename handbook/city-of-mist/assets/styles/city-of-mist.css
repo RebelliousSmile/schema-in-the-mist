@@ -50,7 +50,7 @@ body.brumes--city-of-mist .brumes-com-theme-card--improvement-name,
 body.brumes--city-of-mist .brumes-com-theme-card--track-label,
 body.brumes--city-of-mist .brumes-com-danger--name,
 body.brumes--city-of-mist .brumes-com-danger--move-label {
-	font-family: "Fira Sans Extra Condensed", sans-serif;
+	font-family: "IM Fell English", serif;
 }
 
 body.brumes--city-of-mist .brumes-com-theme-card--title,
@@ -59,15 +59,15 @@ body.brumes--city-of-mist .brumes-com-theme-card--drive {
 }
 
 body.brumes--city-of-mist .brumes-com-theme-card--improvement {
-	font-family: "Roboto", sans-serif;
+	font-family: "IM Fell English", serif;
 }
 
 body.brumes--city-of-mist .brumes-com-danger--rating,
 body.brumes--city-of-mist .brumes-com-danger--section-title {
-	font-family: "Bebas Neue", sans-serif;
+	font-family: "Averia Serif Libre", serif;
 }
 
 body.brumes--city-of-mist .brumes-com-danger--description p,
 body.brumes--city-of-mist .brumes-com-danger--source {
-	font-family: "Courier Prime", monospace;
+	font-family: ui-monospace, monospace;
 }
