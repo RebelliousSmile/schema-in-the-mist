@@ -15,16 +15,16 @@
     "style": {
       "base": {
         "note": {
-          "--font-text-theme": "\"Labrada\", sans-serif",
-          "--font-header-theme": "\"Labrada\", sans-serif",
-          "--inline-title-font": "\"Labrada\", sans-serif",
+          "--font-text-theme": "\"IM Fell English\", serif",
+          "--font-header-theme": "\"Averia Serif Libre\", serif",
+          "--inline-title-font": "\"Averia Serif Libre\", serif",
           "--inline-title-text-transform": "uppercase",
           "--inline-title-weight": "700",
-          "--h1-font": "\"Labrada\", sans-serif",
+          "--h1-font": "\"Averia Serif Libre\", serif",
           "--h1-text-transform": "uppercase",
-          "--h2-font": "\"Labrada\", sans-serif",
+          "--h2-font": "\"Averia Serif Libre\", serif",
           "--h2-text-transform": "none",
-          "--h3-font": "\"Labrada\", sans-serif",
+          "--h3-font": "\"IM Fell English\", serif",
           "--h3-text-transform": "uppercase",
           "--h3-weight": "400",
           "--h3-size": "1em",
@@ -118,10 +118,8 @@
         "styles/fonts.css"
       ],
       "resources": [
-        "styles/fonts/labrada-1.woff2",
-        "styles/fonts/labrada-2.woff2",
-        "styles/fonts/labrada-3.woff2",
-        "styles/fonts/labrada-4.woff2"
+        "styles/fonts/im-fell-english-latin-400-normal.woff2",
+        "styles/fonts/averia-serif-libre-latin-700-normal.woff2"
       ]
     }
   }

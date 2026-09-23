@@ -43,9 +43,14 @@ try {
       "LICENSES/CODE-LICENSE.md",
       "LICENSES/DOCS-LICENSE.md",
       "handbook/legend-in-the-mist/assets/theme-card.webp",
-      "handbook/legend-in-the-mist/assets/styles/fonts/labrada-1.woff2",
+      "handbook/city-of-mist/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
+      "handbook/city-of-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
+      "handbook/legend-in-the-mist/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
+      "handbook/legend-in-the-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
       "handbook/otherscape/pack.json",
       "handbook/otherscape/assets/styles/otherscape.css",
+      "handbook/otherscape/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
+      "handbook/otherscape/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
     ]) {
       assert.ok(paths.some((path) => path === file), `missing packaged ${file}`);
     }
@@ -86,6 +91,12 @@ try {
       "handbook/city-of-mist/assets/styles/city-of-mist.css",
       "handbook/legend-in-the-mist/assets/theme-card.webp",
       "handbook/otherscape/assets/styles/otherscape.css",
+      "handbook/city-of-mist/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
+      "handbook/city-of-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
+      "handbook/legend-in-the-mist/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
+      "handbook/legend-in-the-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
+      "handbook/otherscape/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
+      "handbook/otherscape/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
     ]) fs.statSync(new URL(import.meta.resolve("schema-in-the-mist/" + asset)));
     try {
       await import("schema-in-the-mist/dist/zod/constants.js");

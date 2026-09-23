@@ -1,28 +1,16 @@
-/* Typeface faces extracted from Handbook theme sources. */
+/* Shared, redistributable Handbook typography. */
 @font-face {
-	font-family: "Labrada";
-	font-weight: normal;
-	font-style: normal;
-	src: url("fonts/labrada-1.woff2");
+  font-family: "IM Fell English";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/im-fell-english-latin-400-normal.woff2") format("woff2");
 }
 
 @font-face {
-	font-family: "Labrada";
-	font-weight: normal;
-	font-style: italic;
-	src: url("fonts/labrada-2.woff2");
-}
-
-@font-face {
-	font-family: "Labrada";
-	font-weight: bold;
-	font-style: normal;
-	src: url("fonts/labrada-3.woff2");
-}
-
-@font-face {
-	font-family: "Labrada";
-	font-weight: bold;
-	font-style: italic;
-	src: url("fonts/labrada-4.woff2");
+  font-family: "Averia Serif Libre";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/averia-serif-libre-latin-700-normal.woff2") format("woff2");
 }

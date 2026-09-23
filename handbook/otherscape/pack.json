@@ -176,31 +176,31 @@
     "style": {
       "base": {
         "note": {
-          "--font-text-theme": "\"Roboto\", sans-serif",
-          "--font-header-theme": "\"Fira Sans Extra Condensed\", sans-serif",
-          "--font-monospace-theme": "\"Courier Prime\", monospace",
-          "--inline-title-font": "\"Fira Sans Extra Condensed\", sans-serif",
+          "--font-text-theme": "\"IM Fell English\", serif",
+          "--font-header-theme": "\"Averia Serif Libre\", serif",
+          "--font-monospace-theme": "ui-monospace, monospace",
+          "--inline-title-font": "\"Averia Serif Libre\", serif",
           "--inline-title-text-transform": "uppercase",
           "--inline-title-weight": "800",
           "--inline-title-size": "3em",
-          "--h1-font": "\"Fira Sans Extra Condensed\", sans-serif",
+          "--h1-font": "\"Averia Serif Libre\", serif",
           "--h1-size": "2.6em",
           "--h1-weight": "800",
           "--h1-text-transform": "uppercase",
-          "--h2-font": "\"Fira Sans Extra Condensed\", sans-serif",
+          "--h2-font": "\"Averia Serif Libre\", serif",
           "--h2-size": "1.9em",
           "--h2-weight": "800",
           "--h2-text-transform": "uppercase",
-          "--h3-font": "\"Fira Sans Extra Condensed\", sans-serif",
+          "--h3-font": "\"Averia Serif Libre\", serif",
           "--h3-size": "1.4em",
           "--h3-weight": "700",
           "--h3-text-transform": "uppercase",
-          "--h4-font": "\"Roboto\", sans-serif",
+          "--h4-font": "\"IM Fell English\", serif",
           "--h4-text-transform": "uppercase",
           "--h4-weight": "700",
-          "--h5-font": "\"Roboto\", sans-serif",
+          "--h5-font": "\"IM Fell English\", serif",
           "--h5-text-transform": "uppercase",
-          "--h6-font": "\"Roboto\", sans-serif",
+          "--h6-font": "\"IM Fell English\", serif",
           "--h6-text-transform": "uppercase",
           "--radius-s": "0px",
           "--radius-m": "0px",
@@ -347,10 +347,8 @@
       ],
       "fonts": {},
       "resources": [
-        "styles/fonts/fira-sans-extra-condensed-1.woff2",
-        "styles/fonts/fira-sans-extra-condensed-2.woff2",
-        "styles/fonts/fira-sans-extra-condensed-3.woff2",
-        "styles/fonts/fira-sans-extra-condensed-4.woff2"
+        "styles/fonts/im-fell-english-latin-400-normal.woff2",
+        "styles/fonts/averia-serif-libre-latin-700-normal.woff2"
       ]
     }
   }
