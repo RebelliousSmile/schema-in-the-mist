@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PublicationTypeEnum } from "../common/publication.js";
+import { createPublicationMetaSchema, PublicationTypeEnum } from "../common/publication.js";
 export { PublicationTypeEnum } from "../common/publication.js";
 
 /** =========================
@@ -100,53 +100,17 @@ export const ThreatSchema = z
       "A reusable action the Power Set adds to the Challenge it is grafted onto, with the outcomes it carries when it carries its own.",
   });
 
-export const MetaSchema = z
-  .strictObject({
-    publication_type: PublicationTypeEnum.default("homebrew").meta({
-      description:
-        "Classifies the Power Set's source to aid cataloging and tooling.",
-      examples: ["official", "homebrew"],
-    }),
-    source: z
-      .string()
-      .trim()
-      .optional()
-      .meta({
-        description:
-          "Source title (book, supplement, PDF) where this Power Set appears.",
-        examples: [
+export const MetaSchema = createPublicationMetaSchema({
+  publicationDescription: "Classifies the Power Set's source to aid cataloging and tooling.",
+  publicationExamples: ["official", "homebrew"],
+  sourceDescription: "Source title (book, supplement, PDF) where this Power Set appears.",
+  sourceExamples: [
           "Metro:Otherscape - Core Book",
           "Cairo:Otherscape - Playtest",
         ],
-      }),
-    authors: z
-      .array(
-        z
-          .string()
-          .trim()
-          .regex(/\S/, "Must contain a non-whitespace character")
-          .min(1, "Author name cannot be empty")
-          .meta({
-            description: "One credited author name.",
-            examples: ["Son of Oak", "4rtamis"],
-          }),
-      )
-      .optional()
-      .meta({
-        description: "List of credited authors or contributors.",
-      }),
-    page: z.number()
-      .int()
-      .min(1)
-      .optional()
-      .meta({
-        description: "Page number (if relevant to the source).",
-        examples: [224, 231],
-      }),
-  })
-  .meta({
-    description: "Attribution and cataloging fields for the Power Set's origin.",
-  });
+  pageExamples: [224, 231],
+  description: "Attribution and cataloging fields for the Power Set's origin.",
+});
 
 /** =========================
  *  Root schema
