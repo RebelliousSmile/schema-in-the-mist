@@ -51,4 +51,6 @@ npm run check          # generate + validate
 
 ## Releasing
 
-Do not create a release by pushing a tag. Use the manual immutable-candidate train documented in [`release-trains/README.md`](./release-trains/README.md). It requires pinned consumer adoption commits and their own proof interfaces before byte-identical final promotion.
+Do not create a release by pushing a tag. Dispatch **Publish candidate archive** at the intended `main` commit with a tag in `vX.Y.Z-rc.N` form that matches `package.json`. Wait for its immutable prerelease verification, then copy its archive URL, SHA-256, SHA-512 SRI, candidate tag, and provider commit into the release-train manifest described in [`release-trains/README.md`](./release-trains/README.md).
+
+The candidate workflow never publishes a stable release. A completed candidate can only be rerun for verification; partial, mutable, or conflicting candidate releases are rejected. The train requires pinned Lantern and Handbook adoption commits and their consumer-owned proof interfaces before byte-identical final promotion.
