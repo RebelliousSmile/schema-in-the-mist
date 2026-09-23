@@ -12,7 +12,7 @@ The public pack contract is shipped at `schema-in-the-mist/schemas/appearance/ga
 | Legend in the Mist | [`legend-in-the-mist/pack.json`](./legend-in-the-mist/pack.json) | Original replacement WebP card art, and OFL-licensed font faces under `assets/styles/fonts/` |
 | :Otherscape | [`otherscape/pack.json`](./otherscape/pack.json) | Generated Metro stylesheet and Fira Sans Extra Condensed faces under `assets/styles/fonts/` |
 
-The WOFF2 faces were extracted from Handbook's previous embedded stylesheet without changing their CSS family, weight, style or Unicode ranges. The respective upstream notices are in `LICENSES/`: Averia, Bebas Neue, Caveat, Courier Prime, Fira, IM Fell English, IM Fell Great Primer, Labrada, ParaType (PT Serif), and Roboto.
+Every published pack now uses exactly two locally installed WOFF2 faces: IM Fell English Roman (400) for text and Averia Serif Libre (700) for display. Both are distributed under SIL Open Font License 1.1; their upstream notices are [`IMFellEnglish.LICENSE.txt`](./LICENSES/IMFellEnglish.LICENSE.txt) and [`Averia.LICENSE.txt`](./LICENSES/Averia.LICENSE.txt). Historical notices remain for provenance but their former font files are not published.
 
 ## Provenance and redistribution status
 

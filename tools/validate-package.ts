@@ -56,6 +56,10 @@ try {
     }
     assert.equal(paths.filter((file) => file.endsWith(".schema.json") && file.startsWith("schemas/v1/")).length, 14);
     assert.ok(paths.every((file) => !file.startsWith("tools/") && !file.startsWith("handbook-packs/") && !/\.png$|\.ttf$/i.test(file)));
+    assert.ok(
+      paths.every((file) => !file.endsWith(".woff2") || !/(?:labrada|fira-sans-extra-condensed|courier-prime|pt-serif|roboto|bebas-neue|caveat)/i.test(file)),
+      "packaged Handbook fonts must use the two-face OFL contract",
+    );
   }
 
   const consumer = path.join(temporary, "consumer");
