@@ -1,6 +1,6 @@
 ---
 objective: "Resolve every open schema-in-the-mist issue with local proof, and expose the remaining consumer-owned release-train proofs as explicit upstream dependencies."
-status: in-progress
+status: blocked
 ---
 
 # Plan: Close the open issue set

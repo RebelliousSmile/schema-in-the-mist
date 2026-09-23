@@ -40,14 +40,17 @@ try {
       "handbook/city-of-mist/pack.json",
       "handbook/city-of-mist/assets/styles/city-of-mist.css",
       "handbook/legend-in-the-mist/pack.json",
-      "handbook/legend-in-the-mist/assets/fonts/pragroman.ttf",
+      "LICENSES/CODE-LICENSE.md",
+      "LICENSES/DOCS-LICENSE.md",
+      "handbook/legend-in-the-mist/assets/theme-card.webp",
+      "handbook/legend-in-the-mist/assets/styles/fonts/labrada-1.woff2",
       "handbook/otherscape/pack.json",
       "handbook/otherscape/assets/styles/otherscape.css",
     ]) {
       assert.ok(paths.some((path) => path === file), `missing packaged ${file}`);
     }
     assert.equal(paths.filter((file) => file.endsWith(".schema.json") && file.startsWith("schemas/v1/")).length, 14);
-    assert.ok(paths.every((file) => !file.startsWith("tools/") && !file.startsWith("handbook-packs/")));
+    assert.ok(paths.every((file) => !file.startsWith("tools/") && !file.startsWith("handbook-packs/") && !/\.png$|\.ttf$/i.test(file)));
   }
 
   const consumer = path.join(temporary, "consumer");
@@ -81,7 +84,7 @@ try {
     ]) readJson(manifest);
     for (const asset of [
       "handbook/city-of-mist/assets/styles/city-of-mist.css",
-      "handbook/legend-in-the-mist/assets/fonts/pragroman.ttf",
+      "handbook/legend-in-the-mist/assets/theme-card.webp",
       "handbook/otherscape/assets/styles/otherscape.css",
     ]) fs.statSync(new URL(import.meta.resolve("schema-in-the-mist/" + asset)));
     try {

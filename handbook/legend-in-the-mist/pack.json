@@ -16,15 +16,15 @@
       "base": {
         "note": {
           "--font-text-theme": "\"Labrada\", sans-serif",
-          "--font-header-theme": "\"PragRoman\", sans-serif",
-          "--inline-title-font": "\"PragRoman\", sans-serif",
+          "--font-header-theme": "\"Labrada\", sans-serif",
+          "--inline-title-font": "\"Labrada\", sans-serif",
           "--inline-title-text-transform": "uppercase",
           "--inline-title-weight": "700",
-          "--h1-font": "\"PragRoman\", sans-serif",
+          "--h1-font": "\"Labrada\", sans-serif",
           "--h1-text-transform": "uppercase",
-          "--h2-font": "\"PragRoman\", sans-serif",
+          "--h2-font": "\"Labrada\", sans-serif",
           "--h2-text-transform": "none",
-          "--h3-font": "\"PragRoman\", sans-serif",
+          "--h3-font": "\"Labrada\", sans-serif",
           "--h3-text-transform": "uppercase",
           "--h3-weight": "400",
           "--h3-size": "1em",
@@ -109,28 +109,15 @@
         "card-might-origin": "card-might-origin.svg",
         "card-might-adventure": "card-might-adventure.svg",
         "card-might-greatness": "card-might-greatness.svg",
-        "theme-card": "theme-card.png",
-        "theme-card-origin": "theme-card-origin.png",
-        "theme-card-adventure": "theme-card-adventure.png",
-        "theme-card-greatness": "theme-card-greatness.png"
-      },
-      "fonts": {
-        "PragRoman": {
-          "file": "fonts/pragroman.ttf",
-          "weight": "500"
-        }
+        "theme-card": "theme-card.webp",
+        "theme-card-origin": "theme-card-origin.webp",
+        "theme-card-adventure": "theme-card-adventure.webp",
+        "theme-card-greatness": "theme-card-greatness.webp"
       },
       "stylesheets": [
         "styles/fonts.css"
       ],
       "resources": [
-        "styles/fonts/caveat-1.woff2",
-        "styles/fonts/caveat-2.woff2",
-        "styles/fonts/caveat-brush-1.woff2",
-        "styles/fonts/im-fell-english-1.woff2",
-        "styles/fonts/im-fell-english-2.woff2",
-        "styles/fonts/im-fell-great-primer-1.woff2",
-        "styles/fonts/im-fell-great-primer-2.woff2",
         "styles/fonts/labrada-1.woff2",
         "styles/fonts/labrada-2.woff2",
         "styles/fonts/labrada-3.woff2",

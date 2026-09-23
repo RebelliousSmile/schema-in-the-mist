@@ -35,7 +35,7 @@
     "Interoperable"
   ],
   "author": "4rtamis",
-  "license": "MIT",
+  "license": "MIT AND CC-BY-4.0",
   "bugs": {
     "url": "https://github.com/RebelliousSmile/schema-in-the-mist/issues"
   },
@@ -49,7 +49,7 @@
     "cross-tool-provider.json",
     "handbook",
     "README.md",
-    "LICENSES/CODE-LICENSE.md"
+    "LICENSES"
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
