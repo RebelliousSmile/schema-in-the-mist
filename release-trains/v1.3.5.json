@@ -12,7 +12,7 @@
     {
       "role": "lantern",
       "repository": "RebelliousSmile/lantern",
-      "ref": "c5b10bf3e1412a8ebd43718ea8cc49d9f5317819",
+      "ref": "322581b71eeb6c7064d5860f9842b87e6e83dc5c",
       "path": "lantern",
       "proof": { "interface": "npm-run-release-train-assert", "manifest": "release-train/schema-in-the-mist.json" }
     },
