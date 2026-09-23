@@ -68,14 +68,16 @@ Package version `1.x` implements contract major `1`. Backwards-compatible fields
 
 ### Manual release train
 
-Releases are not triggered by pushing a tag. A maintainer stages one final-version archive under a prerelease tag, records its immutable URL, digests, provider commit, and the two consumer adoption commits in `release-trains/<final-tag>.json`, then runs:
+Releases are not triggered by pushing a tag. First, dispatch **Publish candidate archive** from the intended commit on `main`, with a tag exactly matching `vX.Y.Z-rc.N` and whose base version matches `package.json`. The workflow runs on Ubuntu/Node 20, verifies the provider checks and two-pack reproducibility, and publishes exactly `schema-in-the-mist-X.Y.Z.tgz` plus its `.sha256` checksum as an immutable GitHub prerelease tied to that dispatched commit. It rejects stable tags, divergent versions, commits outside `main`, and any pre-existing tag or release state that does not name those exact bytes.
+
+Record the candidate archive's immutable URL, SHA-256, SHA-512 SRI, candidate tag, final tag, and provider commit with the two consumer adoption commits in `release-trains/<final-tag>.json`. A rerun never uploads replacement assets: it only verifies a complete immutable candidate. Then run:
 
 ```sh
 npm run release-train:assert -- release-trains/<final-tag>.json
 npm run release-train:promote -- release-trains/<final-tag>.json --evidence <provenance.json>
 ```
 
-The assertion hashes the candidate before checking out pinned Lantern and Handbook commits in a disposable workspace. It invokes only their fixed `npm run release-train:assert -- <manifest>` interface. Promotion rechecks that evidence and transports the already-proven bytes to the final immutable release; it never rebuilds the package. Use `--dry-run` to validate promotion inputs without changing GitHub.
+The assertion hashes the candidate before checking out pinned Lantern and Handbook commits in a disposable workspace. It invokes only their fixed `npm run release-train:assert -- <manifest>` interface. Promotion rechecks that evidence and transports the already-proven bytes to the final immutable release; it never rebuilds the package. Use `--dry-run` to validate promotion inputs without changing GitHub. Candidate publication does not create, edit, or publish a stable release.
 
 ### Content schemas and appearance packs
 
