@@ -5,6 +5,14 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.3.5] - 2026-09-23
+
+### Fixed
+
+- Replace the former handbook card artwork with original assets, retain only two local OFL WOFF2 faces, and enforce the archived size budget.
+- Require explicit contrast states and a declarative consumer corpus.
+- Publish an immutable-candidate release train with pinned Lantern and Handbook proofs; final promotion transports verified candidate bytes without rebuilding.
+
 ## [v1.3.3] - 2026-09-20
 
 ### Fixed

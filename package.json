@@ -1,6 +1,6 @@
 {
   "name": "schema-in-the-mist",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "Open, versioned data schemas for Mist Engine games (City of Mist, :Otherscape, Legend in the Mist) to make digital tools interoperable.",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
@@ -18,12 +18,13 @@
     "release-train:promote": "tsx tools/release-train-promote.ts",
     "release-train:validate": "tsx tools/validate-release-train.ts",
     "test:release-train-manifest": "tsx tools/test-release-train-manifest.ts",
+    "test:release-train-promotion": "tsx tools/test-release-train-promotion.ts",
     "validate:appearance-compat": "tsx tools/validate-appearance-compat.ts",
     "validate:handbook-packs": "tsx tools/validate-handbook-packs.ts",
     "test:handbook-contrast": "tsx tools/test-handbook-contrast.ts",
     "generate:otherscape-design": "tsx tools/build-otherscape-handbook-design.ts --write",
     "validate:otherscape-design": "tsx tools/validate-otherscape-design.ts && tsx tools/build-otherscape-handbook-design.ts --check",
-    "check": "npm run typecheck && npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run test:handbook-contrast && npm run validate:handbook-packs && npm run validate:packs && npm run test:release-train-manifest && npm run release-train:validate",
+    "check": "npm run typecheck && npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run test:handbook-contrast && npm run validate:handbook-packs && npm run validate:packs && npm run test:release-train-manifest && npm run test:release-train-promotion && npm run release-train:validate",
     "toml:one": "tsx tools/toml2json.ts"
   },
   "repository": {
