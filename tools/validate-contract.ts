@@ -18,7 +18,6 @@ type ContractCase = {
   target: MistEngineDocumentTarget;
   file: string;
   canonical: "accept" | "reject";
-  lantern: "round-trip" | "reject";
   handbook: "render" | "degraded" | "null";
 };
 
@@ -57,7 +56,6 @@ for (const entry of cases) {
   ids.add(entry.id);
   assert.ok(targetKeys.has(entry.target), `Unknown target: ${entry.target}`);
   assert.ok(["accept", "reject"].includes(entry.canonical));
-  assert.ok(["round-trip", "reject"].includes(entry.lantern));
   assert.ok(["render", "degraded", "null"].includes(entry.handbook));
 
   const file = path.resolve(root, entry.file);
