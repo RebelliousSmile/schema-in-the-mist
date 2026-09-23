@@ -1,6 +1,6 @@
 ---
 objective: "Reach the #16 package-size target by consolidating every Handbook pack on the two proven redistributable Monsterhearts WOFF2 faces."
-status: in-progress
+status: completed
 ---
 
 # Plan: Replan Handbook asset delivery

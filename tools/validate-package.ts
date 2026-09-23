@@ -7,6 +7,8 @@ import { spawnSync } from "node:child_process";
 const npmCli = process.env.npm_execpath;
 if (!npmCli) throw new Error("Run this validator through npm so npm_execpath is available");
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), "mist-package-"));
+// One fifth of the 2,692,910-byte package audited on 2026-09-20.
+const MAX_ARCHIVE_BYTES = 538_582;
 
 function run(command: string, args: string[], cwd = process.cwd()): string {
   const result = spawnSync(command, args, { cwd, encoding: "utf8" });
@@ -28,6 +30,7 @@ try {
     archive = path.join(temporary, packed[0]!.filename);
     files = packed[0]!.files;
   }
+  assert.ok(fs.statSync(archive).size <= MAX_ARCHIVE_BYTES, `package archive exceeds ${MAX_ARCHIVE_BYTES} bytes`);
 
   if (files.length > 0) {
     const paths = files.map(({ path: file }) => file);

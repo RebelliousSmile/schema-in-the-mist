@@ -1,5 +1,5 @@
 ---
-status: pending
+status: completed
 ---
 
 # Instruction: Measure the complete published and installed result
@@ -43,7 +43,7 @@ journey
 
 > Prove the package and end-user installation meet the selected acceptance criteria.
 
-1. Run the package dry-run and record compressed and unpacked sizes.
+1. `npm pack --dry-run --json` measured 531,209 compressed bytes and 1,129,481 unpacked bytes on 2026-09-23; the package validator enforces the 538,582-byte (one-fifth) ceiling.
 2. Run Handbook’s real asset/render assertion at its pinned consumer commit.
 3. Make the package validator fail when the selected budget or delivery proof regresses.
 
