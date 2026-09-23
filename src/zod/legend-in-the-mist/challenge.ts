@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { PublicationTypeEnum } from "../common/publication.js";
+export { PublicationTypeEnum } from "../common/publication.js";
 
 /** =========================
  *  Enums
@@ -10,14 +12,6 @@ export const MightLevelEnum = z
     description:
       "Relative scale of a Challenge's Might or influence in the fiction.",
     examples: ["origin", "adventure", "greatness"],
-  });
-
-export const PublicationTypeEnum = z
-  .enum(["official", "third_party", "cauldron", "homebrew"])
-  .meta({
-    description:
-      "Where this content comes from. Use to help downstream tools filter sources.",
-    examples: ["official", "cauldron"],
   });
 
 /** =========================

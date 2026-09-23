@@ -1,16 +1,10 @@
 import { z } from "zod";
+import { PublicationTypeEnum } from "../common/publication.js";
+export { PublicationTypeEnum } from "../common/publication.js";
 
 /** =========================
  *  Enums
  *  ========================= */
-
-export const PublicationTypeEnum = z
-  .enum(["official", "third_party", "cauldron", "homebrew"])
-  .meta({
-    description:
-      "Where this content comes from. Use to help downstream tools filter sources.",
-    examples: ["official", "cauldron"],
-  });
 
 /** =========================
  *  Subschemas
@@ -150,7 +144,7 @@ export const MetaSchema = z
   })
   .meta({
     description:
-      "Attribution and cataloging fields for the Challenge's origin.",
+      "Attribution and cataloging fields for the Danger's origin.",
   });
 
 /** =========================

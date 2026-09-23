@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { PublicationTypeEnum } from "../common/publication.js";
+export { PublicationTypeEnum } from "../common/publication.js";
 
 /** =========================
  *  Enums
@@ -10,14 +12,6 @@ export const ThemeTypeEnum = z
     description:
       "Which kind of theme this kit builds. The three character theme types, plus `crew` for the Crew Theme Kits, which are printed with the identical anatomy — power tags, weakness tags, one Quest line — and so are filed here rather than in a target of their own. Required and deliberately left without a default: none of the four is a neutral starting value.",
     examples: ["self", "mythos", "noise", "crew"],
-  });
-
-export const PublicationTypeEnum = z
-  .enum(["official", "third_party", "cauldron", "homebrew"])
-  .meta({
-    description:
-      "Where this content comes from. Use to help downstream tools filter sources.",
-    examples: ["official", "homebrew"],
   });
 
 /** =========================

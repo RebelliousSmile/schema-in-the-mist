@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { PublicationTypeEnum } from "../common/publication.js";
+export { PublicationTypeEnum } from "../common/publication.js";
 
 /** =========================
  *  Enums
@@ -10,14 +12,6 @@ export const JourneyTypeEnum = z
     description:
       "What kind of Journey this is. A landscape is a place the Heroes cross, an occasion is an event they pass through, an undertaking is a task they see out. Required and deliberately left without a default: the three are not variations on one starting value the way a Story Theme starts at origin, so there is nothing to pick that would not be arbitrary.",
     examples: ["landscape", "occasion", "undertaking"],
-  });
-
-export const PublicationTypeEnum = z
-  .enum(["official", "third_party", "cauldron", "homebrew"])
-  .meta({
-    description:
-      "Where this content comes from. Use to help downstream tools filter sources.",
-    examples: ["official", "cauldron"],
   });
 
 /** =========================

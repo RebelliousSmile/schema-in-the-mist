@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { PublicationTypeEnum } from "../common/publication.js";
+export { PublicationTypeEnum } from "../common/publication.js";
 
 /** =========================
  *  Enums
@@ -9,14 +11,6 @@ export const ThemeLevelEnum = z.enum(["origin", "adventure", "greatness"]).meta(
     "Tier of the Story Theme, which determines the themebooks it can be built from and the kind of Quest it carries.",
   examples: ["origin", "adventure", "greatness"],
 });
-
-export const PublicationTypeEnum = z
-  .enum(["official", "third_party", "cauldron", "homebrew"])
-  .meta({
-    description:
-      "Where this content comes from. Use to help downstream tools filter sources.",
-    examples: ["official", "cauldron"],
-  });
 
 /** =========================
  *  Subschemas

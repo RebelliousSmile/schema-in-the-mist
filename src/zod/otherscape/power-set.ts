@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { PublicationTypeEnum } from "../common/publication.js";
+export { PublicationTypeEnum } from "../common/publication.js";
 
 /** =========================
  *  Enums
@@ -10,14 +12,6 @@ export const PowerSetTypeEnum = z
     description:
       "Which of the three sources this Power Set draws on. The books file every published Power Set under exactly one of these headings. Required and deliberately left without a default: none of the three is a neutral starting value, so picking one would assert something false about the other two.",
     examples: ["self", "mythos", "noise"],
-  });
-
-export const PublicationTypeEnum = z
-  .enum(["official", "third_party", "cauldron", "homebrew"])
-  .meta({
-    description:
-      "Where this content comes from. Use to help downstream tools filter sources.",
-    examples: ["official", "homebrew"],
   });
 
 /** =========================
