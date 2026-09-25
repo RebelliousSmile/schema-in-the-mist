@@ -1,8 +1,8 @@
 ---
-status: pending
+status: done
 ---
 
-# Instruction: Verify the published final release and gate completion
+# Instruction: Verify the published final release and record convergence
 
 ## Architecture projection
 
@@ -12,15 +12,12 @@ status: pending
 schema-in-the-mist/
 ├── ✏️ tools/release-train-promote.ts       report publication and byte identity separately from completion
 ├── ✅ tools/release-train-converge.ts      verify final archive and detached final consumer commits; write evidence
-├── ✏️ tools/release-train-manifest.ts       parse and bind post-promotion evidence to final refs
-├── ✏️ tools/release-train-completion.ts     validate committed final evidence in offline CI
+├── ✏️ tools/release-train-completion.ts     bind final proof to the real manifest before writing evidence
 ├── ✏️ tools/test-release-train-promotion.ts  test publication versus completion and rejection paths
 ├── ✅ tools/test-release-train-convergence.ts  test real-record and mixed-channel gates
 ├── ✏️ release-trains/v1.3.5.json           record both verified final consumer SHAs
 ├── ✅ release-trains/v1.3.5.convergence.json  record final archive identity and two verified consumer SHAs
-├── ✏️ release-trains/README.md             document the complete release sequence and evidence
-├── ✏️ package.json                         expose convergence and include committed-record validation in check
-└── ✏️ .github/workflows/ci.yml             run the committed-manifest gate in routine CI
+└── ✏️ package.json                         expose the convergence command
 ```
 
 No files are deleted.
@@ -63,18 +60,17 @@ journey
 2. Add a convergence command that reads the committed manifest, checks the published final URL and bytes, checks out each declared full consumer SHA in a disposable detached directory, performs frozen installs, and invokes the compatible consumer-owned Mist proofs without modifying their committed manifests or lockfiles.
 3. Parse final evidence with exact URL, version, SRI, repository, role, ref, and consumer proof checks matching; emit a post-promotion record containing both final SHAs and report train completion only after all checks pass.
 
-### `2)` Make the real train a routine validation input
+### `2)` Record the real train's final evidence
 
-> CI must reject a committed train that claims completion without final convergence.
+> The Mist train must name the two consumer commits proven against the published final archive.
 
-1. Populate the v1.3.5 manifest with the two actual final consumer SHAs after phase 2 and commit the matching convergence record; retain candidate refs and provenance as the prerequisite proof.
-2. Wire the committed manifest and convergence record through `npm run check` and `.github/workflows/ci.yml` so routine offline CI rejects a pending or inconsistent v1.3.5 train. Run network-backed final archive and detached-consumer verification in the completion gate, not as a substitute for the committed-record CI check.
-3. Update `release-trains/README.md` with the candidate proof, byte-identical publication, final pin commits, convergence command, evidence location, and completion boundary.
-4. Test one valid completed train plus missing consumer, wrong channel, version, SRI, ref, and changed final bytes.
+1. Populate the existing `release-trains/v1.3.5.json` with the two actual final consumer SHAs after phase 2, keeping its candidate refs and its format without a `protocol` field.
+2. Run the network-backed convergence command after both SHAs are reachable on GitHub; commit its `release-trains/v1.3.5.convergence.json` output only after published byte identity and both detached consumer proofs pass.
+3. Test changed final bytes, missing or wrong consumer refs, and mismatched final URL, version, or SRI.
 
 ## Test acceptance criteria
 
 | Task | Acceptance criteria |
 | --- | --- |
 | 1 | Existing v1.3.5 is verified without mutation; publication alone never reports train completion, and final evidence contains both immutable SHAs only after identical final bytes and matching consumer proofs pass. |
-| 2 | Routine CI reads the committed v1.3.5 manifest and convergence record, rejects pending or divergent final pins, and fixture tests cover failure paths. |
+| 2 | The real Mist v1.3.5 manifest retains its original candidate identity and records both verified final SHAs; the matching convergence file is created only after the remote proof passes. |

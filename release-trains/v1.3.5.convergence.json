@@ -1,0 +1,102 @@
+{
+  "protocol": 2,
+  "candidateEvidence": {
+    "protocol": 1,
+    "candidate": {
+      "packageName": "schema-in-the-mist",
+      "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.5-rc.2/schema-in-the-mist-1.3.5.tgz",
+      "sha256": "7c04351d80ecbdf98c723f87b860d2c1c748b55967674d33dc8c6af1feca1f25",
+      "integrity": "sha512-i4TciUnyWd4PJG1Fnhhj5Yf+nvmx+LhapYfs3ONNX1ZZ6zu5a4UHG9s6JyDiyoRcyeyl7ADFbTEMI8APrZZUIw==",
+      "stagingTag": "v1.3.5-rc.2",
+      "finalTag": "v1.3.5",
+      "providerCommit": "0ee0f89ac9b4c2652477eb59f172de7e884ced77"
+    },
+    "consumers": [
+      {
+        "status": "passed",
+        "artifact": {
+          "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.5-rc.2/schema-in-the-mist-1.3.5.tgz",
+          "sha256": "7c04351d80ecbdf98c723f87b860d2c1c748b55967674d33dc8c6af1feca1f25",
+          "integrity": "sha512-i4TciUnyWd4PJG1Fnhhj5Yf+nvmx+LhapYfs3ONNX1ZZ6zu5a4UHG9s6JyDiyoRcyeyl7ADFbTEMI8APrZZUIw=="
+        },
+        "consumer": {
+          "role": "lantern",
+          "repository": "RebelliousSmile/lantern",
+          "ref": "85c710d20ea6187de7c1c21d7be7d90581e0e5eb"
+        }
+      },
+      {
+        "status": "passed",
+        "artifact": {
+          "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.5-rc.2/schema-in-the-mist-1.3.5.tgz",
+          "sha256": "7c04351d80ecbdf98c723f87b860d2c1c748b55967674d33dc8c6af1feca1f25",
+          "integrity": "sha512-i4TciUnyWd4PJG1Fnhhj5Yf+nvmx+LhapYfs3ONNX1ZZ6zu5a4UHG9s6JyDiyoRcyeyl7ADFbTEMI8APrZZUIw==",
+          "version": "1.3.5"
+        },
+        "consumer": {
+          "role": "handbook",
+          "repository": "RebelliousSmile/obsidian-handbook",
+          "ref": "35f00dacbe62690e396d49be5e9c4404692636e1"
+        }
+      }
+    ]
+  },
+  "final": {
+    "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.5/schema-in-the-mist-1.3.5.tgz",
+    "sha256": "7c04351d80ecbdf98c723f87b860d2c1c748b55967674d33dc8c6af1feca1f25",
+    "integrity": "sha512-i4TciUnyWd4PJG1Fnhhj5Yf+nvmx+LhapYfs3ONNX1ZZ6zu5a4UHG9s6JyDiyoRcyeyl7ADFbTEMI8APrZZUIw=="
+  },
+  "consumers": [
+    {
+      "status": "passed",
+      "artifact": {
+        "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.5/schema-in-the-mist-1.3.5.tgz",
+        "sha256": "7c04351d80ecbdf98c723f87b860d2c1c748b55967674d33dc8c6af1feca1f25",
+        "integrity": "sha512-i4TciUnyWd4PJG1Fnhhj5Yf+nvmx+LhapYfs3ONNX1ZZ6zu5a4UHG9s6JyDiyoRcyeyl7ADFbTEMI8APrZZUIw==",
+        "version": "1.3.5"
+      },
+      "consumer": {
+        "role": "lantern",
+        "repository": "RebelliousSmile/lantern",
+        "ref": "bed650d9a8d7331865ca368b701445cb86ac3aac"
+      },
+      "checks": [
+        "provider-assertion",
+        "package-declaration",
+        "lock-importer",
+        "lock-resolution",
+        "npm-lock-declaration",
+        "npm-lock-resolution",
+        "archive-download",
+        "archive-sha256",
+        "archive-integrity",
+        "frozen-install",
+        "installed-version",
+        "mist-contracts",
+        "mist-vite-assets",
+        "repository-clean"
+      ]
+    },
+    {
+      "status": "passed",
+      "artifact": {
+        "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.5/schema-in-the-mist-1.3.5.tgz",
+        "sha256": "7c04351d80ecbdf98c723f87b860d2c1c748b55967674d33dc8c6af1feca1f25",
+        "integrity": "sha512-i4TciUnyWd4PJG1Fnhhj5Yf+nvmx+LhapYfs3ONNX1ZZ6zu5a4UHG9s6JyDiyoRcyeyl7ADFbTEMI8APrZZUIw==",
+        "version": "1.3.5"
+      },
+      "consumer": {
+        "role": "handbook",
+        "repository": "RebelliousSmile/obsidian-handbook",
+        "ref": "d8ae76270b93a6506e760a13c8dd85f37830d0af"
+      },
+      "checks": [
+        "contract",
+        "pack-assets",
+        "source-installer",
+        "production-build",
+        "obsidian-plugin-load"
+      ]
+    }
+  ]
+}
