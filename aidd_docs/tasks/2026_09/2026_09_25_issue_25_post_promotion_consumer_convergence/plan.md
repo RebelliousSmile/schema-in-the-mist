@@ -1,6 +1,6 @@
 ---
 objective: "A Mist release train completes only after byte-identical final promotion and verified Lantern and Handbook commits pinning the same canonical final archive and published SRI."
-status: in-progress
+status: implemented
 ---
 
 # Plan: Require post-promotion consumer convergence
