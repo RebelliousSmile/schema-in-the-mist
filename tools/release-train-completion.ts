@@ -36,6 +36,8 @@ export function parseReleaseTrainCompletion(value: unknown, manifest: ReleaseTra
     const artifact = object(evidence.artifact, "final consumer artifact"); keys(artifact, ["releaseUrl", "sha256", "integrity", "version"], "final consumer artifact");
     assert.deepEqual(artifact, { ...(root.final as RecordValue), version: manifest.candidate.finalTag.slice(1) }, "final consumer names another archive, channel, version, or SRI");
     assert.ok(Array.isArray(evidence.checks) && evidence.checks.length > 0 && evidence.checks.every((check) => typeof check === "string" && check.length > 0), "final consumer checks are missing");
+    const required = expected.role === "lantern" ? "mist-vite-assets" : "obsidian-plugin-load";
+    assert.ok(evidence.checks.includes(required), `${expected.role} final proof lacks ${required}`);
   }
   return { protocol: 2 as const, candidateEvidence, final: manifest.final, consumers: root.consumers };
 }

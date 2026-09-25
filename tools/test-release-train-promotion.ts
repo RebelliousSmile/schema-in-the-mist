@@ -26,7 +26,7 @@ const consumers = [
 ];
 const manifest = path.join(temporary, "v1.3.5.json");
 const evidence = path.join(temporary, "provenance.json");
-fs.writeFileSync(manifest, JSON.stringify({ candidate, consumers }));
+fs.writeFileSync(manifest, JSON.stringify({ status: "pending", candidate, consumers }));
 fs.writeFileSync(evidence, JSON.stringify({ protocol: 1, candidate, consumers: consumers.map((consumer) => ({ status: "passed", artifact: { releaseUrl: candidate.releaseUrl, sha256, integrity }, consumer: { role: consumer.role, repository: consumer.repository, ref: consumer.ref } })) }));
 function promote(evidencePath = evidence, archivePath = archive) {
   return spawnSync(process.execPath, [path.resolve("node_modules/tsx/dist/cli.mjs"), "tools/release-train-promote.ts", manifest, "--evidence", evidencePath, "--archive", archivePath, "--dry-run"], { encoding: "utf8", cwd: process.cwd() });

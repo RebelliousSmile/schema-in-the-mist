@@ -1,5 +1,5 @@
 ---
-status: pending
+status: done
 ---
 
 # Instruction: Enable Mist proof and commit canonical final pins in both consumers

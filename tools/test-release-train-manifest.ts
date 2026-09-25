@@ -23,7 +23,7 @@ const completion = {
   protocol: 2,
   candidateEvidence: evidence,
   final: { releaseUrl: completed.final.releaseUrl, sha256: completed.final.sha256, integrity: completed.final.integrity },
-  consumers: completed.final.consumers.map((consumer: any) => ({ status: "passed", consumer, artifact: { releaseUrl: completed.final.releaseUrl, sha256: completed.final.sha256, integrity: completed.final.integrity, version: "1.3.5" }, checks: ["frozen-install", "production-build"] })),
+  consumers: completed.final.consumers.map((consumer: any) => ({ status: "passed", consumer, artifact: { releaseUrl: completed.final.releaseUrl, sha256: completed.final.sha256, integrity: completed.final.integrity, version: "1.3.5" }, checks: ["frozen-install", consumer.role === "lantern" ? "mist-vite-assets" : "obsidian-plugin-load"] })),
 };
 assert.equal(parseReleaseTrainCompletion(completion, completedManifest).consumers.length, 2);
 for (const mutate of [
@@ -38,6 +38,7 @@ for (const mutate of [
   (value: any) => { value.consumers[0].artifact.version = "1.3.4"; },
   (value: any) => { value.consumers[0].artifact.integrity = "wrong"; },
   (value: any) => { value.consumers[0].consumer.ref = "f".repeat(40); },
+  (value: any) => { value.consumers[0].checks = ["frozen-install"]; },
   (value: any) => { value.consumers.pop(); },
   (value: any) => { value.candidateEvidence.consumers.pop(); },
 ]) { const copy = structuredClone(completion); mutate(copy); assert.throws(() => parseReleaseTrainCompletion(copy, completedManifest)); }
