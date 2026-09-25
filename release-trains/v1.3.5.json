@@ -1,4 +1,5 @@
 {
+  "status": "pending",
   "candidate": {
     "packageName": "schema-in-the-mist",
     "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.3.5-rc.2/schema-in-the-mist-1.3.5.tgz",

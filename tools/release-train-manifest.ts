@@ -6,8 +6,10 @@ export const RELEASE_TRAIN_PROOF_INTERFACE = "npm-run-release-train-assert" as c
 export type ReleaseTrainConsumerRole = "lantern" | "handbook";
 
 export type ReleaseTrainManifest = {
+  status: "pending" | "completed";
   candidate: { packageName: "schema-in-the-mist"; releaseUrl: string; sha256: string; integrity: string; stagingTag: string; finalTag: string; providerCommit: string };
   consumers: Array<{ role: ReleaseTrainConsumerRole; repository: string; ref: string; path: string; proof: { interface: typeof RELEASE_TRAIN_PROOF_INTERFACE; manifest: string } }>;
+  final?: { releaseUrl: string; sha256: string; integrity: string; consumers: Array<{ role: ReleaseTrainConsumerRole; repository: string; ref: string }> };
 };
 export type ReleaseTrainEvidence = { protocol: 1; candidate: ReleaseTrainManifest["candidate"]; consumers: Array<{ status: "passed"; artifact: { releaseUrl: string; sha256: string; integrity: string; version?: string }; consumer: { role: ReleaseTrainConsumerRole; repository: string; ref: string } }> };
 
@@ -24,7 +26,7 @@ function string(value: unknown, name: string): string { assert.equal(typeof valu
 function tagVersion(value: string, expression: RegExp, name: string): string { const match = expression.exec(value); assert.ok(match, `${name} is not a valid release tag`); return `${match[1]}.${match[2]}.${match[3]}`; }
 
 export function parseReleaseTrainManifest(value: unknown): ReleaseTrainManifest {
-  const root = record(value, "manifest"); exactKeys(root, ["candidate", "consumers"], "manifest");
+  const root = record(value, "manifest"); assert.ok(root.status === "pending" || root.status === "completed", "manifest.status must be pending or completed"); exactKeys(root, root.status === "pending" ? ["status", "candidate", "consumers"] : ["status", "candidate", "consumers", "final"], "manifest");
   const candidate = record(root.candidate, "candidate"); exactKeys(candidate, ["packageName", "releaseUrl", "sha256", "integrity", "stagingTag", "finalTag", "providerCommit"], "candidate");
   assert.equal(candidate.packageName, "schema-in-the-mist", "candidate.packageName must be schema-in-the-mist");
   const releaseUrl = string(candidate.releaseUrl, "candidate.releaseUrl"); const sha256 = string(candidate.sha256, "candidate.sha256"); const integrity = string(candidate.integrity, "candidate.integrity"); const staged = string(candidate.stagingTag, "candidate.stagingTag"); const final = string(candidate.finalTag, "candidate.finalTag"); const providerCommit = string(candidate.providerCommit, "candidate.providerCommit");
@@ -43,7 +45,25 @@ export function parseReleaseTrainManifest(value: unknown): ReleaseTrainManifest 
     return { role, repository, ref, path: consumerPath, proof: { interface: RELEASE_TRAIN_PROOF_INTERFACE, manifest } };
   });
   assert.deepEqual(consumers.map(({ role }) => role).sort(), [...roles].sort(), "consumers must name Lantern and Handbook exactly once"); assert.equal(new Set(consumers.map(({ path: consumerPath }) => consumerPath)).size, consumers.length, "consumer paths must be distinct");
-  return { candidate: { packageName: "schema-in-the-mist", releaseUrl, sha256, integrity, stagingTag: staged, finalTag: final, providerCommit }, consumers };
+  const result: ReleaseTrainManifest = { status: root.status, candidate: { packageName: "schema-in-the-mist", releaseUrl, sha256, integrity, stagingTag: staged, finalTag: final, providerCommit }, consumers };
+  if (root.status === "completed") {
+    const published = record(root.final, "final"); exactKeys(published, ["releaseUrl", "sha256", "integrity", "consumers"], "final");
+    const finalUrl = string(published.releaseUrl, "final.releaseUrl");
+    assert.equal(finalUrl, `https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/${final}/schema-in-the-mist-${version}.tgz`, "final.releaseUrl must be the canonical final archive");
+    assert.equal(published.sha256, sha256, "final.sha256 differs from candidate"); assert.equal(published.integrity, integrity, "final.integrity differs from candidate");
+    assert.ok(Array.isArray(published.consumers), "final.consumers must be an array"); assert.equal(published.consumers.length, roles.length, "final.consumers must name both consumers");
+    const finalConsumers = published.consumers.map((raw, index) => {
+      const identity = record(raw, `final.consumers[${index}]`); exactKeys(identity, ["role", "repository", "ref"], `final.consumers[${index}]`);
+      const role = string(identity.role, `final.consumers[${index}].role`) as ReleaseTrainConsumerRole;
+      assert.ok(roles.includes(role), `final.consumers[${index}].role is unknown`);
+      const repository = string(identity.repository, `final.consumers[${index}].repository`); assert.equal(repository, repositories[role], `final.consumers[${index}].repository is not canonical`);
+      const ref = string(identity.ref, `final.consumers[${index}].ref`); assert.match(ref, commit, `final.consumers[${index}].ref must be a full commit SHA`);
+      return { role, repository, ref };
+    });
+    assert.deepEqual(finalConsumers.map(({ role }) => role).sort(), [...roles].sort(), "final.consumers must name Lantern and Handbook exactly once");
+    result.final = { releaseUrl: finalUrl, sha256, integrity, consumers: finalConsumers };
+  }
+  return result;
 }
 export function readReleaseTrainManifest(file: string): ReleaseTrainManifest { return parseReleaseTrainManifest(JSON.parse(fs.readFileSync(path.resolve(file), "utf8"))); }
 
