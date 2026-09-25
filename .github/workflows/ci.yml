@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check schemas and compatibility paths
+      - name: Check schemas, compatibility, and committed release train
         run: npm run check
 
       - name: Test the packed public API as a consumer

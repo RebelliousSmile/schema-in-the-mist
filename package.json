@@ -18,6 +18,7 @@
     "release-train:promote": "tsx tools/release-train-promote.ts",
     "release-train:converge": "tsx tools/release-train-converge.ts",
     "release-train:validate": "tsx tools/validate-release-train.ts",
+    "release-train:validate-completed": "tsx tools/validate-release-train.ts --require-complete v1.3.5",
     "test:release-train-manifest": "tsx tools/test-release-train-manifest.ts",
     "test:release-train-promotion": "tsx tools/test-release-train-promotion.ts",
     "test:release-train-convergence": "tsx tools/test-release-train-convergence.ts",
@@ -26,7 +27,7 @@
     "test:handbook-contrast": "tsx tools/test-handbook-contrast.ts",
     "generate:otherscape-design": "tsx tools/build-otherscape-handbook-design.ts --write",
     "validate:otherscape-design": "tsx tools/validate-otherscape-design.ts && tsx tools/build-otherscape-handbook-design.ts --check",
-    "check": "npm run typecheck && npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run test:handbook-contrast && npm run validate:handbook-packs && npm run validate:packs && npm run test:release-train-manifest && npm run test:release-train-promotion && npm run release-train:validate",
+    "check": "npm run typecheck && npm run build && npm run gen && npm run validate && npm run validate:contract && npm run validate:source-conversion && npm run validate:version && npm run validate:appearance-compat && npm run validate:otherscape-design && npm run test:handbook-contrast && npm run validate:handbook-packs && npm run validate:packs && npm run test:release-train-manifest && npm run test:release-train-promotion && npm run test:release-train-convergence && npm run release-train:validate-completed",
     "toml:one": "tsx tools/toml2json.ts"
   },
   "repository": {

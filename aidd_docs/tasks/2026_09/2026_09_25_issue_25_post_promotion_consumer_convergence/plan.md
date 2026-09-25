@@ -18,7 +18,8 @@ status: in-progress
 | --- | --- | --- |
 | 1 | Model candidate proof and final convergence separately | [phase-1.md](./phase-1.md) |
 | 2 | Enable Mist proof and commit canonical final pins in both consumers | [phase-2.md](./phase-2.md) |
-| 3 | Verify the published final release and gate completion | [phase-3.md](./phase-3.md) |
+| 3 | Verify the published final release and record convergence | [phase-3.md](./phase-3.md) |
+| 4 | Validate the committed Mist train in routine CI | [phase-4.md](./phase-4.md) |
 
 ## Resources
 
@@ -38,3 +39,4 @@ status: in-progress
 | Make promotion and convergence distinct, and verify an already-published matching final release without mutating it. | v1.3.5 already exists; the current `gh release create` path cannot be rerun, and publication alone is not train completion. |
 | Verify immutable consumer commits in disposable checkouts and keep their package, lockfile, and runtime assertions consumer-owned. | The cross-repository contract rule requires provider provenance without moving consumer semantics or rewriting their checkouts. |
 | Require a committed completion record with final refs and evidence in routine offline CI, plus an online final-release and detached-consumer proof at completion. | Manifest shape alone already runs in `npm run check`; it cannot establish that final consumer pins landed. |
+| Keep `release-trains/v1.3.5.json` as the Mist-owned manifest without a `protocol` field; version the candidate and final proof envelopes separately. | The existing manifest is the authoritative train record. `protocol: 1` identifies candidate evidence and `protocol: 2` identifies final evidence. The runner's temporary input in each detached consumer checkout is not another committed release-train manifest. |
