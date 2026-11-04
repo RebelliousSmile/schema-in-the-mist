@@ -19,10 +19,10 @@ function value(dotted: string, mode: Mode): string {
 
 if (projection.version !== "2.0.0") throw new Error("Projection must be v2.0.0");
 const variants = projection.variants as Record<string, any> | undefined;
-if (!variants?.metro || !variants?.cairo) throw new Error("Projection must declare the metro and cairo variants");
+if (!variants?.metro || !variants?.cairo || !variants?.tokyo) throw new Error("Projection must declare the metro, cairo and tokyo variants");
 
-/* One polarity per variant: Cairo is light, Metro dark. A second mode is a second design to source and to prove. */
-const expectedModes: Record<string, Mode> = { metro: "dark", cairo: "light" };
+/* One polarity per variant: Cairo and Tokyo are light, Metro dark; the other one paints the alternate section only. */
+const expectedModes: Record<string, Mode> = { metro: "dark", cairo: "light", tokyo: "light" };
 for (const [id, variant] of Object.entries(variants)) {
   const declared = modes.filter((mode) => variant.modes?.[mode]);
   if (expectedModes[id] && declared.join() !== expectedModes[id]) throw new Error(`Variant ${id} must project ${expectedModes[id]} only, not ${declared.join(", ") || "nothing"}`);

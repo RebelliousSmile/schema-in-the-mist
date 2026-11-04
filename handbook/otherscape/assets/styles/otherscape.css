@@ -1,12 +1,9 @@
 /* GENERATED from schemas/otherscape/design — do not edit by hand. */
 /* Handbook renders os-theme as .brumes-os-theme; scope this pack sheet to Metro only. */
-body.brumes--otherscape.brumes--variant-metro {
-  --os-metro-card-surface: #E4E8E8;
-  --os-metro-card-text: #05071D;
-}
-body.brumes--otherscape.brumes--variant-metro.brumes--colour-dark {
-  --os-metro-card-surface: #0B0F2F;
-  --os-metro-card-text: #F6F7F4;
+/* The card reads the band surface, so the alternate section repaints it too. */
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
+  --os-metro-card-surface: var(--os-metro-surface);
+  --os-metro-card-text: var(--os-metro-surface-text);
 }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
   font-family: system-ui, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -72,11 +69,98 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest {
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-top-color: var(--os-card-accent); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
 @media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
-/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Light; its dark design paints the
-   alternate section only, on screen like the section itself. Flat paper, no texture. */
+/* Metro: dark (dark.jpg, dark-chapo.jpg), light alternate (page.jpg, light-chapo.jpg); its cards keep the Metro rules above. */
+body.brumes--otherscape.brumes--variant-metro {
+  --os-metro-heading: #C8FF2E;
+  --os-metro-heading-band: #3E4257;
+  --os-metro-subheading: #0B0F2F;
+  --os-metro-subheading-band: #C8FF2E;
+  --os-metro-label: #C8FF2E;
+  --os-metro-label-text: #0B0F2F;
+  --os-metro-lead: #CBD3D5;
+  --os-metro-highlight: #50581A;
+  --os-metro-highlight-text: #E8F7A0;
+  --os-metro-surface: #0B0F2F;
+  --os-metro-surface-text: #F6F7F4;
+  --os-metro-surface-line: #3E4257;
+  --os-metro-card-title: #C8FF2E;
+  --os-metro-rule: #C8FF2E;
+}
+@media screen {
+  body.brumes--otherscape.brumes--variant-metro .handbook-mode-alternate {
+    --os-metro-heading: #0B0F2F;
+    --os-metro-heading-band: #C8FF2E;
+    --os-metro-subheading: #0B0F2F;
+    --os-metro-subheading-band: #C8FF2E;
+    --os-metro-label: #0B0F2F;
+    --os-metro-label-text: #C8FF2E;
+    --os-metro-lead: #0B0F2F;
+    --os-metro-highlight: #C8FF2E;
+    --os-metro-highlight-text: #0B0F2F;
+    --os-metro-surface: #E4E8E8;
+    --os-metro-surface-text: #05071D;
+    --os-metro-surface-line: #20CFE3;
+    --os-metro-card-title: #0B0F2F;
+    --os-metro-rule: #075F8B;
+  }
+}
+body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
+  width: fit-content;
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  border-radius: 0.25rem;
+}
+body.brumes--otherscape.brumes--variant-metro :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperMD-header-3 .cm-header-3) {
+  border-radius: 0.25rem;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  text-transform: uppercase;
+}
+body.brumes--otherscape.brumes--variant-metro .markdown-rendered .el-h1 > h1 {
+  padding: 0.12em 0.6em 0.06em 0.3em;
+  background: var(--os-metro-heading-band);
+  color: var(--os-metro-heading);
+  clip-path: polygon(0 0, calc(100% - 0.4em) 0, 100% 0.4em, 100% 100%, 0 100%);
+}
+body.brumes--otherscape.brumes--variant-metro .HyperMD-header-1 .cm-header-1 { padding: 0 0.6em 0 0.3em; background: var(--os-metro-heading-band); color: var(--os-metro-heading); clip-path: polygon(0 0, calc(100% - 0.4em) 0, 100% 0.4em, 100% 100%, 0 100%); }
+body.brumes--otherscape.brumes--variant-metro .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background: var(--os-metro-subheading-band); color: var(--os-metro-subheading); }
+body.brumes--otherscape.brumes--variant-metro .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-metro-subheading-band); color: var(--os-metro-subheading); }
+body.brumes--otherscape.brumes--variant-metro .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-metro-label); color: var(--os-metro-label-text); font-size: 1em; }
+body.brumes--otherscape.brumes--variant-metro .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: var(--os-metro-label); color: var(--os-metro-label-text); font-size: 1em; }
+body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h1 + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-metro-lead); font-size: 1.3em; line-height: 1.25; }
+body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h2 + .el-p > p > em:only-child, .HyperMD-header-2 + .cm-line > .cm-em:first-child) {
+  padding: 0 0.3em;
+  background: var(--os-metro-highlight);
+  color: var(--os-metro-highlight-text);
+}
+body.brumes--otherscape.brumes--variant-metro :is(.callout) {
+  border-radius: 0.75rem;
+  corner-shape: bevel;
+  box-shadow: none;
+  background: var(--os-metro-surface);
+  --text-normal: var(--os-metro-surface-text);
+  --bold-color: var(--os-metro-surface-text);
+  --italic-color: var(--os-metro-surface-text);
+  color: var(--os-metro-surface-text);
+}
+@supports not (corner-shape: bevel) {
+  body.brumes--otherscape.brumes--variant-metro :is(.callout) {
+    clip-path: polygon(0.75rem 0, calc(100% - 0.75rem) 0, 100% 0.75rem, 100% calc(100% - 0.75rem), calc(100% - 0.75rem) 100%, 0.75rem 100%, 0 calc(100% - 0.75rem), 0 0.75rem);
+  }
+}
+body.brumes--otherscape.brumes--variant-metro .callout {
+  position: relative;
+  border: 1px solid var(--os-metro-surface-line);
+}
+body.brumes--otherscape.brumes--variant-metro .callout-title { color: var(--os-metro-surface-text); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro .callout-icon { color: var(--os-metro-card-title); }
+/* Cairo: light (cairo-light.jpg), dark alternate (cairo-dark.jpg). */
 body.brumes--otherscape.brumes--variant-cairo {
   --os-cairo-heading: #201408;
   --os-cairo-heading-band: #D6C686;
+  --os-cairo-subheading: #201408;
   --os-cairo-subheading-band: #E2D9A5;
   --os-cairo-label: #48403A;
   --os-cairo-label-text: #D0B868;
@@ -84,6 +168,7 @@ body.brumes--otherscape.brumes--variant-cairo {
   --os-cairo-highlight: #F6F2A8;
   --os-cairo-highlight-text: #201408;
   --os-cairo-surface: #D9E4E0;
+  --os-cairo-surface-text: #1E1E1E;
   --os-cairo-surface-line: #C2D6D4;
   --os-cairo-card-title: #00756A;
   --os-cairo-rule: #00756A;
@@ -93,6 +178,7 @@ body.brumes--otherscape.brumes--variant-cairo {
   body.brumes--otherscape.brumes--variant-cairo .handbook-mode-alternate {
     --os-cairo-heading: #D0B868;
     --os-cairo-heading-band: #48403A;
+    --os-cairo-subheading: #D0B868;
     --os-cairo-subheading-band: #48403A;
     --os-cairo-label: #48403A;
     --os-cairo-label-text: #D0B868;
@@ -100,6 +186,7 @@ body.brumes--otherscape.brumes--variant-cairo {
     --os-cairo-highlight: #5E6600;
     --os-cairo-highlight-text: #E8F0B0;
     --os-cairo-surface: #283840;
+    --os-cairo-surface-text: #E6E6DE;
     --os-cairo-surface-line: #3C5052;
     --os-cairo-card-title: #37C298;
     --os-cairo-rule: #2E9A88;
@@ -127,8 +214,8 @@ body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h1 > h1 {
   clip-path: polygon(0 0, calc(100% - 0.4em) 0, 100% 0.4em, 100% 100%, 0 100%);
 }
 body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-1 .cm-header-1 { padding: 0 0.6em 0 0.3em; background: var(--os-cairo-heading-band); color: var(--os-cairo-heading); clip-path: polygon(0 0, calc(100% - 0.4em) 0, 100% 0.4em, 100% 100%, 0 100%); }
-body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
-body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
+body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-subheading); }
+body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-subheading); }
 body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }
 body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }
 body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-cairo-lead); font-size: 1.3em; line-height: 1.25; }
@@ -141,6 +228,11 @@ body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .b
   border-radius: 0.75rem;
   corner-shape: bevel;
   box-shadow: none;
+  background: var(--os-cairo-surface);
+  --text-normal: var(--os-cairo-surface-text);
+  --bold-color: var(--os-cairo-surface-text);
+  --italic-color: var(--os-cairo-surface-text);
+  color: var(--os-cairo-surface-text);
 }
 @supports not (corner-shape: bevel) {
   body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
@@ -150,8 +242,6 @@ body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .b
 body.brumes--otherscape.brumes--variant-cairo .callout {
   position: relative;
   border: 3px double var(--os-cairo-surface-line);
-  background: var(--os-cairo-surface);
-  color: var(--text-normal);
 }
 body.brumes--otherscape.brumes--variant-cairo .callout::before,
 body.brumes--otherscape.brumes--variant-cairo .callout::after {
@@ -164,13 +254,11 @@ body.brumes--otherscape.brumes--variant-cairo .callout::after {
 }
 body.brumes--otherscape.brumes--variant-cairo .callout::before { top: 0.15rem; }
 body.brumes--otherscape.brumes--variant-cairo .callout::after { bottom: 0.15rem; }
-body.brumes--otherscape.brumes--variant-cairo .callout-title { color: var(--text-normal); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .callout-title { color: var(--os-cairo-surface-text); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
 body.brumes--otherscape.brumes--variant-cairo .callout-icon { color: var(--os-cairo-card-title); }
 body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
   --os-card-accent: var(--os-cairo-rule);
   border: 1px solid var(--os-cairo-surface-line);
-  background: var(--os-cairo-surface);
-  color: var(--text-normal);
 }
 body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) :is(h2, h3) { color: var(--os-cairo-card-title); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-weight: 900; text-transform: uppercase; }
 body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--type {
@@ -183,3 +271,105 @@ body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--type {
   text-transform: uppercase;
 }
 body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme--quest, .brumes-os-theme--tracks) { border-top: 1px solid var(--os-cairo-rule); }
+/* Tokyo: light (tokyo-light.jpg), dark alternate (tokyo-dark.jpg); slate cards in both. */
+body.brumes--otherscape.brumes--variant-tokyo {
+  --os-tokyo-heading: #1E1E1E;
+  --os-tokyo-heading-band: #C8FF2E;
+  --os-tokyo-subheading: #1E1E1E;
+  --os-tokyo-subheading-band: #C8FF2E;
+  --os-tokyo-label: #2D3A44;
+  --os-tokyo-label-text: #C8FF2E;
+  --os-tokyo-lead: #1E1E1E;
+  --os-tokyo-highlight: #C4EEDB;
+  --os-tokyo-highlight-text: #1E1E1E;
+  --os-tokyo-surface: #2D3A44;
+  --os-tokyo-surface-text: #EEF0F2;
+  --os-tokyo-surface-line: #4C5A64;
+  --os-tokyo-card-title: #C8FF2E;
+  --os-tokyo-rule: #C8FF2E;
+}
+@media screen {
+  body.brumes--otherscape.brumes--variant-tokyo .handbook-mode-alternate {
+    --os-tokyo-heading: #C8FF2E;
+    --os-tokyo-heading-band: #3A4152;
+    --os-tokyo-subheading: #C8FF2E;
+    --os-tokyo-subheading-band: #3A4152;
+    --os-tokyo-label: #C8FF2E;
+    --os-tokyo-label-text: #0E1030;
+    --os-tokyo-lead: #EEF0F2;
+    --os-tokyo-highlight: #50581A;
+    --os-tokyo-highlight-text: #E8F7A0;
+    --os-tokyo-surface: #2D3A44;
+    --os-tokyo-surface-text: #EEF0F2;
+    --os-tokyo-surface-line: #4C5A64;
+    --os-tokyo-card-title: #C8FF2E;
+    --os-tokyo-rule: #C8FF2E;
+  }
+}
+body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
+  width: fit-content;
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  border-radius: 0.25rem;
+}
+body.brumes--otherscape.brumes--variant-tokyo :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperMD-header-3 .cm-header-3) {
+  border-radius: 0.25rem;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  text-transform: uppercase;
+}
+body.brumes--otherscape.brumes--variant-tokyo .markdown-rendered .el-h1 > h1 {
+  padding: 0.12em 0.6em 0.06em 0.3em;
+  background: var(--os-tokyo-heading-band);
+  color: var(--os-tokyo-heading);
+  clip-path: polygon(0 0, calc(100% - 0.4em) 0, 100% 0.4em, 100% 100%, 0 100%);
+}
+body.brumes--otherscape.brumes--variant-tokyo .HyperMD-header-1 .cm-header-1 { padding: 0 0.6em 0 0.3em; background: var(--os-tokyo-heading-band); color: var(--os-tokyo-heading); clip-path: polygon(0 0, calc(100% - 0.4em) 0, 100% 0.4em, 100% 100%, 0 100%); }
+body.brumes--otherscape.brumes--variant-tokyo .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background: var(--os-tokyo-subheading-band); color: var(--os-tokyo-subheading); }
+body.brumes--otherscape.brumes--variant-tokyo .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-tokyo-subheading-band); color: var(--os-tokyo-subheading); }
+body.brumes--otherscape.brumes--variant-tokyo .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-tokyo-label); color: var(--os-tokyo-label-text); font-size: 1em; }
+body.brumes--otherscape.brumes--variant-tokyo .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: var(--os-tokyo-label); color: var(--os-tokyo-label-text); font-size: 1em; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h1 + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-tokyo-lead); font-size: 1.3em; line-height: 1.25; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h2 + .el-p > p > em:only-child, .HyperMD-header-2 + .cm-line > .cm-em:first-child) {
+  padding: 0 0.3em;
+  background: var(--os-tokyo-highlight);
+  color: var(--os-tokyo-highlight-text);
+}
+body.brumes--otherscape.brumes--variant-tokyo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+  border-radius: 0.75rem;
+  corner-shape: bevel;
+  box-shadow: none;
+  background: var(--os-tokyo-surface);
+  --text-normal: var(--os-tokyo-surface-text);
+  --bold-color: var(--os-tokyo-surface-text);
+  --italic-color: var(--os-tokyo-surface-text);
+  color: var(--os-tokyo-surface-text);
+}
+@supports not (corner-shape: bevel) {
+  body.brumes--otherscape.brumes--variant-tokyo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+    clip-path: polygon(0.75rem 0, calc(100% - 0.75rem) 0, 100% 0.75rem, 100% calc(100% - 0.75rem), calc(100% - 0.75rem) 100%, 0.75rem 100%, 0 calc(100% - 0.75rem), 0 0.75rem);
+  }
+}
+body.brumes--otherscape.brumes--variant-tokyo .callout {
+  position: relative;
+  border: 1px solid var(--os-tokyo-surface-line);
+}
+body.brumes--otherscape.brumes--variant-tokyo .callout-title { color: var(--os-tokyo-surface-text); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .callout-icon { color: var(--os-tokyo-card-title); }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+  --os-card-accent: var(--os-tokyo-rule);
+  border: 1px solid var(--os-tokyo-surface-line);
+}
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) :is(h2, h3) { color: var(--os-tokyo-card-title); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-weight: 900; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--type {
+  width: fit-content;
+  padding: 0.2em 0.5em 0.1em;
+  background: var(--os-tokyo-label);
+  color: var(--os-tokyo-label-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme--quest, .brumes-os-theme--tracks) { border-top: 1px solid var(--os-tokyo-rule); }

@@ -26,15 +26,99 @@
       "note": {
         "--background-primary": "color.semantic.background",
         "--background-primary-alt": "color.semantic.surface",
+        "--background-secondary": "color.semantic.surface",
+        "--code-background": "color.semantic.surface",
         "--text-normal": "color.semantic.text",
+        "--bold-color": "color.semantic.text",
+        "--italic-color": "color.semantic.text",
         "--text-muted": "color.semantic.text-muted",
-        "--h1-color": "color.semantic.text",
-        "--h2-color": "color.semantic.text",
-        "--h3-color": "color.semantic.text",
-        "--text-highlight-bg": "color.brand.primary",
+        "--h1-color": "color.metro.semantic.heading",
+        "--h2-color": "color.metro.semantic.heading",
+        "--h3-color": "color.metro.semantic.heading",
+        "--color-accent": "color.metro.semantic.accent",
+        "--interactive-accent": "color.metro.semantic.accent",
+        "--link-color": "color.metro.semantic.link",
+        "--link-color-hover": "color.metro.semantic.link",
+        "--link-color-active": "color.metro.semantic.link",
+        "--list-marker-color": "color.metro.semantic.accent",
+        "--checkbox-color": "color.metro.semantic.accent",
+        "--checkbox-color-hover": "color.metro.semantic.accent",
+        "--text-highlight-bg": "color.metro.semantic.highlight",
+        "--tag-color": "color.metro.semantic.highlight-text",
+        "--tag-background": "color.metro.semantic.highlight",
+        "--tag-background-hover": "color.metro.semantic.highlight",
+        "--blockquote-border-color": "color.metro.semantic.accent",
+        "--link-external-color": "color.metro.semantic.link",
+        "--link-external-color-hover": "color.metro.semantic.link",
+        "--link-external-color-active": "color.metro.semantic.link",
+        "--table-header-color": "color.semantic.text",
+        "--text-faint": "color.metro.semantic.text-faint",
+        "--link-unresolved-color": "color.metro.semantic.text-faint",
         "--brumes-theme-self": "color.theme.self",
         "--brumes-theme-mythos": "color.theme.mythos",
-        "--brumes-theme-noise": "color.theme.noise"
+        "--brumes-theme-noise": "color.theme.noise",
+        "--h1-size": "font.size.band.h1",
+        "--h2-size": "font.size.band.h2",
+        "--h3-size": "font.size.band.h3"
+      },
+      "derived": {
+        "--accent-h": "hsl.h(--color-accent)",
+        "--accent-s": "hsl.s(--color-accent)",
+        "--accent-l": "hsl.l(--color-accent)"
+      },
+      "sheet": {
+        "--os-metro-heading": "color.metro.semantic.heading",
+        "--os-metro-heading-band": "color.metro.semantic.heading-band",
+        "--os-metro-subheading": "color.metro.semantic.subheading",
+        "--os-metro-subheading-band": "color.metro.semantic.subheading-band",
+        "--os-metro-label": "color.metro.semantic.label",
+        "--os-metro-label-text": "color.metro.semantic.label-text",
+        "--os-metro-lead": "color.metro.semantic.lead",
+        "--os-metro-highlight": "color.metro.semantic.highlight",
+        "--os-metro-highlight-text": "color.metro.semantic.highlight-text",
+        "--os-metro-surface": "color.metro.semantic.surface",
+        "--os-metro-surface-text": "color.metro.semantic.surface-text",
+        "--os-metro-surface-line": "color.metro.semantic.surface-line",
+        "--os-metro-card-title": "color.metro.semantic.card-title",
+        "--os-metro-rule": "color.metro.semantic.rule"
+      },
+      "contrast": [
+        {
+          "foreground": "--os-metro-heading",
+          "background": "--os-metro-heading-band",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-metro-subheading",
+          "background": "--os-metro-subheading-band",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-metro-label-text",
+          "background": "--os-metro-label",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-metro-highlight-text",
+          "background": "--os-metro-highlight",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-metro-surface-text",
+          "background": "--os-metro-surface",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-metro-card-title",
+          "background": "--os-metro-surface",
+          "min": 3
+        }
+      ],
+      "alternate": {
+        "evidence": [
+          "page.jpg",
+          "light-chapo.jpg"
+        ]
       }
     },
     "cairo": {
@@ -97,6 +181,7 @@
       "sheet": {
         "--os-cairo-heading": "color.cairo.semantic.heading",
         "--os-cairo-heading-band": "color.cairo.semantic.heading-band",
+        "--os-cairo-subheading": "color.cairo.semantic.subheading",
         "--os-cairo-subheading-band": "color.cairo.semantic.subheading-band",
         "--os-cairo-label": "color.cairo.semantic.label",
         "--os-cairo-label-text": "color.cairo.semantic.label-text",
@@ -104,6 +189,7 @@
         "--os-cairo-highlight": "color.cairo.semantic.highlight",
         "--os-cairo-highlight-text": "color.cairo.semantic.highlight-text",
         "--os-cairo-surface": "color.cairo.semantic.surface",
+        "--os-cairo-surface-text": "color.cairo.semantic.surface-text",
         "--os-cairo-surface-line": "color.cairo.semantic.surface-line",
         "--os-cairo-card-title": "color.cairo.semantic.card-title",
         "--os-cairo-rule": "color.cairo.semantic.rule",
@@ -116,7 +202,7 @@
           "min": 4.5
         },
         {
-          "foreground": "--os-cairo-heading",
+          "foreground": "--os-cairo-subheading",
           "background": "--os-cairo-subheading-band",
           "min": 4.5
         },
@@ -131,6 +217,11 @@
           "min": 4.5
         },
         {
+          "foreground": "--os-cairo-surface-text",
+          "background": "--os-cairo-surface",
+          "min": 4.5
+        },
+        {
           "foreground": "--os-cairo-card-title",
           "background": "--os-cairo-surface",
           "min": 3
@@ -140,6 +231,116 @@
         "evidence": [
           "cairo-dark.jpg",
           "cairo-tropes.jpg"
+        ]
+      }
+    },
+    "tokyo": {
+      "modes": {
+        "light": {
+          "evidence": [
+            "tokyo-light.jpg",
+            "tokyo-theme-set.jpg"
+          ]
+        }
+      },
+      "note": {
+        "--background-primary": "color.tokyo.semantic.background",
+        "--background-primary-alt": "color.tokyo.semantic.background-alt",
+        "--background-secondary": "color.tokyo.semantic.background-alt",
+        "--code-background": "color.tokyo.semantic.background-alt",
+        "--text-normal": "color.tokyo.semantic.text",
+        "--bold-color": "color.tokyo.semantic.text",
+        "--italic-color": "color.tokyo.semantic.text",
+        "--text-muted": "color.tokyo.semantic.text-muted",
+        "--h1-color": "color.tokyo.semantic.heading",
+        "--h2-color": "color.tokyo.semantic.heading",
+        "--h3-color": "color.tokyo.semantic.heading",
+        "--color-accent": "color.tokyo.semantic.accent",
+        "--interactive-accent": "color.tokyo.semantic.accent",
+        "--link-color": "color.tokyo.semantic.link",
+        "--link-color-hover": "color.tokyo.semantic.link",
+        "--link-color-active": "color.tokyo.semantic.link",
+        "--list-marker-color": "color.tokyo.semantic.accent",
+        "--checkbox-color": "color.tokyo.semantic.accent",
+        "--checkbox-color-hover": "color.tokyo.semantic.accent",
+        "--text-highlight-bg": "color.tokyo.semantic.highlight",
+        "--tag-color": "color.tokyo.semantic.highlight-text",
+        "--tag-background": "color.tokyo.semantic.highlight",
+        "--tag-background-hover": "color.tokyo.semantic.highlight",
+        "--blockquote-border-color": "color.tokyo.semantic.accent",
+        "--link-external-color": "color.tokyo.semantic.link",
+        "--link-external-color-hover": "color.tokyo.semantic.link",
+        "--link-external-color-active": "color.tokyo.semantic.link",
+        "--table-header-color": "color.tokyo.semantic.text",
+        "--text-faint": "color.tokyo.semantic.text-muted",
+        "--link-unresolved-color": "color.tokyo.semantic.text-muted",
+        "--brumes-theme-self": "color.theme.self",
+        "--brumes-theme-mythos": "color.theme.mythos",
+        "--brumes-theme-noise": "color.theme.noise",
+        "--h1-size": "font.size.band.h1",
+        "--h2-size": "font.size.band.h2",
+        "--h3-size": "font.size.band.h3"
+      },
+      "derived": {
+        "--accent-h": "hsl.h(--color-accent)",
+        "--accent-s": "hsl.s(--color-accent)",
+        "--accent-l": "hsl.l(--color-accent)"
+      },
+      "workspace": {
+        "--background-secondary": "color.tokyo.semantic.frame-secondary",
+        "--brumes-root-split-background": "color.tokyo.semantic.frame"
+      },
+      "sheet": {
+        "--os-tokyo-heading": "color.tokyo.semantic.heading",
+        "--os-tokyo-heading-band": "color.tokyo.semantic.heading-band",
+        "--os-tokyo-subheading": "color.tokyo.semantic.subheading",
+        "--os-tokyo-subheading-band": "color.tokyo.semantic.subheading-band",
+        "--os-tokyo-label": "color.tokyo.semantic.label",
+        "--os-tokyo-label-text": "color.tokyo.semantic.label-text",
+        "--os-tokyo-lead": "color.tokyo.semantic.lead",
+        "--os-tokyo-highlight": "color.tokyo.semantic.highlight",
+        "--os-tokyo-highlight-text": "color.tokyo.semantic.highlight-text",
+        "--os-tokyo-surface": "color.tokyo.semantic.surface",
+        "--os-tokyo-surface-text": "color.tokyo.semantic.surface-text",
+        "--os-tokyo-surface-line": "color.tokyo.semantic.surface-line",
+        "--os-tokyo-card-title": "color.tokyo.semantic.card-title",
+        "--os-tokyo-rule": "color.tokyo.semantic.rule"
+      },
+      "contrast": [
+        {
+          "foreground": "--os-tokyo-heading",
+          "background": "--os-tokyo-heading-band",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-tokyo-subheading",
+          "background": "--os-tokyo-subheading-band",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-tokyo-label-text",
+          "background": "--os-tokyo-label",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-tokyo-highlight-text",
+          "background": "--os-tokyo-highlight",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-tokyo-surface-text",
+          "background": "--os-tokyo-surface",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-tokyo-card-title",
+          "background": "--os-tokyo-surface",
+          "min": 3
+        }
+      ],
+      "alternate": {
+        "evidence": [
+          "tokyo-dark.jpg"
         ]
       }
     }

@@ -11,14 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Project the Otherscape Cairo design for Handbook, light only: flat cream paper, band headings with slightly rounded corners (the H1 band bevelled top right), highlighted subtitles, bevelled callouts and cards, category labels, and a teal accent with its derived ramp. Headings are near black on khaki bands, at sizes close to the body text (H1 2.4em, H2 1.35em, H3 1.05em).
 - Cairo publishes its dark slate design for the alternate section of a note (`section.note` of the pack, and the sheet variables under `.handbook-mode-alternate`, on screen only), proven by `cairo-dark.jpg` and `cairo-tropes.jpg`. Cairo declares its own ink in each polarity (bold, italic, quote border in the teal or green accent, external links, faint text, code and secondary backgrounds, table headers), so the alternate section no longer inherits the dark ink of the base light layer.
+- Project the Otherscape Tokyo design, light (`tokyo-light.jpg`, `tokyo-theme-set.jpg`) with its dark navy design in the alternate section (`tokyo-dark.jpg`): band headings on lime or slate, mint or olive highlights, a pink link, and slate bevelled cards with lime titles in both polarities.
+- Fit Metro to its mock-ups: dark note (`dark.jpg`, `dark-chapo.jpg`) with a lime H1 on a slate band and a navy H2 on a lime band, and a light alternate section (`page.jpg`, `light-chapo.jpg`). Metro declares its whole ink (cyan accent and links, faint text, bold, italic, tags, quotes), so property values and links no longer inherit the base light layer.
+- The band sheet (headings, lead, highlighted subtitle, bevelled callouts, cards) is one generator shared by the three variants, each reading only its own `--os-<id>-*` variables; callouts and cards set their own text colour, since the Tokyo cards stay dark on light paper.
 - Version the Otherscape Handbook projection as v2.0.0 with one entry per variant.
 
 ### Changed
 
 - Sync the frozen copies of the Handbook `GamePack` contract, which now declares `style.section`.
 - Otherscape now ships a single Fira Sans Extra Condensed 800 face; the unused IM Fell and Averia faces are removed from its pack.
-- Each Otherscape variant now holds a single polarity: Cairo is light, Metro and Tokyo are dark. The pack declares it per variant and carries only that layer; Handbook then hides the colour scheme setting and keeps the variant's polarity whatever the Obsidian theme.
-- The design validator requires exactly one projected mode per variant (Cairo light, Metro dark), and checks the alternate section of a variant like a mode (evidence, tokens and contrast), and rejects a dark rule outside `.brumes--colour-dark`, a rule outside a declared variant, and a variant variable read by another variant.
+- Each Otherscape variant now holds a single polarity: Cairo and Tokyo are light, Metro is dark; the other polarity only paints the alternate section. The pack declares it per variant and carries only that layer; Handbook then hides the colour scheme setting and keeps the variant's polarity whatever the Obsidian theme.
+- The design validator requires exactly one projected mode per variant (Cairo and Tokyo light, Metro dark), and checks the alternate section of a variant like a mode (evidence, tokens and contrast), and rejects a dark rule outside `.brumes--colour-dark`, a rule outside a declared variant, and a variant variable read by another variant.
 
 ## [v1.3.5] - 2026-09-23
 

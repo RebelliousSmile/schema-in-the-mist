@@ -67,13 +67,10 @@ function css() {
   const dark = (token: string) => value(token, "dark");
   return `/* GENERATED from schemas/otherscape/design — do not edit by hand. */
 /* Handbook renders os-theme as .brumes-os-theme; scope this pack sheet to Metro only. */
-body.brumes--otherscape.brumes--variant-metro {
-  --os-metro-card-surface: ${light("color.semantic.surface")};
-  --os-metro-card-text: ${light("color.semantic.text")};
-}
-body.brumes--otherscape.brumes--variant-metro.brumes--colour-dark {
-  --os-metro-card-surface: ${dark("color.semantic.surface")};
-  --os-metro-card-text: ${dark("color.semantic.text")};
+/* The card reads the band surface, so the alternate section repaints it too. */
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
+  --os-metro-card-surface: var(--os-metro-surface);
+  --os-metro-card-text: var(--os-metro-surface-text);
 }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
   font-family: ${light("font.family.sans")};
@@ -139,29 +136,71 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest {
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-top-color: var(--os-card-accent); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
 @media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
-${cairoCss()}`;
+${Object.keys(BANDS).map(bandCss).join("")}`;
 }
-function cairoCss() {
-  const cairo = projection.variants.cairo;
-  const v = "body.brumes--otherscape.brumes--variant-cairo";
+/* Band headings, highlighted subtitles and bevelled callouts, shared by every variant; each one reads only its own
+   --os-<id>-* variables. The declared polarity paints the note; with an alternate, the other one paints the alternate
+   section, on screen like the section itself. Flat paper, no texture. */
+interface BandOptions { cards: boolean; chevrons: boolean; label: string }
+const BANDS: Record<string, BandOptions> = {
+  metro: { cards: false, chevrons: false, label: "Metro: dark (dark.jpg, dark-chapo.jpg), light alternate (page.jpg, light-chapo.jpg); its cards keep the Metro rules above." },
+  cairo: { cards: true, chevrons: true, label: "Cairo: light (cairo-light.jpg), dark alternate (cairo-dark.jpg)." },
+  tokyo: { cards: true, chevrons: false, label: "Tokyo: light (tokyo-light.jpg), dark alternate (tokyo-dark.jpg); slate cards in both." },
+};
+function bandCss(id: string) {
+  const variant = projection.variants[id];
+  const options = BANDS[id];
+  if (!variant || !options) throw new Error(`No band sheet for ${id}`);
+  const [mode] = modesOf(variant);
+  const other: Mode = mode === "light" ? "dark" : "light";
+  const v = `body.brumes--otherscape.brumes--variant-${id}`;
+  const o = (name: string) => `var(--os-${id}-${name})`;
   const display = value("font.family.display", "light");
   const black = value("font.weight.black", "light");
   const bevel = value("radius.bevel", "light");
   const band = value("radius.band", "light");
   const cut = value("radius.band-bevel", "light");
   const h1Cut = `polygon(0 0, calc(100% - ${cut}) 0, 100% ${cut}, 100% 100%, 0 100%)`;
-  if (modesOf(cairo).join() !== "light") throw new Error("The Cairo sheet is written for a light-only variant");
-  return `/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Light; its dark design paints the
-   alternate section only, on screen like the section itself. Flat paper, no texture. */
-${v} {
-${sheetVars(cairo, "light")}
-}
-@media screen {
+  const surfaces = options.cards ? ".callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation" : ".callout";
+  const alternate = variant.alternate ? `@media screen {
   ${v} .handbook-mode-alternate {
-${sheetVars(cairo, "dark").replace(/^/gm, "  ")}
+${sheetVars(variant, other).replace(/^/gm, "  ")}
   }
 }
-${v} :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
+` : "";
+  const chevrons = options.chevrons ? `${v} .callout::before,
+${v} .callout::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 1.5rem;
+  width: 1.4rem;
+  height: 0.3rem;
+  background: repeating-linear-gradient(60deg, ${o("chevron")} 0 0.3rem, transparent 0.3rem 0.55rem);
+}
+${v} .callout::before { top: 0.15rem; }
+${v} .callout::after { bottom: 0.15rem; }
+` : "";
+  const cards = options.cards ? `${v} :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+  --os-card-accent: ${o("rule")};
+  border: 1px solid ${o("surface-line")};
+}
+${v} :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) :is(h2, h3) { color: ${o("card-title")}; font-family: ${display}; font-weight: ${black}; text-transform: uppercase; }
+${v} .brumes-os-theme--type {
+  width: fit-content;
+  padding: 0.2em 0.5em 0.1em;
+  background: ${o("label")};
+  color: ${o("label-text")};
+  font-family: ${display};
+  font-weight: ${black};
+  text-transform: uppercase;
+}
+${v} :is(.brumes-os-theme--quest, .brumes-os-theme--tracks) { border-top: 1px solid ${o("rule")}; }
+` : "";
+  return `/* ${options.label} */
+${v} {
+${sheetVars(variant, mode)}
+}
+${alternate}${v} :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
   width: fit-content;
   font-family: ${display};
   font-weight: ${black};
@@ -177,68 +216,43 @@ ${v} :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperM
 }
 ${v} .markdown-rendered .el-h1 > h1 {
   padding: 0.12em 0.6em 0.06em 0.3em;
-  background: var(--os-cairo-heading-band);
-  color: var(--os-cairo-heading);
+  background: ${o("heading-band")};
+  color: ${o("heading")};
   clip-path: ${h1Cut};
 }
-${v} .HyperMD-header-1 .cm-header-1 { padding: 0 0.6em 0 0.3em; background: var(--os-cairo-heading-band); color: var(--os-cairo-heading); clip-path: ${h1Cut}; }
-${v} .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
-${v} .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
-${v} .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }
-${v} .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }
-${v} :is(.markdown-rendered .el-h1 + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-cairo-lead); font-size: 1.3em; line-height: 1.25; }
+${v} .HyperMD-header-1 .cm-header-1 { padding: 0 0.6em 0 0.3em; background: ${o("heading-band")}; color: ${o("heading")}; clip-path: ${h1Cut}; }
+${v} .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background: ${o("subheading-band")}; color: ${o("subheading")}; }
+${v} .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: ${o("subheading-band")}; color: ${o("subheading")}; }
+${v} .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: ${o("label")}; color: ${o("label-text")}; font-size: 1em; }
+${v} .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: ${o("label")}; color: ${o("label-text")}; font-size: 1em; }
+${v} :is(.markdown-rendered .el-h1 + .el-p > p, .HyperMD-header-1 + .cm-line) { color: ${o("lead")}; font-size: 1.3em; line-height: 1.25; }
 ${v} :is(.markdown-rendered .el-h2 + .el-p > p > em:only-child, .HyperMD-header-2 + .cm-line > .cm-em:first-child) {
   padding: 0 0.3em;
-  background: var(--os-cairo-highlight);
-  color: var(--os-cairo-highlight-text);
+  background: ${o("highlight")};
+  color: ${o("highlight-text")};
 }
-${v} :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+${v} :is(${surfaces}) {
   border-radius: ${bevel};
   corner-shape: bevel;
   box-shadow: none;
+  background: ${o("surface")};
+  --text-normal: ${o("surface-text")};
+  --bold-color: ${o("surface-text")};
+  --italic-color: ${o("surface-text")};
+  color: ${o("surface-text")};
 }
 @supports not (corner-shape: bevel) {
-  ${v} :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+  ${v} :is(${surfaces}) {
     clip-path: polygon(${bevel} 0, calc(100% - ${bevel}) 0, 100% ${bevel}, 100% calc(100% - ${bevel}), calc(100% - ${bevel}) 100%, ${bevel} 100%, 0 calc(100% - ${bevel}), 0 ${bevel});
   }
 }
 ${v} .callout {
   position: relative;
-  border: 3px double var(--os-cairo-surface-line);
-  background: var(--os-cairo-surface);
-  color: var(--text-normal);
+  border: ${options.chevrons ? "3px double" : "1px solid"} ${o("surface-line")};
 }
-${v} .callout::before,
-${v} .callout::after {
-  content: "";
-  position: absolute;
-  inset-inline-start: 1.5rem;
-  width: 1.4rem;
-  height: 0.3rem;
-  background: repeating-linear-gradient(60deg, var(--os-cairo-chevron) 0 0.3rem, transparent 0.3rem 0.55rem);
-}
-${v} .callout::before { top: 0.15rem; }
-${v} .callout::after { bottom: 0.15rem; }
-${v} .callout-title { color: var(--text-normal); font-family: ${display}; font-style: italic; font-weight: ${black}; text-transform: uppercase; }
-${v} .callout-icon { color: var(--os-cairo-card-title); }
-${v} :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
-  --os-card-accent: var(--os-cairo-rule);
-  border: 1px solid var(--os-cairo-surface-line);
-  background: var(--os-cairo-surface);
-  color: var(--text-normal);
-}
-${v} :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) :is(h2, h3) { color: var(--os-cairo-card-title); font-family: ${display}; font-weight: ${black}; text-transform: uppercase; }
-${v} .brumes-os-theme--type {
-  width: fit-content;
-  padding: 0.2em 0.5em 0.1em;
-  background: var(--os-cairo-label);
-  color: var(--os-cairo-label-text);
-  font-family: ${display};
-  font-weight: ${black};
-  text-transform: uppercase;
-}
-${v} :is(.brumes-os-theme--quest, .brumes-os-theme--tracks) { border-top: 1px solid var(--os-cairo-rule); }
-`;
+${chevrons}${v} .callout-title { color: ${o("surface-text")}; font-family: ${display}; font-style: italic; font-weight: ${black}; text-transform: uppercase; }
+${v} .callout-icon { color: ${o("card-title")}; }
+${cards}`;
 }
 const pack = JSON.parse(fs.readFileSync(packPath, "utf8"));
 const projected = Object.entries(projection.variants as Record<string, any>).map(([id, variant]) => {
