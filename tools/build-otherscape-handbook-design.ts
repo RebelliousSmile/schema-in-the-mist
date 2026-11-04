@@ -53,6 +53,12 @@ function modesOf(variant: any): Mode[] {
   if (modes.length === 0) throw new Error("A projected variant names no mode");
   return modes;
 }
+/* A light-only variant may publish its dark design for the alternate section, and only for it. */
+function sectionOf(variant: any): Record<string, never> | { section: { note: Layer } } {
+  if (!variant.alternate) return {};
+  const [mode] = modesOf(variant);
+  return { section: { note: variantStyle(variant, mode === "light" ? "dark" : "light").note } };
+}
 function sheetVars(variant: any, mode: Mode): string {
   return Object.entries(resolve(variant.sheet, mode)).map(([css, colour]) => `  ${css}: ${colour};`).join("\n");
 }
@@ -142,9 +148,15 @@ function cairoCss() {
   const black = value("font.weight.black", "light");
   const bevel = value("radius.bevel", "light");
   if (modesOf(cairo).join() !== "light") throw new Error("The Cairo sheet is written for a light-only variant");
-  return `/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Light only; the texture is screen-only. */
+  return `/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Light; its dark design paints the
+   alternate section only, on screen like the section itself. The texture is screen-only. */
 ${v} {
 ${sheetVars(cairo, "light")}
+}
+@media screen {
+  ${v} .handbook-mode-alternate {
+${sheetVars(cairo, "dark").replace(/^/gm, "  ")}
+  }
 }
 @media screen {
   ${v} .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"] {
@@ -237,7 +249,7 @@ const projected = Object.entries(projection.variants as Record<string, any>).map
   const target = pack.variants.find((item: any) => item.id === id);
   if (!target) throw new Error(`Missing ${id} variant`);
   const modes = modesOf(variant);
-  return { id, target, modes, expected: Object.fromEntries(modes.map((mode) => [mode, variantStyle(variant, mode)])) };
+  return { id, target, modes, expected: { ...Object.fromEntries(modes.map((mode) => [mode, variantStyle(variant, mode)])), ...sectionOf(variant) } };
 });
 /* The pack-wide typography comes from the tokens too: a family the tokens drop must not linger in the pack. */
 const baseNote = pack.pack.style.base.note;

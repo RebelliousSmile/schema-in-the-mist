@@ -27,20 +27,23 @@ for (const [id, variant] of Object.entries(variants)) {
   const declared = modes.filter((mode) => variant.modes?.[mode]);
   if (expectedModes[id] && declared.join() !== expectedModes[id]) throw new Error(`Variant ${id} must project ${expectedModes[id]} only, not ${declared.join(", ") || "nothing"}`);
   if (declared.length !== 1) throw new Error(`Variant ${id} must project exactly one mode`);
+  /* The alternate section is painted in the other polarity, and is proven like a mode. */
+  const painted: Mode[] = variant.alternate ? [...declared, declared[0] === "light" ? "dark" : "light"] : declared;
+  if (variant.alternate && (!Array.isArray(variant.alternate.evidence) || variant.alternate.evidence.length === 0)) throw new Error(`Missing ${id} alternate evidence`);
   for (const mode of declared) {
     if (!Array.isArray(variant.modes[mode].evidence) || variant.modes[mode].evidence.length === 0) throw new Error(`Missing ${id} ${mode} evidence`);
   }
   if (!variant.note || Object.keys(variant.note).length === 0) throw new Error(`Variant ${id} projects no note token`);
   for (const layer of ["note", "workspace", "sheet"]) {
     for (const token of Object.values(variant[layer] ?? {}) as string[]) {
-      for (const mode of declared) value(token, mode);
+      for (const mode of painted) value(token, mode);
     }
   }
   for (const pair of variant.contrast ?? []) {
     const fg = variant.sheet?.[pair.foreground] ?? variant.note?.[pair.foreground];
     const bg = variant.sheet?.[pair.background] ?? variant.note?.[pair.background];
     if (!fg || !bg) throw new Error(`Contrast pair of ${id} names an unprojected variable: ${pair.foreground} / ${pair.background}`);
-    for (const mode of declared) {
+    for (const mode of painted) {
       const ratio = contrastRatio(value(fg, mode), value(bg, mode));
       if (ratio < pair.min) throw new Error(`${id} ${mode}: ${pair.foreground} on ${pair.background} is ${ratio.toFixed(2)}:1, under ${pair.min}:1`);
     }

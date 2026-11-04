@@ -9,14 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Project the Otherscape Cairo design for Handbook, light only: cream paper with a screen-only cross texture, band headings, highlighted subtitles, bevelled callouts and cards, category labels, and a teal accent with its derived ramp.
+- Project the Otherscape Cairo design for Handbook, light only: cream paper with a screen-only cross texture, band headings, highlighted subtitles, bevelled callouts and cards, category labels, and a teal accent with its derived ramp. Headings are near black on khaki bands, at sizes close to the body text (H1 2.4em, H2 1.35em, H3 1.05em).
+- Cairo publishes its dark slate design for the alternate section of a note (`section.note` of the pack, and the sheet variables under `.handbook-mode-alternate`, on screen only), proven by `cairo-dark.jpg` and `cairo-tropes.jpg`.
 - Version the Otherscape Handbook projection as v2.0.0 with one entry per variant.
 
 ### Changed
 
+- Sync the frozen copies of the Handbook `GamePack` contract, which now declares `style.section`.
 - Otherscape now ships a single Fira Sans Extra Condensed 800 face; the unused IM Fell and Averia faces are removed from its pack.
 - Each Otherscape variant now holds a single polarity: Cairo is light, Metro and Tokyo are dark. The pack declares it per variant and carries only that layer; Handbook then hides the colour scheme setting and keeps the variant's polarity whatever the Obsidian theme.
-- The design validator requires exactly one projected mode per variant (Cairo light, Metro dark), and rejects a dark rule outside `.brumes--colour-dark`, a rule outside a declared variant, and a variant variable read by another variant.
+- The design validator requires exactly one projected mode per variant (Cairo light, Metro dark), and checks the alternate section of a variant like a mode (evidence, tokens and contrast), and rejects a dark rule outside `.brumes--colour-dark`, a rule outside a declared variant, and a variant variable read by another variant.
 
 ## [v1.3.5] - 2026-09-23
 

@@ -68,7 +68,10 @@
         "--tag-background": "color.cairo.semantic.highlight",
         "--brumes-theme-self": "color.theme.self",
         "--brumes-theme-mythos": "color.theme.mythos",
-        "--brumes-theme-noise": "color.theme.noise"
+        "--brumes-theme-noise": "color.theme.noise",
+        "--h1-size": "font.size.cairo.h1",
+        "--h2-size": "font.size.cairo.h2",
+        "--h3-size": "font.size.cairo.h3"
       },
       "derived": {
         "--accent-h": "hsl.h(--color-accent)",
@@ -121,7 +124,13 @@
           "background": "--os-cairo-surface",
           "min": 3
         }
-      ]
+      ],
+      "alternate": {
+        "evidence": [
+          "cairo-dark.jpg",
+          "cairo-tropes.jpg"
+        ]
+      }
     }
   }
 }
