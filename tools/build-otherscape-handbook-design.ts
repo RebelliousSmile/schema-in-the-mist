@@ -47,6 +47,12 @@ function variantStyle(variant: any, mode: Mode): { note: Layer; workspace?: Laye
   Object.assign(note, derive(variant.derived, note));
   return variant.workspace ? { note, workspace: resolve(variant.workspace, mode) } : { note };
 }
+/* A variant holds the polarities its projection names, and only their layers. */
+function modesOf(variant: any): Mode[] {
+  const modes = (["light", "dark"] as Mode[]).filter((mode) => variant.modes?.[mode]);
+  if (modes.length === 0) throw new Error("A projected variant names no mode");
+  return modes;
+}
 function sheetVars(variant: any, mode: Mode): string {
   return Object.entries(resolve(variant.sheet, mode)).map(([css, colour]) => `  ${css}: ${colour};`).join("\n");
 }
@@ -135,13 +141,10 @@ function cairoCss() {
   const display = value("font.family.display", "light");
   const black = value("font.weight.black", "light");
   const bevel = value("radius.bevel", "light");
-  return `/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Dark goes through
-   .brumes--colour-dark, which Handbook swaps for light while printing; the texture is screen-only. */
+  if (modesOf(cairo).join() !== "light") throw new Error("The Cairo sheet is written for a light-only variant");
+  return `/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Light only; the texture is screen-only. */
 ${v} {
 ${sheetVars(cairo, "light")}
-}
-${v}.brumes--colour-dark {
-${sheetVars(cairo, "dark")}
 }
 @media screen {
   ${v} .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"] {
@@ -233,7 +236,8 @@ const pack = JSON.parse(fs.readFileSync(packPath, "utf8"));
 const projected = Object.entries(projection.variants as Record<string, any>).map(([id, variant]) => {
   const target = pack.variants.find((item: any) => item.id === id);
   if (!target) throw new Error(`Missing ${id} variant`);
-  return { id, target, expected: { light: variantStyle(variant, "light"), dark: variantStyle(variant, "dark") } };
+  const modes = modesOf(variant);
+  return { id, target, modes, expected: Object.fromEntries(modes.map((mode) => [mode, variantStyle(variant, mode)])) };
 });
 /* The pack-wide typography comes from the tokens too: a family the tokens drop must not linger in the pack. */
 const baseNote = pack.pack.style.base.note;
@@ -241,8 +245,9 @@ const expectedFonts: Record<string, string> = Object.fromEntries(
   Object.entries(projection.base ?? {}).map(([css, token]) => [css, value(String(token), "light")]),
 );
 if (check) {
-  for (const { id, target, expected } of projected) {
+  for (const { id, target, modes, expected } of projected) {
     if (JSON.stringify(target.style) !== JSON.stringify(expected)) throw new Error(`${id} projection drift in handbook/otherscape/pack.json`);
+    if (JSON.stringify(target.polarities) !== JSON.stringify(modes)) throw new Error(`${id} polarity drift in handbook/otherscape/pack.json`);
   }
   for (const [css, font] of Object.entries(expectedFonts)) {
     if (baseNote[css] !== font) throw new Error(`Typography projection drift in handbook/otherscape/pack.json: ${css}`);
@@ -250,7 +255,7 @@ if (check) {
   if (!fs.existsSync(cssPath) || fs.readFileSync(cssPath, "utf8") !== css()) throw new Error("Otherscape stylesheet drift");
 }
 if (write) {
-  for (const { target, expected } of projected) target.style = expected;
+  for (const { target, modes, expected } of projected) { target.style = expected; target.polarities = modes; }
   Object.assign(baseNote, expectedFonts);
   fs.mkdirSync(path.dirname(cssPath), { recursive: true });
   fs.writeFileSync(packPath, `${JSON.stringify(pack, null, 2)}\n`);

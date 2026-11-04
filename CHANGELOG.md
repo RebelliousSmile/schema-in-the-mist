@@ -9,13 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Project the Otherscape Cairo design for Handbook in light and dark: cream or slate paper with a screen-only cross texture, band headings, highlighted subtitles, bevelled callouts and cards, category labels, and a teal accent with its derived ramp.
-- Version the Otherscape Handbook projection as v2.0.0 with one entry per variant; Metro is unchanged.
+- Project the Otherscape Cairo design for Handbook, light only: cream paper with a screen-only cross texture, band headings, highlighted subtitles, bevelled callouts and cards, category labels, and a teal accent with its derived ramp.
+- Version the Otherscape Handbook projection as v2.0.0 with one entry per variant.
 
 ### Changed
 
 - Otherscape now ships a single Fira Sans Extra Condensed 800 face; the unused IM Fell and Averia faces are removed from its pack.
-- The design validator rejects a dark rule outside `.brumes--colour-dark`, a rule outside a declared variant, and a variant variable read by another variant.
+- Each Otherscape variant now holds a single polarity: Cairo is light, Metro and Tokyo are dark. The pack declares it per variant and carries only that layer; Handbook then hides the colour scheme setting and keeps the variant's polarity whatever the Obsidian theme.
+- The design validator requires exactly one projected mode per variant (Cairo light, Metro dark), and rejects a dark rule outside `.brumes--colour-dark`, a rule outside a declared variant, and a variant variable read by another variant.
 
 ## [v1.3.5] - 2026-09-23
 

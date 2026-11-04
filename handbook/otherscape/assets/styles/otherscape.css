@@ -72,8 +72,7 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest {
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-top-color: var(--os-card-accent); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
 @media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
-/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Dark goes through
-   .brumes--colour-dark, which Handbook swaps for light while printing; the texture is screen-only. */
+/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Light only; the texture is screen-only. */
 body.brumes--otherscape.brumes--variant-cairo {
   --os-cairo-heading: #201408;
   --os-cairo-heading-band: #D6C686;
@@ -89,22 +88,6 @@ body.brumes--otherscape.brumes--variant-cairo {
   --os-cairo-rule: #00756A;
   --os-cairo-chevron: #D0B868;
   --os-cairo-texture: #1E1E1E14;
-}
-body.brumes--otherscape.brumes--variant-cairo.brumes--colour-dark {
-  --os-cairo-heading: #D0B868;
-  --os-cairo-heading-band: #48403A;
-  --os-cairo-subheading-band: #48403A;
-  --os-cairo-label: #48403A;
-  --os-cairo-label-text: #D0B868;
-  --os-cairo-lead: #DCE2E2;
-  --os-cairo-highlight: #5E6600;
-  --os-cairo-highlight-text: #E8F0B0;
-  --os-cairo-surface: #283840;
-  --os-cairo-surface-line: #3C5052;
-  --os-cairo-card-title: #37C298;
-  --os-cairo-rule: #2E9A88;
-  --os-cairo-chevron: #D0B868;
-  --os-cairo-texture: #E6E6DE0D;
 }
 @media screen {
   body.brumes--otherscape.brumes--variant-cairo .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"] {

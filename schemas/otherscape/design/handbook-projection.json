@@ -16,14 +16,6 @@
   "variants": {
     "metro": {
       "modes": {
-        "light": {
-          "evidence": [
-            "page.jpg",
-            "chapter-title.jpg",
-            "light-chapo.jpg",
-            "description.jpg"
-          ]
-        },
         "dark": {
           "evidence": [
             "dark.jpg",
@@ -52,12 +44,6 @@
             "cairo-light.jpg",
             "cairo-subtags.jpg",
             "cairo-list.jpg"
-          ]
-        },
-        "dark": {
-          "evidence": [
-            "cairo-dark.jpg",
-            "cairo-tropes.jpg"
           ]
         }
       },
