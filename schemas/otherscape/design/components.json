@@ -9,6 +9,12 @@
     "theme-card": { "base": "brumes-os-theme", "elements": { "type": "brumes-os-theme--type", "track": "brumes-os-theme--track", "track-mark": "brumes-os-theme--track-mark" }, "modifiers": { "self": "brumes-os-theme--self", "mythos": "brumes-os-theme--mythos", "noise": "brumes-os-theme--noise", "crew": "brumes-os-theme--crew", "kit": "brumes-os-theme--kit" }, "backgrounds": ["color.semantic.surface"], "foregrounds": ["color.semantic.text", "color.theme.self", "color.theme.mythos", "color.theme.noise"] },
     "folio-rail": { "base": "os-folio-rail", "backgrounds": ["color.semantic.background"], "foregrounds": ["color.semantic.text-muted"] },
     "illustration-panel": { "base": "os-illustration-panel", "backgrounds": ["color.semantic.surface"], "foregrounds": ["color.semantic.text"] },
-    "glitch-divider": { "base": "os-glitch-divider", "modifiers": { "quiet": "os-glitch-divider--quiet", "signal": "os-glitch-divider--signal" }, "backgrounds": ["color.neutral.900"], "foregrounds": ["color.brand.signal", "color.brand.cyan"] }
+    "glitch-divider": { "base": "os-glitch-divider", "modifiers": { "quiet": "os-glitch-divider--quiet", "signal": "os-glitch-divider--signal" }, "backgrounds": ["color.neutral.900"], "foregrounds": ["color.brand.signal", "color.brand.cyan"] },
+    "cairo-heading-band": { "base": "os-cairo-heading-band", "modifiers": { "h1": "os-cairo-heading-band--h1", "h2": "os-cairo-heading-band--h2" }, "backgrounds": ["color.cairo.semantic.heading-band", "color.cairo.semantic.subheading-band"], "foregrounds": ["color.cairo.semantic.heading"] },
+    "cairo-subtitle": { "base": "os-cairo-subtitle", "backgrounds": ["color.cairo.semantic.highlight"], "foregrounds": ["color.cairo.semantic.highlight-text"] },
+    "cairo-lead": { "base": "os-cairo-lead", "backgrounds": ["color.cairo.semantic.background"], "foregrounds": ["color.cairo.semantic.lead"] },
+    "cairo-label": { "base": "os-cairo-label", "backgrounds": ["color.cairo.semantic.label"], "foregrounds": ["color.cairo.semantic.label-text"] },
+    "cairo-callout": { "base": "os-cairo-callout", "elements": { "title": "os-cairo-callout__title", "chevron": "os-cairo-callout__chevron" }, "backgrounds": ["color.cairo.semantic.surface"], "foregrounds": ["color.cairo.semantic.text", "color.cairo.semantic.chevron"] },
+    "cairo-card": { "base": "os-cairo-card", "elements": { "title": "os-cairo-card__title", "category": "os-cairo-card__category", "rule": "os-cairo-card__rule" }, "backgrounds": ["color.cairo.semantic.surface"], "foregrounds": ["color.cairo.semantic.card-title", "color.cairo.semantic.text", "color.cairo.semantic.rule"] }
   }
 }

@@ -1,22 +1,141 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "target": "handbook/otherscape/pack.json",
-  "variant": "metro",
-  "modes": {
-    "light": { "evidence": ["page.jpg", "chapter-title.jpg", "light-chapo.jpg", "description.jpg"] },
-    "dark": { "evidence": ["dark.jpg", "dark-chapo.jpg"] }
+  "base": {
+    "--font-text-theme": "font.family.sans",
+    "--font-header-theme": "font.family.display",
+    "--font-monospace-theme": "font.family.mono",
+    "--inline-title-font": "font.family.display",
+    "--h1-font": "font.family.display",
+    "--h2-font": "font.family.display",
+    "--h3-font": "font.family.display",
+    "--h4-font": "font.family.sans",
+    "--h5-font": "font.family.sans",
+    "--h6-font": "font.family.sans"
   },
-  "note": {
-    "--background-primary": "color.semantic.background",
-    "--background-primary-alt": "color.semantic.surface",
-    "--text-normal": "color.semantic.text",
-    "--text-muted": "color.semantic.text-muted",
-    "--h1-color": "color.semantic.text",
-    "--h2-color": "color.semantic.text",
-    "--h3-color": "color.semantic.text",
-    "--text-highlight-bg": "color.brand.primary",
-    "--brumes-theme-self": "color.theme.self",
-    "--brumes-theme-mythos": "color.theme.mythos",
-    "--brumes-theme-noise": "color.theme.noise"
+  "variants": {
+    "metro": {
+      "modes": {
+        "light": {
+          "evidence": [
+            "page.jpg",
+            "chapter-title.jpg",
+            "light-chapo.jpg",
+            "description.jpg"
+          ]
+        },
+        "dark": {
+          "evidence": [
+            "dark.jpg",
+            "dark-chapo.jpg"
+          ]
+        }
+      },
+      "note": {
+        "--background-primary": "color.semantic.background",
+        "--background-primary-alt": "color.semantic.surface",
+        "--text-normal": "color.semantic.text",
+        "--text-muted": "color.semantic.text-muted",
+        "--h1-color": "color.semantic.text",
+        "--h2-color": "color.semantic.text",
+        "--h3-color": "color.semantic.text",
+        "--text-highlight-bg": "color.brand.primary",
+        "--brumes-theme-self": "color.theme.self",
+        "--brumes-theme-mythos": "color.theme.mythos",
+        "--brumes-theme-noise": "color.theme.noise"
+      }
+    },
+    "cairo": {
+      "modes": {
+        "light": {
+          "evidence": [
+            "cairo-light.jpg",
+            "cairo-subtags.jpg",
+            "cairo-list.jpg"
+          ]
+        },
+        "dark": {
+          "evidence": [
+            "cairo-dark.jpg",
+            "cairo-tropes.jpg"
+          ]
+        }
+      },
+      "note": {
+        "--background-primary": "color.cairo.semantic.background",
+        "--background-primary-alt": "color.cairo.semantic.background-alt",
+        "--text-normal": "color.cairo.semantic.text",
+        "--text-muted": "color.cairo.semantic.text-muted",
+        "--h1-color": "color.cairo.semantic.heading",
+        "--h2-color": "color.cairo.semantic.heading",
+        "--h3-color": "color.cairo.semantic.heading",
+        "--color-accent": "color.cairo.semantic.accent",
+        "--interactive-accent": "color.cairo.semantic.accent",
+        "--link-color": "color.cairo.semantic.link",
+        "--link-color-hover": "color.cairo.semantic.link",
+        "--link-color-active": "color.cairo.semantic.link",
+        "--list-marker-color": "color.cairo.semantic.accent",
+        "--checkbox-color": "color.cairo.semantic.accent",
+        "--checkbox-color-hover": "color.cairo.semantic.accent",
+        "--text-highlight-bg": "color.cairo.semantic.highlight",
+        "--tag-color": "color.cairo.semantic.highlight-text",
+        "--tag-background": "color.cairo.semantic.highlight",
+        "--brumes-theme-self": "color.theme.self",
+        "--brumes-theme-mythos": "color.theme.mythos",
+        "--brumes-theme-noise": "color.theme.noise"
+      },
+      "derived": {
+        "--accent-h": "hsl.h(--color-accent)",
+        "--accent-s": "hsl.s(--color-accent)",
+        "--accent-l": "hsl.l(--color-accent)"
+      },
+      "workspace": {
+        "--background-secondary": "color.cairo.semantic.frame-secondary",
+        "--brumes-root-split-background": "color.cairo.semantic.frame"
+      },
+      "sheet": {
+        "--os-cairo-heading": "color.cairo.semantic.heading",
+        "--os-cairo-heading-band": "color.cairo.semantic.heading-band",
+        "--os-cairo-subheading-band": "color.cairo.semantic.subheading-band",
+        "--os-cairo-label": "color.cairo.semantic.label",
+        "--os-cairo-label-text": "color.cairo.semantic.label-text",
+        "--os-cairo-lead": "color.cairo.semantic.lead",
+        "--os-cairo-highlight": "color.cairo.semantic.highlight",
+        "--os-cairo-highlight-text": "color.cairo.semantic.highlight-text",
+        "--os-cairo-surface": "color.cairo.semantic.surface",
+        "--os-cairo-surface-line": "color.cairo.semantic.surface-line",
+        "--os-cairo-card-title": "color.cairo.semantic.card-title",
+        "--os-cairo-rule": "color.cairo.semantic.rule",
+        "--os-cairo-chevron": "color.cairo.semantic.chevron",
+        "--os-cairo-texture": "color.cairo.semantic.texture"
+      },
+      "contrast": [
+        {
+          "foreground": "--os-cairo-heading",
+          "background": "--os-cairo-heading-band",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-cairo-heading",
+          "background": "--os-cairo-subheading-band",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-cairo-label-text",
+          "background": "--os-cairo-label",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-cairo-highlight-text",
+          "background": "--os-cairo-highlight",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-cairo-card-title",
+          "background": "--os-cairo-surface",
+          "min": 3
+        }
+      ]
+    }
   }
 }

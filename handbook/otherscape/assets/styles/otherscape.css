@@ -9,7 +9,7 @@ body.brumes--otherscape.brumes--variant-metro.brumes--colour-dark {
   --os-metro-card-text: #F6F7F4;
 }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
-  font-family: "IM Fell English", serif;
+  font-family: system-ui, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   grid-template-columns: minmax(0, 1fr);
   gap: 0.5rem;
   padding: 1rem;
@@ -30,14 +30,14 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--mythos { --os-ca
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--noise { --os-card-accent: var(--brumes-theme-noise); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--type {
   color: var(--os-card-accent);
-  font-family: "Averia Serif Libre", serif;
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
   font-size: 0.75rem;
   font-weight: 900;
   letter-spacing: 0.14em;
 }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme h3 {
   color: var(--os-card-accent);
-  font-family: "Averia Serif Libre", serif;
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
   font-size: clamp(1.5rem, 1.18rem + 1.4vw, 2.5rem);
   font-weight: 900;
   line-height: 1;
@@ -72,3 +72,121 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest {
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-top-color: var(--os-card-accent); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
 @media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
+/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Dark goes through
+   .brumes--colour-dark, which Handbook swaps for light while printing; the texture is screen-only. */
+body.brumes--otherscape.brumes--variant-cairo {
+  --os-cairo-heading: #201408;
+  --os-cairo-heading-band: #D6C686;
+  --os-cairo-subheading-band: #E2D9A5;
+  --os-cairo-label: #48403A;
+  --os-cairo-label-text: #D0B868;
+  --os-cairo-lead: #201408;
+  --os-cairo-highlight: #F6F2A8;
+  --os-cairo-highlight-text: #201408;
+  --os-cairo-surface: #D9E4E0;
+  --os-cairo-surface-line: #C2D6D4;
+  --os-cairo-card-title: #00756A;
+  --os-cairo-rule: #00756A;
+  --os-cairo-chevron: #D0B868;
+  --os-cairo-texture: #1E1E1E14;
+}
+body.brumes--otherscape.brumes--variant-cairo.brumes--colour-dark {
+  --os-cairo-heading: #D0B868;
+  --os-cairo-heading-band: #48403A;
+  --os-cairo-subheading-band: #48403A;
+  --os-cairo-label: #48403A;
+  --os-cairo-label-text: #D0B868;
+  --os-cairo-lead: #DCE2E2;
+  --os-cairo-highlight: #5E6600;
+  --os-cairo-highlight-text: #E8F0B0;
+  --os-cairo-surface: #283840;
+  --os-cairo-surface-line: #3C5052;
+  --os-cairo-card-title: #37C298;
+  --os-cairo-rule: #2E9A88;
+  --os-cairo-chevron: #D0B868;
+  --os-cairo-texture: #E6E6DE0D;
+}
+@media screen {
+  body.brumes--otherscape.brumes--variant-cairo .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"] {
+    background-image:
+      radial-gradient(3.5px 1px at 50% 50%, var(--os-cairo-texture) 99%, transparent 100%),
+      radial-gradient(1px 3.5px at 50% 50%, var(--os-cairo-texture) 99%, transparent 100%);
+    background-size: 2rem 2rem;
+  }
+}
+body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
+  width: fit-content;
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+}
+body.brumes--otherscape.brumes--variant-cairo :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperMD-header-3 .cm-header-3) {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  text-transform: uppercase;
+}
+body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h1 > h1 {
+  padding: 0.12em 0.9em 0.06em 0.3em;
+  border-inline-start: 0.18em solid var(--os-cairo-label);
+  background: var(--os-cairo-heading-band);
+  color: var(--os-cairo-heading);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 0.55em) 100%, 0 100%);
+}
+body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-1 .cm-header-1 { padding: 0 0.3em; background: var(--os-cairo-heading-band); color: var(--os-cairo-heading); }
+body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
+body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
+body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }
+body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }
+body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-cairo-lead); font-size: 1.3em; line-height: 1.25; }
+body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h2 + .el-p > p > em:only-child, .HyperMD-header-2 + .cm-line > .cm-em:first-child) {
+  padding: 0 0.3em;
+  background: var(--os-cairo-highlight);
+  color: var(--os-cairo-highlight-text);
+}
+body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+  border-radius: 0.75rem;
+  corner-shape: bevel;
+  box-shadow: none;
+}
+@supports not (corner-shape: bevel) {
+  body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+    clip-path: polygon(0.75rem 0, calc(100% - 0.75rem) 0, 100% 0.75rem, 100% calc(100% - 0.75rem), calc(100% - 0.75rem) 100%, 0.75rem 100%, 0 calc(100% - 0.75rem), 0 0.75rem);
+  }
+}
+body.brumes--otherscape.brumes--variant-cairo .callout {
+  position: relative;
+  border: 3px double var(--os-cairo-surface-line);
+  background: var(--os-cairo-surface);
+  color: var(--text-normal);
+}
+body.brumes--otherscape.brumes--variant-cairo .callout::before,
+body.brumes--otherscape.brumes--variant-cairo .callout::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 1.5rem;
+  width: 1.4rem;
+  height: 0.3rem;
+  background: repeating-linear-gradient(60deg, var(--os-cairo-chevron) 0 0.3rem, transparent 0.3rem 0.55rem);
+}
+body.brumes--otherscape.brumes--variant-cairo .callout::before { top: 0.15rem; }
+body.brumes--otherscape.brumes--variant-cairo .callout::after { bottom: 0.15rem; }
+body.brumes--otherscape.brumes--variant-cairo .callout-title { color: var(--text-normal); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .callout-icon { color: var(--os-cairo-card-title); }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+  --os-card-accent: var(--os-cairo-rule);
+  border: 1px solid var(--os-cairo-surface-line);
+  background: var(--os-cairo-surface);
+  color: var(--text-normal);
+}
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) :is(h2, h3) { color: var(--os-cairo-card-title); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-weight: 900; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--type {
+  width: fit-content;
+  padding: 0.2em 0.5em 0.1em;
+  background: var(--os-cairo-label);
+  color: var(--os-cairo-label-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme--quest, .brumes-os-theme--tracks) { border-top: 1px solid var(--os-cairo-rule); }

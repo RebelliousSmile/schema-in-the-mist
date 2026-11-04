@@ -10,15 +10,17 @@ The public pack contract is shipped at `schema-in-the-mist/schemas/appearance/ga
 | --- | --- | --- |
 | City of Mist | [`city-of-mist/pack.json`](./city-of-mist/pack.json) | Original replacement SVG symbols and OFL-licensed font faces under `assets/styles/fonts/` |
 | Legend in the Mist | [`legend-in-the-mist/pack.json`](./legend-in-the-mist/pack.json) | Original replacement SVG/WebP art and OFL-licensed font faces under `assets/styles/fonts/` |
-| :Otherscape | [`otherscape/pack.json`](./otherscape/pack.json) | Generated Metro stylesheet and OFL-licensed font faces under `assets/styles/fonts/` |
+| :Otherscape | [`otherscape/pack.json`](./otherscape/pack.json) | Generated Metro stylesheet and its OFL-licensed title face under `assets/styles/fonts/` |
 
 Every published pack now uses exactly two locally installed WOFF2 faces: IM Fell English Roman (400) for text and Averia Serif Libre (700) for display. Both are distributed under SIL Open Font License 1.1; their upstream notices are [`IMFellEnglish.LICENSE.txt`](./LICENSES/IMFellEnglish.LICENSE.txt) and [`Averia.LICENSE.txt`](./LICENSES/Averia.LICENSE.txt). Historical notices remain for provenance but their former font files are not published.
+
+:Otherscape is the one exception. Its design (`schemas/otherscape/design/tokens.json`) calls for a condensed sans-serif, which neither serif face can render. The pack therefore publishes a single face: Fira Sans Extra Condensed (800, latin subset, SIL OFL 1.1, [`Fira.LICENSE.txt`](./LICENSES/Fira.LICENSE.txt)) for its titles. Running text uses the reader's system sans-serif. `tools/validate-handbook-packs.ts` refuses any family a pack names but does not publish.
 
 ## Provenance and redistribution status
 
 The project maintainer identified the former Son of Oak artwork as material for which this repository could not establish redistribution permission. All of the corresponding City of Mist and Legend in the Mist SVGs and cards have been replaced with original artwork; PragRoman has likewise been removed. The historical upstream notices are preserved verbatim for provenance only, not as a licence for any published asset.
 
-This is the package's explicit redistribution decision: the npm distribution contains original replacement art plus the two published OFL WOFF2 faces, and no disputed source media.
+This is the package's explicit redistribution decision: the npm distribution contains original replacement art plus the published OFL WOFF2 faces, and no disputed source media.
 
 The 2026-09-23 package dry-run measured 531,209 compressed bytes and 1,129,481 unpacked bytes. `npm run validate:package` enforces a 538,582-byte archive ceiling: one fifth of the 2,692,910-byte audit baseline.
 

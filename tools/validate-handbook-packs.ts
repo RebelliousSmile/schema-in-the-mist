@@ -75,6 +75,35 @@ function listFiles(root: string, base = root): string[] {
   });
 }
 
+/* Generic families and the system faces a pack may name without publishing them. */
+const UNPUBLISHED_FAMILIES = new Set([
+  "serif", "sans-serif", "monospace", "cursive", "fantasy", "math", "emoji", "fangsong",
+  "system-ui", "ui-serif", "ui-sans-serif", "ui-monospace", "ui-rounded",
+  "-apple-system", "blinkmacsystemfont", "segoe ui", "helvetica neue", "helvetica", "arial", "arial narrow",
+  "inherit", "initial", "unset", "revert",
+]);
+/* The one exception to the two-face OFL contract, recorded with its reason in handbook/README.md. */
+const TWO_FACE_EXCEPTIONS: Record<string, RegExp> = { otherscape: /fira\s+sans\s+extra\s+condensed/gi };
+const FONT_TOKEN = /^--(?:font-[a-z-]*-theme|[a-z0-9-]*-font)$/;
+
+function familyNames(value: string): string[] {
+  if (/var\(/i.test(value)) return [];
+  return value.split(",").map((name) => name.trim().replace(/^(['"])(.*)\1$/, "$2").trim().toLowerCase()).filter(Boolean);
+}
+
+function namedFamilies(style: unknown): string[] {
+  const names: string[] = [];
+  const layers = optionalRecord(style) ?? {};
+  for (const layer of Object.values(layers)) {
+    for (const part of Object.values(optionalRecord(layer) ?? {})) {
+      for (const [token, value] of Object.entries(optionalRecord(part) ?? {})) {
+        if (FONT_TOKEN.test(token) && typeof value === "string") names.push(...familyNames(value));
+      }
+    }
+  }
+  return names;
+}
+
 function optionalRecord(value: unknown): RecordValue | undefined {
   return value && typeof value === "object" && !Array.isArray(value) ? value as RecordValue : undefined;
 }
@@ -187,6 +216,10 @@ for (let index = 0; index < catalogue.packs.length; index++) {
     if (!/\.(?:woff2?|ttf|otf)$/i.test(resource)) fail(manifestFile, `stylesheet resource is not a supported font file: ${resource}`);
     declared.add(resource);
   }
+  const published = new Set<string>();
+  const named = new Map<string, string>();
+  for (const family of namedFamilies(pack.style)) named.set(family, "pack.style");
+  for (const variant of variants) for (const family of namedFamilies(variant.style)) named.set(family, `variant ${String(variant.id)}`);
   if (assets.stylesheets !== undefined) {
     const stylesheets = uniqueStrings(assets.stylesheets, manifestFile, "pack.assets.stylesheets");
     for (let index = 0; index < stylesheets.length; index++) {
@@ -195,8 +228,17 @@ for (let index = 0; index < catalogue.packs.length; index++) {
       const stylesheetPath = path.resolve(root, stylesheet);
       if (!fs.existsSync(stylesheetPath)) fail(manifestFile, `declared stylesheet does not exist: ${stylesheet}`);
       const css = fs.readFileSync(stylesheetPath, "utf8");
-      if (/\b(?:labrada|fira\s+sans(?:\s+extra\s+condensed)?|courier\s+prime|pt\s+serif|roboto(?:\s+condensed)?|bebas\s+neue|caveat|barlow(?:\s+condensed)?|ibm\s+plex\s+mono)\b/i.test(css)) {
+      const exception = TWO_FACE_EXCEPTIONS[id];
+      const contractCss = exception === undefined ? css : css.replace(exception, "");
+      if (/\b(?:labrada|fira\s+sans(?:\s+extra\s+condensed)?|courier\s+prime|pt\s+serif|roboto(?:\s+condensed)?|bebas\s+neue|caveat|barlow(?:\s+condensed)?|ibm\s+plex\s+mono)\b/i.test(contractCss)) {
         fail(manifestFile, `stylesheet refers to a font family that is not published by the two-face OFL contract: ${stylesheet}`);
+      }
+      for (const face of css.matchAll(/@font-face\s*\{([^}]*)\}/gi)) {
+        const family = /font-family\s*:\s*([^;]+);/i.exec(face[1]);
+        if (family) for (const name of familyNames(family[1])) published.add(name);
+      }
+      for (const rule of css.replace(/@font-face\s*\{[^}]*\}/gi, "").matchAll(/font-family\s*:\s*([^;}]+)/gi)) {
+        for (const name of familyNames(rule[1])) named.set(name, stylesheet);
       }
       for (const match of css.matchAll(/url\(\s*(['"]?)([^'"\s)]+)\1\s*\)/gi)) {
         const url = match[2];
@@ -206,6 +248,12 @@ for (let index = 0; index < catalogue.packs.length; index++) {
           fail(manifestFile, `stylesheet URL is not a declared asset: ${relative}`);
         }
       }
+    }
+  }
+  /* A family the pack names must be one it publishes, or one every reader already has. */
+  for (const [family, where] of named) {
+    if (!published.has(family) && !UNPUBLISHED_FAMILIES.has(family)) {
+      fail(manifestFile, `${where} names the font family "${family}", which no published @font-face declares`);
     }
   }
   for (const asset of declared) {

@@ -52,15 +52,14 @@ try {
       "handbook/legend-in-the-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
       "handbook/otherscape/pack.json",
       "handbook/otherscape/assets/styles/otherscape.css",
-      "handbook/otherscape/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
-      "handbook/otherscape/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
+      "handbook/otherscape/assets/styles/fonts/fira-sans-extra-condensed-latin-800-normal.woff2",
     ]) {
       assert.ok(paths.some((path) => path === file), `missing packaged ${file}`);
     }
     assert.equal(paths.filter((file) => file.endsWith(".schema.json") && file.startsWith("schemas/v1/")).length, 14);
     assert.ok(paths.every((file) => !file.startsWith("tools/") && !file.startsWith("handbook-packs/") && !/\.png$|\.ttf$/i.test(file)));
     assert.ok(
-      paths.every((file) => !file.endsWith(".woff2") || !/(?:labrada|fira-sans-extra-condensed|courier-prime|pt-serif|roboto|bebas-neue|caveat)/i.test(file)),
+      paths.every((file) => !file.endsWith(".woff2") || file === "handbook/otherscape/assets/styles/fonts/fira-sans-extra-condensed-latin-800-normal.woff2" || !/(?:labrada|fira-sans-extra-condensed|courier-prime|pt-serif|roboto|bebas-neue|caveat)/i.test(file)),
       "packaged Handbook fonts must use the two-face OFL contract",
     );
   }
@@ -102,8 +101,7 @@ try {
       "handbook/city-of-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
       "handbook/legend-in-the-mist/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
       "handbook/legend-in-the-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
-      "handbook/otherscape/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
-      "handbook/otherscape/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
+      "handbook/otherscape/assets/styles/fonts/fira-sans-extra-condensed-latin-800-normal.woff2",
     ]) fs.statSync(new URL(import.meta.resolve("schema-in-the-mist/" + asset)));
     try {
       await import("schema-in-the-mist/dist/zod/constants.js");
