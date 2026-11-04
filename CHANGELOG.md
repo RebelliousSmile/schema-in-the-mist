@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Project the Otherscape Cairo design for Handbook, light only: flat cream paper, band headings with slightly rounded corners (the H1 band bevelled top right), highlighted subtitles, bevelled callouts and cards, category labels, and a teal accent with its derived ramp. Headings are near black on khaki bands, at sizes close to the body text (H1 2.4em, H2 1.35em, H3 1.05em).
-- Cairo publishes its dark slate design for the alternate section of a note (`section.note` of the pack, and the sheet variables under `.handbook-mode-alternate`, on screen only), proven by `cairo-dark.jpg` and `cairo-tropes.jpg`. Cairo declares its own bold and italic colours, so the alternate section no longer inherits the dark ink of the base light layer.
+- Cairo publishes its dark slate design for the alternate section of a note (`section.note` of the pack, and the sheet variables under `.handbook-mode-alternate`, on screen only), proven by `cairo-dark.jpg` and `cairo-tropes.jpg`. Cairo declares its own ink in each polarity (bold, italic, quote border in the teal or green accent, external links, faint text, code and secondary backgrounds, table headers), so the alternate section no longer inherits the dark ink of the base light layer.
 - Version the Otherscape Handbook projection as v2.0.0 with one entry per variant.
 
 ### Changed
