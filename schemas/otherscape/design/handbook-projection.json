@@ -51,6 +51,8 @@
         "--background-primary": "color.cairo.semantic.background",
         "--background-primary-alt": "color.cairo.semantic.background-alt",
         "--text-normal": "color.cairo.semantic.text",
+        "--bold-color": "color.cairo.semantic.text",
+        "--italic-color": "color.cairo.semantic.text",
         "--text-muted": "color.cairo.semantic.text-muted",
         "--h1-color": "color.cairo.semantic.heading",
         "--h2-color": "color.cairo.semantic.heading",
@@ -95,8 +97,7 @@
         "--os-cairo-surface-line": "color.cairo.semantic.surface-line",
         "--os-cairo-card-title": "color.cairo.semantic.card-title",
         "--os-cairo-rule": "color.cairo.semantic.rule",
-        "--os-cairo-chevron": "color.cairo.semantic.chevron",
-        "--os-cairo-texture": "color.cairo.semantic.texture"
+        "--os-cairo-chevron": "color.cairo.semantic.chevron"
       },
       "contrast": [
         {

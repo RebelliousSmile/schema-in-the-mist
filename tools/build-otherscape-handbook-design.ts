@@ -147,9 +147,12 @@ function cairoCss() {
   const display = value("font.family.display", "light");
   const black = value("font.weight.black", "light");
   const bevel = value("radius.bevel", "light");
+  const band = value("radius.band", "light");
+  const cut = value("radius.band-bevel", "light");
+  const h1Cut = `polygon(0 0, calc(100% - ${cut}) 0, 100% ${cut}, 100% 100%, 0 100%)`;
   if (modesOf(cairo).join() !== "light") throw new Error("The Cairo sheet is written for a light-only variant");
   return `/* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Light; its dark design paints the
-   alternate section only, on screen like the section itself. The texture is screen-only. */
+   alternate section only, on screen like the section itself. Flat paper, no texture. */
 ${v} {
 ${sheetVars(cairo, "light")}
 }
@@ -158,34 +161,27 @@ ${sheetVars(cairo, "light")}
 ${sheetVars(cairo, "dark").replace(/^/gm, "  ")}
   }
 }
-@media screen {
-  ${v} .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"] {
-    background-image:
-      radial-gradient(3.5px 1px at 50% 50%, var(--os-cairo-texture) 99%, transparent 100%),
-      radial-gradient(1px 3.5px at 50% 50%, var(--os-cairo-texture) 99%, transparent 100%);
-    background-size: 2rem 2rem;
-  }
-}
 ${v} :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
   width: fit-content;
   font-family: ${display};
   font-weight: ${black};
   text-transform: uppercase;
   line-height: 1;
+  border-radius: ${band};
 }
 ${v} :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperMD-header-3 .cm-header-3) {
+  border-radius: ${band};
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   text-transform: uppercase;
 }
 ${v} .markdown-rendered .el-h1 > h1 {
-  padding: 0.12em 0.9em 0.06em 0.3em;
-  border-inline-start: 0.18em solid var(--os-cairo-label);
+  padding: 0.12em 0.6em 0.06em 0.3em;
   background: var(--os-cairo-heading-band);
   color: var(--os-cairo-heading);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 0.55em) 100%, 0 100%);
+  clip-path: ${h1Cut};
 }
-${v} .HyperMD-header-1 .cm-header-1 { padding: 0 0.3em; background: var(--os-cairo-heading-band); color: var(--os-cairo-heading); }
+${v} .HyperMD-header-1 .cm-header-1 { padding: 0 0.6em 0 0.3em; background: var(--os-cairo-heading-band); color: var(--os-cairo-heading); clip-path: ${h1Cut}; }
 ${v} .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
 ${v} .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
 ${v} .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }

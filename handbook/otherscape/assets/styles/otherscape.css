@@ -73,7 +73,7 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
 @media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
 /* Cairo: band headings, highlighted subtitles, bevelled callouts and cards. Light; its dark design paints the
-   alternate section only, on screen like the section itself. The texture is screen-only. */
+   alternate section only, on screen like the section itself. Flat paper, no texture. */
 body.brumes--otherscape.brumes--variant-cairo {
   --os-cairo-heading: #201408;
   --os-cairo-heading-band: #D6C686;
@@ -88,7 +88,6 @@ body.brumes--otherscape.brumes--variant-cairo {
   --os-cairo-card-title: #00756A;
   --os-cairo-rule: #00756A;
   --os-cairo-chevron: #D0B868;
-  --os-cairo-texture: #1E1E1E14;
 }
 @media screen {
   body.brumes--otherscape.brumes--variant-cairo .handbook-mode-alternate {
@@ -105,15 +104,6 @@ body.brumes--otherscape.brumes--variant-cairo {
     --os-cairo-card-title: #37C298;
     --os-cairo-rule: #2E9A88;
     --os-cairo-chevron: #D0B868;
-    --os-cairo-texture: #E6E6DE0D;
-  }
-}
-@media screen {
-  body.brumes--otherscape.brumes--variant-cairo .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"] {
-    background-image:
-      radial-gradient(3.5px 1px at 50% 50%, var(--os-cairo-texture) 99%, transparent 100%),
-      radial-gradient(1px 3.5px at 50% 50%, var(--os-cairo-texture) 99%, transparent 100%);
-    background-size: 2rem 2rem;
   }
 }
 body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
@@ -122,20 +112,21 @@ body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 > h1
   font-weight: 900;
   text-transform: uppercase;
   line-height: 1;
+  border-radius: 0.25rem;
 }
 body.brumes--otherscape.brumes--variant-cairo :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperMD-header-3 .cm-header-3) {
+  border-radius: 0.25rem;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   text-transform: uppercase;
 }
 body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h1 > h1 {
-  padding: 0.12em 0.9em 0.06em 0.3em;
-  border-inline-start: 0.18em solid var(--os-cairo-label);
+  padding: 0.12em 0.6em 0.06em 0.3em;
   background: var(--os-cairo-heading-band);
   color: var(--os-cairo-heading);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 0.55em) 100%, 0 100%);
+  clip-path: polygon(0 0, calc(100% - 0.4em) 0, 100% 0.4em, 100% 100%, 0 100%);
 }
-body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-1 .cm-header-1 { padding: 0 0.3em; background: var(--os-cairo-heading-band); color: var(--os-cairo-heading); }
+body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-1 .cm-header-1 { padding: 0 0.6em 0 0.3em; background: var(--os-cairo-heading-band); color: var(--os-cairo-heading); clip-path: polygon(0 0, calc(100% - 0.4em) 0, 100% 0.4em, 100% 100%, 0 100%); }
 body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
 body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-heading); }
 body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }
