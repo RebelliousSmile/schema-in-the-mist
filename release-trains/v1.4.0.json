@@ -1,0 +1,34 @@
+{
+  "status": "pending",
+  "candidate": {
+    "packageName": "schema-in-the-mist",
+    "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.4.0-rc.1/schema-in-the-mist-1.4.0.tgz",
+    "sha256": "6c00071eb9a1f381c0d407ebc000b2bd98878db859151b8c508ae2baefa4593e",
+    "integrity": "sha512-jKtcAecEQWGXXDskoCrFGDzKO1UP1oddEhezjCfXWn8Q4XaxGzKKfQbYYzqmUawCNUvR6J1O1QueiMLmZxFG0A==",
+    "stagingTag": "v1.4.0-rc.1",
+    "finalTag": "v1.4.0",
+    "providerCommit": "abb267d61872faf00663f77a0de34cec5cd0b813"
+  },
+  "consumers": [
+    {
+      "role": "handbook",
+      "repository": "RebelliousSmile/obsidian-handbook",
+      "ref": "147f356624c8df43fab551a0733eea00c3857391",
+      "path": "handbook",
+      "proof": {
+        "interface": "npm-run-release-train-assert",
+        "manifest": "release-train/schema-in-the-mist.json"
+      }
+    },
+    {
+      "role": "lantern",
+      "repository": "RebelliousSmile/lantern",
+      "ref": "24b76c930c290939b7e32266a4e9474413dfeaea",
+      "path": "lantern",
+      "proof": {
+        "interface": "npm-run-release-train-assert",
+        "manifest": "release-train/schema-in-the-mist.json"
+      }
+    }
+  ]
+}
