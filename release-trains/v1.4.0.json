@@ -7,7 +7,7 @@
     "integrity": "sha512-jKtcAecEQWGXXDskoCrFGDzKO1UP1oddEhezjCfXWn8Q4XaxGzKKfQbYYzqmUawCNUvR6J1O1QueiMLmZxFG0A==",
     "stagingTag": "v1.4.0-rc.1",
     "finalTag": "v1.4.0",
-    "providerCommit": "95e68d5364472d8579524678437cde33b9d158b2"
+    "providerCommit": "e52c0de5c2476349a8c63d29eafca6b0866494a9"
   },
   "consumers": [
     {
