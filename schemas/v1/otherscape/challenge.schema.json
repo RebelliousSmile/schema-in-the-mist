@@ -22,8 +22,19 @@
       ],
       "type": "string"
     },
+    "rating": {
+      "description": "Stars of difficulty printed on the Challenge's tab, from one to five (Metro:Otherscape - Core Book, p. 301; the tabs of pp. 302-303 print three for the VIP Club, two for the Flying Taxi Driver). Left out where the Challenge is unrated: there is no default star to invent.",
+      "examples": [
+        1,
+        2,
+        3
+      ],
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
     "scale": {
-      "description": "How large this Challenge is compared to a person, as a printed property of the entity rather than an effect applied in play. Left out entirely on a person-sized Challenge, which is what absent already means, so there is no default of `0` to invent.",
+      "description": "How large this Challenge is compared to a person, as a printed property of the entity rather than an effect applied in play. The book never prints it on the tab: it is named in the Challenge's prose (`with Scale 1`), and a consumer draws it there. Left out entirely on a person-sized Challenge, which is what absent already means, so there is no default of `0` to invent.",
       "examples": [
         1,
         2,

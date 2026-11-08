@@ -140,6 +140,46 @@ export const OtherscapePowerSetSchema = z
           "Something older than the arcology got a grip, and now the body does what it wants with the person still inside it.",
         ],
       }),
+    rating: z
+      .number()
+      .int()
+      .min(1)
+      .max(5)
+      .optional()
+      .meta({
+        description:
+          "Stars of difficulty this Power Set adds to the Challenge it is grafted onto, printed `+⊕` or `+⊕⊕` beside its name. Challenges are rated from one to five stars (Metro:Otherscape - Core Book, p. 301), and a Power Set raises that rating (p. 328).",
+        examples: [1, 2],
+      }),
+    optional_rating: z
+      .number()
+      .int()
+      .min(1)
+      .max(4)
+      .optional()
+      .meta({
+        description:
+          "Further stars printed in parentheses after `rating`, as in `+⊕(⊕)`: they apply only when the Challenge also takes the upgrade a Threat marks with them, such as `Mythical Archer (+⊕)`. Meaningful only beside `rating`.",
+        examples: [1],
+      }),
+    tags_and_statuses: z
+      .array(
+        z
+          .string()
+          .trim()
+          .regex(/\S/, "Must contain a non-whitespace character")
+          .min(1, "A tag or status cannot be empty")
+          .meta({
+            description:
+              "One story tag or status the Power Set adds to the Challenge, in the inline tag syntax.",
+            examples: ["{more guns and ammo}", "{enraged-2}", "{corporate ID}"],
+          }),
+      )
+      .optional()
+      .meta({
+        description:
+          "The tags and statuses this Power Set adds to the Challenge it is grafted onto, in the order they are printed. Same shape as `otherscape/challenge.tags_and_statuses`, so the list copies across.",
+      }),
     specials: z.array(SpecialSchema).optional().meta({
       description:
         "The rules this Power Set grants, which Threats and Consequences, tags and statuses cannot express.",
@@ -175,7 +215,7 @@ export const OtherscapePowerSetSchema = z
   })
   .meta({
     description:
-      ":Otherscape - Power Set, a bundle of Specials, Threats and Consequences the books publish standalone and graft onto any Challenge. It carries no Scale and no Limits: those belong to the Challenge it is attached to, not to the Power Set.",
+      ":Otherscape - Power Set, a bundle of Specials, Threats and Consequences the books publish standalone and graft onto any Challenge. It carries no Scale and no Limits: those belong to the Challenge it is attached to. It carries the stars it adds to that Challenge's rating, and the tags and statuses it adds to it.",
   });
 
 /** =========================

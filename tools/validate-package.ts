@@ -9,6 +9,22 @@ if (!npmCli) throw new Error("Run this validator through npm so npm_execpath is 
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), "mist-package-"));
 // One fifth of the 2,692,910-byte package audited on 2026-09-20.
 const MAX_ARCHIVE_BYTES = 538_582;
+/* Otherscape stands outside the two-face contract: one OFL face per role of its books (handbook/README.md). */
+const OTHERSCAPE_FACES = [
+  "handbook/otherscape/assets/styles/fonts/fira-sans-extra-condensed-latin-800-normal.woff2",
+  "handbook/otherscape/assets/styles/fonts/sofia-sans-semi-condensed-latin-400-normal.woff2",
+  "handbook/otherscape/assets/styles/fonts/sofia-sans-semi-condensed-latin-400-italic.woff2",
+  "handbook/otherscape/assets/styles/fonts/sofia-sans-semi-condensed-latin-700-normal.woff2",
+  "handbook/otherscape/assets/styles/fonts/familjen-grotesk-latin-500-normal.woff2",
+  "handbook/otherscape/assets/styles/fonts/space-mono-latin-400-normal.woff2",
+  "handbook/otherscape/assets/styles/fonts/barlow-condensed-latin-300-normal.woff2",
+  "handbook/otherscape/assets/styles/fonts/ibm-plex-sans-condensed-400-normal.woff2",
+  "handbook/otherscape/assets/styles/fonts/ibm-plex-sans-condensed-400-italic.woff2",
+  "handbook/otherscape/assets/styles/fonts/ibm-plex-sans-condensed-700-normal.woff2",
+];
+/* The audited budget already carried the title face (the first one); the faces the books' roles added on
+   2026-11-08 are WOFF2, which gzip cannot shrink, so the ceiling grows by their exact size and nothing else. */
+const ARCHIVE_CEILING = MAX_ARCHIVE_BYTES + OTHERSCAPE_FACES.slice(1).reduce((total, file) => total + fs.statSync(file).size, 0);
 
 function run(command: string, args: string[], cwd = process.cwd()): string {
   const result = spawnSync(command, args, { cwd, encoding: "utf8" });
@@ -30,7 +46,7 @@ try {
     archive = path.join(temporary, packed[0]!.filename);
     files = packed[0]!.files;
   }
-  assert.ok(fs.statSync(archive).size <= MAX_ARCHIVE_BYTES, `package archive exceeds ${MAX_ARCHIVE_BYTES} bytes`);
+  assert.ok(fs.statSync(archive).size <= ARCHIVE_CEILING, `package archive exceeds ${ARCHIVE_CEILING} bytes`);
 
   if (files.length > 0) {
     const paths = files.map(({ path: file }) => file);
@@ -52,15 +68,20 @@ try {
       "handbook/legend-in-the-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
       "handbook/otherscape/pack.json",
       "handbook/otherscape/assets/styles/otherscape.css",
-      "handbook/otherscape/assets/styles/fonts/fira-sans-extra-condensed-latin-800-normal.woff2",
+      ...OTHERSCAPE_FACES,
     ]) {
       assert.ok(paths.some((path) => path === file), `missing packaged ${file}`);
     }
     assert.equal(paths.filter((file) => file.endsWith(".schema.json") && file.startsWith("schemas/v1/")).length, 14);
     assert.ok(paths.every((file) => !file.startsWith("tools/") && !file.startsWith("handbook-packs/") && !/\.png$|\.ttf$/i.test(file)));
     assert.ok(
-      paths.every((file) => !file.endsWith(".woff2") || file === "handbook/otherscape/assets/styles/fonts/fira-sans-extra-condensed-latin-800-normal.woff2" || !/(?:labrada|fira-sans-extra-condensed|courier-prime|pt-serif|roboto|bebas-neue|caveat)/i.test(file)),
-      "packaged Handbook fonts must use the two-face OFL contract",
+      paths.every((file) => !file.endsWith(".woff2") || OTHERSCAPE_FACES.includes(file) || !/(?:labrada|fira-sans-extra-condensed|courier-prime|pt-serif|roboto|bebas-neue|caveat)/i.test(file)),
+      "packaged Handbook fonts must use the two-face OFL contract, Otherscape's declared faces aside",
+    );
+    assert.deepEqual(
+      paths.filter((file) => file.startsWith("handbook/otherscape/") && file.endsWith(".woff2")).sort(),
+      [...OTHERSCAPE_FACES].sort(),
+      "Otherscape must publish exactly its declared faces",
     );
   }
 
@@ -101,7 +122,7 @@ try {
       "handbook/city-of-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
       "handbook/legend-in-the-mist/assets/styles/fonts/im-fell-english-latin-400-normal.woff2",
       "handbook/legend-in-the-mist/assets/styles/fonts/averia-serif-libre-latin-700-normal.woff2",
-      "handbook/otherscape/assets/styles/fonts/fira-sans-extra-condensed-latin-800-normal.woff2",
+      ${OTHERSCAPE_FACES.map((file) => JSON.stringify(file)).join(", ")},
     ]) fs.statSync(new URL(import.meta.resolve("schema-in-the-mist/" + asset)));
     try {
       await import("schema-in-the-mist/dist/zod/constants.js");

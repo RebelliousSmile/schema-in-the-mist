@@ -82,8 +82,14 @@ const UNPUBLISHED_FAMILIES = new Set([
   "-apple-system", "blinkmacsystemfont", "segoe ui", "helvetica neue", "helvetica", "arial", "arial narrow", "courier new", "courier",
   "inherit", "initial", "unset", "revert",
 ]);
-/* The one exception to the two-face OFL contract, recorded with its reason in handbook/README.md. */
-const TWO_FACE_EXCEPTIONS: Record<string, RegExp> = { otherscape: /fira\s+sans\s+extra\s+condensed/gi };
+/* The one exception to the two-face OFL contract, recorded with its reason in handbook/README.md: Otherscape
+   publishes one OFL face per role of its books. */
+const TWO_FACE_EXCEPTIONS: Record<string, RegExp> = { otherscape: /fira[\s-]+sans[\s-]+extra[\s-]+condensed|barlow[\s-]+condensed/gi };
+/* The commercial faces of a pack's books, named first in its stacks for a reader who owns them; the pack cannot
+   redistribute them, so each stays unpublished and a published stand-in follows it. */
+const BOOK_FAMILIES: Record<string, ReadonlySet<string>> = {
+  otherscape: new Set(["isotonic", "neotokyo", "pp fraktion sans", "pp fraktion mono"]),
+};
 const FONT_TOKEN = /^--(?:font-[a-z-]*-theme|[a-z0-9-]*-font)$/;
 
 function familyNames(value: string): string[] {
@@ -252,7 +258,7 @@ for (let index = 0; index < catalogue.packs.length; index++) {
   }
   /* A family the pack names must be one it publishes, or one every reader already has. */
   for (const [family, where] of named) {
-    if (!published.has(family) && !UNPUBLISHED_FAMILIES.has(family)) {
+    if (!published.has(family) && !UNPUBLISHED_FAMILIES.has(family) && !BOOK_FAMILIES[id]?.has(family)) {
       fail(manifestFile, `${where} names the font family "${family}", which no published @font-face declares`);
     }
   }

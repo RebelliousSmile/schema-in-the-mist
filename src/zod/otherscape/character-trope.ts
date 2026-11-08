@@ -32,6 +32,16 @@ export const ThemeKitReferenceSchema = z
           "The referenced Theme Kit's themebook, transcribed from the parenthesised half of the printed line. Needed alongside the title tag because the same title tag can appear under more than one themebook across settings, so neither half alone identifies a kit. Same field, same spelling as `category` on an :Otherscape Theme Kit — and note that it is **not** the same field as `category` on this trope, which holds a grouping of tropes instead.",
         examples: ["AUGMENTATION", "AFFILIATION", "ARTIFACT", "CYBERSPACE"],
       }),
+    page: z
+      .number()
+      .int()
+      .min(1, "A page number starts at 1")
+      .optional()
+      .meta({
+        description:
+          "Page where the referenced Theme Kit is printed, in the same book as the trope, as the trope's THEME KITS list prints it beside each line.",
+        examples: [96, 118],
+      }),
   })
   .meta({
     description:

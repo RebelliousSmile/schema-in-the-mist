@@ -30,6 +30,32 @@ export const MetaSchema = createPublicationMetaSchema({
   description: "Attribution and cataloging fields for the Theme Kit's origin.",
 });
 
+export const ThemeKitSpecialSchema = z
+  .strictObject({
+    name: z
+      .string()
+      .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
+      .min(1, "Special name is required")
+      .meta({
+        description: "Name of the Theme Special printed on the kit, shown in bold beside its checkbox.",
+        examples: ["Third Eye Open", "House Calls"],
+      }),
+    description: z
+      .string()
+      .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
+      .min(1, "Special description is required")
+      .meta({
+        description: "What the Special lets the character do once it is taken. Supports inline Markdown.",
+        examples: ["Once per scene, treat a wound you patch as if it had one tier less."],
+      }),
+  })
+  .meta({
+    description:
+      "The one Theme Special a kit suggests, printed at the foot of the kit with a checkbox the character ticks when they take it as an improvement.",
+  });
+
 /** =========================
  *  Root schema
  *  ========================= */
@@ -52,6 +78,17 @@ export const OtherscapeThemeKitSchema = z
         ],
       }),
     theme_type: ThemeTypeEnum,
+    description: z
+      .string()
+      .trim()
+      .optional()
+      .meta({
+        description:
+          "Prose printed under the kit's header, telling who carries this theme and what it does for them. One string rather than a list of lines: paragraph breaks are carried by newlines. Supports inline Markdown.",
+        examples: [
+          "You patch up the people the clinics turn away, and the street remembers it.",
+        ],
+      }),
     category: z
       .string()
       .trim()
@@ -115,6 +152,7 @@ export const OtherscapeThemeKitSchema = z
           "Find out what the Source wanted with you.",
         ],
       }),
+    special: ThemeKitSpecialSchema.optional(),
     meta: MetaSchema.optional().meta({
       description:
         "Attribution and cataloging fields for the Theme Kit's origin.",
@@ -122,7 +160,7 @@ export const OtherscapeThemeKitSchema = z
   })
   .meta({
     description:
-      ":Otherscape - Theme Kit, the blank a Theme is filled in from, holding a themebook's suggested title tag, power tags, weakness tags and Quest before a character makes any of it their own. It carries no `upgrade` and no `decay`: those hold the state of a played theme, which a blank kit does not have. It carries no `improvements` either, because Theme Specials are printed on the themebook rather than on the kit.",
+      ":Otherscape - Theme Kit, the blank a Theme is filled in from, holding a themebook's suggested title tag, power tags, weakness tags and Quest before a character makes any of it their own. It carries no `upgrade` and no `decay`: those hold the state of a played theme, which a blank kit does not have. It carries no list of `improvements`: the themebook prints its Theme Specials, and a kit only suggests one, held in `special`.",
   });
 
 /** =========================
@@ -130,5 +168,6 @@ export const OtherscapeThemeKitSchema = z
  *  ========================= */
 export type ThemeType = z.infer<typeof ThemeTypeEnum>;
 export type PublicationType = z.infer<typeof PublicationTypeEnum>;
+export type ThemeKitSpecial = z.infer<typeof ThemeKitSpecialSchema>;
 export type ThemeKitMeta = z.infer<typeof MetaSchema>;
 export type OtherscapeThemeKit = z.infer<typeof OtherscapeThemeKitSchema>;

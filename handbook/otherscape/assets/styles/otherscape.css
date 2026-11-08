@@ -1,75 +1,6 @@
 /* GENERATED from schemas/otherscape/design — do not edit by hand. */
-/* Handbook renders os-theme as .brumes-os-theme; scope this pack sheet to Metro only. */
-/* The card reads the band surface, so the alternate section repaints it too. */
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
-  --os-metro-card-surface: var(--os-metro-surface);
-  --os-metro-card-text: var(--os-metro-surface-text);
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
-  font-family: system-ui, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.5rem;
-  padding: 1rem;
-  border: 2px solid var(--os-card-accent);
-  border-radius: 0;
-  background: var(--os-metro-card-surface);
-  color: var(--os-metro-card-text);
-  box-shadow: none;
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme > * { grid-column: 1; min-width: 0; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--header { order: 1; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--power-tags { order: 2; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags { order: 3; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest { order: 4; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { order: 5; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--self { --os-card-accent: var(--brumes-theme-self); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--mythos { --os-card-accent: var(--brumes-theme-mythos); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--noise { --os-card-accent: var(--brumes-theme-noise); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--type {
-  color: var(--os-card-accent);
-  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme h3 {
-  color: var(--os-card-accent);
-  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
-  font-size: clamp(1.5rem, 1.18rem + 1.4vw, 2.5rem);
-  font-weight: 900;
-  line-height: 1;
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme ul { display: grid; gap: 0.25rem; margin: 0; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme li { margin: 0; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme .brumes-tag {
-  display: block;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid color-mix(in srgb, var(--os-card-accent) 68%, transparent);
-  background: color-mix(in srgb, var(--os-card-accent) 14%, var(--os-metro-card-surface));
-  color: var(--os-metro-card-text);
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.35;
-  text-transform: uppercase;
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags {
-  border-inline-start: 0;
-  padding-inline-start: 0;
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags .brumes-tag {
-  border-inline-start: 4px solid var(--os-card-accent);
-  background: color-mix(in srgb, var(--os-card-accent) 24%, var(--os-metro-card-surface));
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest {
-  margin: 0.5rem 0 0;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--os-card-accent);
-  color: var(--os-metro-card-text);
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-top-color: var(--os-card-accent); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
 @media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
-/* Metro: light (page.jpg, light-chapo.jpg, act-0-crew.png, description.jpg, chapter-title.jpg), dark alternate (dark.jpg, dark-chapo.jpg); its cards keep the Metro rules above. */
+/* Metro: light (page.jpg, light-chapo.jpg, act-0-crew.png, description.jpg, chapter-title.jpg), dark alternate (dark.jpg, dark-chapo.jpg); cut cards of sheet1.jpg. */
 body.brumes--otherscape.brumes--variant-metro {
   --os-metro-heading: #0B0F2F;
   --os-metro-heading-band: #C8FF2E;
@@ -93,6 +24,19 @@ body.brumes--otherscape.brumes--variant-metro {
   --os-metro-read-aloud-text: #05071D;
   --os-metro-read-aloud-line: #AAB5BD;
   --os-metro-tab: #FF3C5C;
+  --os-metro-weakness: #50581A;
+  --os-metro-weakness-text: #E8F7A0;
+  --os-metro-item-name: #C8FF2E;
+  --os-metro-item-name-text: #0B0F2F;
+  --os-metro-type-self: #B4233E;
+  --os-metro-type-mythos: #7B4FB0;
+  --os-metro-type-noise: #075F8B;
+}
+body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered, .markdown-source-view.mod-cm6) {
+  --p-spacing: 0.55em;
+  --line-height-normal: 1.32;
+  --list-spacing: 0.05em;
+  --heading-spacing: 1.1em;
 }
 @media screen {
   body.brumes--otherscape.brumes--variant-metro .handbook-mode-alternate {
@@ -118,6 +62,13 @@ body.brumes--otherscape.brumes--variant-metro {
     --os-metro-read-aloud-text: #F6F7F4;
     --os-metro-read-aloud-line: #3E4257;
     --os-metro-tab: #FF3C5C;
+    --os-metro-weakness: #50581A;
+    --os-metro-weakness-text: #E8F7A0;
+    --os-metro-item-name: #C8FF2E;
+    --os-metro-item-name-text: #0B0F2F;
+    --os-metro-type-self: #E05A6E;
+    --os-metro-type-mythos: #A98BD0;
+    --os-metro-type-noise: #5D9BD4;
   }
 }
 body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
@@ -128,6 +79,13 @@ body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h1 > h1
   line-height: 1;
   border-radius: 0.25rem;
 }
+/* The book's faces per role (phase 8): the H1 in its title face, never synthesised bold since NeoTokyo has a
+   Regular only; the intertitle in the bold text face. */
+body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h1 > h1, .HyperMD-header-1 .cm-header-1) { font-family: "NeoTokyo", "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-synthesis-weight: none; }
+body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h2 > h2, .HyperMD-header-2 .cm-header-2) { font-family: "Isotonic", "Sofia Sans Semi Condensed", system-ui, "Segoe UI", Arial, sans-serif; font-weight: 700; }
+/* Running text is justified and hyphenated, as in the book; the lead stays ranged left. */
+body.brumes--otherscape.brumes--variant-metro .markdown-rendered .el-p > p { text-align: justify; hyphens: auto; }
+body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered, .markdown-source-view.mod-cm6) li { hyphens: auto; }
 body.brumes--otherscape.brumes--variant-metro :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperMD-header-3 .cm-header-3) {
   border-radius: 0.25rem;
   -webkit-box-decoration-break: clone;
@@ -145,13 +103,13 @@ body.brumes--otherscape.brumes--variant-metro .markdown-rendered .el-h2 > h2 { p
 body.brumes--otherscape.brumes--variant-metro .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-metro-subheading-band); color: var(--os-metro-subheading); }
 body.brumes--otherscape.brumes--variant-metro .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-metro-label); color: var(--os-metro-label-text); font-size: 1em; }
 body.brumes--otherscape.brumes--variant-metro .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: var(--os-metro-label); color: var(--os-metro-label-text); font-size: 1em; }
-body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h1 + .el-p > p, .markdown-rendered .el-h1 + .handbook-layout-marker + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-metro-lead); font-size: 1.3em; line-height: 1.25; }
+body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h1 + .el-p > p, .markdown-rendered .el-h1 + .handbook-layout-marker + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-metro-lead); font-family: "PP Fraktion Sans", "Familjen Grotesk", system-ui, sans-serif; font-size: 1.48em; line-height: 1.25; text-align: start; }
 body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered .el-h2 + .el-p > p > em:only-child, .HyperMD-header-2 + .cm-line > .cm-em:first-child) {
   padding: 0 0.3em;
   background: var(--os-metro-highlight);
   color: var(--os-metro-highlight-text);
 }
-body.brumes--otherscape.brumes--variant-metro :is(.callout) {
+body.brumes--otherscape.brumes--variant-metro :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) {
   border-radius: 0.75rem;
   corner-shape: bevel;
   box-shadow: none;
@@ -162,7 +120,7 @@ body.brumes--otherscape.brumes--variant-metro :is(.callout) {
   color: var(--os-metro-surface-text);
 }
 @supports not (corner-shape: bevel) {
-  body.brumes--otherscape.brumes--variant-metro :is(.callout) {
+  body.brumes--otherscape.brumes--variant-metro :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) {
     clip-path: polygon(0.75rem 0, calc(100% - 0.75rem) 0, 100% 0.75rem, 100% calc(100% - 0.75rem), calc(100% - 0.75rem) 100%, 0.75rem 100%, 0 calc(100% - 0.75rem), 0 0.75rem);
   }
 }
@@ -172,6 +130,197 @@ body.brumes--otherscape.brumes--variant-metro .callout {
 }
 body.brumes--otherscape.brumes--variant-metro .callout-title { --callout-title-color: var(--os-metro-surface-text); color: var(--os-metro-surface-text); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
 body.brumes--otherscape.brumes--variant-metro .callout-icon { color: var(--os-metro-card-title); }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) {
+  --os-type: var(--os-metro-rule);
+  --os-card-accent: var(--os-type);
+  --p-spacing: 0.2em;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.3em 0.9em;
+  padding: 0.7em 0.8em 0.75em;
+  border: 1px solid var(--os-type);
+  box-shadow: none;
+  font-family: "Isotonic", "Sofia Sans Semi Condensed", system-ui, "Segoe UI", Arial, sans-serif;
+  line-height: 1.25;
+}
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)):is(.brumes-os-theme--self, .brumes-os-profile--self) { --os-type: var(--os-metro-type-self); --os-type-icon: var(--brumes-image-theme-self); }
+body.brumes--otherscape.brumes--variant-metro.brumes-missing--theme-self :is(.brumes-os-theme--self .brumes-os-theme--icon, .brumes-os-profile--self .brumes-os-profile--icon) { display: none; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)):is(.brumes-os-theme--mythos, .brumes-os-profile--mythos) { --os-type: var(--os-metro-type-mythos); --os-type-icon: var(--brumes-image-theme-mythos); }
+body.brumes--otherscape.brumes--variant-metro.brumes-missing--theme-mythos :is(.brumes-os-theme--mythos .brumes-os-theme--icon, .brumes-os-profile--mythos .brumes-os-profile--icon) { display: none; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)):is(.brumes-os-theme--noise, .brumes-os-profile--noise) { --os-type: var(--os-metro-type-noise); --os-type-icon: var(--brumes-image-theme-noise); }
+body.brumes--otherscape.brumes--variant-metro.brumes-missing--theme-noise :is(.brumes-os-theme--noise .brumes-os-theme--icon, .brumes-os-profile--noise .brumes-os-profile--icon) { display: none; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--crew .brumes-os-theme--icon { display: none; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) :is(p, li, h3, h4) { margin: 0; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) > * { grid-column: 1 / -1; min-width: 0; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) section { margin: 0; padding: 0.3em 0 0; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) section > * + * { margin-top: 0.2em; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) h4 { display: flex; align-items: center; gap: 0.45em; color: var(--os-type); line-height: 1.1; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) h4::after { content: ""; flex: 1; border-top: 1px solid currentColor; opacity: 0.7; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) ul { display: flex; flex-wrap: wrap; gap: 0.25em 0.3em; margin: 0; padding: 0; list-style: none; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) .brumes-tag {
+  display: inline-block;
+  padding: 0.14em 0.55em 0.1em 0.7em;
+  border: 1px solid transparent;
+  background: linear-gradient(color-mix(in srgb, var(--os-type) 26%, var(--os-metro-surface)), color-mix(in srgb, var(--os-type) 26%, var(--os-metro-surface))) padding-box, var(--os-type) border-box;
+  color: var(--os-metro-surface-text);
+  font-size: 0.8em;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  clip-path: polygon(0.5em 0, 100% 0, 100% 100%, 0 100%, 0 0.5em);
+}
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) .brumes-tag.brumes-weakness { background: var(--os-metro-weakness); color: var(--os-metro-weakness-text); }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-theme--icon, .brumes-os-profile--icon) {
+  display: inline-block;
+  flex: none;
+  width: 1.6em;
+  height: 1.6em;
+  background: var(--os-type);
+  -webkit-mask: var(--os-type-icon) center / contain no-repeat;
+  mask: var(--os-type-icon) center / contain no-repeat;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.25em 0.5em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--type { grid-column: 1; grid-row: 1; gap: 0 0.4em; color: var(--os-type); line-height: 1.1; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--type-name { color: var(--os-metro-surface-text); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--icon { grid-column: 2; grid-row: 1; width: 1.7em; height: 1.7em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--header h3 {
+  grid-column: 1 / -1;
+  padding: 0.18em 0.5em 0.08em 0.75em;
+  background: var(--os-type);
+  color: #F6F7F4;
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.3em;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  clip-path: polygon(0.55em 0, 100% 0, 100% 100%, 0 100%, 0 0.55em);
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--header h3 .brumes-tag { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-transform: inherit; clip-path: none; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--header small { grid-column: 1 / -1; font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--header { order: 1; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--description { order: 2; border-top: 0; padding-top: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--power-tags { order: 3; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags { order: 4; border-inline-start: 0; padding-inline-start: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest { order: 5; display: block; margin: 0; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest-label { display: block; color: var(--os-type); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--special { order: 6; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--special > p { gap: 0 0.35em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--special-box { margin: 0; accent-color: var(--os-type); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { order: 7; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-type); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--power-set header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.15em 0.4em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--kind { grid-column: 1 / -1; padding-bottom: 0.15em; border-bottom: 1px solid var(--os-type); color: var(--os-type); text-align: end; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--icon { grid-column: 1; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--power-set h3 { grid-column: 2; color: var(--os-type); font-size: 1.45em; font-style: italic; line-height: 1; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--rating { grid-column: 3; color: var(--os-type); font-weight: 900; letter-spacing: 0.05em; white-space: nowrap; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--power-set header small { grid-column: 1 / -1; margin: 0; font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile :is(.brumes-os-profile--specials, .brumes-os-profile--threats) strong { display: block; font-weight: 700; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--threat { margin: 0; padding: 0; border: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--threat > strong::before { content: "› "; color: var(--os-type); font-weight: 900; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--threat + .brumes-os-profile--threat { margin-top: 0.3em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation header { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--character-trope header strong {
+  order: -1;
+  padding: 0.15em 0.45em 0.08em;
+  background: var(--os-metro-label);
+  color: var(--os-metro-label-text);
+  clip-path: polygon(0.35em 0, 100% 0, 100% 100%, 0 100%, 0 0.35em);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--character-trope h3 { color: var(--os-metro-card-title); font-size: 1.5em; line-height: 1; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--character-trope header small { margin: 0; font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--character-trope section { border-top: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--theme-kits h4 { flex-direction: row-reverse; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--character-trope :is(.brumes-os-creation--theme-kits, .brumes-os-creation--choices) ul { display: grid; gap: 0.1em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--character-trope li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.35em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--character-trope li strong { font-weight: 700; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro :is(.brumes-os-creation--kit-category, .brumes-os-creation--kit-page) { font-size: 0.8em; opacity: 0.85; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--kit-category::before { content: "\28"; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--kit-category:has(+ .brumes-os-creation--kit-page)::after { content: ","; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--kit-category:not(:has(+ .brumes-os-creation--kit-page))::after { content: "\29"; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--kit-page::after { content: "\29"; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--choices h4::before {
+  content: "?";
+  display: inline-grid;
+  place-items: center;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background: var(--os-type);
+  color: var(--os-metro-surface);
+  letter-spacing: 0;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--choice-box { margin: 0; accent-color: var(--os-type); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-entry { padding: 0.05em 0.35em; background: var(--os-metro-highlight); color: var(--os-metro-highlight-text); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 0.15em 0.8em;
+  margin: 0;
+  padding: 0.35em 0.5em;
+  border: 0;
+  border-radius: 0;
+  background: color-mix(in srgb, currentColor 9%, transparent);
+  box-shadow: none;
+  line-height: 1.25;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item::before,
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item::after,
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item h4 { grid-row: 1; margin: 0; padding: 0; border: 0; color: var(--text-muted); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item::before { content: "Objet"; grid-column: 1; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item::after { content: "Description"; grid-column: 2; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item > * { grid-row: 2; min-width: 0; margin: 0; padding: 0; border: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item :is(p, li, h3) { margin: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--header { grid-column: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--header h3 {
+  padding: 0.12em 0.45em 0.06em 0.6em;
+  background: var(--os-metro-item-name);
+  color: var(--os-metro-item-name-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.05em;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  clip-path: polygon(0.4em 0, 100% 0, 100% 100%, 0 100%, 0 0.4em);
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--header :is(strong, small) { font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--description { grid-column: 2; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item :is(.brumes-os-creation--feature-tags, .brumes-os-creation--weakness-tag) { display: contents; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags > h4 { grid-column: 3; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--weakness-tag > h4 { grid-column: 4; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags > ul { grid-row: 2; grid-column: 3; display: flex; flex-wrap: wrap; gap: 0.15em 0.3em; margin: 0; padding: 0; list-style: none; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags .brumes-tag { padding: 0 0.25em; background: var(--os-metro-highlight); color: var(--os-metro-highlight-text); font-weight: normal; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags li:first-child .brumes-tag { font-style: italic; font-weight: 700; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item .brumes-os-creation--weakness-tag > .brumes-tag {
+  grid-row: 2;
+  grid-column: 4;
+  justify-self: start;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 0.1em 0.5em 0.1em 0.9em;
+  background: color-mix(in srgb, currentColor 22%, transparent);
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0.6em 100%, 0 50%);
+}
+/* The row folds on the width the block gets, not on the window's: a narrow
+   column in a wide window must stack too (four columns from 34rem, pp. 252-254). */
+body.brumes--otherscape.brumes--variant-metro :has(> .brumes-os-creation--loadout-item) { container-type: inline-size; }
+body.brumes--otherscape.brumes--variant-metro .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) { margin-top: -0.5em; }
+body.brumes--otherscape.brumes--variant-metro .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) .brumes-os-creation--loadout-item::before,
+body.brumes--otherscape.brumes--variant-metro .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) .brumes-os-creation--loadout-item::after,
+body.brumes--otherscape.brumes--variant-metro .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) .brumes-os-creation--loadout-item h4 { display: none; }
+@container (max-width: 34rem) {
+  body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item { grid-template-columns: minmax(0, 1fr); }
+  body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item > *,
+  body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item :is(.brumes-os-creation--feature-tags, .brumes-os-creation--weakness-tag) > * { grid-row: auto; grid-column: 1; }
+  body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item::before,
+  body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item::after { display: none; }
+}
 body.brumes--otherscape.brumes--variant-metro .markdown-rendered .el-h6:has(+ .el-h1) > h6 {
   width: fit-content;
   margin-block: 0 0.15em;
@@ -214,6 +363,9 @@ body.brumes--otherscape.brumes--variant-metro .callout:not([data-brumes-callout-
    solid where the theme draws the first level as a ring (Border). */
 body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered, .markdown-source-view) { --list-bullet-size: 0.22em; --list-bullet-size-alt: 0px; --list-marker-color: var(--text-normal); }
 body.brumes--otherscape.brumes--variant-metro .markdown-rendered ul > li + li { margin-top: 0.55em; }
+/* Numbered lists are set in the book's light condensed face; sidebars and renvois in IBM Plex Sans Condensed. */
+body.brumes--otherscape.brumes--variant-metro .markdown-rendered ol > li { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-weight: 300; }
+body.brumes--otherscape.brumes--variant-metro :is(.callout:not([data-brumes-callout-style^="otherscape-"]), .callout[data-brumes-callout-style="otherscape-renvoi"]) > .callout-content { font-family: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif; }
 /* The renvoi and the read-aloud (act-0-crew.png) are plain: a flat grey band in tight padding, and a typewriter
    passage on the paper itself with a thin grey rule on its left. No frame, no tab, no texture. */
 body.brumes--otherscape.brumes--variant-metro .callout[data-brumes-callout-style="otherscape-renvoi"] {
@@ -241,9 +393,11 @@ body.brumes--otherscape.brumes--variant-metro .callout[data-brumes-callout-style
   --bold-color: var(--os-metro-read-aloud-text);
   --italic-color: var(--os-metro-read-aloud-text);
   color: var(--os-metro-read-aloud-text);
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.92em;
+  font-family: "PP Fraktion Mono", "Space Mono", "Courier New", Courier, monospace;
+  font-size: 0.86em;
   line-height: 1.4;
+  text-align: justify;
+  hyphens: auto;
 }
 body.brumes--otherscape.brumes--variant-metro .callout[data-brumes-callout-style="otherscape-renvoi"] > .callout-title,
 body.brumes--otherscape.brumes--variant-metro .callout[data-brumes-callout-style="otherscape-read-aloud"] > .callout-title { display: none; }
@@ -276,7 +430,8 @@ body.brumes--otherscape.brumes--variant-metro .callout[data-brumes-callout-style
   align-items: center;
   gap: 0.25em;
   color: inherit;
-  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-family: "NeoTokyo", "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-synthesis-weight: none;
   font-size: 3em;
   font-style: normal;
   font-weight: 900;
@@ -302,15 +457,17 @@ body.brumes--otherscape.brumes--variant-metro .callout[data-brumes-callout-style
   margin-top: 0;
   break-after: column;
   color: var(--os-metro-lead);
-  font-size: 1.3em;
+  font-family: "PP Fraktion Sans", "Familjen Grotesk", system-ui, sans-serif;
+  font-size: 1.48em;
   line-height: 1.25;
+  text-align: start;
 }
 body.brumes--otherscape.brumes--variant-metro .callout[data-brumes-callout-style="otherscape-renvoi"] > .callout-content > p + p {
   margin: 0.25em -0.5em 0;
   padding: 0.25em 0.5em 0;
   border-top: 1px solid color-mix(in srgb, var(--os-metro-aside) 40%, white);
 }
-/* Cairo: light (cairo-light.jpg), dark alternate (cairo-dark.jpg). */
+/* Cairo: light (cairo-light.jpg), dark alternate (cairo-dark.jpg); double frame of cairo-tropes.jpg in the type colour. */
 body.brumes--otherscape.brumes--variant-cairo {
   --os-cairo-heading: #201408;
   --os-cairo-heading-band: #D6C686;
@@ -327,6 +484,19 @@ body.brumes--otherscape.brumes--variant-cairo {
   --os-cairo-card-title: #00756A;
   --os-cairo-rule: #00756A;
   --os-cairo-chevron: #D0B868;
+  --os-cairo-weakness: #5E6600;
+  --os-cairo-weakness-text: #E8F0B0;
+  --os-cairo-item-name: #D9E4E0;
+  --os-cairo-item-name-text: #1E1E1E;
+  --os-cairo-type-self: #B4233E;
+  --os-cairo-type-mythos: #7B4FB0;
+  --os-cairo-type-noise: #075F8B;
+}
+body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered, .markdown-source-view.mod-cm6) {
+  --p-spacing: 0.55em;
+  --line-height-normal: 1.32;
+  --list-spacing: 0.05em;
+  --heading-spacing: 1.1em;
 }
 @media screen {
   body.brumes--otherscape.brumes--variant-cairo .handbook-mode-alternate {
@@ -345,6 +515,13 @@ body.brumes--otherscape.brumes--variant-cairo {
     --os-cairo-card-title: #37C298;
     --os-cairo-rule: #2E9A88;
     --os-cairo-chevron: #D0B868;
+    --os-cairo-weakness: #5E6600;
+    --os-cairo-weakness-text: #E8F0B0;
+    --os-cairo-item-name: #D9E4E0;
+    --os-cairo-item-name-text: #1E1E1E;
+    --os-cairo-type-self: #E05A6E;
+    --os-cairo-type-mythos: #A98BD0;
+    --os-cairo-type-noise: #5D9BD4;
   }
 }
 body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
@@ -355,6 +532,13 @@ body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 > h1
   line-height: 1;
   border-radius: 0.25rem;
 }
+/* The book's faces per role (phase 8): the H1 in its title face, never synthesised bold since NeoTokyo has a
+   Regular only; the intertitle in the bold text face. */
+body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 > h1, .HyperMD-header-1 .cm-header-1) { font-family: "NeoTokyo", "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-synthesis-weight: none; }
+body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h2 > h2, .HyperMD-header-2 .cm-header-2) { font-family: "Isotonic", "Sofia Sans Semi Condensed", system-ui, "Segoe UI", Arial, sans-serif; font-weight: 700; }
+/* Running text is justified and hyphenated, as in the book; the lead stays ranged left. */
+body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-p > p { text-align: justify; hyphens: auto; }
+body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered, .markdown-source-view.mod-cm6) li { hyphens: auto; }
 body.brumes--otherscape.brumes--variant-cairo :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperMD-header-3 .cm-header-3) {
   border-radius: 0.25rem;
   -webkit-box-decoration-break: clone;
@@ -372,13 +556,13 @@ body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h2 > h2 { p
 body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-cairo-subheading-band); color: var(--os-cairo-subheading); }
 body.brumes--otherscape.brumes--variant-cairo .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }
 body.brumes--otherscape.brumes--variant-cairo .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); font-size: 1em; }
-body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 + .el-p > p, .markdown-rendered .el-h1 + .handbook-layout-marker + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-cairo-lead); font-size: 1.3em; line-height: 1.25; }
+body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h1 + .el-p > p, .markdown-rendered .el-h1 + .handbook-layout-marker + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-cairo-lead); font-family: "PP Fraktion Sans", "Familjen Grotesk", system-ui, sans-serif; font-size: 1.48em; line-height: 1.25; text-align: start; }
 body.brumes--otherscape.brumes--variant-cairo :is(.markdown-rendered .el-h2 + .el-p > p > em:only-child, .HyperMD-header-2 + .cm-line > .cm-em:first-child) {
   padding: 0 0.3em;
   background: var(--os-cairo-highlight);
   color: var(--os-cairo-highlight-text);
 }
-body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) {
   border-radius: 0.75rem;
   corner-shape: bevel;
   box-shadow: none;
@@ -389,7 +573,7 @@ body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .b
   color: var(--os-cairo-surface-text);
 }
 @supports not (corner-shape: bevel) {
-  body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+  body.brumes--otherscape.brumes--variant-cairo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) {
     clip-path: polygon(0.75rem 0, calc(100% - 0.75rem) 0, 100% 0.75rem, 100% calc(100% - 0.75rem), calc(100% - 0.75rem) 100%, 0.75rem 100%, 0 calc(100% - 0.75rem), 0 0.75rem);
   }
 }
@@ -410,21 +594,197 @@ body.brumes--otherscape.brumes--variant-cairo .callout::before { top: 0.15rem; }
 body.brumes--otherscape.brumes--variant-cairo .callout::after { bottom: 0.15rem; }
 body.brumes--otherscape.brumes--variant-cairo .callout-title { --callout-title-color: var(--os-cairo-surface-text); color: var(--os-cairo-surface-text); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
 body.brumes--otherscape.brumes--variant-cairo .callout-icon { color: var(--os-cairo-card-title); }
-body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
-  --os-card-accent: var(--os-cairo-rule);
-  border: 1px solid var(--os-cairo-surface-line);
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) {
+  --os-type: var(--os-cairo-rule);
+  --os-card-accent: var(--os-type);
+  --p-spacing: 0.2em;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.3em 0.9em;
+  padding: 0.7em 0.8em 0.75em;
+  border: 3px double var(--os-type);
+  box-shadow: none;
+  font-family: "Isotonic", "Sofia Sans Semi Condensed", system-ui, "Segoe UI", Arial, sans-serif;
+  line-height: 1.25;
 }
-body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) :is(h2, h3) { color: var(--os-cairo-card-title); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-weight: 900; text-transform: uppercase; }
-body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--type {
-  width: fit-content;
-  padding: 0.2em 0.5em 0.1em;
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)):is(.brumes-os-theme--self, .brumes-os-profile--self) { --os-type: var(--os-cairo-type-self); --os-type-icon: var(--brumes-image-theme-self); }
+body.brumes--otherscape.brumes--variant-cairo.brumes-missing--theme-self :is(.brumes-os-theme--self .brumes-os-theme--icon, .brumes-os-profile--self .brumes-os-profile--icon) { display: none; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)):is(.brumes-os-theme--mythos, .brumes-os-profile--mythos) { --os-type: var(--os-cairo-type-mythos); --os-type-icon: var(--brumes-image-theme-mythos); }
+body.brumes--otherscape.brumes--variant-cairo.brumes-missing--theme-mythos :is(.brumes-os-theme--mythos .brumes-os-theme--icon, .brumes-os-profile--mythos .brumes-os-profile--icon) { display: none; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)):is(.brumes-os-theme--noise, .brumes-os-profile--noise) { --os-type: var(--os-cairo-type-noise); --os-type-icon: var(--brumes-image-theme-noise); }
+body.brumes--otherscape.brumes--variant-cairo.brumes-missing--theme-noise :is(.brumes-os-theme--noise .brumes-os-theme--icon, .brumes-os-profile--noise .brumes-os-profile--icon) { display: none; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--crew .brumes-os-theme--icon { display: none; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) :is(p, li, h3, h4) { margin: 0; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) > * { grid-column: 1 / -1; min-width: 0; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) section { margin: 0; padding: 0.3em 0 0; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) section > * + * { margin-top: 0.2em; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) h4 { display: flex; align-items: center; gap: 0.45em; color: var(--os-type); line-height: 1.1; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) h4::after { content: ""; flex: 1; border-top: 1px solid currentColor; opacity: 0.7; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) ul { display: flex; flex-wrap: wrap; gap: 0.25em 0.3em; margin: 0; padding: 0; list-style: none; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) .brumes-tag {
+  display: inline-block;
+  padding: 0.14em 0.55em 0.1em 0.7em;
+  border: 1px solid transparent;
+  background: linear-gradient(color-mix(in srgb, var(--os-type) 26%, var(--os-cairo-surface)), color-mix(in srgb, var(--os-type) 26%, var(--os-cairo-surface))) padding-box, var(--os-type) border-box;
+  color: var(--os-cairo-surface-text);
+  font-size: 0.8em;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  clip-path: polygon(0.5em 0, 100% 0, 100% 100%, 0 100%, 0 0.5em);
+}
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) .brumes-tag.brumes-weakness { background: var(--os-cairo-weakness); color: var(--os-cairo-weakness-text); }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme--icon, .brumes-os-profile--icon) {
+  display: inline-block;
+  flex: none;
+  width: 1.6em;
+  height: 1.6em;
+  background: var(--os-type);
+  -webkit-mask: var(--os-type-icon) center / contain no-repeat;
+  mask: var(--os-type-icon) center / contain no-repeat;
+}
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.25em 0.5em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--type { grid-column: 1; grid-row: 1; gap: 0 0.4em; color: var(--os-type); line-height: 1.1; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--type-name { color: var(--os-cairo-surface-text); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--icon { grid-column: 2; grid-row: 1; width: 1.7em; height: 1.7em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--header h3 {
+  grid-column: 1 / -1;
+  padding: 0.18em 0.5em 0.08em 0.75em;
+  background: var(--os-type);
+  color: #F6F7F4;
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.3em;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  clip-path: polygon(0.55em 0, 100% 0, 100% 100%, 0 100%, 0 0.55em);
+}
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--header h3 .brumes-tag { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-transform: inherit; clip-path: none; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--header small { grid-column: 1 / -1; font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--header { order: 1; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--description { order: 2; border-top: 0; padding-top: 0; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--power-tags { order: 3; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--weakness-tags { order: 4; border-inline-start: 0; padding-inline-start: 0; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--quest { order: 5; display: block; margin: 0; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--quest-label { display: block; color: var(--os-type); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--special { order: 6; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--special > p { gap: 0 0.35em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--special-box { margin: 0; accent-color: var(--os-type); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--tracks { order: 7; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--track-mark { color: var(--os-type); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--power-set header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.15em 0.4em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--kind { grid-column: 1 / -1; padding-bottom: 0.15em; border-bottom: 1px solid var(--os-type); color: var(--os-type); text-align: end; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--icon { grid-column: 1; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--power-set h3 { grid-column: 2; color: var(--os-type); font-size: 1.45em; font-style: italic; line-height: 1; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--rating { grid-column: 3; color: var(--os-type); font-weight: 900; letter-spacing: 0.05em; white-space: nowrap; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--power-set header small { grid-column: 1 / -1; margin: 0; font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile :is(.brumes-os-profile--specials, .brumes-os-profile--threats) strong { display: block; font-weight: 700; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--threat { margin: 0; padding: 0; border: 0; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--threat > strong::before { content: "› "; color: var(--os-type); font-weight: 900; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--threat + .brumes-os-profile--threat { margin-top: 0.3em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation header { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--character-trope header strong {
+  order: -1;
+  padding: 0.15em 0.45em 0.08em;
   background: var(--os-cairo-label);
   color: var(--os-cairo-label-text);
-  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
-  font-weight: 900;
-  text-transform: uppercase;
+  clip-path: polygon(0.35em 0, 100% 0, 100% 100%, 0 100%, 0 0.35em);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase;
 }
-body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-theme--quest, .brumes-os-theme--tracks) { border-top: 1px solid var(--os-cairo-rule); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--character-trope h3 { color: var(--os-cairo-card-title); font-size: 1.5em; line-height: 1; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--character-trope header small { margin: 0; font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--character-trope section { border-top: 0; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--theme-kits h4 { flex-direction: row-reverse; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--character-trope :is(.brumes-os-creation--theme-kits, .brumes-os-creation--choices) ul { display: grid; gap: 0.1em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--character-trope li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.35em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--character-trope li strong { font-weight: 700; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo :is(.brumes-os-creation--kit-category, .brumes-os-creation--kit-page) { font-size: 0.8em; opacity: 0.85; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--kit-category::before { content: "\28"; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--kit-category:has(+ .brumes-os-creation--kit-page)::after { content: ","; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--kit-category:not(:has(+ .brumes-os-creation--kit-page))::after { content: "\29"; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--kit-page::after { content: "\29"; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--choices h4::before {
+  content: "?";
+  display: inline-grid;
+  place-items: center;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background: var(--os-type);
+  color: var(--os-cairo-surface);
+  letter-spacing: 0;
+}
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--choice-box { margin: 0; accent-color: var(--os-type); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-entry { padding: 0.05em 0.35em; background: var(--os-cairo-highlight); color: var(--os-cairo-highlight-text); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 0.15em 0.8em;
+  margin: 0;
+  padding: 0.35em 0.5em;
+  border: 0;
+  border-radius: 0;
+  background: color-mix(in srgb, currentColor 9%, transparent);
+  box-shadow: none;
+  line-height: 1.25;
+}
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item::before,
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item::after,
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item h4 { grid-row: 1; margin: 0; padding: 0; border: 0; color: var(--text-muted); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item::before { content: "Objet"; grid-column: 1; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item::after { content: "Description"; grid-column: 2; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item > * { grid-row: 2; min-width: 0; margin: 0; padding: 0; border: 0; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item :is(p, li, h3) { margin: 0; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--header { grid-column: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--header h3 {
+  padding: 0.12em 0.45em 0.06em 0.6em;
+  background: var(--os-cairo-item-name);
+  color: var(--os-cairo-item-name-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.05em;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  clip-path: polygon(0.4em 0, 100% 0, 100% 100%, 0 100%, 0 0.4em);
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--header :is(strong, small) { font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--description { grid-column: 2; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item :is(.brumes-os-creation--feature-tags, .brumes-os-creation--weakness-tag) { display: contents; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags > h4 { grid-column: 3; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--weakness-tag > h4 { grid-column: 4; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags > ul { grid-row: 2; grid-column: 3; display: flex; flex-wrap: wrap; gap: 0.15em 0.3em; margin: 0; padding: 0; list-style: none; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags .brumes-tag { padding: 0 0.25em; background: var(--os-cairo-highlight); color: var(--os-cairo-highlight-text); font-weight: normal; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags li:first-child .brumes-tag { font-style: italic; font-weight: 700; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item .brumes-os-creation--weakness-tag > .brumes-tag {
+  grid-row: 2;
+  grid-column: 4;
+  justify-self: start;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 0.1em 0.5em 0.1em 0.9em;
+  background: color-mix(in srgb, currentColor 22%, transparent);
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0.6em 100%, 0 50%);
+}
+/* The row folds on the width the block gets, not on the window's: a narrow
+   column in a wide window must stack too (four columns from 34rem, pp. 252-254). */
+body.brumes--otherscape.brumes--variant-cairo :has(> .brumes-os-creation--loadout-item) { container-type: inline-size; }
+body.brumes--otherscape.brumes--variant-cairo .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) { margin-top: -0.5em; }
+body.brumes--otherscape.brumes--variant-cairo .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) .brumes-os-creation--loadout-item::before,
+body.brumes--otherscape.brumes--variant-cairo .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) .brumes-os-creation--loadout-item::after,
+body.brumes--otherscape.brumes--variant-cairo .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) .brumes-os-creation--loadout-item h4 { display: none; }
+@container (max-width: 34rem) {
+  body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item { grid-template-columns: minmax(0, 1fr); }
+  body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item > *,
+  body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item :is(.brumes-os-creation--feature-tags, .brumes-os-creation--weakness-tag) > * { grid-row: auto; grid-column: 1; }
+  body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item::before,
+  body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item::after { display: none; }
+}
 /* Tokyo: light (tokyo-light.jpg), dark alternate (tokyo-dark.jpg); slate cards in both. */
 body.brumes--otherscape.brumes--variant-tokyo {
   --os-tokyo-heading: #1E1E1E;
@@ -441,6 +801,19 @@ body.brumes--otherscape.brumes--variant-tokyo {
   --os-tokyo-surface-line: #4C5A64;
   --os-tokyo-card-title: #C8FF2E;
   --os-tokyo-rule: #C8FF2E;
+  --os-tokyo-weakness: #50581A;
+  --os-tokyo-weakness-text: #E8F7A0;
+  --os-tokyo-item-name: #C8FF2E;
+  --os-tokyo-item-name-text: #1E1E1E;
+  --os-tokyo-type-self: #E05A6E;
+  --os-tokyo-type-mythos: #A98BD0;
+  --os-tokyo-type-noise: #5D9BD4;
+}
+body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered, .markdown-source-view.mod-cm6) {
+  --p-spacing: 0.55em;
+  --line-height-normal: 1.32;
+  --list-spacing: 0.05em;
+  --heading-spacing: 1.1em;
 }
 @media screen {
   body.brumes--otherscape.brumes--variant-tokyo .handbook-mode-alternate {
@@ -458,6 +831,13 @@ body.brumes--otherscape.brumes--variant-tokyo {
     --os-tokyo-surface-line: #4C5A64;
     --os-tokyo-card-title: #C8FF2E;
     --os-tokyo-rule: #C8FF2E;
+    --os-tokyo-weakness: #50581A;
+    --os-tokyo-weakness-text: #E8F7A0;
+    --os-tokyo-item-name: #C8FF2E;
+    --os-tokyo-item-name-text: #1E1E1E;
+    --os-tokyo-type-self: #E05A6E;
+    --os-tokyo-type-mythos: #A98BD0;
+    --os-tokyo-type-noise: #5D9BD4;
   }
 }
 body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
@@ -468,6 +848,13 @@ body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h1 > h1
   line-height: 1;
   border-radius: 0.25rem;
 }
+/* The book's faces per role (phase 8): the H1 in its title face, never synthesised bold since NeoTokyo has a
+   Regular only; the intertitle in the bold text face. */
+body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h1 > h1, .HyperMD-header-1 .cm-header-1) { font-family: "NeoTokyo", "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-synthesis-weight: none; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h2 > h2, .HyperMD-header-2 .cm-header-2) { font-family: "Isotonic", "Sofia Sans Semi Condensed", system-ui, "Segoe UI", Arial, sans-serif; font-weight: 700; }
+/* Running text is justified and hyphenated, as in the book; the lead stays ranged left. */
+body.brumes--otherscape.brumes--variant-tokyo .markdown-rendered .el-p > p { text-align: justify; hyphens: auto; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered, .markdown-source-view.mod-cm6) li { hyphens: auto; }
 body.brumes--otherscape.brumes--variant-tokyo :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperMD-header-3 .cm-header-3) {
   border-radius: 0.25rem;
   -webkit-box-decoration-break: clone;
@@ -485,13 +872,13 @@ body.brumes--otherscape.brumes--variant-tokyo .markdown-rendered .el-h2 > h2 { p
 body.brumes--otherscape.brumes--variant-tokyo .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: var(--os-tokyo-subheading-band); color: var(--os-tokyo-subheading); }
 body.brumes--otherscape.brumes--variant-tokyo .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: var(--os-tokyo-label); color: var(--os-tokyo-label-text); font-size: 1em; }
 body.brumes--otherscape.brumes--variant-tokyo .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: var(--os-tokyo-label); color: var(--os-tokyo-label-text); font-size: 1em; }
-body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h1 + .el-p > p, .markdown-rendered .el-h1 + .handbook-layout-marker + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-tokyo-lead); font-size: 1.3em; line-height: 1.25; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h1 + .el-p > p, .markdown-rendered .el-h1 + .handbook-layout-marker + .el-p > p, .HyperMD-header-1 + .cm-line) { color: var(--os-tokyo-lead); font-family: "PP Fraktion Sans", "Familjen Grotesk", system-ui, sans-serif; font-size: 1.48em; line-height: 1.25; text-align: start; }
 body.brumes--otherscape.brumes--variant-tokyo :is(.markdown-rendered .el-h2 + .el-p > p > em:only-child, .HyperMD-header-2 + .cm-line > .cm-em:first-child) {
   padding: 0 0.3em;
   background: var(--os-tokyo-highlight);
   color: var(--os-tokyo-highlight-text);
 }
-body.brumes--otherscape.brumes--variant-tokyo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+body.brumes--otherscape.brumes--variant-tokyo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) {
   border-radius: 0.75rem;
   corner-shape: bevel;
   box-shadow: none;
@@ -502,7 +889,7 @@ body.brumes--otherscape.brumes--variant-tokyo :is(.callout, .brumes-os-theme, .b
   color: var(--os-tokyo-surface-text);
 }
 @supports not (corner-shape: bevel) {
-  body.brumes--otherscape.brumes--variant-tokyo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
+  body.brumes--otherscape.brumes--variant-tokyo :is(.callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) {
     clip-path: polygon(0.75rem 0, calc(100% - 0.75rem) 0, 100% 0.75rem, 100% calc(100% - 0.75rem), calc(100% - 0.75rem) 100%, 0.75rem 100%, 0 calc(100% - 0.75rem), 0 0.75rem);
   }
 }
@@ -512,18 +899,194 @@ body.brumes--otherscape.brumes--variant-tokyo .callout {
 }
 body.brumes--otherscape.brumes--variant-tokyo .callout-title { --callout-title-color: var(--os-tokyo-surface-text); color: var(--os-tokyo-surface-text); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
 body.brumes--otherscape.brumes--variant-tokyo .callout-icon { color: var(--os-tokyo-card-title); }
-body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
-  --os-card-accent: var(--os-tokyo-rule);
-  border: 1px solid var(--os-tokyo-surface-line);
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) {
+  --os-type: var(--os-tokyo-rule);
+  --os-card-accent: var(--os-type);
+  --p-spacing: 0.2em;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.3em 0.9em;
+  padding: 0.7em 0.8em 0.75em;
+  border: 1px solid var(--os-type);
+  box-shadow: none;
+  font-family: "Isotonic", "Sofia Sans Semi Condensed", system-ui, "Segoe UI", Arial, sans-serif;
+  line-height: 1.25;
 }
-body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) :is(h2, h3) { color: var(--os-tokyo-card-title); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-weight: 900; text-transform: uppercase; }
-body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--type {
-  width: fit-content;
-  padding: 0.2em 0.5em 0.1em;
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)):is(.brumes-os-theme--self, .brumes-os-profile--self) { --os-type: var(--os-tokyo-type-self); --os-type-icon: var(--brumes-image-theme-self); }
+body.brumes--otherscape.brumes--variant-tokyo.brumes-missing--theme-self :is(.brumes-os-theme--self .brumes-os-theme--icon, .brumes-os-profile--self .brumes-os-profile--icon) { display: none; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)):is(.brumes-os-theme--mythos, .brumes-os-profile--mythos) { --os-type: var(--os-tokyo-type-mythos); --os-type-icon: var(--brumes-image-theme-mythos); }
+body.brumes--otherscape.brumes--variant-tokyo.brumes-missing--theme-mythos :is(.brumes-os-theme--mythos .brumes-os-theme--icon, .brumes-os-profile--mythos .brumes-os-profile--icon) { display: none; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)):is(.brumes-os-theme--noise, .brumes-os-profile--noise) { --os-type: var(--os-tokyo-type-noise); --os-type-icon: var(--brumes-image-theme-noise); }
+body.brumes--otherscape.brumes--variant-tokyo.brumes-missing--theme-noise :is(.brumes-os-theme--noise .brumes-os-theme--icon, .brumes-os-profile--noise .brumes-os-profile--icon) { display: none; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--crew .brumes-os-theme--icon { display: none; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) :is(p, li, h3, h4) { margin: 0; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) > * { grid-column: 1 / -1; min-width: 0; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) section { margin: 0; padding: 0.3em 0 0; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) section > * + * { margin-top: 0.2em; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) h4 { display: flex; align-items: center; gap: 0.45em; color: var(--os-type); line-height: 1.1; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) h4::after { content: ""; flex: 1; border-top: 1px solid currentColor; opacity: 0.7; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) ul { display: flex; flex-wrap: wrap; gap: 0.25em 0.3em; margin: 0; padding: 0; list-style: none; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) .brumes-tag {
+  display: inline-block;
+  padding: 0.14em 0.55em 0.1em 0.7em;
+  border: 1px solid transparent;
+  background: linear-gradient(color-mix(in srgb, var(--os-type) 26%, var(--os-tokyo-surface)), color-mix(in srgb, var(--os-type) 26%, var(--os-tokyo-surface))) padding-box, var(--os-type) border-box;
+  color: var(--os-tokyo-surface-text);
+  font-size: 0.8em;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  clip-path: polygon(0.5em 0, 100% 0, 100% 100%, 0 100%, 0 0.5em);
+}
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)) .brumes-tag.brumes-weakness { background: var(--os-tokyo-weakness); color: var(--os-tokyo-weakness-text); }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme--icon, .brumes-os-profile--icon) {
+  display: inline-block;
+  flex: none;
+  width: 1.6em;
+  height: 1.6em;
+  background: var(--os-type);
+  -webkit-mask: var(--os-type-icon) center / contain no-repeat;
+  mask: var(--os-type-icon) center / contain no-repeat;
+}
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.25em 0.5em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--type { grid-column: 1; grid-row: 1; gap: 0 0.4em; color: var(--os-type); line-height: 1.1; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--type-name { color: var(--os-tokyo-surface-text); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--icon { grid-column: 2; grid-row: 1; width: 1.7em; height: 1.7em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--header h3 {
+  grid-column: 1 / -1;
+  padding: 0.18em 0.5em 0.08em 0.75em;
+  background: var(--os-type);
+  color: #F6F7F4;
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.3em;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  clip-path: polygon(0.55em 0, 100% 0, 100% 100%, 0 100%, 0 0.55em);
+}
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--header h3 .brumes-tag { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-transform: inherit; clip-path: none; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--header small { grid-column: 1 / -1; font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--header { order: 1; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--description { order: 2; border-top: 0; padding-top: 0; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--power-tags { order: 3; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--weakness-tags { order: 4; border-inline-start: 0; padding-inline-start: 0; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--quest { order: 5; display: block; margin: 0; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--quest-label { display: block; color: var(--os-type); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--special { order: 6; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--special > p { gap: 0 0.35em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--special-box { margin: 0; accent-color: var(--os-type); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--tracks { order: 7; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--track-mark { color: var(--os-type); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--power-set header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.15em 0.4em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--kind { grid-column: 1 / -1; padding-bottom: 0.15em; border-bottom: 1px solid var(--os-type); color: var(--os-type); text-align: end; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--icon { grid-column: 1; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--power-set h3 { grid-column: 2; color: var(--os-type); font-size: 1.45em; font-style: italic; line-height: 1; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--rating { grid-column: 3; color: var(--os-type); font-weight: 900; letter-spacing: 0.05em; white-space: nowrap; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--power-set header small { grid-column: 1 / -1; margin: 0; font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile :is(.brumes-os-profile--specials, .brumes-os-profile--threats) strong { display: block; font-weight: 700; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--threat { margin: 0; padding: 0; border: 0; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--threat > strong::before { content: "› "; color: var(--os-type); font-weight: 900; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--threat + .brumes-os-profile--threat { margin-top: 0.3em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation header { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--character-trope header strong {
+  order: -1;
+  padding: 0.15em 0.45em 0.08em;
   background: var(--os-tokyo-label);
   color: var(--os-tokyo-label-text);
-  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
-  font-weight: 900;
-  text-transform: uppercase;
+  clip-path: polygon(0.35em 0, 100% 0, 100% 100%, 0 100%, 0 0.35em);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase;
 }
-body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-theme--quest, .brumes-os-theme--tracks) { border-top: 1px solid var(--os-tokyo-rule); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--character-trope h3 { color: var(--os-tokyo-card-title); font-size: 1.5em; line-height: 1; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--character-trope header small { margin: 0; font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--character-trope section { border-top: 0; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--theme-kits h4 { flex-direction: row-reverse; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--character-trope :is(.brumes-os-creation--theme-kits, .brumes-os-creation--choices) ul { display: grid; gap: 0.1em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--character-trope li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.35em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--character-trope li strong { font-weight: 700; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo :is(.brumes-os-creation--kit-category, .brumes-os-creation--kit-page) { font-size: 0.8em; opacity: 0.85; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--kit-category::before { content: "\28"; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--kit-category:has(+ .brumes-os-creation--kit-page)::after { content: ","; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--kit-category:not(:has(+ .brumes-os-creation--kit-page))::after { content: "\29"; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--kit-page::after { content: "\29"; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--choices h4::before {
+  content: "?";
+  display: inline-grid;
+  place-items: center;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background: var(--os-type);
+  color: var(--os-tokyo-surface);
+  letter-spacing: 0;
+}
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--choice-box { margin: 0; accent-color: var(--os-type); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-entry { padding: 0.05em 0.35em; background: var(--os-tokyo-highlight); color: var(--os-tokyo-highlight-text); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 0.15em 0.8em;
+  margin: 0;
+  padding: 0.35em 0.5em;
+  border: 0;
+  border-radius: 0;
+  background: color-mix(in srgb, currentColor 9%, transparent);
+  box-shadow: none;
+  line-height: 1.25;
+}
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item::before,
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item::after,
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item h4 { grid-row: 1; margin: 0; padding: 0; border: 0; color: var(--text-muted); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item::before { content: "Objet"; grid-column: 1; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item::after { content: "Description"; grid-column: 2; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item > * { grid-row: 2; min-width: 0; margin: 0; padding: 0; border: 0; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item :is(p, li, h3) { margin: 0; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--header { grid-column: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--header h3 {
+  padding: 0.12em 0.45em 0.06em 0.6em;
+  background: var(--os-tokyo-item-name);
+  color: var(--os-tokyo-item-name-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.05em;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  clip-path: polygon(0.4em 0, 100% 0, 100% 100%, 0 100%, 0 0.4em);
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--header :is(strong, small) { font-size: 0.75em; opacity: 0.8; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--description { grid-column: 2; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item :is(.brumes-os-creation--feature-tags, .brumes-os-creation--weakness-tag) { display: contents; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags > h4 { grid-column: 3; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--weakness-tag > h4 { grid-column: 4; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags > ul { grid-row: 2; grid-column: 3; display: flex; flex-wrap: wrap; gap: 0.15em 0.3em; margin: 0; padding: 0; list-style: none; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags .brumes-tag { padding: 0 0.25em; background: var(--os-tokyo-highlight); color: var(--os-tokyo-highlight-text); font-weight: normal; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--feature-tags li:first-child .brumes-tag { font-style: italic; font-weight: 700; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item .brumes-os-creation--weakness-tag > .brumes-tag {
+  grid-row: 2;
+  grid-column: 4;
+  justify-self: start;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 0.1em 0.5em 0.1em 0.9em;
+  background: color-mix(in srgb, currentColor 22%, transparent);
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0.6em 100%, 0 50%);
+}
+/* The row folds on the width the block gets, not on the window's: a narrow
+   column in a wide window must stack too (four columns from 34rem, pp. 252-254). */
+body.brumes--otherscape.brumes--variant-tokyo :has(> .brumes-os-creation--loadout-item) { container-type: inline-size; }
+body.brumes--otherscape.brumes--variant-tokyo .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) { margin-top: -0.5em; }
+body.brumes--otherscape.brumes--variant-tokyo .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) .brumes-os-creation--loadout-item::before,
+body.brumes--otherscape.brumes--variant-tokyo .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) .brumes-os-creation--loadout-item::after,
+body.brumes--otherscape.brumes--variant-tokyo .el-pre:has(.brumes-os-creation--loadout-item) + .el-pre:has(.brumes-os-creation--loadout-item) .brumes-os-creation--loadout-item h4 { display: none; }
+@container (max-width: 34rem) {
+  body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item { grid-template-columns: minmax(0, 1fr); }
+  body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item > *,
+  body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item :is(.brumes-os-creation--feature-tags, .brumes-os-creation--weakness-tag) > * { grid-row: auto; grid-column: 1; }
+  body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item::before,
+  body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item::after { display: none; }
+}

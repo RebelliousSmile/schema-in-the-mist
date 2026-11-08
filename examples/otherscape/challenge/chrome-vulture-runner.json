@@ -1,6 +1,7 @@
 {
   "name": "Chrome Vulture Runner",
   "description": "A courier who runs the arcology's outer skin on borrowed legs, carrying whatever the middle floors would rather not put on the network.\n\nThe Vultures are not loyal to whoever hired them. They are loyal to the run, and a run that ends badly for the client still ends.",
+  "rating": 2,
   "scale": 1,
   "tags_and_statuses": [
     "{wall-running legs}",

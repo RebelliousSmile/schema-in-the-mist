@@ -58,6 +58,16 @@
               "ARTIFACT",
               "CYBERSPACE"
             ]
+          },
+          "page": {
+            "description": "Page where the referenced Theme Kit is printed, in the same book as the trope, as the trope's THEME KITS list prints it beside each line.",
+            "examples": [
+              96,
+              118
+            ],
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -95,6 +105,16 @@
               "ARTIFACT",
               "CYBERSPACE"
             ]
+          },
+          "page": {
+            "description": "Page where the referenced Theme Kit is printed, in the same book as the trope, as the trope's THEME KITS list prints it beside each line.",
+            "examples": [
+              96,
+              118
+            ],
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
           }
         },
         "required": [

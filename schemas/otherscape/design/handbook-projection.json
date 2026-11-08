@@ -5,9 +5,9 @@
     "--font-text-theme": "font.family.sans",
     "--font-header-theme": "font.family.display",
     "--font-monospace-theme": "font.family.mono",
-    "--inline-title-font": "font.family.display",
-    "--h1-font": "font.family.display",
-    "--h2-font": "font.family.display",
+    "--inline-title-font": "font.family.title",
+    "--h1-font": "font.family.title",
+    "--h2-font": "font.family.sans",
     "--h3-font": "font.family.display",
     "--h4-font": "font.family.sans",
     "--h5-font": "font.family.sans",
@@ -91,7 +91,14 @@
         "--os-metro-read-aloud": "color.metro.semantic.read-aloud",
         "--os-metro-read-aloud-text": "color.metro.semantic.read-aloud-text",
         "--os-metro-read-aloud-line": "color.metro.semantic.read-aloud-line",
-        "--os-metro-tab": "color.metro.semantic.tab"
+        "--os-metro-tab": "color.metro.semantic.tab",
+        "--os-metro-weakness": "color.metro.semantic.weakness",
+        "--os-metro-weakness-text": "color.metro.semantic.weakness-text",
+        "--os-metro-item-name": "color.metro.semantic.item-name",
+        "--os-metro-item-name-text": "color.metro.semantic.item-name-text",
+        "--os-metro-type-self": "color.metro.semantic.type-self",
+        "--os-metro-type-mythos": "color.metro.semantic.type-mythos",
+        "--os-metro-type-noise": "color.metro.semantic.type-noise"
       },
       "contrast": [
         {
@@ -137,13 +144,41 @@
         {
           "foreground": "--os-metro-read-aloud-text",
           "background": "--os-metro-read-aloud",
+          "min": 4.5,
+          "foreground": "--os-metro-weakness-text",
+          "background": "--os-metro-weakness",
           "min": 4.5
+        },
+        {
+          "foreground": "--os-metro-item-name-text",
+          "background": "--os-metro-item-name",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-metro-type-self",
+          "background": "--os-metro-surface",
+          "min": 3
+        },
+        {
+          "foreground": "--os-metro-type-mythos",
+          "background": "--os-metro-surface",
+          "min": 3
+        },
+        {
+          "foreground": "--os-metro-type-noise",
+          "background": "--os-metro-surface",
+          "min": 3
         }
       ],
       "alternate": {
         "evidence": [
           "dark.jpg",
           "dark-chapo.jpg"
+        ]
+      },
+      "cards": {
+        "evidence": [
+          "sheet1.jpg"
         ]
       }
     },
@@ -219,7 +254,14 @@
         "--os-cairo-surface-line": "color.cairo.semantic.surface-line",
         "--os-cairo-card-title": "color.cairo.semantic.card-title",
         "--os-cairo-rule": "color.cairo.semantic.rule",
-        "--os-cairo-chevron": "color.cairo.semantic.chevron"
+        "--os-cairo-chevron": "color.cairo.semantic.chevron",
+        "--os-cairo-weakness": "color.cairo.semantic.weakness",
+        "--os-cairo-weakness-text": "color.cairo.semantic.weakness-text",
+        "--os-cairo-item-name": "color.cairo.semantic.item-name",
+        "--os-cairo-item-name-text": "color.cairo.semantic.item-name-text",
+        "--os-cairo-type-self": "color.cairo.semantic.type-self",
+        "--os-cairo-type-mythos": "color.cairo.semantic.type-mythos",
+        "--os-cairo-type-noise": "color.cairo.semantic.type-noise"
       },
       "contrast": [
         {
@@ -251,12 +293,43 @@
           "foreground": "--os-cairo-card-title",
           "background": "--os-cairo-surface",
           "min": 3
+        },
+        {
+          "foreground": "--os-cairo-weakness-text",
+          "background": "--os-cairo-weakness",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-cairo-item-name-text",
+          "background": "--os-cairo-item-name",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-cairo-type-self",
+          "background": "--os-cairo-surface",
+          "min": 3
+        },
+        {
+          "foreground": "--os-cairo-type-mythos",
+          "background": "--os-cairo-surface",
+          "min": 3
+        },
+        {
+          "foreground": "--os-cairo-type-noise",
+          "background": "--os-cairo-surface",
+          "min": 3
         }
       ],
       "alternate": {
         "evidence": [
           "cairo-dark.jpg",
           "cairo-tropes.jpg"
+        ]
+      },
+      "cards": {
+        "evidence": [
+          "cairo-tropes.jpg",
+          "cairo-list-items.jpg"
         ]
       }
     },
@@ -330,7 +403,14 @@
         "--os-tokyo-surface-text": "color.tokyo.semantic.surface-text",
         "--os-tokyo-surface-line": "color.tokyo.semantic.surface-line",
         "--os-tokyo-card-title": "color.tokyo.semantic.card-title",
-        "--os-tokyo-rule": "color.tokyo.semantic.rule"
+        "--os-tokyo-rule": "color.tokyo.semantic.rule",
+        "--os-tokyo-weakness": "color.tokyo.semantic.weakness",
+        "--os-tokyo-weakness-text": "color.tokyo.semantic.weakness-text",
+        "--os-tokyo-item-name": "color.tokyo.semantic.item-name",
+        "--os-tokyo-item-name-text": "color.tokyo.semantic.item-name-text",
+        "--os-tokyo-type-self": "color.tokyo.semantic.type-self",
+        "--os-tokyo-type-mythos": "color.tokyo.semantic.type-mythos",
+        "--os-tokyo-type-noise": "color.tokyo.semantic.type-noise"
       },
       "contrast": [
         {
@@ -362,11 +442,44 @@
           "foreground": "--os-tokyo-card-title",
           "background": "--os-tokyo-surface",
           "min": 3
+        },
+        {
+          "foreground": "--os-tokyo-weakness-text",
+          "background": "--os-tokyo-weakness",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-tokyo-item-name-text",
+          "background": "--os-tokyo-item-name",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-tokyo-type-self",
+          "background": "--os-tokyo-surface",
+          "min": 3
+        },
+        {
+          "foreground": "--os-tokyo-type-mythos",
+          "background": "--os-tokyo-surface",
+          "min": 3
+        },
+        {
+          "foreground": "--os-tokyo-type-noise",
+          "background": "--os-tokyo-surface",
+          "min": 3
         }
       ],
       "alternate": {
         "evidence": [
           "tokyo-dark.jpg"
+        ]
+      },
+      "cards": {
+        "evidence": [
+          "tokyo-self-theme-kits.jpg",
+          "tokyo-dark-power-set.jpg",
+          "tokyo-theme-set.jpg",
+          "tokyo-list-items.jpg"
         ]
       }
     }

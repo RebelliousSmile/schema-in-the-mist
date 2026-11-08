@@ -5,6 +5,28 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [v1.5.0] - 2026-11-08
+
+### Added
+
+- `otherscape/theme-kit` gains `description`, the prose printed under the kit's header, and `special`, the one Theme Special a kit suggests (`name`, `description`), drawn with a checkbox at the foot of the kit (`tokyo-self-theme-kits.jpg`).
+- `otherscape/power-set` gains `tags_and_statuses`, shaped like `otherscape/challenge.tags_and_statuses`, and its star mark: `rating` holds the stars of difficulty it adds to the Challenge (`+⊕`, `+⊕⊕`; Core Book p. 301 and p. 328), and `optional_rating` the stars printed in parentheses (`+⊕(⊕)`) that apply only with the upgrade a Threat marks.
+- A Theme Kit referenced by `otherscape/character-trope` (`theme_kits`, `choices`) may carry its `page`, an integer from 1, as the trope's THEME KITS list prints it.
+- Publish the labels of the printed :Otherscape zones, French first with the English beside: `OTHERSCAPE_THEME_TYPE_LABELS`, `OTHERSCAPE_QUEST_LABELS` and `OTHERSCAPE_ZONE_LABELS`, read by Handbook and Lantern instead of their own.
+- `otherscape/challenge` gains `rating`, the one to five stars of difficulty printed on the Challenge's tab (Core Book p. 301, tabs pp. 302-303). `scale` stays, and is now described as drawn in the Challenge's prose, as the book names it (`with Scale 1`), not on the tab.
+- Contract corpus: a Challenge rated six stars is rejected.
+- Contract corpus: a trope kit reference on page 0 and a power set rated six stars are rejected.
+- The Otherscape pack publishes the free look-alikes of the book's faces, each behind the book's own face in its stack: Sofia Sans Semi Condensed for the body (Isotonic), Familjen Grotesk for the lead (PP Fraktion Sans), Space Mono for the typewriter (PP Fraktion Mono), IBM Plex Sans Condensed for the asides and Barlow Condensed (light) for numbered lists. Plex ships whole, without subsetting, because "Plex" is a Reserved Font Name. New tokens `font.family.title`, `lead`, `aside`, `list`, `font.weight.light` and `font.size.book`.
+
+### Changed
+
+- Otherscape headings follow the book: H1 in the title face without a synthesised bold, H2 in the bold body face; Metro and Tokyo take the book's sizes (`font.size.book`), Cairo keeps its measured scale. Body paragraphs and list items are justified and hyphenated; the lead stays ragged.
+- An Otherscape loadout item folds to one column on the width its block gets (under 34rem), not on the window's, and its name and weakness boxes stay inside the band.
+- The French labels of the Otherscape card types keep their English names until the official French edition (`Theme kits`, `Loadout`), as the other Otherscape card types already do.
+- The npm archive ceiling grows by the bytes of the Otherscape faces, read from the files.
+
 ## [v1.4.0] - 2026-11-04
 
 ### Added

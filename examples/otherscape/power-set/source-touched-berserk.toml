@@ -1,6 +1,9 @@
 name = "Source-Touched Berserk"
 type = "mythos"
 description = "Something older than the arcology got a grip, and now the body does what it wants with the person still inside it.\n\nGraft this onto anything that can be made angry. It does not make the Challenge smarter, only harder to stop and worse to be near."
+rating = 1
+optional_rating = 1
+tags_and_statuses = [ "{enraged-2}", "{skin like scrap iron}", "{will not stay down}" ]
 general_consequences = [ "Give {rattled-1} to whoever saw it happen.", "Something the Crew was standing on stops holding weight." ]
 
 [[specials]]

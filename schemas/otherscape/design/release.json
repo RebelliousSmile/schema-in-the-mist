@@ -1,10 +1,10 @@
 {
   "$schema": "design/references/contract-schema#release",
   "$format": "2.0",
-  "designSystem": { "version": "1.1.0" },
+  "designSystem": { "version": "1.2.0" },
   "artifacts": {
-    "tokens.json": { "version": "1.1.0", "sourceHash": "sha256:e66b152f53fad1f808d933cd1b6cb41cb7566cb51d848984c7474e7a5acf5673" },
-    "components.json": { "version": "1.1.0", "sourceHash": "sha256:d328610a1e0989e7976eea981b25691da5ed923cd8bb5f4786a3d9caec0ea9c1" },
+    "tokens.json": { "version": "1.2.0", "sourceHash": "sha256:e66b152f53fad1f808d933cd1b6cb41cb7566cb51d848984c7474e7a5acf5673" },
+    "components.json": { "version": "1.2.0", "sourceHash": "sha256:d328610a1e0989e7976eea981b25691da5ed923cd8bb5f4786a3d9caec0ea9c1" },
     "policies.json": { "version": "1.0.0", "sourceHash": "sha256:9f7fd66a3bcbef315dcf18313d0b8e8c902bdc4bb6b71b5c35af56ecab0f4a5e" }
   },
   "charter": { "present": true, "path": "design-system.md", "version": "1.1.0" },

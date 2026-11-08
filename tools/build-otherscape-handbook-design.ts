@@ -63,89 +63,226 @@ function sheetVars(variant: any, mode: Mode): string {
   return Object.entries(resolve(variant.sheet, mode)).map(([css, colour]) => `  ${css}: ${colour};`).join("\n");
 }
 function css() {
-  const light = (token: string) => value(token, "light");
-  const dark = (token: string) => value(token, "dark");
   return `/* GENERATED from schemas/otherscape/design — do not edit by hand. */
-/* Handbook renders os-theme as .brumes-os-theme; scope this pack sheet to Metro only. */
-/* The card reads the band surface, so the alternate section repaints it too. */
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
-  --os-metro-card-surface: var(--os-metro-surface);
-  --os-metro-card-text: var(--os-metro-surface-text);
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme {
-  font-family: ${light("font.family.sans")};
-  grid-template-columns: minmax(0, 1fr);
-  gap: ${light("space.2")};
-  padding: ${light("space.4")};
-  border: ${light("border.width.default")} solid var(--os-card-accent);
-  border-radius: ${light("radius.none")};
-  background: var(--os-metro-card-surface);
-  color: var(--os-metro-card-text);
-  box-shadow: none;
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme > * { grid-column: 1; min-width: 0; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--header { order: 1; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--power-tags { order: 2; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags { order: 3; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest { order: 4; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { order: 5; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--self { --os-card-accent: var(--brumes-theme-self); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--mythos { --os-card-accent: var(--brumes-theme-mythos); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--noise { --os-card-accent: var(--brumes-theme-noise); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--type {
-  color: var(--os-card-accent);
-  font-family: ${light("font.family.display")};
-  font-size: ${light("font.size.caption")};
-  font-weight: ${light("font.weight.black")};
-  letter-spacing: 0.14em;
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme h3 {
-  color: var(--os-card-accent);
-  font-family: ${light("font.family.display")};
-  font-size: ${light("font.size.title")};
-  font-weight: ${light("font.weight.black")};
-  line-height: ${light("font.lineHeight.title")};
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme ul { display: grid; gap: ${light("space.1")}; margin: 0; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme li { margin: 0; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme .brumes-tag {
-  display: block;
-  padding: ${light("space.1")} ${light("space.2")};
-  border: ${light("border.width.hairline")} solid color-mix(in srgb, var(--os-card-accent) 68%, transparent);
-  background: color-mix(in srgb, var(--os-card-accent) 14%, var(--os-metro-card-surface));
-  color: var(--os-metro-card-text);
-  font-size: ${light("font.size.caption")};
-  font-weight: ${light("font.weight.bold")};
-  line-height: ${light("font.lineHeight.body")};
-  text-transform: uppercase;
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags {
-  border-inline-start: 0;
-  padding-inline-start: 0;
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags .brumes-tag {
-  border-inline-start: ${light("border.width.thick")} solid var(--os-card-accent);
-  background: color-mix(in srgb, var(--os-card-accent) 24%, var(--os-metro-card-surface));
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest {
-  margin: ${light("space.2")} 0 0;
-  padding-top: ${light("space.2")};
-  border-top: ${light("border.width.hairline")} solid var(--os-card-accent);
-  color: var(--os-metro-card-text);
-}
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { border-top-color: var(--os-card-accent); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-card-accent); }
 @media (prefers-reduced-motion: reduce) { body.brumes--otherscape.brumes--variant-metro * { animation: none !important; transition: none !important; } }
 ${Object.keys(BANDS).map(bandCss).join("")}`;
+}
+/* Cards: one sheet for the three variants, read from each variant's --os-<id>-* variables. The type colour is the one
+   readable on the card surface (Tokyo keeps slate cards in both polarities); the icon is a mask of the pack image of
+   the type, and a missing image hides the icon only. Tags and title bands are bevelled on the left, text is set tight. */
+const TYPES = ["self", "mythos", "noise"] as const;
+function cardCss(v: string, o: (name: string) => string, frame: string) {
+  const display = value("font.family.display", "light");
+  const sans = value("font.family.sans", "light");
+  const black = value("font.weight.black", "light");
+  const bold = value("font.weight.bold", "light");
+  const paper = value("color.neutral.50", "light");
+  const leftBevel = (size: string) => `polygon(${size} 0, 100% 0, 100% 100%, 0 100%, 0 ${size})`;
+  const card = ":is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item))";
+  const item = ".brumes-os-creation--loadout-item";
+  const next = `${v} .el-pre:has(${item}) + .el-pre:has(${item}) ${item}`;
+  const rule = "1px solid color-mix(in srgb, var(--os-type) 55%, transparent)";
+  const smallCaps = `font-family: ${display}; font-size: 0.78em; font-weight: ${black}; letter-spacing: 0.14em; text-transform: uppercase;`;
+  // Compounded on the card so the type outranks the card's own `--os-type`:
+  // `:is()` takes its strongest argument, which makes the card rule 0,4,1.
+  const types = TYPES.map((type) => `${v} ${card}:is(.brumes-os-theme--${type}, .brumes-os-profile--${type}) { --os-type: ${o(`type-${type}`)}; --os-type-icon: var(--brumes-image-theme-${type}); }
+${v}.brumes-missing--theme-${type} :is(.brumes-os-theme--${type} .brumes-os-theme--icon, .brumes-os-profile--${type} .brumes-os-profile--icon) { display: none; }
+`).join("");
+  return `${v} ${card} {
+  --os-type: ${o("rule")};
+  --os-card-accent: var(--os-type);
+  --p-spacing: 0.2em;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.3em 0.9em;
+  padding: 0.7em 0.8em 0.75em;
+  border: ${frame} var(--os-type);
+  box-shadow: none;
+  font-family: ${sans};
+  line-height: 1.25;
+}
+${types}${v} .brumes-os-theme--crew .brumes-os-theme--icon { display: none; }
+${v} ${card} :is(p, li, h3, h4) { margin: 0; }
+${v} ${card} > * { grid-column: 1 / -1; min-width: 0; }
+${v} ${card} section { margin: 0; padding: 0.3em 0 0; border-top: ${rule}; }
+${v} ${card} section > * + * { margin-top: 0.2em; }
+${v} ${card} h4 { display: flex; align-items: center; gap: 0.45em; color: var(--os-type); line-height: 1.1; ${smallCaps} }
+${v} ${card} h4::after { content: ""; flex: 1; border-top: 1px solid currentColor; opacity: 0.7; }
+${v} ${card} ul { display: flex; flex-wrap: wrap; gap: 0.25em 0.3em; margin: 0; padding: 0; list-style: none; }
+${v} ${card} .brumes-tag {
+  display: inline-block;
+  padding: 0.14em 0.55em 0.1em 0.7em;
+  border: 1px solid transparent;
+  background: linear-gradient(color-mix(in srgb, var(--os-type) 26%, ${o("surface")}), color-mix(in srgb, var(--os-type) 26%, ${o("surface")})) padding-box, var(--os-type) border-box;
+  color: ${o("surface-text")};
+  font-size: 0.8em;
+  font-weight: ${bold};
+  line-height: 1.2;
+  text-transform: uppercase;
+  clip-path: ${leftBevel("0.5em")};
+}
+${v} ${card} .brumes-tag.brumes-weakness { background: ${o("weakness")}; color: ${o("weakness-text")}; }
+${v} :is(.brumes-os-theme--icon, .brumes-os-profile--icon) {
+  display: inline-block;
+  flex: none;
+  width: 1.6em;
+  height: 1.6em;
+  background: var(--os-type);
+  -webkit-mask: var(--os-type-icon) center / contain no-repeat;
+  mask: var(--os-type-icon) center / contain no-repeat;
+}
+${v} .brumes-os-theme--header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.25em 0.5em; }
+${v} .brumes-os-theme--type { grid-column: 1; grid-row: 1; gap: 0 0.4em; color: var(--os-type); line-height: 1.1; ${smallCaps} }
+${v} .brumes-os-theme--type-name { color: ${o("surface-text")}; }
+${v} .brumes-os-theme--icon { grid-column: 2; grid-row: 1; width: 1.7em; height: 1.7em; }
+${v} .brumes-os-theme--header h3 {
+  grid-column: 1 / -1;
+  padding: 0.18em 0.5em 0.08em 0.75em;
+  background: var(--os-type);
+  color: ${paper};
+  font-family: ${display};
+  font-size: 1.3em;
+  font-style: italic;
+  font-weight: ${black};
+  line-height: 1.05;
+  text-transform: uppercase;
+  clip-path: ${leftBevel("0.55em")};
+}
+${v} .brumes-os-theme--header h3 .brumes-tag { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-transform: inherit; clip-path: none; }
+${v} .brumes-os-theme--header small { grid-column: 1 / -1; font-size: 0.75em; opacity: 0.8; }
+${v} .brumes-os-theme--header { order: 1; }
+${v} .brumes-os-theme--description { order: 2; border-top: 0; padding-top: 0; }
+${v} .brumes-os-theme--power-tags { order: 3; }
+${v} .brumes-os-theme--weakness-tags { order: 4; border-inline-start: 0; padding-inline-start: 0; }
+${v} .brumes-os-theme--quest { order: 5; display: block; margin: 0; padding-top: 0.3em; border-top: ${rule}; }
+${v} .brumes-os-theme--quest-label { display: block; color: var(--os-type); ${smallCaps} }
+${v} .brumes-os-theme--special { order: 6; }
+${v} .brumes-os-theme--special > p { gap: 0 0.35em; }
+${v} .brumes-os-theme--special-box { margin: 0; accent-color: var(--os-type); }
+${v} .brumes-os-theme--tracks { order: 7; padding-top: 0.3em; border-top: ${rule}; }
+${v} .brumes-os-theme--track-mark { color: var(--os-type); }
+${v} .brumes-os-profile--power-set header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.15em 0.4em; }
+${v} .brumes-os-profile--kind { grid-column: 1 / -1; padding-bottom: 0.15em; border-bottom: 1px solid var(--os-type); color: var(--os-type); text-align: end; ${smallCaps} }
+${v} .brumes-os-profile--icon { grid-column: 1; }
+${v} .brumes-os-profile--power-set h3 { grid-column: 2; color: var(--os-type); font-size: 1.45em; font-style: italic; line-height: 1; }
+${v} .brumes-os-profile--rating { grid-column: 3; color: var(--os-type); font-weight: ${black}; letter-spacing: 0.05em; white-space: nowrap; }
+${v} .brumes-os-profile--power-set header small { grid-column: 1 / -1; margin: 0; font-size: 0.75em; opacity: 0.8; }
+${v} .brumes-os-profile :is(.brumes-os-profile--specials, .brumes-os-profile--threats) strong { display: block; font-weight: ${bold}; }
+${v} .brumes-os-profile--threat { margin: 0; padding: 0; border: 0; }
+${v} .brumes-os-profile--threat > strong::before { content: "› "; color: var(--os-type); font-weight: ${black}; }
+${v} .brumes-os-profile--threat + .brumes-os-profile--threat { margin-top: 0.3em; }
+${v} .brumes-os-creation header { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15em; }
+${v} .brumes-os-creation--character-trope header strong {
+  order: -1;
+  padding: 0.15em 0.45em 0.08em;
+  background: ${o("label")};
+  color: ${o("label-text")};
+  clip-path: ${leftBevel("0.35em")};
+  ${smallCaps}
+}
+${v} .brumes-os-creation--character-trope h3 { color: ${o("card-title")}; font-size: 1.5em; line-height: 1; }
+${v} .brumes-os-creation--character-trope header small { margin: 0; font-size: 0.75em; opacity: 0.8; }
+${v} .brumes-os-creation--character-trope section { border-top: 0; }
+${v} .brumes-os-creation--theme-kits h4 { flex-direction: row-reverse; }
+${v} .brumes-os-creation--character-trope :is(.brumes-os-creation--theme-kits, .brumes-os-creation--choices) ul { display: grid; gap: 0.1em; }
+${v} .brumes-os-creation--character-trope li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.35em; }
+${v} .brumes-os-creation--character-trope li strong { font-weight: ${bold}; text-transform: uppercase; }
+${v} :is(.brumes-os-creation--kit-category, .brumes-os-creation--kit-page) { font-size: 0.8em; opacity: 0.85; text-transform: uppercase; }
+${v} .brumes-os-creation--kit-category::before { content: "\\28"; }
+${v} .brumes-os-creation--kit-category:has(+ .brumes-os-creation--kit-page)::after { content: ","; }
+${v} .brumes-os-creation--kit-category:not(:has(+ .brumes-os-creation--kit-page))::after { content: "\\29"; }
+${v} .brumes-os-creation--kit-page::after { content: "\\29"; }
+${v} .brumes-os-creation--choices h4::before {
+  content: "?";
+  display: inline-grid;
+  place-items: center;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background: var(--os-type);
+  color: ${o("surface")};
+  letter-spacing: 0;
+}
+${v} .brumes-os-creation--choice-box { margin: 0; accent-color: var(--os-type); }
+${v} .brumes-os-creation--loadout-entry { padding: 0.05em 0.35em; background: ${o("highlight")}; color: ${o("highlight-text")}; }
+${v} ${item} {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 0.15em 0.8em;
+  margin: 0;
+  padding: 0.35em 0.5em;
+  border: 0;
+  border-radius: 0;
+  background: color-mix(in srgb, currentColor 9%, transparent);
+  box-shadow: none;
+  line-height: 1.25;
+}
+${v} ${item}::before,
+${v} ${item}::after,
+${v} ${item} h4 { grid-row: 1; margin: 0; padding: 0; border: 0; color: var(--text-muted); ${smallCaps} }
+${v} ${item}::before { content: "Objet"; grid-column: 1; }
+${v} ${item}::after { content: "Description"; grid-column: 2; }
+${v} ${item} > * { grid-row: 2; min-width: 0; margin: 0; padding: 0; border: 0; }
+${v} ${item} :is(p, li, h3) { margin: 0; }
+${v} ${item} .brumes-os-creation--header { grid-column: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; }
+${v} ${item} .brumes-os-creation--header h3 {
+  padding: 0.12em 0.45em 0.06em 0.6em;
+  background: ${o("item-name")};
+  color: ${o("item-name-text")};
+  font-family: ${display};
+  font-size: 1.05em;
+  font-weight: ${black};
+  line-height: 1.1;
+  text-transform: uppercase;
+  clip-path: ${leftBevel("0.4em")};
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+${v} ${item} .brumes-os-creation--header :is(strong, small) { font-size: 0.75em; opacity: 0.8; }
+${v} ${item} .brumes-os-creation--description { grid-column: 2; }
+${v} ${item} :is(.brumes-os-creation--feature-tags, .brumes-os-creation--weakness-tag) { display: contents; }
+${v} ${item} .brumes-os-creation--feature-tags > h4 { grid-column: 3; }
+${v} ${item} .brumes-os-creation--weakness-tag > h4 { grid-column: 4; }
+${v} ${item} .brumes-os-creation--feature-tags > ul { grid-row: 2; grid-column: 3; display: flex; flex-wrap: wrap; gap: 0.15em 0.3em; margin: 0; padding: 0; list-style: none; }
+${v} ${item} .brumes-os-creation--feature-tags .brumes-tag { padding: 0 0.25em; background: ${o("highlight")}; color: ${o("highlight-text")}; font-weight: normal; }
+${v} ${item} .brumes-os-creation--feature-tags li:first-child .brumes-tag { font-style: italic; font-weight: ${bold}; }
+${v} ${item} .brumes-os-creation--weakness-tag > .brumes-tag {
+  grid-row: 2;
+  grid-column: 4;
+  justify-self: start;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 0.1em 0.5em 0.1em 0.9em;
+  background: color-mix(in srgb, currentColor 22%, transparent);
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0.6em 100%, 0 50%);
+}
+/* The row folds on the width the block gets, not on the window's: a narrow
+   column in a wide window must stack too (four columns from 34rem, pp. 252-254). */
+${v} :has(> ${item}) { container-type: inline-size; }
+${v} .el-pre:has(${item}) + .el-pre:has(${item}) { margin-top: -0.5em; }
+${next}::before,
+${next}::after,
+${next} h4 { display: none; }
+@container (max-width: 34rem) {
+  ${v} ${item} { grid-template-columns: minmax(0, 1fr); }
+  ${v} ${item} > *,
+  ${v} ${item} :is(.brumes-os-creation--feature-tags, .brumes-os-creation--weakness-tag) > * { grid-row: auto; grid-column: 1; }
+  ${v} ${item}::before,
+  ${v} ${item}::after { display: none; }
+}
+`;
 }
 /* Band headings, highlighted subtitles and bevelled callouts, shared by every variant; each one reads only its own
    --os-<id>-* variables. The declared polarity paints the note; with an alternate, the other one paints the alternate
    section, on screen like the section itself. Flat paper, no texture. */
-interface BandOptions { cards: boolean; chevrons: boolean; page?: boolean; label: string }
+interface BandOptions { frame: string; chevrons: boolean; page?: boolean; label: string }
 const BANDS: Record<string, BandOptions> = {
-  metro: { cards: false, chevrons: false, page: true, label: "Metro: light (page.jpg, light-chapo.jpg, act-0-crew.png, description.jpg, chapter-title.jpg), dark alternate (dark.jpg, dark-chapo.jpg); its cards keep the Metro rules above." },
-  cairo: { cards: true, chevrons: true, label: "Cairo: light (cairo-light.jpg), dark alternate (cairo-dark.jpg)." },
-  tokyo: { cards: true, chevrons: false, label: "Tokyo: light (tokyo-light.jpg), dark alternate (tokyo-dark.jpg); slate cards in both." },
+  metro: { frame: "1px solid", chevrons: false, page: true, label: "Metro: light (page.jpg, light-chapo.jpg, act-0-crew.png, description.jpg, chapter-title.jpg), dark alternate (dark.jpg, dark-chapo.jpg); cut cards of sheet1.jpg." },
+  cairo: { frame: "3px double", chevrons: true, label: "Cairo: light (cairo-light.jpg), dark alternate (cairo-dark.jpg); double frame of cairo-tropes.jpg in the type colour." },
+  tokyo: { frame: "1px solid", chevrons: false, label: "Tokyo: light (tokyo-light.jpg), dark alternate (tokyo-dark.jpg); slate cards in both." },
 };
 function bandCss(id: string) {
   const variant = projection.variants[id];
@@ -156,12 +293,17 @@ function bandCss(id: string) {
   const v = `body.brumes--otherscape.brumes--variant-${id}`;
   const o = (name: string) => `var(--os-${id}-${name})`;
   const display = value("font.family.display", "light");
+  const title = value("font.family.title", "light");
+  const sans = value("font.family.sans", "light");
+  const lead = value("font.family.lead", "light");
+  const leadSize = value("font.size.book.lead", "light");
   const black = value("font.weight.black", "light");
+  const bold = value("font.weight.bold", "light");
   const bevel = value("radius.bevel", "light");
   const band = value("radius.band", "light");
   const cut = value("radius.band-bevel", "light");
   const h1Cut = `polygon(0 0, calc(100% - ${cut}) 0, 100% ${cut}, 100% 100%, 0 100%)`;
-  const surfaces = options.cards ? ".callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation" : ".callout";
+  const surfaces = ".callout, .brumes-os-theme, .brumes-os-profile, .brumes-os-creation:not(.brumes-os-creation--loadout-item)";
   const alternate = variant.alternate ? `@media screen {
   ${v} .handbook-mode-alternate {
 ${sheetVars(variant, other).replace(/^/gm, "  ")}
@@ -180,25 +322,15 @@ ${v} .callout::after {
 ${v} .callout::before { top: 0.15rem; }
 ${v} .callout::after { bottom: 0.15rem; }
 ` : "";
-  const cards = options.cards ? `${v} :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) {
-  --os-card-accent: ${o("rule")};
-  border: 1px solid ${o("surface-line")};
-}
-${v} :is(.brumes-os-theme, .brumes-os-profile, .brumes-os-creation) :is(h2, h3) { color: ${o("card-title")}; font-family: ${display}; font-weight: ${black}; text-transform: uppercase; }
-${v} .brumes-os-theme--type {
-  width: fit-content;
-  padding: 0.2em 0.5em 0.1em;
-  background: ${o("label")};
-  color: ${o("label-text")};
-  font-family: ${display};
-  font-weight: ${black};
-  text-transform: uppercase;
-}
-${v} :is(.brumes-os-theme--quest, .brumes-os-theme--tracks) { border-top: 1px solid ${o("rule")}; }
-` : "";
   return `/* ${options.label} */
 ${v} {
 ${sheetVars(variant, mode)}
+}
+${v} :is(.markdown-rendered, .markdown-source-view.mod-cm6) {
+  --p-spacing: 0.55em;
+  --line-height-normal: 1.32;
+  --list-spacing: 0.05em;
+  --heading-spacing: 1.1em;
 }
 ${alternate}${v} :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 > h2, .markdown-rendered .el-h3 > h3) {
   width: fit-content;
@@ -208,6 +340,13 @@ ${alternate}${v} :is(.markdown-rendered .el-h1 > h1, .markdown-rendered .el-h2 >
   line-height: 1;
   border-radius: ${band};
 }
+/* The book's faces per role (phase 8): the H1 in its title face, never synthesised bold since NeoTokyo has a
+   Regular only; the intertitle in the bold text face. */
+${v} :is(.markdown-rendered .el-h1 > h1, .HyperMD-header-1 .cm-header-1) { font-family: ${title}; font-synthesis-weight: none; }
+${v} :is(.markdown-rendered .el-h2 > h2, .HyperMD-header-2 .cm-header-2) { font-family: ${sans}; font-weight: ${bold}; }
+/* Running text is justified and hyphenated, as in the book; the lead stays ranged left. */
+${v} .markdown-rendered .el-p > p { text-align: justify; hyphens: auto; }
+${v} :is(.markdown-rendered, .markdown-source-view.mod-cm6) li { hyphens: auto; }
 ${v} :is(.HyperMD-header-1 .cm-header-1, .HyperMD-header-2 .cm-header-2, .HyperMD-header-3 .cm-header-3) {
   border-radius: ${band};
   -webkit-box-decoration-break: clone;
@@ -225,7 +364,7 @@ ${v} .markdown-rendered .el-h2 > h2 { padding: 0.12em 0.35em 0.04em; background:
 ${v} .HyperMD-header-2 .cm-header-2 { padding: 0 0.3em; background: ${o("subheading-band")}; color: ${o("subheading")}; }
 ${v} .markdown-rendered .el-h3 > h3 { padding: 0.18em 0.45em 0.1em; background: ${o("label")}; color: ${o("label-text")}; font-size: 1em; }
 ${v} .HyperMD-header-3 .cm-header-3 { padding: 0 0.35em; background: ${o("label")}; color: ${o("label-text")}; font-size: 1em; }
-${v} :is(.markdown-rendered .el-h1 + .el-p > p, .markdown-rendered .el-h1 + .handbook-layout-marker + .el-p > p, .HyperMD-header-1 + .cm-line) { color: ${o("lead")}; font-size: 1.3em; line-height: 1.25; }
+${v} :is(.markdown-rendered .el-h1 + .el-p > p, .markdown-rendered .el-h1 + .handbook-layout-marker + .el-p > p, .HyperMD-header-1 + .cm-line) { color: ${o("lead")}; font-family: ${lead}; font-size: ${leadSize}; line-height: 1.25; text-align: start; }
 ${v} :is(.markdown-rendered .el-h2 + .el-p > p > em:only-child, .HyperMD-header-2 + .cm-line > .cm-em:first-child) {
   padding: 0 0.3em;
   background: ${o("highlight")};
@@ -252,7 +391,7 @@ ${v} .callout {
 }
 ${chevrons}${v} .callout-title { --callout-title-color: ${o("surface-text")}; color: ${o("surface-text")}; font-family: ${display}; font-style: italic; font-weight: ${black}; text-transform: uppercase; }
 ${v} .callout-icon { color: ${o("card-title")}; }
-${cards}${options.page ? pageCss(v, o) : ""}`;
+${cardCss(v, o, options.frame)}${options.page ? pageCss(v, o) : ""}`;
 }
 /* The scenario page (act-0-crew.png): an H6 right before an H1 is its kicker, and the two callouts that
    OTHERSCAPE_VISUAL_CALLOUTS publishes are square, untitled surfaces, set apart from the bevelled callout. */
@@ -261,6 +400,13 @@ function pageCss(v: string, o: (name: string) => string) {
   const black = value("font.weight.black", "light");
   const band = value("radius.band", "light");
   const typewriter = value("font.family.typewriter", "light");
+  const title = value("font.family.title", "light");
+  const lead = value("font.family.lead", "light");
+  const aside = value("font.family.aside", "light");
+  const list = value("font.family.list", "light");
+  const light = value("font.weight.light", "light");
+  const leadSize = value("font.size.book.lead", "light");
+  const readAloudSize = value("font.size.book.read-aloud", "light");
   const callout = (id: string) => `${v} .callout[data-brumes-callout-style="${id}"]`;
   return `${v} .markdown-rendered .el-h6:has(+ .el-h1) > h6 {
   width: fit-content;
@@ -304,6 +450,9 @@ ${v} .callout:not([data-brumes-callout-style^="otherscape-"])::after {
    solid where the theme draws the first level as a ring (Border). */
 ${v} :is(.markdown-rendered, .markdown-source-view) { --list-bullet-size: 0.22em; --list-bullet-size-alt: 0px; --list-marker-color: var(--text-normal); }
 ${v} .markdown-rendered ul > li + li { margin-top: 0.55em; }
+/* Numbered lists are set in the book's light condensed face; sidebars and renvois in IBM Plex Sans Condensed. */
+${v} .markdown-rendered ol > li { font-family: ${list}; font-weight: ${light}; }
+${v} :is(.callout:not([data-brumes-callout-style^="otherscape-"]), .callout[data-brumes-callout-style="otherscape-renvoi"]) > .callout-content { font-family: ${aside}; }
 /* The renvoi and the read-aloud (act-0-crew.png) are plain: a flat grey band in tight padding, and a typewriter
    passage on the paper itself with a thin grey rule on its left. No frame, no tab, no texture. */
 ${callout("otherscape-renvoi")} {
@@ -332,8 +481,10 @@ ${callout("otherscape-read-aloud")} {
   --italic-color: ${o("read-aloud-text")};
   color: ${o("read-aloud-text")};
   font-family: ${typewriter};
-  font-size: 0.92em;
+  font-size: ${readAloudSize};
   line-height: 1.4;
+  text-align: justify;
+  hyphens: auto;
 }
 ${callout("otherscape-renvoi")} > .callout-title,
 ${callout("otherscape-read-aloud")} > .callout-title { display: none; }
@@ -366,7 +517,8 @@ ${callout("otherscape-chapter")} > .callout-title {
   align-items: center;
   gap: 0.25em;
   color: inherit;
-  font-family: ${display};
+  font-family: ${title};
+  font-synthesis-weight: none;
   font-size: 3em;
   font-style: normal;
   font-weight: ${black};
@@ -392,8 +544,10 @@ ${callout("otherscape-chapter")} > .callout-content > p:first-child {
   margin-top: 0;
   break-after: column;
   color: ${o("lead")};
-  font-size: 1.3em;
+  font-family: ${lead};
+  font-size: ${leadSize};
   line-height: 1.25;
+  text-align: start;
 }
 ${callout("otherscape-renvoi")} > .callout-content > p + p {
   margin: 0.25em -0.5em 0;

@@ -52,6 +52,24 @@ for (const [id, variant] of Object.entries(variants)) {
 
 /* Every rule of the pack sheet belongs to one declared variant, and reads only that variant's --os-<id>-* variables.
    Dark goes through .brumes--colour-dark, never .theme-dark: Handbook swaps the colour class for light while printing. */
+/** Splits a selector list on its top-level commas only: `:is(.a, .b:not(.c))` stays whole. */
+function splitSelector(selector: string): string[] {
+  const parts: string[] = [];
+  let depth = 0;
+  let start = 0;
+  for (let index = 0; index < selector.length; index += 1) {
+    const char = selector[index];
+    if (char === "(") depth += 1;
+    else if (char === ")") depth -= 1;
+    else if (char === "," && depth === 0) {
+      parts.push(selector.slice(start, index));
+      start = index + 1;
+    }
+  }
+  parts.push(selector.slice(start));
+  return parts;
+}
+
 const sheet = fs.readFileSync(cssPath, "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
 let rules = 0;
 for (const [, rawSelector, body] of sheet.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
@@ -59,7 +77,7 @@ for (const [, rawSelector, body] of sheet.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
   rules += 1;
   if (/\.theme-dark\b/.test(selector)) throw new Error(`Dark rule outside .brumes--colour-dark: ${selector}`);
   const owners = new Set<string>();
-  for (const part of selector.split(/,(?![^(]*\))/)) {
+  for (const part of splitSelector(selector)) {
     const owner = /\.brumes--variant-([a-z0-9-]+)/.exec(part)?.[1];
     if (!owner || !variants[owner]) throw new Error(`Rule outside a declared variant: ${part.trim()}`);
     owners.add(owner);

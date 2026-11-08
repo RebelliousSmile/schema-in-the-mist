@@ -27,9 +27,12 @@
     { "id": "litm-journey-unknown", "target": "legend-in-the-mist/journey", "file": "invalid/legend-in-the-mist--journey.toml", "canonical": "reject", "handbook": "degraded" },
     { "id": "litm-story-theme-unknown", "target": "legend-in-the-mist/story-theme", "file": "invalid/legend-in-the-mist--story-theme.toml", "canonical": "reject", "handbook": "degraded" },
     { "id": "litm-theme-kit-unknown", "target": "legend-in-the-mist/theme-kit", "file": "invalid/legend-in-the-mist--theme-kit.toml", "canonical": "reject", "handbook": "degraded" },
+    { "id": "otherscape-challenge-rating-six", "target": "otherscape/challenge", "file": "invalid/otherscape--challenge-rating-six.toml", "canonical": "reject", "handbook": "degraded" },
     { "id": "otherscape-challenge-unknown", "target": "otherscape/challenge", "file": "invalid/otherscape--challenge.toml", "canonical": "reject", "handbook": "degraded" },
     { "id": "otherscape-character-trope-unknown", "target": "otherscape/character-trope", "file": "invalid/otherscape--character-trope.toml", "canonical": "reject", "handbook": "degraded" },
     { "id": "otherscape-loadout-item-unknown", "target": "otherscape/loadout-item", "file": "invalid/otherscape--loadout-item.toml", "canonical": "reject", "handbook": "degraded" },
+    { "id": "otherscape-character-trope-page-zero", "target": "otherscape/character-trope", "file": "invalid/otherscape--character-trope-page-zero.toml", "canonical": "reject", "handbook": "degraded" },
+    { "id": "otherscape-power-set-rating-six", "target": "otherscape/power-set", "file": "invalid/otherscape--power-set-rating-six.toml", "canonical": "reject", "handbook": "degraded" },
     { "id": "otherscape-power-set-unknown", "target": "otherscape/power-set", "file": "invalid/otherscape--power-set.toml", "canonical": "reject", "handbook": "degraded" },
     { "id": "otherscape-theme-unknown", "target": "otherscape/theme", "file": "invalid/otherscape--theme.toml", "canonical": "reject", "handbook": "degraded" },
     { "id": "otherscape-theme-kit-unknown", "target": "otherscape/theme-kit", "file": "invalid/otherscape--theme-kit.toml", "canonical": "reject", "handbook": "degraded" }

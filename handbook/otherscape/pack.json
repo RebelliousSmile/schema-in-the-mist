@@ -51,8 +51,8 @@
             "--brumes-theme-self": "#B4233E",
             "--brumes-theme-mythos": "#7B4FB0",
             "--brumes-theme-noise": "#075F8B",
-            "--h1-size": "2.4em",
-            "--h2-size": "1.35em",
+            "--h1-size": "3.14em",
+            "--h2-size": "1.33em",
             "--h3-size": "1.05em",
             "--accent-h": "200.00",
             "--accent-s": "90.41%",
@@ -94,8 +94,8 @@
             "--brumes-theme-self": "#E05A6E",
             "--brumes-theme-mythos": "#A98BD0",
             "--brumes-theme-noise": "#5D9BD4",
-            "--h1-size": "2.4em",
-            "--h2-size": "1.35em",
+            "--h1-size": "3.14em",
+            "--h2-size": "1.33em",
             "--h3-size": "1.05em",
             "--accent-h": "186.15",
             "--accent-s": "77.69%",
@@ -248,8 +248,8 @@
             "--brumes-theme-self": "#B4233E",
             "--brumes-theme-mythos": "#7B4FB0",
             "--brumes-theme-noise": "#075F8B",
-            "--h1-size": "2.4em",
-            "--h2-size": "1.35em",
+            "--h1-size": "3.14em",
+            "--h2-size": "1.33em",
             "--h3-size": "1.05em",
             "--accent-h": "334.57",
             "--accent-s": "85.19%",
@@ -295,8 +295,8 @@
             "--brumes-theme-self": "#E05A6E",
             "--brumes-theme-mythos": "#A98BD0",
             "--brumes-theme-noise": "#5D9BD4",
-            "--h1-size": "2.4em",
-            "--h2-size": "1.35em",
+            "--h1-size": "3.14em",
+            "--h2-size": "1.33em",
             "--h3-size": "1.05em",
             "--accent-h": "75.79",
             "--accent-s": "100.00%",
@@ -313,18 +313,18 @@
     "style": {
       "base": {
         "note": {
-          "--font-text-theme": "system-ui, \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+          "--font-text-theme": "\"Isotonic\", \"Sofia Sans Semi Condensed\", system-ui, \"Segoe UI\", Arial, sans-serif",
           "--font-header-theme": "\"Fira Sans Extra Condensed\", \"Arial Narrow\", sans-serif",
           "--font-monospace-theme": "ui-monospace, monospace",
-          "--inline-title-font": "\"Fira Sans Extra Condensed\", \"Arial Narrow\", sans-serif",
+          "--inline-title-font": "\"NeoTokyo\", \"Fira Sans Extra Condensed\", \"Arial Narrow\", sans-serif",
           "--inline-title-text-transform": "uppercase",
           "--inline-title-weight": "800",
           "--inline-title-size": "3em",
-          "--h1-font": "\"Fira Sans Extra Condensed\", \"Arial Narrow\", sans-serif",
+          "--h1-font": "\"NeoTokyo\", \"Fira Sans Extra Condensed\", \"Arial Narrow\", sans-serif",
           "--h1-size": "2.6em",
           "--h1-weight": "800",
           "--h1-text-transform": "uppercase",
-          "--h2-font": "\"Fira Sans Extra Condensed\", \"Arial Narrow\", sans-serif",
+          "--h2-font": "\"Isotonic\", \"Sofia Sans Semi Condensed\", system-ui, \"Segoe UI\", Arial, sans-serif",
           "--h2-size": "1.9em",
           "--h2-weight": "800",
           "--h2-text-transform": "uppercase",
@@ -332,12 +332,12 @@
           "--h3-size": "1.4em",
           "--h3-weight": "700",
           "--h3-text-transform": "uppercase",
-          "--h4-font": "system-ui, \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+          "--h4-font": "\"Isotonic\", \"Sofia Sans Semi Condensed\", system-ui, \"Segoe UI\", Arial, sans-serif",
           "--h4-text-transform": "uppercase",
           "--h4-weight": "700",
-          "--h5-font": "system-ui, \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+          "--h5-font": "\"Isotonic\", \"Sofia Sans Semi Condensed\", system-ui, \"Segoe UI\", Arial, sans-serif",
           "--h5-text-transform": "uppercase",
-          "--h6-font": "system-ui, \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+          "--h6-font": "\"Isotonic\", \"Sofia Sans Semi Condensed\", system-ui, \"Segoe UI\", Arial, sans-serif",
           "--h6-text-transform": "uppercase",
           "--radius-s": "0px",
           "--radius-m": "0px",
@@ -478,7 +478,10 @@
     ],
     "assets": {
       "images": {
-        "metro-emblem": "metro-emblem.svg"
+        "metro-emblem": "metro-emblem.svg",
+        "theme-self": "theme-self.svg",
+        "theme-mythos": "theme-mythos.svg",
+        "theme-noise": "theme-noise.svg"
       },
       "stylesheets": [
         "styles/otherscape.css",
@@ -486,7 +489,16 @@
       ],
       "fonts": {},
       "resources": [
-        "styles/fonts/fira-sans-extra-condensed-latin-800-normal.woff2"
+        "styles/fonts/fira-sans-extra-condensed-latin-800-normal.woff2",
+        "styles/fonts/sofia-sans-semi-condensed-latin-400-normal.woff2",
+        "styles/fonts/sofia-sans-semi-condensed-latin-400-italic.woff2",
+        "styles/fonts/sofia-sans-semi-condensed-latin-700-normal.woff2",
+        "styles/fonts/familjen-grotesk-latin-500-normal.woff2",
+        "styles/fonts/space-mono-latin-400-normal.woff2",
+        "styles/fonts/barlow-condensed-latin-300-normal.woff2",
+        "styles/fonts/ibm-plex-sans-condensed-400-normal.woff2",
+        "styles/fonts/ibm-plex-sans-condensed-400-italic.woff2",
+        "styles/fonts/ibm-plex-sans-condensed-700-normal.woff2"
       ]
     }
   }

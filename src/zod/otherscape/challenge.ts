@@ -191,12 +191,23 @@ export const OtherscapeChallengeSchema = z
           "A courier who runs the arcology's outer skin on borrowed legs, carrying whatever the middle floors would rather not put on the network.",
         ],
       }),
+    rating: z
+      .number()
+      .int()
+      .min(1)
+      .max(5)
+      .optional()
+      .meta({
+        description:
+          "Stars of difficulty printed on the Challenge's tab, from one to five (Metro:Otherscape - Core Book, p. 301; the tabs of pp. 302-303 print three for the VIP Club, two for the Flying Taxi Driver). Left out where the Challenge is unrated: there is no default star to invent.",
+        examples: [1, 2, 3],
+      }),
     scale: z.number()
       .int()
       .optional()
       .meta({
         description:
-          "How large this Challenge is compared to a person, as a printed property of the entity rather than an effect applied in play. Left out entirely on a person-sized Challenge, which is what absent already means, so there is no default of `0` to invent.",
+          "How large this Challenge is compared to a person, as a printed property of the entity rather than an effect applied in play. The book never prints it on the tab: it is named in the Challenge's prose (`with Scale 1`), and a consumer draws it there. Left out entirely on a person-sized Challenge, which is what absent already means, so there is no default of `0` to invent.",
         examples: [1, 2, 3],
       }),
     tags_and_statuses: z

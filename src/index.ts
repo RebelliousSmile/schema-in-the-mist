@@ -147,3 +147,10 @@ export const MIST_SOURCE_CONVERSION_CODECS = {
   "city-of-mist/theme-card": cityOfMistThemeCardSourceCodec,
   "city-of-mist/danger": cityOfMistDangerSourceCodec,
 } as const;
+
+export {
+  OTHERSCAPE_QUEST_LABELS,
+  OTHERSCAPE_THEME_TYPE_LABELS,
+  OTHERSCAPE_ZONE_LABELS,
+} from "./presentation.js";
+export type { OtherscapeLabel } from "./presentation.js";
