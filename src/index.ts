@@ -11,6 +11,7 @@ import { LegendInTheMistJourneySchema } from "./zod/legend-in-the-mist/journey.j
 import { LegendInTheMistStoryThemeSchema } from "./zod/legend-in-the-mist/story-theme.js";
 import { LegendInTheMistThemeKitSchema } from "./zod/legend-in-the-mist/theme-kit.js";
 import { OtherscapeChallengeSchema } from "./zod/otherscape/challenge.js";
+import { OtherscapeCharacterSchema } from "./zod/otherscape/character.js";
 import { OtherscapeCharacterTropeSchema } from "./zod/otherscape/character-trope.js";
 import { OtherscapeLoadoutItemSchema } from "./zod/otherscape/loadout-item.js";
 import { OtherscapePowerSetSchema } from "./zod/otherscape/power-set.js";
@@ -54,6 +55,7 @@ export {
   LegendInTheMistStoryThemeSchema,
   LegendInTheMistThemeKitSchema,
   OtherscapeChallengeSchema,
+  OtherscapeCharacterSchema,
   OtherscapeCharacterTropeSchema,
   OtherscapeLoadoutItemSchema,
   OtherscapePowerSetSchema,
@@ -70,6 +72,7 @@ export type { LegendInTheMistJourney } from "./zod/legend-in-the-mist/journey.js
 export type { LegendInTheMistStoryTheme } from "./zod/legend-in-the-mist/story-theme.js";
 export type { LegendInTheMistThemeKit } from "./zod/legend-in-the-mist/theme-kit.js";
 export type { OtherscapeChallenge } from "./zod/otherscape/challenge.js";
+export type { OtherscapeCharacter } from "./zod/otherscape/character.js";
 export type { OtherscapeCharacterTrope } from "./zod/otherscape/character-trope.js";
 export type { OtherscapeLoadoutItem } from "./zod/otherscape/loadout-item.js";
 export type { OtherscapePowerSet } from "./zod/otherscape/power-set.js";
@@ -99,6 +102,7 @@ export const legendInTheMistJourneyCodec = createDocumentCodec(LegendInTheMistJo
 export const legendInTheMistStoryThemeCodec = createDocumentCodec(LegendInTheMistStoryThemeSchema);
 export const legendInTheMistThemeKitCodec = createDocumentCodec(LegendInTheMistThemeKitSchema);
 export const otherscapeChallengeCodec = createDocumentCodec(OtherscapeChallengeSchema);
+export const otherscapeCharacterCodec = createDocumentCodec(OtherscapeCharacterSchema);
 export const otherscapeCharacterTropeCodec = createDocumentCodec(OtherscapeCharacterTropeSchema);
 export const otherscapeLoadoutItemCodec = createDocumentCodec(OtherscapeLoadoutItemSchema);
 export const otherscapePowerSetCodec = createDocumentCodec(OtherscapePowerSetSchema);
@@ -115,6 +119,7 @@ export const MIST_ENGINE_CODECS = {
   "legend-in-the-mist/story-theme": legendInTheMistStoryThemeCodec,
   "legend-in-the-mist/theme-kit": legendInTheMistThemeKitCodec,
   "otherscape/challenge": otherscapeChallengeCodec,
+  "otherscape/character": otherscapeCharacterCodec,
   "otherscape/character-trope": otherscapeCharacterTropeCodec,
   "otherscape/loadout-item": otherscapeLoadoutItemCodec,
   "otherscape/power-set": otherscapePowerSetCodec,

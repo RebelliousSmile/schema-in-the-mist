@@ -1,0 +1,9 @@
+name = "Vesper"
+
+[[themes]]
+title_tag = "Night Shift"
+theme_type = "crew"
+
+[meta]
+publication_type = "homebrew"
+authors = [ "schema-in-the-mist contributors" ]

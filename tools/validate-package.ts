@@ -3,6 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { TARGETS } from "../src/zod/constants.js";
 
 const npmCli = process.env.npm_execpath;
 if (!npmCli) throw new Error("Run this validator through npm so npm_execpath is available");
@@ -72,7 +73,7 @@ try {
     ]) {
       assert.ok(paths.some((path) => path === file), `missing packaged ${file}`);
     }
-    assert.equal(paths.filter((file) => file.endsWith(".schema.json") && file.startsWith("schemas/v1/")).length, 14);
+    assert.equal(paths.filter((file) => file.endsWith(".schema.json") && file.startsWith("schemas/v1/")).length, TARGETS.length);
     assert.ok(paths.every((file) => !file.startsWith("tools/") && !file.startsWith("handbook-packs/") && !/\.png$|\.ttf$/i.test(file)));
     assert.ok(
       paths.every((file) => !file.endsWith(".woff2") || OTHERSCAPE_FACES.includes(file) || !/(?:labrada|fira-sans-extra-condensed|courier-prime|pt-serif|roboto|bebas-neue|caveat)/i.test(file)),
@@ -100,7 +101,7 @@ try {
   const assertion = `
     import fs from "node:fs";
     import { CONTRACT_VERSION, MIST_ENGINE_CODECS, MIST_SOURCE_CONVERSION_CODECS } from "schema-in-the-mist";
-    if (CONTRACT_VERSION !== 1 || Object.keys(MIST_ENGINE_CODECS).length !== 14) throw new Error("public API");
+    if (CONTRACT_VERSION !== 1 || Object.keys(MIST_ENGINE_CODECS).length !== ${TARGETS.length}) throw new Error("public API");
     if (Object.keys(MIST_SOURCE_CONVERSION_CODECS).length !== 6) throw new Error("source conversion public API");
     const readJson = (subpath) => JSON.parse(fs.readFileSync(new URL(import.meta.resolve("schema-in-the-mist/" + subpath)), "utf8"));
     readJson("schemas/v1/city-of-mist/danger.schema.json");

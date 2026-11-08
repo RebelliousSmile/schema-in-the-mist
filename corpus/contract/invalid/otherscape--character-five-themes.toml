@@ -1,0 +1,25 @@
+name = "Vesper"
+
+[[themes]]
+title_tag = "One"
+theme_type = "self"
+
+[[themes]]
+title_tag = "Two"
+theme_type = "mythos"
+
+[[themes]]
+title_tag = "Three"
+theme_type = "noise"
+
+[[themes]]
+title_tag = "Four"
+theme_type = "self"
+
+[[themes]]
+title_tag = "Five"
+theme_type = "mythos"
+
+[meta]
+publication_type = "homebrew"
+authors = [ "schema-in-the-mist contributors" ]

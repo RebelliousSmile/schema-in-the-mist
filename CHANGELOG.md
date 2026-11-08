@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.6.0] - 2026-11-08
+
+### Added
+
+- `otherscape/character`, a new target: the bottom of a pre-generated character sheet (`sheet1.jpg`) in one document — `name`, up to four themes (`self`, `mythos`, `noise`; a crew theme is not one of a character's four), `tag_combos` (`label`, `tags`, `power` from 0, `effect` in inline Markdown) and `loadout`, the loadout theme of the Core Book (pp. 114-117): items shaped like `otherscape/loadout-item` with `loaded`, read unloaded when absent. Zod source, JSON Schema, JSON + TOML example (`vesper`), accepted and rejected contract cases (five themes, a crew theme, a negative power).
+- `otherscape/theme` gains `description` (inline Markdown) and `special`, the Theme Special printed at the foot of the card, shaped like the theme kit's (`name`, `description`), so a Special copies from kit to theme unchanged.
+- `OTHERSCAPE_ZONE_LABELS.character` publishes the sheet's zones and the Upgrades rule, French first: Mise à niveau, Combos de tags, Loadout.
+- The Otherscape pack styles the sheet (`brumes-os-character--*`: bands, tag combos, loaded and unloaded loadout items) and requires `block:os-character`.
+
+### Changed
+
+- The validation tools derive the number of targets from `TARGETS` instead of a literal.
+
+### Fixed
+
+- The Otherscape pack spaces the items of a note's lists through `:where()`, so the reset of a block (`os-character`, `os-theme`, `os-creation`) wins over it and the block's own lists keep their gap.
+
 ## [v1.5.0] - 2026-11-08
 
 ### Added

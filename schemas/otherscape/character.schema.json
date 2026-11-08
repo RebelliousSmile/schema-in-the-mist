@@ -1,0 +1,390 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/RebelliousSmile/schema-in-the-mist/v1.6.0/schemas/v1/otherscape/character.schema.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "description": "The character's name, printed at the head of the sheet.",
+      "examples": [
+        "Vesper"
+      ]
+    },
+    "themes": {
+      "description": "The character's themes, in the order the sheet prints them. At most four; fewer leaves room for a character still being built.",
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title_tag": {
+            "default": "Untitled Theme",
+            "description": "The theme's title tag, written at the top of the card, which is also how the theme is named. Spelled `title_tag` as on an :Otherscape Theme Kit and on a Legend in the Mist Story Theme, so the value copies across unchanged in both directions. Written without the surrounding braces of the inline tag syntax, and not repeated inside `power_tags`.",
+            "examples": [
+              "The Debt I Never Paid",
+              "Chrome Under The Skin",
+              "Sworn To The Old Signal"
+            ],
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "theme_type": {
+            "type": "string",
+            "enum": [
+              "self",
+              "mythos",
+              "noise"
+            ],
+            "description": "Which kind of theme this is, among the three a character is built from. `crew`, which `otherscape/theme` also accepts, is refused here: a Crew Theme is shared by the crew and is not one of the four themes printed on a character's sheet.",
+            "examples": [
+              "self",
+              "mythos",
+              "noise"
+            ]
+          },
+          "category": {
+            "description": "Themebook this Theme was built from, held as the name printed in the block header. Kept a free string rather than a closed set, so that homebrew themebooks remain expressible and so that every setting book's additions stay writable on the day they ship. Same field, same spelling as on an :Otherscape Theme Kit, so the value copies across unchanged.",
+            "examples": [
+              "EXPERTISE",
+              "AFFILIATION",
+              "AUGMENTATION",
+              "ARTIFACT",
+              "PERSONALITY"
+            ],
+            "type": "string"
+          },
+          "power_tags": {
+            "description": "The tags this Theme grants, in the order they are written on the card. A played theme carries the ones the character chose out of what the kit offered, not the whole kit list, and gains more as the Upgrade track pays out. The title tag is not repeated here.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S",
+              "description": "One tag this Theme grants, which the character invokes to be Favored. Written without the surrounding braces of the inline tag syntax; a renderer adds them.",
+              "examples": [
+                "knows who to ask",
+                "still has the old key"
+              ]
+            }
+          },
+          "weakness_tags": {
+            "description": "The tags this Theme turns against the character, in the order they are written on the card.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S",
+              "description": "One tag this Theme turns against the character, which the MC invokes to Imperil them. Written without the surrounding braces and without the leading marker of the inline weakness syntax; belonging to this field is what makes it a weakness.",
+              "examples": [
+                "cannot leave it alone",
+                "owes the wrong people"
+              ]
+            }
+          },
+          "quest": {
+            "description": "The one Quest line this Theme carries, whatever the sheet labels it: Identity on a Self theme, Ritual on a Mythos theme, Itch on a Noise theme. One field rather than three mutually exclusive ones, and deliberately not a union at the root: the README announces editor autocomplete for JSON and TOML, which a root-level `oneOf` is what editor schema support handles least evenly. The cost is that the field name does not say which of the three labels it holds — read `theme_type` for that. Spelled `quest` as on an :Otherscape Theme Kit and on a Legend in the Mist Story Theme. Supports inline Markdown.",
+            "examples": [
+              "Pay back what I took, to whoever is left to collect it.",
+              "Find out what the Source wanted with you."
+            ],
+            "type": "string"
+          },
+          "upgrade": {
+            "description": "Number of Upgrade marks currently on this Theme's track. The sheet prints three boxes: the third one is spent to improve the Theme and the track goes back to empty, so the value never stands above 3. Counts what a Legend in the Mist Story Theme calls `improve`, renamed because Upgrade is the word the :Otherscape sheet prints.",
+            "examples": [
+              0,
+              1,
+              3
+            ],
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "decay": {
+            "description": "Number of Decay marks currently on this Theme's track. The sheet prints three boxes: the third one replaces the Theme with another, so the value never stands above 3. Counts what a Legend in the Mist Story Theme calls `abandon`, renamed because Decay is the word the :Otherscape sheet prints.",
+            "examples": [
+              0,
+              2,
+              3
+            ],
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "description": {
+            "description": "Prose printed on the card under the Quest, telling who the character is through this theme. Same field, same spelling as on an :Otherscape Theme Kit, so a kit's text can seed it. One string rather than a list of lines: paragraph breaks are carried by newlines. Supports inline Markdown.",
+            "examples": [
+              "They still call at three in the morning, and you still pick up."
+            ],
+            "type": "string"
+          },
+          "special": {
+            "description": "The Theme Special printed at the foot of the card. The very shape of the one an :Otherscape Theme Kit suggests (`name`, `description`), reused rather than copied, so a kit's Special lands on the theme built from it without a mapping table. Absent until the character unlocks or is given one.",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S",
+                "description": "Name of the Theme Special printed on the kit, shown in bold beside its checkbox.",
+                "examples": [
+                  "Third Eye Open",
+                  "House Calls"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S",
+                "description": "What the Special lets the character do once it is taken. Supports inline Markdown.",
+                "examples": [
+                  "Once per scene, treat a wound you patch as if it had one tier less."
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "description"
+            ],
+            "additionalProperties": false
+          },
+          "meta": {
+            "description": "Attribution and cataloging fields for the Theme's origin.",
+            "type": "object",
+            "properties": {
+              "publication_type": {
+                "default": "homebrew",
+                "description": "Classifies the Theme's source to aid cataloging and tooling.",
+                "examples": [
+                  "official",
+                  "homebrew"
+                ],
+                "type": "string",
+                "enum": [
+                  "official",
+                  "third_party",
+                  "cauldron",
+                  "homebrew"
+                ]
+              },
+              "source": {
+                "description": "Source title (book, supplement, PDF) where this Theme appears.",
+                "examples": [
+                  "Metro:Otherscape - Core Book",
+                  "Tokyo:Otherscape - Setting Book"
+                ],
+                "type": "string"
+              },
+              "authors": {
+                "description": "List of credited authors or contributors.",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S",
+                  "description": "One credited author name.",
+                  "examples": [
+                    "Son of Oak",
+                    "4rtamis"
+                  ]
+                }
+              },
+              "page": {
+                "description": "Page number (if relevant to the source).",
+                "examples": [
+                  96,
+                  118
+                ],
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "theme_type"
+        ],
+        "additionalProperties": false,
+        "description": "One of the character's themes: the very fields of an :Otherscape Theme, composed rather than copied, with `theme_type` narrowed to the three character types."
+      }
+    },
+    "tag_combos": {
+      "description": "The tag combos prepared on the sheet, in print order.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "description": "What the combo is for, as printed at the head of its column.",
+            "examples": [
+              "Talk my way past security"
+            ]
+          },
+          "tags": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S",
+              "description": "One tag the combo invokes, written without the surrounding braces of the inline tag syntax; a renderer joins them with `+`.",
+              "examples": [
+                "borrowed badge",
+                "smooth talker"
+              ]
+            },
+            "description": "The tags combined, in the order the sheet prints them."
+          },
+          "power": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "The Power the combo yields, printed as `POWER N`.",
+            "examples": [
+              2,
+              3,
+              4
+            ]
+          },
+          "effect": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "description": "The effect aimed at, printed as a phrase: an action word and the status or tags it targets. Inline Markdown rather than an enumeration of actions, because setting books extend that vocabulary.",
+            "examples": [
+              "**Influence** *convinced*",
+              "**Weaken** alarm tags"
+            ]
+          }
+        },
+        "required": [
+          "label",
+          "tags",
+          "power",
+          "effect"
+        ],
+        "additionalProperties": false,
+        "description": "A tag combo prepared on the sheet: the tags combined, the Power obtained and the effect aimed at."
+      }
+    },
+    "loadout": {
+      "description": "The character's loadout theme, one entry per item, loaded or not. A renderer sorts them into loaded and unloaded columns.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "default": "Untitled Loadout Item",
+            "description": "The item's name, as printed at the head of its Street Catalog entry. The same string is also the first entry of `feature_tags`, which is how the catalog prints it; both hold it, because one is the record's title and the other is a tag that gets invoked in play.",
+            "examples": [
+              "Kestrel Whisperlink",
+              "Sable-9 Sidearm",
+              "Ghost Rig"
+            ],
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "feature_tags": {
+            "description": "The tags this item grants, in the order the catalog prints them. **The first entry is the item's own name**, which is the catalog's convention — the same one a Theme Kit follows with its title tag. Unlike a Theme Kit, it is not lifted into a field of its own: on a kit the title tag is a distinct game object that a played Theme carries separately, whereas here it is only a naming convention inside this list, and a separate field would have nothing on the other side to receive it. Read `name` when the title is what is wanted.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S",
+              "description": "One tag this item grants, which its bearer invokes to be Favored. Written without the surrounding braces of the inline tag syntax; a renderer adds them.",
+              "examples": [
+                "Kestrel Whisperlink",
+                "hard to jam"
+              ]
+            }
+          },
+          "weakness_tag": {
+            "description": "The one tag this item turns against its bearer, which the MC invokes to Imperil them. A single string rather than an array, because the catalog prints exactly one per specific item: an array would invite producers to write two and consumers to handle a case the rules do not have. Optional, because a few catalog entries print none. Written without the surrounding braces and without the leading marker of the inline weakness syntax.",
+            "examples": [
+              "only as quiet as the room",
+              "runs hot"
+            ],
+            "type": "string"
+          },
+          "loaded": {
+            "description": "Whether the item is loaded for the current mission. Loadout tags are burnt by default and become usable once loaded; an item without this field is read as not loaded. The whole item is loaded at once: loading a set of tags one by one is not modelled.",
+            "examples": [
+              true,
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "description": "One item of the character's loadout theme: the fields of an :Otherscape Loadout Item that the sheet prints (`name`, `feature_tags`, `weakness_tag`), reused rather than copied, plus whether it is loaded."
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "publication_type": {
+          "default": "homebrew",
+          "description": "Classifies the Character's source to aid cataloging and tooling.",
+          "examples": [
+            "official",
+            "homebrew"
+          ],
+          "type": "string",
+          "enum": [
+            "official",
+            "third_party",
+            "cauldron",
+            "homebrew"
+          ]
+        },
+        "source": {
+          "description": "Source title (book, supplement, PDF) where this Character appears.",
+          "examples": [
+            "Metro:Otherscape - Demo Game"
+          ],
+          "type": "string"
+        },
+        "authors": {
+          "description": "List of credited authors or contributors.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "description": "One credited author name.",
+            "examples": [
+              "Son of Oak",
+              "4rtamis"
+            ]
+          }
+        },
+        "page": {
+          "description": "Page number (if relevant to the source).",
+          "examples": [
+            1,
+            5
+          ],
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "additionalProperties": false,
+      "description": "Attribution and cataloging fields for the Character's origin."
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "additionalProperties": false,
+  "description": ":Otherscape - Character, the lower half of a character sheet in one document: the name, up to four themes, the tag combos and the loadout. The Upgrades rule printed on the sheet is not data: it is the same for every character and is published as a label in `presentation.ts`. The blank Character Card of the core book (Essence, Crew relationships, Evolution) is a different layout and is not modelled here."
+}

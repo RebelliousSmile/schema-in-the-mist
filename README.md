@@ -19,7 +19,7 @@ const danger: CityOfMistDanger = codec.parseToml(source);
 const normalizedToml = codec.stringifyToml(danger);
 ```
 
-The package exposes the 14 qualified codecs, their Zod schemas and inferred document types, the contract version constants, versioned JSON Schema files, and the shared conformance corpus. UI form coercion, rendering, styles, and warnings remain consumer concerns.
+The package exposes one qualified codec per document target, their Zod schemas and inferred document types, the contract version constants, versioned JSON Schema files, and the shared conformance corpus. UI form coercion, rendering, styles, and warnings remain consumer concerns.
 
 ### Editor-adapter boundary
 

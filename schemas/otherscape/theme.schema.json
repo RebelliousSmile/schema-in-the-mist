@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/RebelliousSmile/schema-in-the-mist/v1.5.0/schemas/v1/otherscape/theme.schema.json",
+  "$id": "https://raw.githubusercontent.com/RebelliousSmile/schema-in-the-mist/v1.6.0/schemas/v1/otherscape/theme.schema.json",
   "type": "object",
   "properties": {
     "title_tag": {
@@ -100,6 +100,43 @@
       "minimum": 0,
       "maximum": 3
     },
+    "description": {
+      "description": "Prose printed on the card under the Quest, telling who the character is through this theme. Same field, same spelling as on an :Otherscape Theme Kit, so a kit's text can seed it. One string rather than a list of lines: paragraph breaks are carried by newlines. Supports inline Markdown.",
+      "examples": [
+        "They still call at three in the morning, and you still pick up."
+      ],
+      "type": "string"
+    },
+    "special": {
+      "description": "The Theme Special printed at the foot of the card. The very shape of the one an :Otherscape Theme Kit suggests (`name`, `description`), reused rather than copied, so a kit's Special lands on the theme built from it without a mapping table. Absent until the character unlocks or is given one.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "description": "Name of the Theme Special printed on the kit, shown in bold beside its checkbox.",
+          "examples": [
+            "Third Eye Open",
+            "House Calls"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "description": "What the Special lets the character do once it is taken. Supports inline Markdown.",
+          "examples": [
+            "Once per scene, treat a wound you patch as if it had one tier less."
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "description"
+      ],
+      "additionalProperties": false
+    },
     "meta": {
       "description": "Attribution and cataloging fields for the Theme's origin.",
       "type": "object",
@@ -159,5 +196,5 @@
     "theme_type"
   ],
   "additionalProperties": false,
-  "description": ":Otherscape - Theme, one of the themes a character is built from, holding its title tag, the tags it grants, the tags it turns against the character, the Quest it carries and the state of its two tracks. It carries no `level` and no `milestone`, and the absence is measured rather than pending: :Otherscape has no theme tiers — nothing answers to origin, adventure or greatness — and no milestone track anywhere in its books. This is the sharpest divergence from `litm/story-theme`, which carries both."
+  "description": ":Otherscape - Theme, one of the themes a character is built from, holding its title tag, the tags it grants, the tags it turns against the character, the Quest it carries, the state of its two tracks and, when the card prints them, its description and Theme Special. It carries no `level` and no `milestone`, and the absence is measured rather than pending: :Otherscape has no theme tiers — nothing answers to origin, adventure or greatness — and no milestone track anywhere in its books. This is the sharpest divergence from `litm/story-theme`, which carries both."
 }

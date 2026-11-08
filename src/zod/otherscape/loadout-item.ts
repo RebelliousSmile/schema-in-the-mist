@@ -22,23 +22,55 @@ export const MetaSchema = createPublicationMetaSchema({
   description: "Attribution and cataloging fields for the Loadout Item's origin.",
 });
 
+/** Item fields reused by the loadout of an :Otherscape Character, so an item copies across unchanged. */
+export const LoadoutItemNameSchema = z
+  .string()
+  .trim()
+  .regex(/\S/, "Must contain a non-whitespace character")
+  .min(1, "Name is required")
+  .default("Untitled Loadout Item")
+  .meta({
+    description:
+      "The item's name, as printed at the head of its Street Catalog entry. The same string is also the first entry of `feature_tags`, which is how the catalog prints it; both hold it, because one is the record's title and the other is a tag that gets invoked in play.",
+    examples: ["Kestrel Whisperlink", "Sable-9 Sidearm", "Ghost Rig"],
+  });
+
+export const LoadoutItemFeatureTagsSchema = z
+  .array(
+    z
+      .string()
+      .trim()
+      .regex(/\S/, "Must contain a non-whitespace character")
+      .min(1, "A feature tag cannot be empty")
+      .meta({
+        description:
+          "One tag this item grants, which its bearer invokes to be Favored. Written without the surrounding braces of the inline tag syntax; a renderer adds them.",
+        examples: ["Kestrel Whisperlink", "hard to jam"],
+      }),
+  )
+  .optional()
+  .meta({
+    description:
+      "The tags this item grants, in the order the catalog prints them. **The first entry is the item's own name**, which is the catalog's convention — the same one a Theme Kit follows with its title tag. Unlike a Theme Kit, it is not lifted into a field of its own: on a kit the title tag is a distinct game object that a played Theme carries separately, whereas here it is only a naming convention inside this list, and a separate field would have nothing on the other side to receive it. Read `name` when the title is what is wanted.",
+  });
+
+export const LoadoutItemWeaknessTagSchema = z
+  .string()
+  .trim()
+  .optional()
+  .meta({
+    description:
+      "The one tag this item turns against its bearer, which the MC invokes to Imperil them. A single string rather than an array, because the catalog prints exactly one per specific item: an array would invite producers to write two and consumers to handle a case the rules do not have. Optional, because a few catalog entries print none. Written without the surrounding braces and without the leading marker of the inline weakness syntax.",
+    examples: ["only as quiet as the room", "runs hot"],
+  });
+
 /** =========================
  *  Root schema
  *  ========================= */
 
 export const OtherscapeLoadoutItemSchema = z
   .strictObject({
-    name: z
-      .string()
-      .trim()
-      .regex(/\S/, "Must contain a non-whitespace character")
-      .min(1, "Name is required")
-      .default("Untitled Loadout Item")
-      .meta({
-        description:
-          "The item's name, as printed at the head of its Street Catalog entry. The same string is also the first entry of `feature_tags`, which is how the catalog prints it; both hold it, because one is the record's title and the other is a tag that gets invoked in play.",
-        examples: ["Kestrel Whisperlink", "Sable-9 Sidearm", "Ghost Rig"],
-      }),
+    name: LoadoutItemNameSchema,
     category: z
       .string()
       .trim()
@@ -66,33 +98,8 @@ export const OtherscapeLoadoutItemSchema = z
           "A throat-mounted relay that turns a whisper into a clean signal three blocks out.",
         ],
       }),
-    feature_tags: z
-      .array(
-        z
-          .string()
-          .trim()
-          .regex(/\S/, "Must contain a non-whitespace character")
-          .min(1, "A feature tag cannot be empty")
-          .meta({
-            description:
-              "One tag this item grants, which its bearer invokes to be Favored. Written without the surrounding braces of the inline tag syntax; a renderer adds them.",
-            examples: ["Kestrel Whisperlink", "hard to jam"],
-          }),
-      )
-      .optional()
-      .meta({
-        description:
-          "The tags this item grants, in the order the catalog prints them. **The first entry is the item's own name**, which is the catalog's convention — the same one a Theme Kit follows with its title tag. Unlike a Theme Kit, it is not lifted into a field of its own: on a kit the title tag is a distinct game object that a played Theme carries separately, whereas here it is only a naming convention inside this list, and a separate field would have nothing on the other side to receive it. Read `name` when the title is what is wanted.",
-      }),
-    weakness_tag: z
-      .string()
-      .trim()
-      .optional()
-      .meta({
-        description:
-          "The one tag this item turns against its bearer, which the MC invokes to Imperil them. A single string rather than an array, because the catalog prints exactly one per specific item: an array would invite producers to write two and consumers to handle a case the rules do not have. Optional, because a few catalog entries print none. Written without the surrounding braces and without the leading marker of the inline weakness syntax.",
-        examples: ["only as quiet as the room", "runs hot"],
-      }),
+    feature_tags: LoadoutItemFeatureTagsSchema,
+    weakness_tag: LoadoutItemWeaknessTagSchema,
     meta: MetaSchema.optional().meta({
       description:
         "Attribution and cataloging fields for the Loadout Item's origin.",

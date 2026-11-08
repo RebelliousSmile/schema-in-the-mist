@@ -102,4 +102,4 @@ for (const target of targetKeys) {
   );
 }
 
-console.log(`Validated ${cases.length} shared contract cases across 14 targets.`);
+console.log(`Validated ${cases.length} shared contract cases across ${TARGETS.length} targets.`);

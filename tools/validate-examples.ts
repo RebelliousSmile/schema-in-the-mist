@@ -49,5 +49,9 @@ for (const target of TARGETS) {
   }
 }
 
-assert.equal(Object.keys(MIST_ENGINE_CODECS).length, 14);
-console.log(`Validated ${checkedFiles} example files through 14 public codecs.`);
+assert.deepEqual(
+  Object.keys(MIST_ENGINE_CODECS).sort(),
+  TARGETS.map((target) => target.key).sort(),
+  "every declared target must have exactly one public codec",
+);
+console.log(`Validated ${checkedFiles} example files through ${TARGETS.length} public codecs.`);

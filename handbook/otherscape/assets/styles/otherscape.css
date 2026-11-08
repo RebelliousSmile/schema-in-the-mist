@@ -204,10 +204,11 @@ body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--power-tags { ord
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--weakness-tags { order: 4; border-inline-start: 0; padding-inline-start: 0; }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest { order: 5; display: block; margin: 0; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--quest-label { display: block; color: var(--os-type); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--special { order: 6; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme:not(.brumes-os-theme--kit) .brumes-os-theme--description { order: 6; padding-top: 0.3em; border-top: 0; font-size: 0.9em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--special { order: 7; }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--special > p { gap: 0 0.35em; }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--special-box { margin: 0; accent-color: var(--os-type); }
-body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { order: 7; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--tracks { order: 8; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-theme--track-mark { color: var(--os-type); }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--power-set header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.15em 0.4em; }
 body.brumes--otherscape.brumes--variant-metro .brumes-os-profile--kind { grid-column: 1 / -1; padding-bottom: 0.15em; border-bottom: 1px solid var(--os-type); color: var(--os-type); text-align: end; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
@@ -321,6 +322,57 @@ body.brumes--otherscape.brumes--variant-metro .el-pre:has(.brumes-os-creation--l
   body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item::before,
   body.brumes--otherscape.brumes--variant-metro .brumes-os-creation--loadout-item::after { display: none; }
 }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character { font-family: "Isotonic", "Sofia Sans Semi Condensed", system-ui, "Segoe UI", Arial, sans-serif; line-height: 1.25; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character :is(p, li, h3, h4) { margin: 0; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character ul { margin: 0; padding: 0; list-style: none; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--header h3 {
+  padding: 0.18em 0.5em 0.08em 0.75em;
+  background: var(--os-metro-item-name);
+  color: var(--os-metro-item-name-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.6em;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0 100%, 0 0.6em);
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--band {
+  padding: 0.45em 0.7em;
+  border: 1px solid var(--os-metro-surface-line);
+  background: var(--os-metro-surface);
+  color: var(--os-metro-surface-text);
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0 100%, 0 0.6em);
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--band > h4 { justify-self: start; padding: 0.15em 0.45em 0.08em; background: var(--os-metro-label); color: var(--os-metro-label-text); clip-path: polygon(0.35em 0, 100% 0, 100% 100%, 0 100%, 0 0.35em); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--rule { font-size: 0.85em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--upgrades li { font-weight: 700; text-transform: uppercase; font-size: 0.85em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--box { margin: 0; accent-color: var(--os-metro-surface-text); }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--combo-label { font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.85em; font-weight: 900; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--combo-tags .brumes-tag { padding: 0 0.3em; background: var(--os-metro-highlight); color: var(--os-metro-highlight-text); font-size: 0.85em; font-style: italic; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--combo-tags li:not(:last-child)::after { content: " +"; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--combo-power { font-size: 0.85em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--combo-power strong { font-size: 1.15em; font-weight: 900; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--combo-effect { font-size: 0.85em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--item > .brumes-tag {
+  display: block;
+  padding: 0.14em 0.55em 0.1em 0.8em;
+  background: color-mix(in srgb, var(--os-metro-surface-text) 10%, transparent);
+  color: var(--os-metro-surface-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 0.85em;
+  font-style: italic;
+  font-weight: 900;
+  text-transform: uppercase;
+  opacity: 0.55;
+  clip-path: polygon(0.45em 0, 100% 0, 100% 100%, 0 100%, 0 0.45em);
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--item-loaded > .brumes-tag {
+  background: linear-gradient(90deg, var(--os-metro-surface-text) 0 0.35em, color-mix(in srgb, var(--os-metro-surface-text) 18%, transparent) 0.35em);
+  opacity: 1;
+}
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--item :is(small, .brumes-weakness) { font-size: 0.75em; }
+body.brumes--otherscape.brumes--variant-metro .brumes-os-character--item .brumes-tag.brumes-weakness { background: var(--os-metro-weakness); color: var(--os-metro-weakness-text); padding: 0 0.3em; }
 body.brumes--otherscape.brumes--variant-metro .markdown-rendered .el-h6:has(+ .el-h1) > h6 {
   width: fit-content;
   margin-block: 0 0.15em;
@@ -360,9 +412,10 @@ body.brumes--otherscape.brumes--variant-metro .callout:not([data-brumes-callout-
 }
 /* Bullets (act-0-crew.png): a small dot on a hanging indent, items set apart like paragraphs. The ink is named:
    `currentColor` would resolve on the bullet span, whose colour is transparent. A zero ring size keeps the dot
-   solid where the theme draws the first level as a ring (Border). */
+   solid where the theme draws the first level as a ring (Border). The note's lists weigh no more than a
+   block's own reset (`:where`), so a block's lists keep their spacing. */
 body.brumes--otherscape.brumes--variant-metro :is(.markdown-rendered, .markdown-source-view) { --list-bullet-size: 0.22em; --list-bullet-size-alt: 0px; --list-marker-color: var(--text-normal); }
-body.brumes--otherscape.brumes--variant-metro .markdown-rendered ul > li + li { margin-top: 0.55em; }
+body.brumes--otherscape.brumes--variant-metro :where(.markdown-rendered ul) > li + li { margin-top: 0.55em; }
 /* Numbered lists are set in the book's light condensed face; sidebars and renvois in IBM Plex Sans Condensed. */
 body.brumes--otherscape.brumes--variant-metro .markdown-rendered ol > li { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-weight: 300; }
 body.brumes--otherscape.brumes--variant-metro :is(.callout:not([data-brumes-callout-style^="otherscape-"]), .callout[data-brumes-callout-style="otherscape-renvoi"]) > .callout-content { font-family: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif; }
@@ -668,10 +721,11 @@ body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--power-tags { ord
 body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--weakness-tags { order: 4; border-inline-start: 0; padding-inline-start: 0; }
 body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--quest { order: 5; display: block; margin: 0; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
 body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--quest-label { display: block; color: var(--os-type); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
-body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--special { order: 6; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme:not(.brumes-os-theme--kit) .brumes-os-theme--description { order: 6; padding-top: 0.3em; border-top: 0; font-size: 0.9em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--special { order: 7; }
 body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--special > p { gap: 0 0.35em; }
 body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--special-box { margin: 0; accent-color: var(--os-type); }
-body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--tracks { order: 7; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--tracks { order: 8; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
 body.brumes--otherscape.brumes--variant-cairo .brumes-os-theme--track-mark { color: var(--os-type); }
 body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--power-set header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.15em 0.4em; }
 body.brumes--otherscape.brumes--variant-cairo .brumes-os-profile--kind { grid-column: 1 / -1; padding-bottom: 0.15em; border-bottom: 1px solid var(--os-type); color: var(--os-type); text-align: end; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
@@ -785,6 +839,57 @@ body.brumes--otherscape.brumes--variant-cairo .el-pre:has(.brumes-os-creation--l
   body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item::before,
   body.brumes--otherscape.brumes--variant-cairo .brumes-os-creation--loadout-item::after { display: none; }
 }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character { font-family: "Isotonic", "Sofia Sans Semi Condensed", system-ui, "Segoe UI", Arial, sans-serif; line-height: 1.25; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character :is(p, li, h3, h4) { margin: 0; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character ul { margin: 0; padding: 0; list-style: none; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--header h3 {
+  padding: 0.18em 0.5em 0.08em 0.75em;
+  background: var(--os-cairo-item-name);
+  color: var(--os-cairo-item-name-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.6em;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0 100%, 0 0.6em);
+}
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--band {
+  padding: 0.45em 0.7em;
+  border: 1px solid var(--os-cairo-surface-line);
+  background: var(--os-cairo-surface);
+  color: var(--os-cairo-surface-text);
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0 100%, 0 0.6em);
+}
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--band > h4 { justify-self: start; padding: 0.15em 0.45em 0.08em; background: var(--os-cairo-label); color: var(--os-cairo-label-text); clip-path: polygon(0.35em 0, 100% 0, 100% 100%, 0 100%, 0 0.35em); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--rule { font-size: 0.85em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--upgrades li { font-weight: 700; text-transform: uppercase; font-size: 0.85em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--box { margin: 0; accent-color: var(--os-cairo-surface-text); }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--combo-label { font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.85em; font-weight: 900; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--combo-tags .brumes-tag { padding: 0 0.3em; background: var(--os-cairo-highlight); color: var(--os-cairo-highlight-text); font-size: 0.85em; font-style: italic; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--combo-tags li:not(:last-child)::after { content: " +"; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--combo-power { font-size: 0.85em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--combo-power strong { font-size: 1.15em; font-weight: 900; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--combo-effect { font-size: 0.85em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--item > .brumes-tag {
+  display: block;
+  padding: 0.14em 0.55em 0.1em 0.8em;
+  background: color-mix(in srgb, var(--os-cairo-surface-text) 10%, transparent);
+  color: var(--os-cairo-surface-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 0.85em;
+  font-style: italic;
+  font-weight: 900;
+  text-transform: uppercase;
+  opacity: 0.55;
+  clip-path: polygon(0.45em 0, 100% 0, 100% 100%, 0 100%, 0 0.45em);
+}
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--item-loaded > .brumes-tag {
+  background: linear-gradient(90deg, var(--os-cairo-surface-text) 0 0.35em, color-mix(in srgb, var(--os-cairo-surface-text) 18%, transparent) 0.35em);
+  opacity: 1;
+}
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--item :is(small, .brumes-weakness) { font-size: 0.75em; }
+body.brumes--otherscape.brumes--variant-cairo .brumes-os-character--item .brumes-tag.brumes-weakness { background: var(--os-cairo-weakness); color: var(--os-cairo-weakness-text); padding: 0 0.3em; }
 /* Tokyo: light (tokyo-light.jpg), dark alternate (tokyo-dark.jpg); slate cards in both. */
 body.brumes--otherscape.brumes--variant-tokyo {
   --os-tokyo-heading: #1E1E1E;
@@ -973,10 +1078,11 @@ body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--power-tags { ord
 body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--weakness-tags { order: 4; border-inline-start: 0; padding-inline-start: 0; }
 body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--quest { order: 5; display: block; margin: 0; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
 body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--quest-label { display: block; color: var(--os-type); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
-body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--special { order: 6; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme:not(.brumes-os-theme--kit) .brumes-os-theme--description { order: 6; padding-top: 0.3em; border-top: 0; font-size: 0.9em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--special { order: 7; }
 body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--special > p { gap: 0 0.35em; }
 body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--special-box { margin: 0; accent-color: var(--os-type); }
-body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--tracks { order: 7; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--tracks { order: 8; padding-top: 0.3em; border-top: 1px solid color-mix(in srgb, var(--os-type) 55%, transparent); }
 body.brumes--otherscape.brumes--variant-tokyo .brumes-os-theme--track-mark { color: var(--os-type); }
 body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--power-set header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.15em 0.4em; }
 body.brumes--otherscape.brumes--variant-tokyo .brumes-os-profile--kind { grid-column: 1 / -1; padding-bottom: 0.15em; border-bottom: 1px solid var(--os-type); color: var(--os-type); text-align: end; font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
@@ -1090,3 +1196,54 @@ body.brumes--otherscape.brumes--variant-tokyo .el-pre:has(.brumes-os-creation--l
   body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item::before,
   body.brumes--otherscape.brumes--variant-tokyo .brumes-os-creation--loadout-item::after { display: none; }
 }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character { font-family: "Isotonic", "Sofia Sans Semi Condensed", system-ui, "Segoe UI", Arial, sans-serif; line-height: 1.25; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character :is(p, li, h3, h4) { margin: 0; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character ul { margin: 0; padding: 0; list-style: none; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--header h3 {
+  padding: 0.18em 0.5em 0.08em 0.75em;
+  background: var(--os-tokyo-item-name);
+  color: var(--os-tokyo-item-name-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.6em;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0 100%, 0 0.6em);
+}
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--band {
+  padding: 0.45em 0.7em;
+  border: 1px solid var(--os-tokyo-surface-line);
+  background: var(--os-tokyo-surface);
+  color: var(--os-tokyo-surface-text);
+  clip-path: polygon(0.6em 0, 100% 0, 100% 100%, 0 100%, 0 0.6em);
+}
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--band > h4 { justify-self: start; padding: 0.15em 0.45em 0.08em; background: var(--os-tokyo-label); color: var(--os-tokyo-label-text); clip-path: polygon(0.35em 0, 100% 0, 100% 100%, 0 100%, 0 0.35em); font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.78em; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--rule { font-size: 0.85em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--upgrades li { font-weight: 700; text-transform: uppercase; font-size: 0.85em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--box { margin: 0; accent-color: var(--os-tokyo-surface-text); }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--combo-label { font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif; font-size: 0.85em; font-weight: 900; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--combo-tags .brumes-tag { padding: 0 0.3em; background: var(--os-tokyo-highlight); color: var(--os-tokyo-highlight-text); font-size: 0.85em; font-style: italic; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--combo-tags li:not(:last-child)::after { content: " +"; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--combo-power { font-size: 0.85em; text-transform: uppercase; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--combo-power strong { font-size: 1.15em; font-weight: 900; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--combo-effect { font-size: 0.85em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--item > .brumes-tag {
+  display: block;
+  padding: 0.14em 0.55em 0.1em 0.8em;
+  background: color-mix(in srgb, var(--os-tokyo-surface-text) 10%, transparent);
+  color: var(--os-tokyo-surface-text);
+  font-family: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  font-size: 0.85em;
+  font-style: italic;
+  font-weight: 900;
+  text-transform: uppercase;
+  opacity: 0.55;
+  clip-path: polygon(0.45em 0, 100% 0, 100% 100%, 0 100%, 0 0.45em);
+}
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--item-loaded > .brumes-tag {
+  background: linear-gradient(90deg, var(--os-tokyo-surface-text) 0 0.35em, color-mix(in srgb, var(--os-tokyo-surface-text) 18%, transparent) 0.35em);
+  opacity: 1;
+}
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--item :is(small, .brumes-weakness) { font-size: 0.75em; }
+body.brumes--otherscape.brumes--variant-tokyo .brumes-os-character--item .brumes-tag.brumes-weakness { background: var(--os-tokyo-weakness); color: var(--os-tokyo-weakness-text); padding: 0 0.3em; }

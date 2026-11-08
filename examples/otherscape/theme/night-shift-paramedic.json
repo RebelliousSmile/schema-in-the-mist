@@ -1,0 +1,29 @@
+{
+  "title_tag": "Night-Shift Paramedic",
+  "theme_type": "self",
+  "category": "PROFESSION",
+  "power_tags": [
+    "field triage",
+    "calm under sirens",
+    "knows every back street",
+    "dark humour",
+    "the ambulance radio"
+  ],
+  "weakness_tags": [
+    "running on no sleep"
+  ],
+  "quest": "Nobody dies alone on my shift.",
+  "description": "Vesper still works three nights a week on the city ambulances. It keeps the rent paid and the voices honest.",
+  "special": {
+    "name": "Golden Hour",
+    "description": "Once per scene, when you treat someone within moments of their injury, reduce one of their harm statuses by two tiers instead of one."
+  },
+  "upgrade": 1,
+  "decay": 0,
+  "meta": {
+    "publication_type": "homebrew",
+    "authors": [
+      "schema-in-the-mist contributors"
+    ]
+  }
+}

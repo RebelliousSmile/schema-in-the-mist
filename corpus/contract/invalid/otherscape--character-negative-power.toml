@@ -1,0 +1,11 @@
+name = "Vesper"
+
+[[tag_combos]]
+label = "Patch someone up"
+tags = [ "field triage" ]
+power = -1
+effect = "**Restore** harm statuses"
+
+[meta]
+publication_type = "homebrew"
+authors = [ "schema-in-the-mist contributors" ]

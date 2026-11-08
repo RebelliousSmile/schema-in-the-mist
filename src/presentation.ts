@@ -4,7 +4,7 @@
  * (Handbook, Lantern) read these labels instead of keeping their own, so a
  * zone is named the same everywhere. The names of the six card types (Theme,
  * Theme Kit, Challenge, Power Set, Character Trope, Loadout Item) and the
- * trope's Loadout stay English in French until the official French edition
+ * Loadout, on the trope and on the character sheet, stay English in French until the official French edition
  * names them.
  */
 export interface OtherscapeLabel {
@@ -43,6 +43,18 @@ export const OTHERSCAPE_ZONE_LABELS = {
   "character-trope": {
     theme_kits: { fr: "Theme kits", en: "Theme kits" },
     choices: { fr: "Au choix", en: "Choose one" },
+    loadout: { fr: "Loadout", en: "Loadout" },
+  },
+  character: {
+    upgrades: { fr: "Mise à niveau", en: "Upgrades" },
+    upgrades_rule: {
+      fr: "Chaque fois que l'on active votre tag de faiblesse, cochez une case de Mise à niveau sur ce thème. Quand vous cochez la troisième case, réinitialisez la piste et choisissez une Mise à niveau pour ce thème :",
+      en: "Whenever your weakness tag is invoked, mark one upgrade box on that theme. When you mark three upgrade boxes, reset the track and choose one upgrade for that theme:",
+    },
+    upgrade_power_tag: { fr: "Choisir un nouveau tag de pouvoir", en: "Choose a new power tag" },
+    upgrade_special: { fr: "Débloquer le Spécial de ce thème", en: "Unlock the theme special" },
+    tag_combos: { fr: "Combos de tags", en: "Tag combos" },
+    power: { fr: "Pouvoir", en: "Power" },
     loadout: { fr: "Loadout", en: "Loadout" },
   },
 } as const satisfies Record<string, Record<string, OtherscapeLabel>>;

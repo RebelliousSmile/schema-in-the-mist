@@ -13,6 +13,7 @@ import { OtherscapeThemeKitSchema } from "./otherscape/theme-kit.js";
 import { OtherscapeThemeSchema } from "./otherscape/theme.js";
 import { OtherscapeCharacterTropeSchema } from "./otherscape/character-trope.js";
 import { OtherscapeLoadoutItemSchema } from "./otherscape/loadout-item.js";
+import { OtherscapeCharacterSchema } from "./otherscape/character.js";
 
 export const GAMES = {
   litm: {
@@ -46,6 +47,7 @@ export type MistEngineDocumentTarget =
   | "legend-in-the-mist/story-theme"
   | "legend-in-the-mist/theme-kit"
   | "otherscape/challenge"
+  | "otherscape/character"
   | "otherscape/character-trope"
   | "otherscape/loadout-item"
   | "otherscape/power-set"
@@ -143,6 +145,12 @@ export const TARGETS = [
     zod: OtherscapeLoadoutItemSchema,
     game: GAMES.otherscape,
     name: "loadout-item",
+  },
+  {
+    key: "otherscape/character",
+    zod: OtherscapeCharacterSchema,
+    game: GAMES.otherscape,
+    name: "character",
   },
 ] as const satisfies readonly SchemaTarget[];
 

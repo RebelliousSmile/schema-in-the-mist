@@ -12,6 +12,7 @@
 | `legend-in-the-mist/journey` | Equivalent schema and TOML codec | Renders the same business fields | Keep the canonical contract. |
 | `legend-in-the-mist/story-theme` | Equivalent schema and TOML codec | Historical corpus name `theme-card` | Keep `story-theme` as the public target; map the Handbook fixture name, not the data shape. |
 | `legend-in-the-mist/theme-kit` | Equivalent schema and TOML codec | Renders the same business fields | Keep the canonical contract. |
+| `otherscape/character` | Equivalent schema and TOML codec | Renders the sheet with block `os-character` | Keep the four themes, tag combos, loadout and `loaded` flag; the Upgrades rule is a published label, not data. |
 | `otherscape/challenge` | Equivalent schema and TOML codec | Renders the same business fields | Keep limits, polar/progress flags, consequences, and metadata. |
 | `otherscape/character-trope` | Equivalent schema and TOML codec | Renders the same business fields | Keep the canonical contract. |
 | `otherscape/loadout-item` | Equivalent schema and TOML codec | Renders the same business fields | Keep the canonical contract. |
@@ -26,7 +27,7 @@
 - Required trimmed strings also carry a non-whitespace JSON Schema constraint. Trimming is normalization performed by the TypeScript codec after the raw value has passed the same acceptance rule.
 - `0`, `false`, empty lists, and absent optionals remain distinct values. Serializers must test presence rather than truthiness.
 - `publication_type = "corpus"` is a fixture marker and is not a domain enum value. Form state, warnings, export preferences, visual zones, pack capabilities, styles, and assets remain consumer-owned.
-- `schema-in-the-mist` currently publishes no presentation metadata intended for an editor and no adapter-key vocabulary. This applies to the 14 document contracts, their JSON Schema exports, and the shared corpus. The local Otherscape `components.json` is a ten-entry visual-style artifact outside the npm package, not an editor-descriptor registry.
+- `schema-in-the-mist` currently publishes no presentation metadata intended for an editor and no adapter-key vocabulary. This applies to the document contracts, their JSON Schema exports, and the shared corpus. The local Otherscape `components.json` is a ten-entry visual-style artifact outside the npm package, not an editor-descriptor registry.
 - A producer that later publishes editor descriptors must own a finite, versioned vocabulary of declarative keys. Lantern must keep the closed key-to-React-adapter mapping and reject missing or orphaned entries through a bidirectional contract assertion; neither component imports nor inferred fallbacks belong in a schema package.
 - Correct canonical metadata, constraints, examples, descriptions, and exports missing from Lantern are retained. [Lantern #3](https://github.com/RebelliousSmile/lantern/issues/3) tracks their preservation during removal of local copies.
 

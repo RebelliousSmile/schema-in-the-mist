@@ -156,10 +156,11 @@ ${v} .brumes-os-theme--power-tags { order: 3; }
 ${v} .brumes-os-theme--weakness-tags { order: 4; border-inline-start: 0; padding-inline-start: 0; }
 ${v} .brumes-os-theme--quest { order: 5; display: block; margin: 0; padding-top: 0.3em; border-top: ${rule}; }
 ${v} .brumes-os-theme--quest-label { display: block; color: var(--os-type); ${smallCaps} }
-${v} .brumes-os-theme--special { order: 6; }
+${v} .brumes-os-theme:not(.brumes-os-theme--kit) .brumes-os-theme--description { order: 6; padding-top: 0.3em; border-top: 0; font-size: 0.9em; }
+${v} .brumes-os-theme--special { order: 7; }
 ${v} .brumes-os-theme--special > p { gap: 0 0.35em; }
 ${v} .brumes-os-theme--special-box { margin: 0; accent-color: var(--os-type); }
-${v} .brumes-os-theme--tracks { order: 7; padding-top: 0.3em; border-top: ${rule}; }
+${v} .brumes-os-theme--tracks { order: 8; padding-top: 0.3em; border-top: ${rule}; }
 ${v} .brumes-os-theme--track-mark { color: var(--os-type); }
 ${v} .brumes-os-profile--power-set header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.15em 0.4em; }
 ${v} .brumes-os-profile--kind { grid-column: 1 / -1; padding-bottom: 0.15em; border-bottom: 1px solid var(--os-type); color: var(--os-type); text-align: end; ${smallCaps} }
@@ -273,6 +274,71 @@ ${next} h4 { display: none; }
   ${v} ${item}::before,
   ${v} ${item}::after { display: none; }
 }
+`;
+}
+/* Character sheet (otherscape/character, sheet1.jpg): the Upgrades, Tag combos and Loadout bands, then the theme cards,
+   which are the cards above. Appearance only: the grid of the bands and of the cards is Handbook's geometry. A band
+   prints its label as a label chip; combo tags are highlighted; an unloaded item is dimmed, a loaded one carries
+   the item-name band. */
+function characterCss(v: string, o: (name: string) => string) {
+  const display = value("font.family.display", "light");
+  const sans = value("font.family.sans", "light");
+  const black = value("font.weight.black", "light");
+  const bold = value("font.weight.bold", "light");
+  const leftBevel = (size: string) => `polygon(${size} 0, 100% 0, 100% 100%, 0 100%, 0 ${size})`;
+  const sheet = ".brumes-os-character";
+  const smallCaps = `font-family: ${display}; font-size: 0.78em; font-weight: ${black}; letter-spacing: 0.14em; text-transform: uppercase;`;
+  return `${v} ${sheet} { font-family: ${sans}; line-height: 1.25; }
+${v} ${sheet} :is(p, li, h3, h4) { margin: 0; }
+${v} ${sheet} ul { margin: 0; padding: 0; list-style: none; }
+${v} ${sheet}--header h3 {
+  padding: 0.18em 0.5em 0.08em 0.75em;
+  background: ${o("item-name")};
+  color: ${o("item-name-text")};
+  font-family: ${display};
+  font-size: 1.6em;
+  font-style: italic;
+  font-weight: ${black};
+  line-height: 1.05;
+  text-transform: uppercase;
+  clip-path: ${leftBevel("0.6em")};
+}
+${v} ${sheet}--band {
+  padding: 0.45em 0.7em;
+  border: 1px solid ${o("surface-line")};
+  background: ${o("surface")};
+  color: ${o("surface-text")};
+  clip-path: ${leftBevel("0.6em")};
+}
+${v} ${sheet}--band > h4 { justify-self: start; padding: 0.15em 0.45em 0.08em; background: ${o("label")}; color: ${o("label-text")}; clip-path: ${leftBevel("0.35em")}; ${smallCaps} }
+${v} ${sheet}--rule { font-size: 0.85em; }
+${v} ${sheet}--upgrades li { font-weight: ${bold}; text-transform: uppercase; font-size: 0.85em; }
+${v} ${sheet}--box { margin: 0; accent-color: ${o("surface-text")}; }
+${v} ${sheet}--combo-label { font-family: ${display}; font-size: 0.85em; font-weight: ${black}; text-transform: uppercase; }
+${v} ${sheet}--combo-tags .brumes-tag { padding: 0 0.3em; background: ${o("highlight")}; color: ${o("highlight-text")}; font-size: 0.85em; font-style: italic; }
+${v} ${sheet}--combo-tags li:not(:last-child)::after { content: " +"; }
+${v} ${sheet}--combo-power { font-size: 0.85em; text-transform: uppercase; }
+${v} ${sheet}--combo-power strong { font-size: 1.15em; font-weight: ${black}; }
+${v} ${sheet}--combo-effect { font-size: 0.85em; }
+${v} ${sheet}--item > .brumes-tag {
+  display: block;
+  padding: 0.14em 0.55em 0.1em 0.8em;
+  background: color-mix(in srgb, ${o("surface-text")} 10%, transparent);
+  color: ${o("surface-text")};
+  font-family: ${display};
+  font-size: 0.85em;
+  font-style: italic;
+  font-weight: ${black};
+  text-transform: uppercase;
+  opacity: 0.55;
+  clip-path: ${leftBevel("0.45em")};
+}
+${v} ${sheet}--item-loaded > .brumes-tag {
+  background: linear-gradient(90deg, ${o("surface-text")} 0 0.35em, color-mix(in srgb, ${o("surface-text")} 18%, transparent) 0.35em);
+  opacity: 1;
+}
+${v} ${sheet}--item :is(small, .brumes-weakness) { font-size: 0.75em; }
+${v} ${sheet}--item .brumes-tag.brumes-weakness { background: ${o("weakness")}; color: ${o("weakness-text")}; padding: 0 0.3em; }
 `;
 }
 /* Band headings, highlighted subtitles and bevelled callouts, shared by every variant; each one reads only its own
@@ -391,7 +457,7 @@ ${v} .callout {
 }
 ${chevrons}${v} .callout-title { --callout-title-color: ${o("surface-text")}; color: ${o("surface-text")}; font-family: ${display}; font-style: italic; font-weight: ${black}; text-transform: uppercase; }
 ${v} .callout-icon { color: ${o("card-title")}; }
-${cardCss(v, o, options.frame)}${options.page ? pageCss(v, o) : ""}`;
+${cardCss(v, o, options.frame)}${characterCss(v, o)}${options.page ? pageCss(v, o) : ""}`;
 }
 /* The scenario page (act-0-crew.png): an H6 right before an H1 is its kicker, and the two callouts that
    OTHERSCAPE_VISUAL_CALLOUTS publishes are square, untitled surfaces, set apart from the bevelled callout. */
@@ -447,9 +513,10 @@ ${v} .callout:not([data-brumes-callout-style^="otherscape-"])::after {
 }
 /* Bullets (act-0-crew.png): a small dot on a hanging indent, items set apart like paragraphs. The ink is named:
    \`currentColor\` would resolve on the bullet span, whose colour is transparent. A zero ring size keeps the dot
-   solid where the theme draws the first level as a ring (Border). */
+   solid where the theme draws the first level as a ring (Border). The note's lists weigh no more than a
+   block's own reset (\`:where\`), so a block's lists keep their spacing. */
 ${v} :is(.markdown-rendered, .markdown-source-view) { --list-bullet-size: 0.22em; --list-bullet-size-alt: 0px; --list-marker-color: var(--text-normal); }
-${v} .markdown-rendered ul > li + li { margin-top: 0.55em; }
+${v} :where(.markdown-rendered ul) > li + li { margin-top: 0.55em; }
 /* Numbered lists are set in the book's light condensed face; sidebars and renvois in IBM Plex Sans Condensed. */
 ${v} .markdown-rendered ol > li { font-family: ${list}; font-weight: ${light}; }
 ${v} :is(.callout:not([data-brumes-callout-style^="otherscape-"]), .callout[data-brumes-callout-style="otherscape-renvoi"]) > .callout-content { font-family: ${aside}; }

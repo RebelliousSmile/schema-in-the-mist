@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { createPublicationMetaSchema, PublicationTypeEnum } from "../common/publication.js";
 export { PublicationTypeEnum } from "../common/publication.js";
+import { ThemeKitSpecialSchema } from "./theme-kit.js";
 
 /** =========================
  *  Enums
@@ -135,13 +136,28 @@ export const OtherscapeThemeSchema = z
           "Number of Decay marks currently on this Theme's track. The sheet prints three boxes: the third one replaces the Theme with another, so the value never stands above 3. Counts what a Legend in the Mist Story Theme calls `abandon`, renamed because Decay is the word the :Otherscape sheet prints.",
         examples: [0, 2, 3],
       }),
+    description: z
+      .string()
+      .trim()
+      .optional()
+      .meta({
+        description:
+          "Prose printed on the card under the Quest, telling who the character is through this theme. Same field, same spelling as on an :Otherscape Theme Kit, so a kit's text can seed it. One string rather than a list of lines: paragraph breaks are carried by newlines. Supports inline Markdown.",
+        examples: [
+          "They still call at three in the morning, and you still pick up.",
+        ],
+      }),
+    special: ThemeKitSpecialSchema.optional().meta({
+      description:
+        "The Theme Special printed at the foot of the card. The very shape of the one an :Otherscape Theme Kit suggests (`name`, `description`), reused rather than copied, so a kit's Special lands on the theme built from it without a mapping table. Absent until the character unlocks or is given one.",
+    }),
     meta: MetaSchema.optional().meta({
       description: "Attribution and cataloging fields for the Theme's origin.",
     }),
   })
   .meta({
     description:
-      ":Otherscape - Theme, one of the themes a character is built from, holding its title tag, the tags it grants, the tags it turns against the character, the Quest it carries and the state of its two tracks. It carries no `level` and no `milestone`, and the absence is measured rather than pending: :Otherscape has no theme tiers — nothing answers to origin, adventure or greatness — and no milestone track anywhere in its books. This is the sharpest divergence from `litm/story-theme`, which carries both.",
+      ":Otherscape - Theme, one of the themes a character is built from, holding its title tag, the tags it grants, the tags it turns against the character, the Quest it carries, the state of its two tracks and, when the card prints them, its description and Theme Special. It carries no `level` and no `milestone`, and the absence is measured rather than pending: :Otherscape has no theme tiers — nothing answers to origin, adventure or greatness — and no milestone track anywhere in its books. This is the sharpest divergence from `litm/story-theme`, which carries both.",
   });
 
 /** =========================
