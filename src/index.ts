@@ -23,6 +23,7 @@ export {
   TOML_VERSION,
   assertCompatiblePackageVersion,
 } from "./contract-version.js";
+export { OTHERSCAPE_VISUAL_CALLOUTS, type OtherscapeVisualCallout } from "./callouts.js";
 export { createJsonCodec, type JsonCodec } from "./codecs/json.js";
 export {
   createSourceConversionCodec,

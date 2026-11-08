@@ -16,50 +16,7 @@
       "id": "metro",
       "label": "Metro",
       "style": {
-        "dark": {
-          "note": {
-            "--background-primary": "#05071D",
-            "--background-primary-alt": "#0B0F2F",
-            "--background-secondary": "#0B0F2F",
-            "--code-background": "#0B0F2F",
-            "--text-normal": "#F6F7F4",
-            "--bold-color": "#F6F7F4",
-            "--italic-color": "#F6F7F4",
-            "--text-muted": "#CBD3D5",
-            "--h1-color": "#C8FF2E",
-            "--h2-color": "#C8FF2E",
-            "--h3-color": "#C8FF2E",
-            "--color-accent": "#20CFE3",
-            "--interactive-accent": "#20CFE3",
-            "--link-color": "#20CFE3",
-            "--link-color-hover": "#20CFE3",
-            "--link-color-active": "#20CFE3",
-            "--list-marker-color": "#20CFE3",
-            "--checkbox-color": "#20CFE3",
-            "--checkbox-color-hover": "#20CFE3",
-            "--text-highlight-bg": "#50581A",
-            "--tag-color": "#E8F7A0",
-            "--tag-background": "#50581A",
-            "--tag-background-hover": "#50581A",
-            "--blockquote-border-color": "#20CFE3",
-            "--link-external-color": "#20CFE3",
-            "--link-external-color-hover": "#20CFE3",
-            "--link-external-color-active": "#20CFE3",
-            "--table-header-color": "#F6F7F4",
-            "--text-faint": "#AAB5BD",
-            "--link-unresolved-color": "#AAB5BD",
-            "--brumes-theme-self": "#E05A6E",
-            "--brumes-theme-mythos": "#A98BD0",
-            "--brumes-theme-noise": "#5D9BD4",
-            "--h1-size": "2.4em",
-            "--h2-size": "1.35em",
-            "--h3-size": "1.05em",
-            "--accent-h": "186.15",
-            "--accent-s": "77.69%",
-            "--accent-l": "50.78%"
-          }
-        },
-        "section": {
+        "light": {
           "note": {
             "--background-primary": "#F6F7F4",
             "--background-primary-alt": "#E4E8E8",
@@ -101,10 +58,53 @@
             "--accent-s": "90.41%",
             "--accent-l": "28.63%"
           }
+        },
+        "section": {
+          "note": {
+            "--background-primary": "#05071D",
+            "--background-primary-alt": "#0B0F2F",
+            "--background-secondary": "#0B0F2F",
+            "--code-background": "#0B0F2F",
+            "--text-normal": "#F6F7F4",
+            "--bold-color": "#F6F7F4",
+            "--italic-color": "#F6F7F4",
+            "--text-muted": "#CBD3D5",
+            "--h1-color": "#C8FF2E",
+            "--h2-color": "#C8FF2E",
+            "--h3-color": "#C8FF2E",
+            "--color-accent": "#20CFE3",
+            "--interactive-accent": "#20CFE3",
+            "--link-color": "#20CFE3",
+            "--link-color-hover": "#20CFE3",
+            "--link-color-active": "#20CFE3",
+            "--list-marker-color": "#20CFE3",
+            "--checkbox-color": "#20CFE3",
+            "--checkbox-color-hover": "#20CFE3",
+            "--text-highlight-bg": "#50581A",
+            "--tag-color": "#E8F7A0",
+            "--tag-background": "#50581A",
+            "--tag-background-hover": "#50581A",
+            "--blockquote-border-color": "#20CFE3",
+            "--link-external-color": "#20CFE3",
+            "--link-external-color-hover": "#20CFE3",
+            "--link-external-color-active": "#20CFE3",
+            "--table-header-color": "#F6F7F4",
+            "--text-faint": "#AAB5BD",
+            "--link-unresolved-color": "#AAB5BD",
+            "--brumes-theme-self": "#E05A6E",
+            "--brumes-theme-mythos": "#A98BD0",
+            "--brumes-theme-noise": "#5D9BD4",
+            "--h1-size": "2.4em",
+            "--h2-size": "1.35em",
+            "--h3-size": "1.05em",
+            "--accent-h": "186.15",
+            "--accent-s": "77.69%",
+            "--accent-l": "50.78%"
+          }
         }
       },
       "polarities": [
-        "dark"
+        "light"
       ]
     },
     {
@@ -477,7 +477,9 @@
       "dark"
     ],
     "assets": {
-      "images": {},
+      "images": {
+        "metro-emblem": "metro-emblem.svg"
+      },
       "stylesheets": [
         "styles/otherscape.css",
         "styles/fonts.css"

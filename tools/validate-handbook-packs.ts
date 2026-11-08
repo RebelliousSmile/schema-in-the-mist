@@ -79,7 +79,7 @@ function listFiles(root: string, base = root): string[] {
 const UNPUBLISHED_FAMILIES = new Set([
   "serif", "sans-serif", "monospace", "cursive", "fantasy", "math", "emoji", "fangsong",
   "system-ui", "ui-serif", "ui-sans-serif", "ui-monospace", "ui-rounded",
-  "-apple-system", "blinkmacsystemfont", "segoe ui", "helvetica neue", "helvetica", "arial", "arial narrow",
+  "-apple-system", "blinkmacsystemfont", "segoe ui", "helvetica neue", "helvetica", "arial", "arial narrow", "courier new", "courier",
   "inherit", "initial", "unset", "revert",
 ]);
 /* The one exception to the two-face OFL contract, recorded with its reason in handbook/README.md. */

@@ -16,10 +16,13 @@
   "variants": {
     "metro": {
       "modes": {
-        "dark": {
+        "light": {
           "evidence": [
-            "dark.jpg",
-            "dark-chapo.jpg"
+            "page.jpg",
+            "light-chapo.jpg",
+            "act-0-crew.png",
+            "description.jpg",
+            "chapter-title.jpg"
           ]
         }
       },
@@ -80,7 +83,15 @@
         "--os-metro-surface-text": "color.metro.semantic.surface-text",
         "--os-metro-surface-line": "color.metro.semantic.surface-line",
         "--os-metro-card-title": "color.metro.semantic.card-title",
-        "--os-metro-rule": "color.metro.semantic.rule"
+        "--os-metro-rule": "color.metro.semantic.rule",
+        "--os-metro-kicker": "color.metro.semantic.kicker",
+        "--os-metro-kicker-band": "color.metro.semantic.kicker-band",
+        "--os-metro-aside": "color.metro.semantic.aside",
+        "--os-metro-aside-text": "color.metro.semantic.aside-text",
+        "--os-metro-read-aloud": "color.metro.semantic.read-aloud",
+        "--os-metro-read-aloud-text": "color.metro.semantic.read-aloud-text",
+        "--os-metro-read-aloud-line": "color.metro.semantic.read-aloud-line",
+        "--os-metro-tab": "color.metro.semantic.tab"
       },
       "contrast": [
         {
@@ -112,12 +123,27 @@
           "foreground": "--os-metro-card-title",
           "background": "--os-metro-surface",
           "min": 3
+        },
+        {
+          "foreground": "--os-metro-kicker",
+          "background": "--os-metro-kicker-band",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-metro-aside-text",
+          "background": "--os-metro-aside",
+          "min": 4.5
+        },
+        {
+          "foreground": "--os-metro-read-aloud-text",
+          "background": "--os-metro-read-aloud",
+          "min": 4.5
         }
       ],
       "alternate": {
         "evidence": [
-          "page.jpg",
-          "light-chapo.jpg"
+          "dark.jpg",
+          "dark-chapo.jpg"
         ]
       }
     },
