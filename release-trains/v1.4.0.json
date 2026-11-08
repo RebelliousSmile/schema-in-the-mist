@@ -1,5 +1,5 @@
 {
-  "status": "pending",
+  "status": "completed",
   "candidate": {
     "packageName": "schema-in-the-mist",
     "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.4.0-rc.1/schema-in-the-mist-1.4.0.tgz",
@@ -30,5 +30,22 @@
         "manifest": "release-train/schema-in-the-mist.json"
       }
     }
-  ]
+  ],
+  "final": {
+    "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.4.0/schema-in-the-mist-1.4.0.tgz",
+    "sha256": "6c00071eb9a1f381c0d407ebc000b2bd98878db859151b8c508ae2baefa4593e",
+    "integrity": "sha512-jKtcAecEQWGXXDskoCrFGDzKO1UP1oddEhezjCfXWn8Q4XaxGzKKfQbYYzqmUawCNUvR6J1O1QueiMLmZxFG0A==",
+    "consumers": [
+      {
+        "role": "handbook",
+        "repository": "RebelliousSmile/obsidian-handbook",
+        "ref": "fd5436b259a4ea75e3d179d9278331eae0449ce3"
+      },
+      {
+        "role": "lantern",
+        "repository": "RebelliousSmile/lantern",
+        "ref": "389ed54aa14e22793104d33ed25b01df6023f284"
+      }
+    ]
+  }
 }
