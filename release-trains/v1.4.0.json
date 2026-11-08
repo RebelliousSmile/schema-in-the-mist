@@ -13,7 +13,7 @@
     {
       "role": "handbook",
       "repository": "RebelliousSmile/obsidian-handbook",
-      "ref": "147f356624c8df43fab551a0733eea00c3857391",
+      "ref": "996b99c769f8519f950dbdb45ab4335da0a79120",
       "path": "handbook",
       "proof": {
         "interface": "npm-run-release-train-assert",
