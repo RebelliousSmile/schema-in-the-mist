@@ -7,13 +7,13 @@
     "integrity": "sha512-OQTxEOvYS0J276UXon3Acu907x7/723Xt+ZFjHuG3neNXpi4PnBuFE9c3m5sAHGFoEERrJRV+KcaUc89DEKuLw==",
     "stagingTag": "v1.7.0-rc.1",
     "finalTag": "v1.7.0",
-    "providerCommit": "b4dcc57f3ef87916c0b9b96f36d8a1f57d3ce763"
+    "providerCommit": "3a5a69a940700cddbd245cd801c27ef1b4c4a557"
   },
   "consumers": [
     {
       "role": "handbook",
       "repository": "RebelliousSmile/obsidian-handbook",
-      "ref": "b7b5ac46bc9caf31ceb8c2da049d33413b69aa98",
+      "ref": "333171d682a568dbc27678d4329c23aa3398f698",
       "path": "handbook",
       "proof": {
         "interface": "npm-run-release-train-assert",
@@ -23,7 +23,7 @@
     {
       "role": "lantern",
       "repository": "RebelliousSmile/lantern",
-      "ref": "c8dc6f4b2bca5b6b9c0a929165683d13054e7585",
+      "ref": "48647f7fd1f91c24d261d417d501e44ca9a01c76",
       "path": "lantern",
       "proof": {
         "interface": "npm-run-release-train-assert",
