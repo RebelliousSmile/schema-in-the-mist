@@ -108,6 +108,9 @@ export const CharacterLoadoutItemSchema = z
       "One item of the character's loadout theme: the fields of an :Otherscape Loadout Item that the sheet prints (`name`, `feature_tags`, `weakness_tag`), reused rather than copied, plus whether it is loaded.",
   });
 
+/** What the session notes page holds, in characters. Read by the tools and by the consumers; never copied. */
+export const SESSION_NOTES_CAPACITY = 6000;
+
 /** =========================
  *  Root schema
  *  ========================= */
@@ -143,6 +146,17 @@ export const OtherscapeCharacterSchema = z
       .meta({
         description:
           "The character's loadout theme, one entry per item, loaded or not. A renderer sorts them into loaded and unloaded columns.",
+      }),
+    session_notes: z
+      .string()
+      .max(SESSION_NOTES_CAPACITY)
+      .optional()
+      .meta({
+        description:
+          "Session notes: free text the player writes down while playing, printed on a page of its own, always the last of the sheet. The text fits one page: beyond the capacity it is refused.",
+        examples: [
+          "Session 3: the crew leaves the warehouse through the roof.\n\nRemember: Claire lost her radio.",
+        ],
       }),
     meta: MetaSchema.optional(),
   })

@@ -58,3 +58,35 @@ export const OTHERSCAPE_ZONE_LABELS = {
     loadout: { fr: "Loadout", en: "Loadout" },
   },
 } as const satisfies Record<string, Record<string, OtherscapeLabel>>;
+
+/**
+ * A page of the character sheet. A sheet that declares pages is exported page by page: one image per
+ * page, one printed sheet per page. Either the page prints fields of the document (`fields`, by name)
+ * or it is the notes page (`notes_field`, the field the player writes into), never both. The notes
+ * page is the last one.
+ */
+export interface OtherscapeCharacterPage {
+  readonly id: string;
+  readonly label: OtherscapeLabel;
+  readonly fields?: readonly string[];
+  readonly notes_field?: string;
+}
+
+/** The pages of an `otherscape/character` sheet, in print order. The notes page is always last. */
+export const OTHERSCAPE_CHARACTER_PAGES = [
+  {
+    id: "sheet",
+    label: { fr: "Fiche", en: "Sheet" },
+    fields: ["name", "tag_combos", "loadout"],
+  },
+  {
+    id: "themes",
+    label: { fr: "Thèmes", en: "Themes" },
+    fields: ["themes"],
+  },
+  {
+    id: "notes",
+    label: { fr: "Notes de partie", en: "Session notes" },
+    notes_field: "session_notes",
+  },
+] as const satisfies readonly OtherscapeCharacterPage[];

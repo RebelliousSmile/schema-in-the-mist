@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/RebelliousSmile/schema-in-the-mist/v1.6.0/schemas/v1/otherscape/character.schema.json",
+  "$id": "https://raw.githubusercontent.com/RebelliousSmile/schema-in-the-mist/v1.7.0/schemas/v1/otherscape/character.schema.json",
   "type": "object",
   "properties": {
     "name": {
@@ -327,6 +327,14 @@
         "additionalProperties": false,
         "description": "One item of the character's loadout theme: the fields of an :Otherscape Loadout Item that the sheet prints (`name`, `feature_tags`, `weakness_tag`), reused rather than copied, plus whether it is loaded."
       }
+    },
+    "session_notes": {
+      "description": "Session notes: free text the player writes down while playing, printed on a page of its own, always the last of the sheet. The text fits one page: beyond the capacity it is refused.",
+      "examples": [
+        "Session 3: the crew leaves the warehouse through the roof.\n\nRemember: Claire lost her radio."
+      ],
+      "type": "string",
+      "maxLength": 6000
     },
     "meta": {
       "type": "object",

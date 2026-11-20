@@ -154,8 +154,10 @@ export const MIST_SOURCE_CONVERSION_CODECS = {
 } as const;
 
 export {
+  OTHERSCAPE_CHARACTER_PAGES,
   OTHERSCAPE_QUEST_LABELS,
   OTHERSCAPE_THEME_TYPE_LABELS,
   OTHERSCAPE_ZONE_LABELS,
 } from "./presentation.js";
-export type { OtherscapeLabel } from "./presentation.js";
+export type { OtherscapeCharacterPage, OtherscapeLabel } from "./presentation.js";
+export { SESSION_NOTES_CAPACITY } from "./zod/otherscape/character.js";

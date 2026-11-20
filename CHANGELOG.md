@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.7.0] - 2026-11-20
+
+### Added
+
+- `otherscape/character` gains `session_notes`: free text the player writes down while playing, up to `SESSION_NOTES_CAPACITY` characters (6000), refused beyond. It is printed on a page of its own, always the last of the sheet, and is part of the TOML document and of every export.
+- `OTHERSCAPE_CHARACTER_PAGES` publishes the pages of the character sheet, in print order (`sheet`, `themes`, then the notes page, French first), so a consumer exports page by page without keeping its own split. A page names the fields it prints (`fields`) or is the notes page (`notes_field`).
+- Accepted and rejected contract cases for the notes (a sheet with notes, a text over the capacity); the contract tool checks the pages against the schema.
+
 ## [v1.6.0] - 2026-11-08
 
 ### Added

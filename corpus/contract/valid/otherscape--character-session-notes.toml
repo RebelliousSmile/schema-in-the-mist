@@ -1,0 +1,9 @@
+name = "Vesper"
+session_notes = """
+Session 3: the crew leaves the warehouse through the roof.
+
+Remember: Claire lost her radio."""
+
+[meta]
+publication_type = "homebrew"
+authors = [ "schema-in-the-mist contributors" ]
