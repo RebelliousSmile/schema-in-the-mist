@@ -1,0 +1,103 @@
+{
+  "protocol": 2,
+  "candidateEvidence": {
+    "protocol": 1,
+    "candidate": {
+      "packageName": "schema-in-the-mist",
+      "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.7.0-rc.1/schema-in-the-mist-1.7.0.tgz",
+      "sha256": "f3f639165f48214355dd203921fc12ded29fe83c9f48de9384a87198411d033a",
+      "integrity": "sha512-OQTxEOvYS0J276UXon3Acu907x7/723Xt+ZFjHuG3neNXpi4PnBuFE9c3m5sAHGFoEERrJRV+KcaUc89DEKuLw==",
+      "stagingTag": "v1.7.0-rc.1",
+      "finalTag": "v1.7.0",
+      "providerCommit": "3a5a69a940700cddbd245cd801c27ef1b4c4a557"
+    },
+    "consumers": [
+      {
+        "status": "passed",
+        "artifact": {
+          "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.7.0-rc.1/schema-in-the-mist-1.7.0.tgz",
+          "sha256": "f3f639165f48214355dd203921fc12ded29fe83c9f48de9384a87198411d033a",
+          "integrity": "sha512-OQTxEOvYS0J276UXon3Acu907x7/723Xt+ZFjHuG3neNXpi4PnBuFE9c3m5sAHGFoEERrJRV+KcaUc89DEKuLw==",
+          "version": "1.7.0"
+        },
+        "consumer": {
+          "role": "handbook",
+          "repository": "RebelliousSmile/obsidian-handbook",
+          "ref": "333171d682a568dbc27678d4329c23aa3398f698"
+        }
+      },
+      {
+        "status": "passed",
+        "artifact": {
+          "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.7.0-rc.1/schema-in-the-mist-1.7.0.tgz",
+          "sha256": "f3f639165f48214355dd203921fc12ded29fe83c9f48de9384a87198411d033a",
+          "integrity": "sha512-OQTxEOvYS0J276UXon3Acu907x7/723Xt+ZFjHuG3neNXpi4PnBuFE9c3m5sAHGFoEERrJRV+KcaUc89DEKuLw==",
+          "version": "1.7.0"
+        },
+        "consumer": {
+          "role": "lantern",
+          "repository": "RebelliousSmile/lantern",
+          "ref": "48647f7fd1f91c24d261d417d501e44ca9a01c76"
+        }
+      }
+    ]
+  },
+  "final": {
+    "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.7.0/schema-in-the-mist-1.7.0.tgz",
+    "sha256": "f3f639165f48214355dd203921fc12ded29fe83c9f48de9384a87198411d033a",
+    "integrity": "sha512-OQTxEOvYS0J276UXon3Acu907x7/723Xt+ZFjHuG3neNXpi4PnBuFE9c3m5sAHGFoEERrJRV+KcaUc89DEKuLw=="
+  },
+  "consumers": [
+    {
+      "status": "passed",
+      "artifact": {
+        "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.7.0/schema-in-the-mist-1.7.0.tgz",
+        "sha256": "f3f639165f48214355dd203921fc12ded29fe83c9f48de9384a87198411d033a",
+        "integrity": "sha512-OQTxEOvYS0J276UXon3Acu907x7/723Xt+ZFjHuG3neNXpi4PnBuFE9c3m5sAHGFoEERrJRV+KcaUc89DEKuLw==",
+        "version": "1.7.0"
+      },
+      "consumer": {
+        "role": "handbook",
+        "repository": "RebelliousSmile/obsidian-handbook",
+        "ref": "2af2898bff7fd09196549ae18b1e4afc7fb0efbf"
+      },
+      "checks": [
+        "contract",
+        "pack-assets",
+        "source-installer",
+        "production-build",
+        "obsidian-plugin-load"
+      ]
+    },
+    {
+      "status": "passed",
+      "artifact": {
+        "releaseUrl": "https://github.com/RebelliousSmile/schema-in-the-mist/releases/download/v1.7.0/schema-in-the-mist-1.7.0.tgz",
+        "sha256": "f3f639165f48214355dd203921fc12ded29fe83c9f48de9384a87198411d033a",
+        "integrity": "sha512-OQTxEOvYS0J276UXon3Acu907x7/723Xt+ZFjHuG3neNXpi4PnBuFE9c3m5sAHGFoEERrJRV+KcaUc89DEKuLw==",
+        "version": "1.7.0"
+      },
+      "consumer": {
+        "role": "lantern",
+        "repository": "RebelliousSmile/lantern",
+        "ref": "ff7143ec076ffaf745b5b32cf2f405c3d0b3eca3"
+      },
+      "checks": [
+        "provider-assertion",
+        "package-declaration",
+        "lock-importer",
+        "lock-resolution",
+        "npm-lock-declaration",
+        "npm-lock-resolution",
+        "archive-download",
+        "archive-sha256",
+        "archive-integrity",
+        "frozen-install",
+        "installed-version",
+        "mist-contracts",
+        "mist-vite-assets",
+        "repository-clean"
+      ]
+    }
+  ]
+}
